@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-09-20T02:06:23.359Z",
+  "contentRevision": "83efada51e2e3b6d",
+  "total": 10500,
+  "complete": true,
+  "pending": 0,
+  "courses": [
+    {
+      "key": "P6-art",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 65,
+      "answerWordingChanged": 1,
+      "answerIndexChanged": 0,
+      "core": 150,
+      "extra": 750
+    },
+    {
+      "key": "P6-bm",
+      "total": 1200,
+      "reviewed": 1200,
+      "changed": 1181,
+      "answerWordingChanged": 1023,
+      "answerIndexChanged": 0,
+      "core": 889,
+      "extra": 311
+    },
+    {
+      "key": "P6-chinese",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 424,
+      "answerWordingChanged": 82,
+      "answerIndexChanged": 0,
+      "core": 572,
+      "extra": 328
+    },
+    {
+      "key": "P6-english",
+      "total": 1200,
+      "reviewed": 1200,
+      "changed": 1200,
+      "answerWordingChanged": 1028,
+      "answerIndexChanged": 0,
+      "core": 785,
+      "extra": 415
+    },
+    {
+      "key": "P6-history",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 442,
+      "answerWordingChanged": 151,
+      "answerIndexChanged": 0,
+      "core": 271,
+      "extra": 629
+    },
+    {
+      "key": "P6-math",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 900,
+      "answerWordingChanged": 900,
+      "answerIndexChanged": 0,
+      "core": 480,
+      "extra": 420
+    },
+    {
+      "key": "P6-moral",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 738,
+      "answerWordingChanged": 18,
+      "answerIndexChanged": 0,
+      "core": 627,
+      "extra": 273
+    },
+    {
+      "key": "P6-music",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 155,
+      "answerWordingChanged": 19,
+      "answerIndexChanged": 0,
+      "core": 233,
+      "extra": 667
+    },
+    {
+      "key": "P6-pjpk",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 438,
+      "answerWordingChanged": 23,
+      "answerIndexChanged": 0,
+      "core": 204,
+      "extra": 696
+    },
+    {
+      "key": "P6-rbt",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 798,
+      "answerWordingChanged": 641,
+      "answerIndexChanged": 0,
+      "core": 328,
+      "extra": 572
+    },
+    {
+      "key": "P6-science",
+      "total": 900,
+      "reviewed": 900,
+      "changed": 809,
+      "answerWordingChanged": 696,
+      "answerIndexChanged": 0,
+      "core": 317,
+      "extra": 583
+    }
+  ],
+  "otherCoursesUnchanged": 88,
+  "ledgerDigest": "e97d4e22e8eae8c73baec12532d4a7b53b1b2628e2c27ef486f7c64cdbdf2a62",
+  "method": "AI editorial review of every distinct full text and finite language/media form, with all 10500 item instances enumerated and checked; independent visible-data checks for applicable questions.",
+  "limits": "Controlled variants remain. This is not a native-teacher certification, a claim of perfect accuracy, or a complete SK/SP curriculum assessment."
+}
