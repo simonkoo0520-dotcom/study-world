@@ -1,0 +1,1982 @@
+{
+  "title": "全套题库修订与审计 · 2026-09-27",
+  "checkedAt": "2026-09-27T13:44:51.642Z",
+  "contentRevision": "d252bf76693d366c",
+  "reviewDraft": false,
+  "status": "pass",
+  "courses": 99,
+  "totals": {
+    "items": 102711,
+    "active": 94500,
+    "visibleChanged": 18116,
+    "keyChanged": 0,
+    "answerWordingChanged": 1218,
+    "sourceLinkedRevisionItems": 34136,
+    "prerequisiteItems": 16940,
+    "changedCourses": 79
+  },
+  "historicalIdsRetained": 6510,
+  "scope": "All serialized question instances, stable IDs, multilingual options/explanations, identical-content key consistency, source resolution and independent-test selection. This does not certify every natural-language answer or every curriculum standard.",
+  "checks": [
+    {
+      "name": "language-revision",
+      "command": "node scripts/test-published-languages.mjs",
+      "passed": true
+    },
+    {
+      "name": "curriculum",
+      "command": "node scripts/test-curriculum.mjs",
+      "passed": true
+    },
+    {
+      "name": "all-item-audit",
+      "command": "node scripts/audit-published-revision.mjs",
+      "passed": true
+    },
+    {
+      "name": "visible-math-science",
+      "command": "node scripts/audit-math-science.mjs",
+      "passed": true
+    },
+    {
+      "name": "stem-revision",
+      "command": "node scripts/test-published-stem.mjs",
+      "passed": true
+    },
+    {
+      "name": "humanities-revision",
+      "command": "node scripts/test-published-humanities.mjs",
+      "passed": true
+    },
+    {
+      "name": "programming-geography",
+      "command": "node scripts/test-programming-geography.mjs --with-explanations",
+      "passed": true
+    },
+    {
+      "name": "reading-evidence",
+      "command": "node scripts/test-published-language-evidence.mjs",
+      "passed": true
+    },
+    {
+      "name": "grade-progression",
+      "command": "node scripts/test-grade-progression-live.mjs",
+      "passed": true
+    },
+    {
+      "name": "exercise",
+      "command": "node scripts/test-exercise.mjs",
+      "passed": true
+    },
+    {
+      "name": "answer-feedback",
+      "command": "node scripts/test-feedback.mjs",
+      "passed": true
+    },
+    {
+      "name": "grade-inventory",
+      "command": "node scripts/audit-age-progression.mjs",
+      "passed": true
+    },
+    {
+      "name": "learning",
+      "command": "node scripts/test-learning.mjs",
+      "passed": true
+    },
+    {
+      "name": "synchronization",
+      "command": "node scripts/test-sync.mjs",
+      "passed": true
+    },
+    {
+      "name": "game-receipts",
+      "command": "node scripts/test-game-credit.mjs",
+      "passed": true
+    }
+  ],
+  "courseResults": [
+    {
+      "course": "P1-bm",
+      "sha256": "d9df9d003878169862ac74d49f18a3f7f5fa180b36160593ba461da0cd7624c6",
+      "items": 1255,
+      "active": 1200,
+      "visibleChanged": 131,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 0,
+      "models": 28
+    },
+    {
+      "course": "P1-english",
+      "sha256": "b53ab8b67f9d4a8166d9b67fda7c8cc7ffb5faeeb7cec01baa65adab7e3f1dcf",
+      "items": 1255,
+      "active": 1200,
+      "visibleChanged": 240,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 240,
+      "prerequisiteItems": 0,
+      "models": 19
+    },
+    {
+      "course": "P1-chinese",
+      "sha256": "77b1601f78e0caef020ff82d33960fcc83561540d6dc57d41784a022499e4b55",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 6,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 6,
+      "prerequisiteItems": 0,
+      "models": 28
+    },
+    {
+      "course": "P1-math",
+      "sha256": "2cd35e52c78b3b27b803ccb07259d771b9a1eeaa5c941b78bf6f892ae1ca6303",
+      "items": 1024,
+      "active": 900,
+      "visibleChanged": 124,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 94,
+      "prerequisiteItems": 0,
+      "models": 24
+    },
+    {
+      "course": "P1-science",
+      "sha256": "0c61fe1dc901635a04488f063d7d97584c0013ed3f5326e15e0473b6a6a9270c",
+      "items": 981,
+      "active": 900,
+      "visibleChanged": 191,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 45,
+      "prerequisiteItems": 0,
+      "models": 43
+    },
+    {
+      "course": "P1-moral",
+      "sha256": "ddf3855c9819b2da16775d1c2e972b532889ed7acf340540f33f6236ffb21b36",
+      "items": 1197,
+      "active": 900,
+      "visibleChanged": 897,
+      "keyChanged": 0,
+      "answerWordingChanged": 3,
+      "sourceLinkedRevisionItems": 699,
+      "prerequisiteItems": 0,
+      "models": 43
+    },
+    {
+      "course": "P1-pjpk",
+      "sha256": "80d80aaa46b08cd2db128aab363c647155a1bdc2f70fafb2ccbe752a455b27b5",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 17
+    },
+    {
+      "course": "P1-art",
+      "sha256": "e77b84c6bfe4e90121737af3540b516d8acf47d10e5a69e0c5873bbda24337eb",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 21
+    },
+    {
+      "course": "P1-music",
+      "sha256": "665b7d9cec073bc9eca1bd0a87b3056dc88c726f50c8008b20ad5380f585257e",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 180,
+      "keyChanged": 0,
+      "answerWordingChanged": 2,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 21
+    },
+    {
+      "course": "P2-bm",
+      "sha256": "2251e5797f8480c691c2bb14f9c5101899077df6eac49581fe7f1fb7fdb3ac55",
+      "items": 2232,
+      "active": 1200,
+      "visibleChanged": 803,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 120,
+      "models": 25
+    },
+    {
+      "course": "P2-english",
+      "sha256": "13797b503cfca74828146077cddd38df22b61e75c615458e3b52ff597971cd38",
+      "items": 2000,
+      "active": 1200,
+      "visibleChanged": 686,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 120,
+      "models": 21
+    },
+    {
+      "course": "P2-chinese",
+      "sha256": "f5bf95b59e47fb515f758c860cc476b97b3d62c1f39f57b599a97d2634353945",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 6,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 6,
+      "prerequisiteItems": 281,
+      "models": 30
+    },
+    {
+      "course": "P2-math",
+      "sha256": "dcfcd653cd2acf23aa1982e15a3fb85810e345298b255a6f39f4585b811c36d6",
+      "items": 939,
+      "active": 900,
+      "visibleChanged": 55,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 50,
+      "prerequisiteItems": 203,
+      "models": 23
+    },
+    {
+      "course": "P2-science",
+      "sha256": "0107e55ac4bc46ddc954a723e172a21fbf7b4f545a65ec17565ebf7c747b6e26",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 88,
+      "keyChanged": 0,
+      "answerWordingChanged": 39,
+      "sourceLinkedRevisionItems": 64,
+      "prerequisiteItems": 121,
+      "models": 37
+    },
+    {
+      "course": "P2-moral",
+      "sha256": "a0ec7a0179b7d8c475678a1978053a74e11e7c3f2ca34697d973d15ef9e49de2",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "P2-pjpk",
+      "sha256": "cc9fde378642ad6ad1aa3b7454a28d8c51bd401c50926ea304a66a9ee92862b2",
+      "items": 901,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 567,
+      "models": 17
+    },
+    {
+      "course": "P2-art",
+      "sha256": "b3c256162b94e66bf64763eeb054ec9bc78101ace6d9d2d99c199d2d9f978d90",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 301,
+      "models": 21
+    },
+    {
+      "course": "P2-music",
+      "sha256": "f840241a87e9242f4c2ee97fb83b405e46352951abd2a60062cb5e4809e087f2",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 180,
+      "keyChanged": 0,
+      "answerWordingChanged": 2,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 350,
+      "models": 21
+    },
+    {
+      "course": "P3-bm",
+      "sha256": "61f5cf4bc8ad2f3eb50e53324e5e1aca777e41672f4c8dcbe1a3f45fe5090119",
+      "items": 2222,
+      "active": 1200,
+      "visibleChanged": 795,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 0,
+      "models": 31
+    },
+    {
+      "course": "P3-english",
+      "sha256": "1754183315909dc02a578a32b32e4e49004fbdd316490eee94dae8e0dae17a6e",
+      "items": 1772,
+      "active": 1200,
+      "visibleChanged": 572,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 60,
+      "models": 21
+    },
+    {
+      "course": "P3-chinese",
+      "sha256": "f0683336f13d5bcb1fbee12a4b22a0c157a71d1b4af359fe86051da53ee73f54",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 7,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 7,
+      "prerequisiteItems": 230,
+      "models": 30
+    },
+    {
+      "course": "P3-math",
+      "sha256": "e66f8bd10819c929e283e99ddedd413a5bf5f0eb876de9f94f22a1797e6533b1",
+      "items": 905,
+      "active": 900,
+      "visibleChanged": 43,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 38,
+      "prerequisiteItems": 122,
+      "models": 26
+    },
+    {
+      "course": "P3-science",
+      "sha256": "93860ed4b499471af1a87175ab05c6f2647cb1179ced0e2a5305419136a44547",
+      "items": 901,
+      "active": 900,
+      "visibleChanged": 188,
+      "keyChanged": 0,
+      "answerWordingChanged": 26,
+      "sourceLinkedRevisionItems": 155,
+      "prerequisiteItems": 200,
+      "models": 38
+    },
+    {
+      "course": "P3-moral",
+      "sha256": "808fff6bf7c261b09933690374d272b77f470bcf075bbbc6a2cf8a6cb3e3fb87",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "P3-pjpk",
+      "sha256": "5df05b5ac502c9b9c53d0f8e3e37e9cebe1d0e8597325bd156056bedb22bf9e1",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 588,
+      "models": 17
+    },
+    {
+      "course": "P3-art",
+      "sha256": "15d91fe4949b15e532f4fa7a4baf55fe2099216840c2116a186f4c4c21f70f76",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 301,
+      "models": 21
+    },
+    {
+      "course": "P3-music",
+      "sha256": "af371cd8242d087b6cc532be9c1114749dfcdc9658745d1aa45ea9ca2882feaa",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 180,
+      "keyChanged": 0,
+      "answerWordingChanged": 1,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 131,
+      "models": 22
+    },
+    {
+      "course": "P4-bm",
+      "sha256": "85bbdd466d8fd8da41c3a2c74903f070ac3d8ed899c3d5b8bde0250c4b0f4cf7",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 60,
+      "keyChanged": 0,
+      "answerWordingChanged": 60,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 6,
+      "models": 24
+    },
+    {
+      "course": "P4-english",
+      "sha256": "57ed31353f0e0360eca41ce22188b7e30521be5d78bfe75af10bf547449415c9",
+      "items": 1678,
+      "active": 1200,
+      "visibleChanged": 538,
+      "keyChanged": 0,
+      "answerWordingChanged": 60,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 0,
+      "models": 15
+    },
+    {
+      "course": "P4-chinese",
+      "sha256": "8118d717b65d792b4f7a57cb72a745bb786833fb0d43992f2775097917883d12",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 2,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 2,
+      "prerequisiteItems": 157,
+      "models": 38
+    },
+    {
+      "course": "P4-math",
+      "sha256": "58b864addacbe776644ac53e835c57ba5ad8a735a6ffa88ef157375fef29cca2",
+      "items": 905,
+      "active": 900,
+      "visibleChanged": 37,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 32,
+      "prerequisiteItems": 236,
+      "models": 30
+    },
+    {
+      "course": "P4-science",
+      "sha256": "5ef21a73da7974d5a5a38dc6b78badecbe12c39515b0bf48e569a46843ec2265",
+      "items": 1000,
+      "active": 900,
+      "visibleChanged": 88,
+      "keyChanged": 0,
+      "answerWordingChanged": 26,
+      "sourceLinkedRevisionItems": 54,
+      "prerequisiteItems": 155,
+      "models": 39
+    },
+    {
+      "course": "P4-moral",
+      "sha256": "d48879a2dc8e89608aeeba9b3ed99c13a5eb129da7a57b852b2cc1f8f7d4f6ff",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "P4-pjpk",
+      "sha256": "9b5e55f0b0599b21a52b5431151a7af6ff7166a6dd33f91b8b69e4cb48f9b7bd",
+      "items": 901,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 707,
+      "models": 17
+    },
+    {
+      "course": "P4-art",
+      "sha256": "5596b1bce92d2bd069e80409c482f7e8bcd088348a2bd98e2ccdc1015d857e10",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 305,
+      "models": 21
+    },
+    {
+      "course": "P4-music",
+      "sha256": "1a90d8e29b8b690ef6722cff3da11de758981a595a5cee0b18fd58a446353be6",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 180,
+      "keyChanged": 0,
+      "answerWordingChanged": 2,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 358,
+      "models": 22
+    },
+    {
+      "course": "P4-history",
+      "sha256": "88e42dc3887d05a7a24271f4672699ab285eb8c732cdc54dab4975a49bd6dfc2",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 16,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 15,
+      "models": 59
+    },
+    {
+      "course": "P4-rbt",
+      "sha256": "70d9ba50f56cc9fddb88dbe0d6ef985c4005e89ab9a45142e78804f25eacd79e",
+      "items": 960,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 18
+    },
+    {
+      "course": "P5-bm",
+      "sha256": "671780cc2b38144b53acf7868f4b0014aa145ad5cf8ea95f4cbd73ccac87d580",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 60,
+      "keyChanged": 0,
+      "answerWordingChanged": 60,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 244,
+      "models": 24
+    },
+    {
+      "course": "P5-english",
+      "sha256": "d60b0b77b2604179f07137a2c8c164e2ea674fceb1b071d033a45ee9b03a87ec",
+      "items": 1679,
+      "active": 1200,
+      "visibleChanged": 539,
+      "keyChanged": 0,
+      "answerWordingChanged": 60,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 38,
+      "models": 15
+    },
+    {
+      "course": "P5-chinese",
+      "sha256": "dc7b3ab467bb1929f2861f5de87c9a03b498b936eafe115c21b73c94d2f07828",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 1,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 201,
+      "models": 35
+    },
+    {
+      "course": "P5-math",
+      "sha256": "d85e84783ae22dc08ca48737f7f0930176b65c525a5ddb1a6b2098b65b8c502a",
+      "items": 905,
+      "active": 900,
+      "visibleChanged": 35,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 30,
+      "prerequisiteItems": 316,
+      "models": 32
+    },
+    {
+      "course": "P5-science",
+      "sha256": "90a80f3d36cb8917e7268d3dea6fe9e34da75a65bfba8892d61b4fb3b3fe1725",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 188,
+      "keyChanged": 0,
+      "answerWordingChanged": 39,
+      "sourceLinkedRevisionItems": 164,
+      "prerequisiteItems": 299,
+      "models": 38
+    },
+    {
+      "course": "P5-moral",
+      "sha256": "df861d73cc3f9fd9628e2c8c99e098d19e7bdd839dd33f2d112decd162234994",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "P5-pjpk",
+      "sha256": "53ec824f65d72d1a7b991bfa46f17825c99b426e6d6c519fcaf31cdbaebd9453",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 715,
+      "models": 17
+    },
+    {
+      "course": "P5-art",
+      "sha256": "1bdce1c3a906f945ef64e68223828523f18cc1cdbb2e58b01d1b5193980045e9",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 313,
+      "models": 21
+    },
+    {
+      "course": "P5-music",
+      "sha256": "92c9ce046438e9d6ea782ce9ddb3ae70c264757440b89cccfed13944f37ac4ad",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 139,
+      "keyChanged": 0,
+      "answerWordingChanged": 2,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 302,
+      "models": 22
+    },
+    {
+      "course": "P5-history",
+      "sha256": "cfb3ccf181c73ed7622bfbd15ea2ba4f0255e92f9eeb2b638b642936d0159f54",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 16,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 18,
+      "models": 44
+    },
+    {
+      "course": "P5-rbt",
+      "sha256": "55d2176601faae3fd6a84093bca89dbf39a790eff64c83abdf742a3d26ff2ef7",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 201,
+      "models": 21
+    },
+    {
+      "course": "P6-bm",
+      "sha256": "8228bf46516919dda5a97e3fe2f8709f9ffb392e711916cdf3dc48421343e9f3",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 12
+    },
+    {
+      "course": "P6-english",
+      "sha256": "61f17cc66ddc68eb9180e8a1f767b2e5d823d6b6e1e6753710528e553a94c26d",
+      "items": 1679,
+      "active": 1200,
+      "visibleChanged": 479,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 52
+    },
+    {
+      "course": "P6-chinese",
+      "sha256": "32f17012cf5177c7015ef81db4392fe5cd84ecd06afff6ead4bc7d547c504769",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 1,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 222,
+      "models": 24
+    },
+    {
+      "course": "P6-math",
+      "sha256": "27c9ed9d0ad160067358fb4e2f7601506f1769160107cc4ff2a358254e0b9ea8",
+      "items": 905,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 60
+    },
+    {
+      "course": "P6-science",
+      "sha256": "29b3651b95a45ebd0850791928769dad98e5687c7c113c8e1a8aecd8e441d52b",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 35
+    },
+    {
+      "course": "P6-moral",
+      "sha256": "80221761f1e1287dbc59c86aeb99b0d5f84266e4b2b9ec15c0f67b3bfa3644fa",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "P6-pjpk",
+      "sha256": "0acc204c73373733ed456e40d5761996b4ab26f501623385f833cac3db60cfa3",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 362,
+      "models": 17
+    },
+    {
+      "course": "P6-art",
+      "sha256": "67c34dbc42684b00cbb3f21c5a6c3ebac74b53045d71b23fa9131371cde93db5",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 250,
+      "models": 21
+    },
+    {
+      "course": "P6-music",
+      "sha256": "916359a1e1af87ce73e2dc459fa0c177056b8ba60f1a62d5754cb54892954030",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 144,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 210,
+      "models": 22
+    },
+    {
+      "course": "P6-history",
+      "sha256": "00e2e38e752d57b7e62cecff6c33cbd21b0f09057f2df68d7aa8d6e796f50e14",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 16,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 28,
+      "models": 47
+    },
+    {
+      "course": "P6-rbt",
+      "sha256": "7774e5692a240bc44b5b1040efe4b13e19dbfb799638a43d02cb9ee77751a1c2",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 109,
+      "models": 30
+    },
+    {
+      "course": "F1-bm",
+      "sha256": "fc5db1b9c6c50d621b0c3f6e3d70b19881e5dd051ac6a18acb395da3df0376ba",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 420,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 420,
+      "prerequisiteItems": 234,
+      "models": 25
+    },
+    {
+      "course": "F1-english",
+      "sha256": "32288b40c817f76f4552815f2b78308b0e6d57dfcf756c2ea5f3ce89bbfb62b4",
+      "items": 1774,
+      "active": 1200,
+      "visibleChanged": 994,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 420,
+      "prerequisiteItems": 12,
+      "models": 14
+    },
+    {
+      "course": "F1-chinese",
+      "sha256": "b16b3148b2db031764937347f660b43b724064df57c151bbeed9510ab766c523",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 1,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 480,
+      "models": 33
+    },
+    {
+      "course": "F1-math",
+      "sha256": "04e3eb86e4b1deb744feaa32dcf3e90da91320af2f3eeafd65c0655e262e0b1e",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 17
+    },
+    {
+      "course": "F1-science",
+      "sha256": "ac6df3ea1dc0b0e25bed6d64321331574dc600ffe9ef12a6590a52936571517c",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 388,
+      "keyChanged": 0,
+      "answerWordingChanged": 26,
+      "sourceLinkedRevisionItems": 355,
+      "prerequisiteItems": 0,
+      "models": 39
+    },
+    {
+      "course": "F1-moral",
+      "sha256": "cb3d98b80db24eafc87d1822f7f20826aa842bc53fb4b5726c7bfa0c14ba5d07",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "F1-pjpk",
+      "sha256": "db4f05c0f1901f77d329840788344f850a50f610ad1000ee157fffba415b3c4c",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 17
+    },
+    {
+      "course": "F1-art",
+      "sha256": "4243ca92923a94f0551902dee1f399152f42f0dd3e0b83d7464d0807ab1f918f",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 21
+    },
+    {
+      "course": "F1-music",
+      "sha256": "aa926ddca03cbbb227081faba24e211dfb2d865ae9e686a92dd500674159e273",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 150,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 0,
+      "models": 22
+    },
+    {
+      "course": "F1-history",
+      "sha256": "70ee340f71c5daa41f941f2499b39318f7c31e8104f41eb003fabcb3a6f40385",
+      "items": 1188,
+      "active": 900,
+      "visibleChanged": 19,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 168,
+      "models": 35
+    },
+    {
+      "course": "F1-geography",
+      "sha256": "61646b6ddb50d76b227d5a47ccb8fc5efac01c89c281303ea5b87f367b7120c2",
+      "items": 1100,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 0,
+      "models": 14
+    },
+    {
+      "course": "F1-rbt",
+      "sha256": "8bff7f4cc2588de875f9d79cd56f64eb93b8f4fa4fc3e856cbf4b3dc5f57e667",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 60,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 0,
+      "models": 21
+    },
+    {
+      "course": "F1-ask",
+      "sha256": "44b8555ae9c459d4c0991f67e768a70b8d631c2960047aadaf079c684bac7d41",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 42,
+      "keyChanged": 0,
+      "answerWordingChanged": 4,
+      "sourceLinkedRevisionItems": 42,
+      "prerequisiteItems": 0,
+      "models": 19
+    },
+    {
+      "course": "F2-bm",
+      "sha256": "4cfd9fe2ab56f6a5c4863aa6a7438ad167f975669ce91082e3f61875c4018fda",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 420,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 420,
+      "prerequisiteItems": 292,
+      "models": 28
+    },
+    {
+      "course": "F2-english",
+      "sha256": "26155a6a621fc935fb3b16f3465423fefa83b6cb8e546020489b5c626eb6c127",
+      "items": 1792,
+      "active": 1200,
+      "visibleChanged": 1012,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 420,
+      "prerequisiteItems": 60,
+      "models": 14
+    },
+    {
+      "course": "F2-chinese",
+      "sha256": "fac6fbc7cb7a98dac08d65ae007612444fda0517acaaa35a76c6fd6404f7f29e",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 1,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 496,
+      "models": 32
+    },
+    {
+      "course": "F2-math",
+      "sha256": "6903a2cbe8a5796e5dad276512cc00eb62f8b53939dc332a28674ba4f68a4451",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 162,
+      "models": 17
+    },
+    {
+      "course": "F2-science",
+      "sha256": "69844ac4fdced0f2d82f3d544c4fc8525a41d1c6149ce5ebe8a860f11a72a04e",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 88,
+      "keyChanged": 0,
+      "answerWordingChanged": 39,
+      "sourceLinkedRevisionItems": 64,
+      "prerequisiteItems": 140,
+      "models": 40
+    },
+    {
+      "course": "F2-moral",
+      "sha256": "127781b59ee993d6f5b40d261e1fadb3ebace0c785c43b6bc83a894e44b399f2",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "F2-pjpk",
+      "sha256": "6f2265f8bfa9f61fdca116a355d559c8ef235342ab80ff0faca85c891ea4dd5b",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 565,
+      "models": 17
+    },
+    {
+      "course": "F2-art",
+      "sha256": "0deb5e062d7b8e7101aeeef44cb18869141bfa88c9f0714b4ac7c5ed7dd6f4fa",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 301,
+      "models": 21
+    },
+    {
+      "course": "F2-music",
+      "sha256": "f9240e241646e64a2a6495b6ba8328382f04a6ea41086473a16104d795bd7586",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 146,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 305,
+      "models": 22
+    },
+    {
+      "course": "F2-history",
+      "sha256": "60a3c1847134df2b64551188fe5864a8684703fcfc46e58f75027b8a84dc6142",
+      "items": 1170,
+      "active": 900,
+      "visibleChanged": 19,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 71,
+      "models": 38
+    },
+    {
+      "course": "F2-geography",
+      "sha256": "a90bc04c93c9b2273edc28a7b945ef5f0dfc4368462ccb7fdc7a3f8c7cde181b",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 200,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 200,
+      "prerequisiteItems": 220,
+      "models": 12
+    },
+    {
+      "course": "F2-rbt",
+      "sha256": "4b7bf6688f1da495011b32ee1b7b777b151a38bf5989566c6c02665f6ccef015",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 300,
+      "models": 21
+    },
+    {
+      "course": "F2-ask",
+      "sha256": "089883fd2cae770a1ff0fc1b8cb6aa27c0ae1fba784af5c6dd33bb904c64a5a6",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 95,
+      "keyChanged": 0,
+      "answerWordingChanged": 4,
+      "sourceLinkedRevisionItems": 95,
+      "prerequisiteItems": 255,
+      "models": 21
+    },
+    {
+      "course": "F3-bm",
+      "sha256": "c4c8a1fbd8895a68898f707824fcc120f68359b972a5786018a986294bd3aee1",
+      "items": 1200,
+      "active": 1200,
+      "visibleChanged": 420,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 420,
+      "prerequisiteItems": 295,
+      "models": 29
+    },
+    {
+      "course": "F3-english",
+      "sha256": "5ca3ff8a3e53fa720dea3ac274cb4648c2fc2bfd507953964edb0f03c4fd55f0",
+      "items": 1791,
+      "active": 1200,
+      "visibleChanged": 1011,
+      "keyChanged": 0,
+      "answerWordingChanged": 120,
+      "sourceLinkedRevisionItems": 421,
+      "prerequisiteItems": 60,
+      "models": 14
+    },
+    {
+      "course": "F3-chinese",
+      "sha256": "f98aec9177d4ed45f221f9f8e45569f2e7cc61d9bf0c2907e7cfb05a0a49120e",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 1,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 1,
+      "prerequisiteItems": 496,
+      "models": 32
+    },
+    {
+      "course": "F3-math",
+      "sha256": "81b112ebf058b474af061da1442b536c0f4e06a851465d6d978f70fe6bdefe56",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 50,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 50,
+      "prerequisiteItems": 160,
+      "models": 18
+    },
+    {
+      "course": "F3-science",
+      "sha256": "475cbc27fdfee03c460115ceb5b31f62f0b6e2f89d2ff64ecc7e96e18366be82",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 88,
+      "keyChanged": 0,
+      "answerWordingChanged": 39,
+      "sourceLinkedRevisionItems": 64,
+      "prerequisiteItems": 240,
+      "models": 36
+    },
+    {
+      "course": "F3-moral",
+      "sha256": "9e0963ee4ab35c71336801f306973df79f2ec62a7a429d30c92a30cac36bc447",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 600,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 600,
+      "prerequisiteItems": 0,
+      "models": 10
+    },
+    {
+      "course": "F3-pjpk",
+      "sha256": "8c70b7e125bbbbf97b9febe8c5a5adfca758a20640508622bf10d4d6c1412517",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 593,
+      "models": 17
+    },
+    {
+      "course": "F3-art",
+      "sha256": "868693dcfe831488bb7bf4af85832ba7a9eae6c8e9f9050f4416852b2aab89b5",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 5,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 304,
+      "models": 21
+    },
+    {
+      "course": "F3-music",
+      "sha256": "e5a769bc9c46e6687ca055fd4a9ea4f1b590aea8298a07a1b56ba85ac4a471f5",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 155,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 900,
+      "prerequisiteItems": 303,
+      "models": 22
+    },
+    {
+      "course": "F3-history",
+      "sha256": "4a6bfe5ab09c16e820149c64eaddef8f0bffbb25daea4faef13336d856b061df",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 20,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 16,
+      "prerequisiteItems": 86,
+      "models": 48
+    },
+    {
+      "course": "F3-geography",
+      "sha256": "108f5a32163e67323757882cbe99f6b4868a48f10e51f63650ec30c75ef99101",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 0,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 0,
+      "prerequisiteItems": 340,
+      "models": 12
+    },
+    {
+      "course": "F3-rbt",
+      "sha256": "8f52e55d84e2be99e98306ff0379283be9b208aed63b24a4ad12c9e9a37f1fd1",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 60,
+      "keyChanged": 0,
+      "answerWordingChanged": 0,
+      "sourceLinkedRevisionItems": 60,
+      "prerequisiteItems": 300,
+      "models": 21
+    },
+    {
+      "course": "F3-ask",
+      "sha256": "69ad4c9c14171790517c5971b1d50a44280baa3c9a8b1444ffd6daa44b13a331",
+      "items": 900,
+      "active": 900,
+      "visibleChanged": 95,
+      "keyChanged": 0,
+      "answerWordingChanged": 4,
+      "sourceLinkedRevisionItems": 95,
+      "prerequisiteItems": 240,
+      "models": 21
+    }
+  ],
+  "sources": [
+    {
+      "id": "PUB-BM-1-2023",
+      "title": "Praktis Topikal KSSR (2023) Bahasa Melayu Tahun 1 — published corrected exercise page",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2023,
+      "url": "https://plus.pelangibooks.com/errata/TPC161013.pdf",
+      "access": "public-preview",
+      "pages": "PDF pages 1–2; printed exercise page 16, Tema 3; author Alfian Mansor; code TPC161013",
+      "subjects": [
+        "bm"
+      ],
+      "levels": [
+        "P1"
+      ],
+      "observed": "The correction changes the grammatical category in both the note and the instruction. The visible exercise connects familiar actions with pictured objects and labels LS 5.1.2(i).",
+      "usedFor": "Keep grammar terminology aligned with the actual decision and make the communicative context explicit. The original P1 introduction prompt and P3 subject explanation use this editorial principle; the latter is checked separately against DBP.",
+      "limits": "One corrected exercise page, not the complete workbook. Does not independently establish P2 or P3 curriculum coverage. No exercise copied."
+    },
+    {
+      "id": "PUB-EN-2B-2025",
+      "title": "Pentaksiran Bilik Darjah (2025) Bahasa Inggeris Tahun 2B — published corrected sample pages",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2025,
+      "url": "https://plus.pelangibooks.com/errata/TAEWEN2502043TB.pdf",
+      "access": "public-preview",
+      "pages": "PDF pages 3–9; printed pages 9, 14, 29, 30, 32, A-2 and A-4; author Yu En",
+      "subjects": [
+        "english"
+      ],
+      "levels": [
+        "P2"
+      ],
+      "observed": "Speaking uses short requests and matching replies. A short reading passage tests literal details and capabilities. The assessment pages contain brief messages and a trip notice with eligibility, materials and registration information; visible answer pages accompany them.",
+      "usedFor": "Reference for concrete primary-language load and distractors linked to a stated detail. Our P1 grammar sentences and two-condition notice candidate matrices are original; the source illustrates the approach rather than supplying their content.",
+      "limits": "Selected public correction pages only. A Year 2 sample is a nearby language-load reference, not proof that every selected word is a prescribed Year 1 word. Source tasks have their own format; we did not copy them."
+    },
+    {
+      "id": "PUB-BM-456-UASA",
+      "title": "UASA Bahasa Melayu SJKC Tahun 4, 5 dan 6 — Set 3 public sample",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": null,
+      "url": "https://plus.pelangibooks.com/Resources/UASA/BMT456_InfoSet3.pdf",
+      "access": "public-preview",
+      "pages": "42-page public PDF; inspected PDF pages 1–5 and the notice questions on pages 28–29; first paper explicitly labelled Tahun 4",
+      "subjects": [
+        "bm"
+      ],
+      "levels": [
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "observed": "The visible pages combine contextual grammar, passage questions and multiple source materials. Notice information must be distinguished from neighbouring facts; options test different factual claims.",
+      "usedFor": "Original notice questions now require checking both conditions and distinguish four plausible combinations. General reference for upper-primary information-reading task structure; secondary age changes are editorial context choices.",
+      "limits": "Year not printed in the inspected pages. Did not read or certify every item in the 42-page sample. This primary sample does not establish secondary grade progression."
+    },
+    {
+      "id": "PUB-ZH-2-2023",
+      "title": "Praktis Topikal Bahasa Cina Tahun 2 — published corrected exercise page",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2023,
+      "url": "https://plus.pelangibooks.com/errata/TPC162073.pdf",
+      "access": "public-preview",
+      "pages": "PDF pages 1–2; printed page 60, Unit 20; author 玉禾; code TPC162073",
+      "subjects": [
+        "chinese"
+      ],
+      "levels": [
+        "P2"
+      ],
+      "observed": "The visible language note distinguishes homophones by character and meaning. The following task ties word formation to specified characters.",
+      "usedFor": "Explicitly identify the target character occurrence in repeated-character pinyin tasks and give lexical choices a visible context. The pinyin ambiguity rule itself is supported by the MOE dictionary guide.",
+      "limits": "A homophone/word-formation page, not a source for all tone values or Malaysian tone conventions. No exercises copied."
+    },
+    {
+      "id": "PUB-ZH-4-2026",
+      "title": "Praktis Topikal UASA (2026) Bahasa Cina Tahun 4 — published corrections and answer pages",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2026,
+      "url": "https://plus.pelangibooks.com/errata/TACPCL2604056T.pdf",
+      "access": "public-preview",
+      "pages": "PDF pages 1–4; printed answer pages J-1 and J-4; author Tan Huey Ying; code TACPCL2604056T",
+      "subjects": [
+        "chinese"
+      ],
+      "levels": [
+        "P4"
+      ],
+      "observed": "Published corrections change answer letters and paragraph references. Visible reading rationales point to particular narrative details, distinguish reasons from subsequent actions, and explain figurative language in context.",
+      "usedFor": "Repair our reading explanations that quoted an adjacent solution or initial action instead of the asked-for cause or daily action. Only our own retained passages are quoted in the revised questions.",
+      "limits": "Public answer/correction pages, not the complete unseen passages. The source supports the evidence-selection principle, not automatic certification of every literary inference in our banks."
+    },
+    {
+      "id": "PUB-ZH-6-2026",
+      "title": "Praktis Topikal UASA (2026) Bahasa Cina Tahun 6 — published answer-page correction",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2026,
+      "url": "https://plus.pelangibooks.com/errata/TACPCL2606056T.pdf",
+      "access": "public-preview",
+      "pages": "PDF pages 1–2; printed answer page J-6; code TACPCL2606056T",
+      "subjects": [
+        "chinese"
+      ],
+      "levels": [
+        "P6"
+      ],
+      "observed": "The visible answer page links narrative motivation and emotion to paragraph evidence and explains vocabulary in the passage context.",
+      "usedFor": "Audit comparison for upper-primary evidence-based rationales. No separate content replacement is attributed to this source.",
+      "limits": "Only public correction/answer pages read; complete original questions and passages were not inspected."
+    },
+    {
+      "id": "PUB-EN-F1-2026",
+      "title": "Excel PBD KSSM (2026) English Form 1 — teacher edition sample",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2026,
+      "url": "https://plus.pelangibooks.com/pluginfile.php/72361/mod_resource/content/2/Sample%20pages_TE%20Excel%20PBD%20KSSM%20%282026%29%20ENG%20Form%201.pdf?forcedownload=1",
+      "access": "public-preview",
+      "pages": "Printed page 16, Unit 1 Writing, LS 4.1.1 and 4.1.2; publisher-hosted preview text read through search extraction",
+      "subjects": [
+        "english"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "The visible model introduction and guided writing use connected information about family, home, pastimes and aspirations. Publisher landing page identifies the 2026 Form 1 sample.",
+      "usedFor": "Reference for coherent secondary personal contexts. Replacing primary-child minimum ages in fictional secondary notices is our editorial decision; this page supplies neither an age policy nor our notice text.",
+      "limits": "Inspected the search-extracted text of printed page 16. Repeat direct PDF fetch failed. Landing page https://plus.pelangibooks.com/mod/resource/view.php?forceview=1&id=21108 confirms the sample identity; no claim of full Form 1–3 coverage."
+    },
+    {
+      "id": "PUB-BM-F2-TARGET",
+      "title": "Target PBD Bahasa Melayu Tingkatan 2 — teacher edition sample",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": null,
+      "url": "https://plus.pelangibooks.com/pluginfile.php/54866/mod_resource/content/0/Contoh%20Halaman%20Edisi%20Guru%20Target%20PBD%20BM%20Tg2.pdf",
+      "access": "public-preview",
+      "pages": "Indexed preview printed EG-6, including Praktis Ekstra Tema 6, writing SP 3.7.1",
+      "subjects": [
+        "bm"
+      ],
+      "levels": [
+        "F2"
+      ],
+      "observed": "The visible dialogue-editing activity includes corrected tense/aspect, preposition, affix and spelling choices. Its key removes redundant plural marking after a plural quantifier.",
+      "usedFor": "Additional audit comparison: scanned all nine BM banks' correct choices and explanations for redundant quantifier-plus-reduplication forms; no matching defect found, so no questions were rewritten for this rule.",
+      "limits": "Edition year not confirmed in the inspected extract. Read official search-extracted exercise and key; direct fetch exceeded the browser tool's document-size limit. This is a targeted negative check, not validation of the full 44.9 MB preview."
+    },
+    {
+      "id": "AUTH-BC-PRESENT",
+      "title": "Present simple — LearnEnglish A1–A2 grammar",
+      "publisher": "British Council",
+      "year": null,
+      "url": "https://learnenglish.britishcouncil.org/free-resources/grammar/a1-a2/present-simple?page=1",
+      "access": "public-preview",
+      "pages": "Public grammar explanation: repeated actions, third-person singular forms and spelling rules",
+      "subjects": [
+        "english"
+      ],
+      "levels": [
+        "general grammar reference"
+      ],
+      "observed": "The reference explains habitual actions and the third-person singular changes, including common irregular forms.",
+      "usedFor": "Check that simplified original P1 contexts preserve the original base-form or present-simple decision and answer.",
+      "limits": "Language authority rather than Malaysian grade-level curriculum; no claim that A1–A2 equals Year 1."
+    },
+    {
+      "id": "AUTH-CAMBRIDGE-BEFORE",
+      "title": "Before — English Grammar Today",
+      "publisher": "Cambridge University Press & Assessment",
+      "year": null,
+      "url": "https://dictionary.cambridge.org/grammar/british-grammar/adjunct",
+      "access": "public-preview",
+      "pages": "Public reference section: Before with -ing; full section text returned by official-domain search extraction",
+      "subjects": [
+        "english"
+      ],
+      "levels": [
+        "general grammar reference"
+      ],
+      "observed": "The reference describes a non-finite clause formed with before and an -ing form.",
+      "usedFor": "Preserve the before + -ing grammar decision while replacing an incoherent order of actions in one Form 3 item.",
+      "limits": "Official search result resolves to an adjunct path but returns the Before article. Direct canonical /before fetch was unavailable. No publisher exercise copied."
+    },
+    {
+      "id": "AUTH-MOE-TONE",
+      "title": "國語辭典簡編本 — 編輯說明",
+      "publisher": "Taiwan Ministry of Education",
+      "year": 2021,
+      "url": "https://dict.concised.moe.edu.tw/page.jsp?ID=55&la=1&powerMode=0",
+      "access": "public-preview",
+      "pages": "Public editorial guide: pronunciation and neutral-tone conventions",
+      "subjects": [
+        "chinese"
+      ],
+      "levels": [
+        "general dictionary reference"
+      ],
+      "observed": "The editorial guide treats neutral pronunciation in repeated words and distinguishes it from a character's marked full tone.",
+      "usedFor": "Make clear that the question targets the first instance of a repeated written character, retaining the original answer instead of silently deciding which syllable the learner should infer.",
+      "limits": "Taiwan dictionary convention is not asserted to be the Malaysian pronunciation syllabus. Used only to demonstrate a real target-position ambiguity."
+    },
+    {
+      "id": "AUTH-MOE-SPACE",
+      "title": "國語辭典簡編本 — 擠",
+      "publisher": "Taiwan Ministry of Education",
+      "year": 2021,
+      "url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=21550&la=0&powerMode=0",
+      "access": "public-preview",
+      "pages": "Public dictionary headword and definition",
+      "subjects": [
+        "chinese"
+      ],
+      "levels": [
+        "general dictionary reference"
+      ],
+      "observed": "The entry describes crowding objects together within limited space.",
+      "usedFor": "Separate number/density of occupants from spaciousness of a location. Our original revised scenario explicitly describes increased available activity space, making the retained answer contextually justified.",
+      "limits": "The inference that crowding and room size are not universally logical opposites is our editorial analysis, not a claim that this entry provides an exhaustive antonym list."
+    },
+    {
+      "id": "AUTH-DBP-PREPOSITIONS",
+      "title": "Khidmat Nasihat — kata sendi nama di dan ke",
+      "publisher": "Dewan Bahasa dan Pustaka",
+      "year": null,
+      "url": "https://prpm.dbp.gov.my/Cari1?d=175768&keyword=datang+ke+hadapan",
+      "access": "public-preview",
+      "pages": "Public language-advice entries, including 14 August 2021, about location versus direction/destination",
+      "subjects": [
+        "bm"
+      ],
+      "levels": [
+        "general grammar reference"
+      ],
+      "observed": "Official advice distinguishes the location function of di and the direction or destination function of ke.",
+      "usedFor": "Add an explicit not-yet-arrived context to the canteen sentence so that ke is uniquely licensed by the intended destination reading.",
+      "limits": "Read the official indexed advice text; repeat direct lookup was unavailable. Grammar evidence, not an unpublished workbook question or full syllabus audit."
+    },
+    {
+      "id": "AUTH-DBP-SUBJECT",
+      "title": "Khidmat Nasihat — objek tepat, objek sipi dan subjek ayat pasif",
+      "publisher": "Dewan Bahasa dan Pustaka",
+      "year": null,
+      "url": "https://prpm.dbp.gov.my/Cari1?d=175768&keyword=objek+sipi",
+      "access": "public-preview",
+      "pages": "Public advice explaining promotion of the direct object to passive subject",
+      "subjects": [
+        "bm"
+      ],
+      "levels": [
+        "general grammar reference"
+      ],
+      "observed": "The explanation states that the original direct object can become the subject of a passive sentence, illustrating why subject and actor are not universal synonyms.",
+      "usedFor": "Qualify the P3 explanation: in the given active sentence the subject is also the actor, while the general definition concerns what the sentence says something about.",
+      "limits": "Official text read in search extraction; direct lookup intermittently unavailable. We retained the original active-sentence answer."
+    },
+    {
+      "id": "stem-pelangi-p2-math",
+      "title": "Mahir PBD KSSR 2022 Tahun 2 — Matematik",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2022,
+      "url": "https://anyflip.com/ekbvw/nhob/basic",
+      "access": "public-preview",
+      "pages": "Printed page 6, SP 1.4.1–1.4.2; number-value revision notes",
+      "subjects": [
+        "math"
+      ],
+      "levels": [
+        "P2"
+      ],
+      "observed": "Exercises separately request place names and digit values, then decompose three-digit numbers in either representation.",
+      "usedFor": "Check the bank's three-digit place-value models and construct original choices which distinguish digit, place unit and positional value.",
+      "limits": "Only this preview topic was matched directly; current DPK topic placement is checked separately. No sample numbers or question set copied."
+    },
+    {
+      "id": "stem-pelangi-p6-math",
+      "title": "Praktis Pintar KSSR 2022 Matematik Tahun 6",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2022,
+      "url": "https://online.anyflip.com/ekbvw/ylhp/files/basic-html/page9.html",
+      "access": "public-preview",
+      "pages": "Viewer page 9 / printed page 3, whole-number objective questions",
+      "subjects": [
+        "math"
+      ],
+      "levels": [
+        "P6"
+      ],
+      "observed": "The sample uses seven-digit number representations, ordering by place, identifying positions in an ordered list and determining the step of a number sequence.",
+      "usedFor": "Compare the existing P6 depth bank's number-representation and ordering models with appropriate upper-primary demand; retain the independently correct current cases rather than add easy lower-primary replacements.",
+      "limits": "Only clearly readable text questions inspected; an abacus image was not interpreted from flattened text. This is not a whole P6 book review or authority for every P6 depth model."
+    },
+    {
+      "id": "stem-pelangi-p1-math",
+      "title": "Mahir PBD KSSR 2022 Tahun 1 — Matematik",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2022,
+      "url": "https://anyflip.com/ekbvw/rqbp/basic/",
+      "access": "public-preview",
+      "pages": "Printed RM-7 (basic shapes); printed 5–7 (quantity, number names, place and digit value), inspected in indexed publisher preview text",
+      "subjects": [
+        "math"
+      ],
+      "levels": [
+        "P1"
+      ],
+      "observed": "Four familiar flat-shape names are introduced. Number exercises distinguish quantity, digit, place name and digit value, with an abacus and separate place/value fields.",
+      "usedFor": "Retain concrete Year 1 shape vocabulary; add a familiar book-page corner cue to avoid the four-equal-sides/rhombus ambiguity. Replace adjacent-number place-value distractors with digit/place/value confusions. Transfer this arithmetic distinction to other primary levels without claiming their complete grade coverage.",
+      "limits": "The corner disambiguation is our mathematical repair, not copied wording. Indexed sample text was inspected; visual diagrams were not independently measured. This older preview predates DPK Edisi 3 and is not evidence of current full curriculum or UASA coverage."
+    },
+    {
+      "id": "stem-pelangi-p4-math",
+      "title": "Praktis Pintar KSSR 2022 Tahun 4 — Matematik",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2022,
+      "url": "https://anyflip.com/ekbvw/zcbx/basic",
+      "access": "public-preview",
+      "pages": "Printed 1–2, number/operation notes and worked examples, inspected in indexed preview text",
+      "subjects": [
+        "math"
+      ],
+      "levels": [
+        "P4"
+      ],
+      "observed": "A worked place-value table uses ordinary place names through ten-thousands, separate digit values, and decomposition; arithmetic examples show positional working.",
+      "usedFor": "Replace the bank's unnecessary 10^k place prompts with familiar named places, preserving all numbers and answers. The same communication improvement transfers to P5.",
+      "limits": "This supports the named-place presentation, not a claim that every P4/P5 question or chapter was verified against this preview."
+    },
+    {
+      "id": "stem-pelangi-p1-science",
+      "title": "Genius PBD KSSR (2023) Sains Tahun 1",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2023,
+      "url": "https://anyflip.com/ekbvw/lchj/basic",
+      "access": "public-preview",
+      "pages": "Printed 1–9, scientific observing and communicating exercises; printed J1 answer discussion",
+      "subjects": [
+        "science"
+      ],
+      "levels": [
+        "P1"
+      ],
+      "observed": "Exercises connect senses to specific observations and communicate observations through records, tables and classification. A growth table includes labelled measurement quantities.",
+      "usedFor": "Review low-primary observation questions for concrete evidence and table readability. Clearly label our generated tables as simulated; carry the displayed measurement unit into numeric choices across inquiry families.",
+      "limits": "Synthetic-data labelling is our transparency requirement; the publisher does not prescribe this exact label. Cross-grade measurement clarity is a transferable principle, not proof of every grade's syllabus."
+    },
+    {
+      "id": "stem-pelangi-f1-science",
+      "title": "PBD Plus Sains Tingkatan 1 (Edisi Guru)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": "Edition year not stated on the inspected pages; publisher preview dated 2022",
+      "url": "https://online.anyflip.com/ekbvw/hkja/files/basic-html/page15.html",
+      "access": "public-preview",
+      "pages": "Viewer page 15 / printed page 8, density, SP 1.5.1–1.5.4",
+      "subjects": [
+        "science"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "Density is treated as mass per volume; the worked method obtains irregular-object volume from the increase in water reading, retains units, then divides mass by volume.",
+      "usedFor": "Independently check density, volume and displacement formulas. Revise original choices to diagnose inversion, multiplication and using the final cylinder reading without subtracting the initial reading.",
+      "limits": "No publisher numbers, diagrams or exercise sets were reproduced. Related primary displacement items use the same measurement principle; this sample is not primary grade alignment evidence."
+    },
+    {
+      "id": "stem-pelangi-ask-f1",
+      "title": "PBD Plus Asas Sains Komputer Tingkatan 1 (Edisi Guru)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": "Edition year not stated on the inspected pages; publisher preview dated 2022",
+      "url": "https://anyflip.com/ekbvw/nhyx/basic",
+      "access": "public-preview",
+      "pages": "Printed 1–3: concept notes, four-technique practice and ordered-task/pattern exercises; page 3 also available at https://online.anyflip.com/ekbvw/nhyx/files/basic-html/page8.html",
+      "subjects": [
+        "ask"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "The chapter explicitly distinguishes decomposition, pattern recognition, abstraction and generalisation. Generalisation creates a reusable model or rule. Ordered steps are also practised separately.",
+      "usedFor": "Replace our fourth computational-thinking category with generalisation and author new reusable-model examples. Retain existing algorithm trace questions. Update both the visible text and explanatory verification metadata consistently.",
+      "limits": "Algorithmic thinking is not a false concept; the repair fills a missing named KSSM technique. F2/F3 instances are prerequisite/review material subject to global progression curation, not new grade-specific claims."
+    },
+    {
+      "id": "stem-python-literals",
+      "title": "Python Language Reference — Lexical analysis, numeric and string literals",
+      "publisher": "Python Software Foundation",
+      "year": "Current documentation inspected 2026-09-27",
+      "url": "https://docs.python.org/3/reference/lexical_analysis.html#numeric-literals",
+      "access": "public-preview",
+      "pages": "Sections on integer, floating-point and string literals",
+      "subjects": [
+        "ask"
+      ],
+      "levels": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "observed": "Programming literal syntax distinguishes integers, floating-point values and quoted strings; a decimal point can mark a floating-point literal even when its mathematical value is an integer.",
+      "usedFor": "State an explicit local pseudocode convention in data-type questions, including the 12.0 edge case, so the mathematical inclusion of integers in real numbers does not produce overlapping answer categories.",
+      "limits": "Technical reference, not a workbook or Malaysian curriculum source. The bank uses its own stated pseudocode convention and does not claim Python syntax or uppercase Boolean literals are Python."
+    },
+    {
+      "id": "stem-pelangi-f3-math",
+      "title": "PBD Plus Matematik Tingkatan 3 (Edisi Guru)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": "Edition year not stated on the inspected pages; publisher preview dated 2022",
+      "url": "https://online.anyflip.com/ekbvw/aezc/files/basic-html/page18.html",
+      "access": "public-preview",
+      "pages": "Viewer page 18 / printed page 11, index-law matching and worked index equations",
+      "subjects": [
+        "math"
+      ],
+      "levels": [
+        "F3"
+      ],
+      "observed": "Exercises distinguish base from exponent and use index laws to simplify and solve equations; worked answers expose the exponent operation.",
+      "usedFor": "Independently add exponents for products with the same base; supply original distractors based on multiplying or subtracting exponents instead of arbitrary adjacent integers.",
+      "limits": "The preview text's flattened superscripts were not used to copy or infer unseen algebra. Only the clearly identifiable same-base index principle is applied."
+    },
+    {
+      "id": "stem-pelangi-f2-geography",
+      "title": "PBD Plus Geografi Tingkatan 2 (Edisi Guru)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": "Edition year not stated on the inspected pages; publisher preview dated 2022",
+      "url": "https://online.anyflip.com/ekbvw/qrhk/files/basic-html/page7.html",
+      "access": "public-preview",
+      "pages": "Viewer page 7 / printed page 2, SP 1.1.1–1.1.2; viewer page 20 / printed page 15 landform-use table also inspected",
+      "subjects": [
+        "geography"
+      ],
+      "levels": [
+        "F2"
+      ],
+      "observed": "Exercises interpret statement, linear and representative-fraction scales and express actual distances with units. The later table connects stated landform evidence to uses.",
+      "usedFor": "Check the map-centimetres to ground-kilometres conversion and replace arbitrary nearby options with distinct unit-conversion and missed-distance-factor errors.",
+      "limits": "Only the scale question family is revised from this sample; no claim of complete F1–F3 geography coverage or authentic map reproduction."
+    },
+    {
+      "id": "stem-pelangi-rbt-cost",
+      "title": "Focus KSSM Reka Bentuk dan Teknologi Tingkatan 1 (2023)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2023,
+      "url": "https://anyflip.com/ekbvw/myrl/basic",
+      "access": "public-preview",
+      "pages": "Printed 35–36, project costing worked example, inspected in indexed publisher preview text",
+      "subjects": [
+        "rbt"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "Project production cost separately totals material, labour and overhead; labour combines time and hourly rate; unit cost divides total cost by quantity.",
+      "usedFor": "Make our two-component project-cost exercises explicitly state other costs are zero. Use material-only, labour-only and missed-multiplication errors as original choices.",
+      "limits": "Method only; none of the sample's project, quantities or prices are copied. This F1 principle also supports F3 review cases; it does not verify all F3 RBT content."
+    },
+    {
+      "id": "stem-alafsanjung-rbt-f2",
+      "title": "Reka Bentuk dan Teknologi T2 (RBT T2), ISBN 978-629-7512-13-6",
+      "publisher": "Alaf Sanjung Sdn Bhd",
+      "year": "Publisher sample uploaded 2024-03-29; edition year not printed in inspected excerpt",
+      "url": "https://anyflip.com/miglb/rbui/basic",
+      "access": "public-preview",
+      "pages": "Printed 1 and 3–6, inventive/non-inventive problems, function analysis and cause/effect",
+      "subjects": [
+        "rbt"
+      ],
+      "levels": [
+        "F2"
+      ],
+      "observed": "Sample explanations distinguish a component, its function and the object affected, and trace cause/effect when improving a design creates a side effect.",
+      "usedFor": "Review current component/function and problem-solving families; no concrete contradictory answer was identified, so no answer was changed merely to increase the change count.",
+      "limits": "Partial preview review, not an exhaustive F2 RBT or electrical-engineering validation."
+    },
+    {
+      "id": "stem-kpm-dpk-notice",
+      "title": "Surat Siaran KPM Bilangan 6 Tahun 2024 — Pelaksanaan DPK KSSR Edisi 3 Sains dan Matematik Tahap I",
+      "publisher": "Kementerian Pendidikan Malaysia",
+      "year": 2024,
+      "url": "https://www.moe.gov.my/storage/files/shares/pekeliling_dan_garis_panduan/surat_siaran/bahagian-pengurusan-sekolah-harian/Surat%20Siaran%20KPM%20Bil.%206%202024%20Pelaksanaan%20Dokumen%20Penjajaran%20Kurikulum%20Standard%20Sekolah%20Rendah%20Edisi%203%20Sains%20Dan%20Math%20Tahap%201.pdf",
+      "access": "public-preview",
+      "pages": "Official public notice, page 1, dated 3 May 2024",
+      "subjects": [
+        "math",
+        "science"
+      ],
+      "levels": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "observed": "KPM describes reorganisation and updating of existing lower-primary mathematics/science content to support teaching and address learning gaps.",
+      "usedFor": "Treat pre-2024 workbook samples as concept/method evidence, not as proof that every older topic remains in the current primary core set. Existing DPK and global grade-progression curation remains authoritative for topic placement.",
+      "limits": "Official public document rather than commercial preview. The notice is not the full topic-by-topic DPK and does not itself certify an individual question."
+    },
+    {
+      "id": "hum-pelangi-moral1a",
+      "title": "随堂自习 道德教育 1A / Praktis Kendiri Pendidikan Moral 1A",
+      "publisher": "Tunas Pelangi Sdn. Bhd.",
+      "year": 2017,
+      "url": "https://anyflip.com/eypgy/rjnh/basic",
+      "pages": "printed pp15–24 and answer p39",
+      "subjects": [
+        "moral"
+      ],
+      "levels": [
+        "P1"
+      ],
+      "observed": "Short child-life prompts practise gratitude, polite expressions and concrete conduct. Some exercises admit multiple or open responses.",
+      "usedFor": "Use familiar child-life decisions; make the condition for a single keyed answer explicit. Original alternatives refer to the specific action and its effect.",
+      "limits": "2017 inferred from printed production footer; edition not independently established. Public sample only. No question or illustration copied; not a full grade map or independent-reading clearance. P1–P3 legacy cases remain teacher-guided.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-pelangi-moral2",
+      "title": "PBD Plus Pendidikan Moral Tingkatan 2 (EG)",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2023,
+      "url": "https://anyflip.com/ekbvw/uewt/basic",
+      "pages": "printed pp2–5; visible unit and performance tables",
+      "subjects": [
+        "moral"
+      ],
+      "levels": [
+        "F2"
+      ],
+      "observed": "Exercises distinguish identifying a moral source, explaining social norms, giving reasons, and expressing feelings with explanations. Group discussion and real conduct are separate tasks.",
+      "usedFor": "Separate proposed action, reason, possible consequence and repair. Alternatives must concern the same case instead of unrelated praise or personal reward.",
+      "limits": "Series year 2023; sample production footer December 2022. Publisher examples inform task design, not independent validation of every original scenario or religious assertion.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-pelangi-psv1",
+      "title": "Kuasai PBD 2024 Pendidikan Seni Visual Tingkatan 1",
+      "publisher": "Penerbitan Pelangi Sdn. Bhd.",
+      "year": 2024,
+      "url": "https://anyflip.com/ekbvw/dwyn/basic",
+      "pages": "printed pp4–6,29–32,97–98",
+      "subjects": [
+        "art"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "Sample tasks combine visual concepts, artwork production, material use and appreciation. Space and perspective depend on observable size, placement and tonal differences.",
+      "usedFor": "Specify a visual-design criterion and compare relevant technical alternatives. Distinguish an explanation of making from evidence that a pupil can make a work.",
+      "limits": "ISBN 9786294702349. Public excerpt; art-practice principles transfer across levels but this does not establish P1–P6 or F2–F3 syllabus coverage.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-huplick-sejarah5b",
+      "title": "精通全技能综合练习 历史5下 / Latihan Mahir Integrasi Sejarah 5B",
+      "publisher": "Hup Lick Publishing (M) Sdn Bhd",
+      "year": 2024,
+      "url": "https://anyflip.com/fvayl/afpj/basic",
+      "pages": "printed pp3–4,11,20,38,41,44",
+      "subjects": [
+        "history"
+      ],
+      "levels": [
+        "P5"
+      ],
+      "observed": "Exercises use distinct historical offices, national symbols and dates, with both constrained and explanatory responses. Sample content identifies the Agong election cycle and separates administrative roles.",
+      "usedFor": "Use historical methods and comparable concepts as alternatives, while retaining evidence qualifiers. This review does not replace factual keys solely from a catalogue.",
+      "limits": "2024 is the publisher-preview upload year, not a verified edition statement. Factual keys were not changed from this sample alone; not evidence of complete syllabus coverage.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-alaf-pjpk2",
+      "title": "Modul Inovasi Pendidikan Jasmani dan Pendidikan Kesihatan Tingkatan 2 / PJPK T2",
+      "publisher": "Alaf Sanjung Sdn. Bhd.",
+      "year": 2021,
+      "url": "https://anyflip.com/miglb/gmhn/basic",
+      "pages": "public teacher preview e-RPH linked to workbook pp2–5",
+      "subjects": [
+        "pjpk"
+      ],
+      "levels": [
+        "F2"
+      ],
+      "observed": "The visible teaching-plan sample connects gymnastics understanding to supervised activity and observation of movement performance.",
+      "usedFor": "Keep online concept and decision questions distinct from observed practical competence, alongside the authoritative KPM PBD guidance.",
+      "limits": "2021 is public-preview upload year; edition not printed in inspected text. Read teacher-plan sample, not all workbook questions. It cannot certify exercise safety for an individual pupil.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-abrsm-theory",
+      "title": "Music Theory example items: Grade 5 reference sheets",
+      "publisher": "ABRSM",
+      "year": 2020,
+      "url": "https://www.abrsm.org/sites/default/files/2023-09/abrsm-ot-reference-sheet-example-questions_online-music-theory-from-2020.pdf",
+      "pages": "PDF pp1–4 (text layer)",
+      "subjects": [
+        "music"
+      ],
+      "levels": [
+        "cross-level terminology reference"
+      ],
+      "observed": "Examples specify time-signature and note-value conventions. The reference sheet distinguishes British and American note names and explicit counting units.",
+      "usedFor": "State duration units precisely. Separately, our event-level audit found nine uniform clips with no audible relative-duration reference; original repairs add audible contrasts and synchronize keys.",
+      "limits": "ABRSM Grade 5 is not Malaysian Year 5. Used only for terminology and precision; no advanced ABRSM content transferred into primary lessons and no notation-image correctness claim.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-kpm-pbd",
+      "title": "Panduan Pelaksanaan Pentaksiran Bilik Darjah, Edisi ke-2",
+      "publisher": "Kementerian Pendidikan Malaysia, Bahagian Pembangunan Kurikulum",
+      "year": 2019,
+      "url": "https://www.moe.gov.my/storage/files/shares/pentaksiran-berasaskan-sekolah/Panduan%20Pelaksanaan%20Pentaksiran%20Bilik%20Darjah%20Edisi%202%20-%202019.pdf",
+      "pages": "printed pp46–47 (PDF pp56–57); printed pp73–74",
+      "subjects": [
+        "art",
+        "music",
+        "pjpk",
+        "moral"
+      ],
+      "levels": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "observed": "Observation assesses processes and products, practical and manipulative skills, conduct and social skills. Written, oral and observed evidence can be combined for professional judgement.",
+      "usedFor": "Record concept-and-decision scope and require observed evidence for practical performance; do not infer actual conduct or a PBD performance level from a multiple-choice score.",
+      "limits": "Official guidance is publicly available full text, recorded under the common public-preview access category. Metadata alone is not an improvement to question difficulty or answer accuracy.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    },
+    {
+      "id": "hum-kpm-history1",
+      "title": "KSSM Sejarah Tingkatan 1: Dokumen Standard Kurikulum dan Pentaksiran",
+      "publisher": "Kementerian Pendidikan Malaysia, Bahagian Pembangunan Kurikulum; hosted by Jabatan Muzium Malaysia",
+      "year": 2016,
+      "url": "https://ipim.jmm.gov.my/sites/default/files/dockokurikulum/DSKP-KSSM-SEJARAH-TINGKATAN-1.pdf",
+      "pages": "printed pp3–10,29,42,50–51 (PDF pp14–21,40,53,61–62)",
+      "subjects": [
+        "history"
+      ],
+      "levels": [
+        "F1"
+      ],
+      "observed": "Historical thinking includes chronology, interpretation, evidence and rational explanation. Introductory content distinguishes sources and methods; case-study inquiry asks pupils to collect and evaluate evidence.",
+      "usedFor": "Keep primary material, later interpretation, oral evidence and corroboration distinct. Missing evidence is not proof of absence, and chronological order alone is insufficient causal evidence.",
+      "limits": "Curriculum and methodology reference, not a published workbook. No assertion that every generated method question is a grade-specific factual-history coverage item.",
+      "access": "public-preview",
+      "accessed": "2026-09-27"
+    }
+  ],
+  "assessmentContext": [
+    {
+      "id": "kpm-primary-uasa-2025",
+      "title": "Format Instrumen Pentaksiran UASA Tahap Dua Sekolah Rendah Tahun 2025",
+      "publisher": "Kementerian Pendidikan Malaysia",
+      "year": "2025",
+      "url": "https://www.moe.gov.my/storage/files/shares/pentaksiran-berasaskan-sekolah/7.%20Format%20Instrumen%20UASA%20Tahap%20Dua%20Sekolah%20Rendah%202025.pdf",
+      "pages": "PDF pp. 4–9; linked from KPM PBS page inspected 2026-09-27",
+      "observed": "Primary upper-year language assessment combines comprehension and written responses. Mathematics includes constructed responses. English describes A1–A2 scope.",
+      "usedFor": "Keep this bank described as selected-topic practice, not a complete UASA paper or proof of writing/practical mastery.",
+      "limits": "Assessment-format context only; does not validate any individual answer or establish full curriculum coverage."
+    },
+    {
+      "id": "kpm-secondary-uasa-2025",
+      "title": "Format Instrumen Pentaksiran UASA Menengah Rendah Tahun 2025",
+      "publisher": "Kementerian Pendidikan Malaysia",
+      "year": "2025",
+      "url": "https://www.moe.gov.my/storage/files/shares/pentaksiran-berasaskan-sekolah/6.%20Format%20Instrumen%20UASA%20Menengah%20Rendah%202025.pdf",
+      "pages": "PDF pp. 4–8, with subject index pp. 2–3",
+      "observed": "Lower-secondary language formats progress in reading demands and include writing. English Form 1 describes A2 and Forms 2–3 A2/B1.",
+      "usedFor": "Separate grade progression and selected-skill practice from a claim to reproduce complete published examination papers.",
+      "limits": "Not a workbook-question source or a complete standard-by-standard alignment."
+    }
+  ],
+  "improvements": [
+    "语文：补足通知题的年龄与准备条件；区分语法和介词语境；修正引文依据与拼音指代；让低年级动作词更贴近日常生活。",
+    "数学、科学、电脑与工艺：补足形状条件、位值名称、程序字面值约定和费用假设；用常见运算与单位错误设计干扰项；标清模拟观察记录。",
+    "道德、历史、美术与音乐：按具体情境比较行动和后果，改进史料判断及制作过程选项，核对节拍、声音与文字答案。",
+    "年级与记录：与较低年级完全相同的题归入基础回顾；替换题保留旧题号及原内容用于历史记录，排除在新练习之外。"
+  ],
+  "limits": [
+    "参照的是已出版练习本的公开样页及权威资料，未取得或核读所有整本书；每个来源注明实际页码、用途与限制。本站修订题保持原创。",
+    "全部序列化题目通过题号、字段、选项、答案索引和一致性检查；适用题型另做独立计算、程序、阅读证据及听觉参数核对。自然语言语义按问题家族定向审校及抽查，并非每题均经教师重新认证。",
+    "本轮来源关联包括实质文字改动和评价范围说明；来源关联题量不能等同于题干答案全部重写。可见内容变化另列统计。",
+    "部分题目仍是同类巩固变式；题量不等于独立考点数量。选择题不能代替作文、口语、实验、创作、演奏或动作评价。",
+    "历史六年级逐题审校保留其原版本范围，不自动认证本轮新身份题。尚不能宣称全套已逐项符合全部 SK/SP 或 2027 新课程。"
+  ]
+}
