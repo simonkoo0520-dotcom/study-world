@@ -33,6 +33,7 @@ const brand = '<div class="cloud-brand"><span class="logo">学</span>学科冒�
 const key = () => user ? `wordquest.draft.v1.${user.id}` : '';
 const blankState = () => ({...E.initial(),profiles:[E.profile('同学','P1','other')],active:0});
 function page(html, narrow = false) {
+  window.WQUniverse?.stop();
   window.WQGameBreak?.stop();
   shell.hidden = true; root.hidden = false; root.innerHTML = `<main class="cloud-page ${narrow?'cloud-login':''}">${brand}${html}</main>`;
   window.scrollTo?.({top:0,behavior:'instant'});
@@ -84,6 +85,7 @@ function download(state, filename = 'WordQuest_未同步备份.json') {
   const a = document.createElement('a'); a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),20000);
 }
 function reset() {
+  window.WQUniverse?.stop();
   window.WQGameBreak?.stop();
   ++authGeneration;++viewToken; clearInterval(parentTimer); sync?.stop();sync=null;user=null;role=null;links=[];selectedChild='';recovering=false;passwordRecovery=false;passwordView=false;gameLobbyStatus=null;
   window.WQApp?.unmount();shell.hidden=true;shell.inert=false;bar.hidden=true;
@@ -175,6 +177,7 @@ async function gameLobby() {
     const messages={ready:'现在就可以玩。先使用今天的免费时间，再使用答题获得的时间。',active:'你已经开始了一次游戏。继续游戏会沿用原来的结束时间。',time_used:'可用时间已用完。每答对一道新题可获得 1 分钟，答错后正确订正可获得 30 秒。'};
     page(`<div class="cloud-heading"><div><span class="eyebrow">每天免费 · 答题加时</span><h1>游戏大厅</h1><p class="cloud-muted">星际穿梭 · 合成风暴 · 光速连击</p></div><button class="btn light" data-cloud="student-home">回到学习</button></div>
     <section class="arcade-wallet"><div class="arcade-wallet-stat"><span>${active?'本次游戏剩余':'可用游戏时间'}</span><strong>${gameMinutes(active?remaining:balance)}</strong><small>今日免费剩余：${gameMinutes(result.free_seconds)}<br>答题时间余额：${gameMinutes(result.earned_seconds)}<br>免费时间下次重置：${esc(gameResetTime(result.next_reset_at))}</small></div><div class="arcade-wallet-action"><p class="${result.unlocked?'cloud-success':'cloud-hint'}">${messages[result.reason]||'请重新检查服务器记录的游戏时间。'}</p>${active?`<p>本次已分配 ${gameMinutes(result.duration_seconds)}；未分配余额 ${gameMinutes(balance)}。</p>`:`<label class="cloud-label" for="game-duration">这次想玩多久？</label><select class="cloud-input" id="game-duration" ${durations.length?'':'disabled'}>${durations.length?durations.map(seconds=>`<option value="${seconds}" ${seconds===defaultDuration?'selected':''}>${gameMinutes(seconds)}${seconds===balance?'（全部余额）':''}</option>`).join(''):'<option value="">暂无可用时间</option>'}</select>`}<div class="btnrow"><button class="btn arcade-launch" data-cloud="game-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续本次游戏':'开始游戏'}</button><button class="btn light" data-cloud="game-lobby">重新检查</button></div><div id="cloud-message" role="status" aria-live="polite" hidden></div><p class="caption">点击开始后连续计时，切换游戏或关闭页面不会暂停。新场次最迟在马来西亚午夜结束；未分配的答题时间跨日保留。</p></div></section>
+    <section class="universe-entry"><span class="eyebrow">一起出发 · 沿途挑战</span><h2>梁家大富翁</h2><p>掷骰从 Masai 走到 Rawang。沿途挑战星际穿梭、合成风暴、光速连击，也能进入旧版 WordQuest v6 学习站。完成游戏后，回到原来的格子继续走。</p><button class="btn" data-cloud="universe-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续棋盘旅程':'用所选时间进入棋盘'}</button><p class="caption">与小游戏共用上方时长。棋盘按登录孩子保存在这台浏览器，可导出导入；v6 成绩单独保留，不发放线上答题分钟。</p></section>
     ${arcadePreview()}
     <section class="panel arcade-reward-details"><h2>答题时间 · 等级 ${Math.max(1,gameCount(result.level))}</h2><p>已储存 <strong>${gameMinutes(result.total_earned_seconds)}</strong> 答题时间，当前额度 <strong>${gameMinutes(result.cap_seconds)}</strong>。${gameCount(result.level)>=25?'已达到最高储存额度。':`再完成 ${gameCount(result.next_level_remaining)} 道不同的题目，储存额度增加 5 分钟。`}</p><p>储存上限包含本次已分配、尚未用完的答题时间；其中本次尚未用完 ${gameMinutes(result.active_earned_seconds)}。</p><p>每天免费 15 分钟，马来西亚时间 00:00 重置；免费时间不占答题时间的储存额度。每个孩子分别计算。</p><ul><li>新题首次提交正确：获得 1 分钟。</li><li>答错：不获得时间；之后正确订正：获得 30 秒。</li><li>正确作答或正确订正一道不同题目，都计入一次升级进度。同一道题不会重复领取。</li></ul><p class="cloud-hint">答题记录同步并由服务器核对后才入账。答题时间可跨日累积；存满时仍计升级进度，超出的时间不留作待领取。原有超出新额度的余额会保留。</p></section>`);
     void refreshArcadeBoard();
@@ -184,27 +187,35 @@ async function gameLobby() {
     page(`<section class="cloud-card"><h1>暂时无法打开小游戏</h1><p class="cloud-error">${esc(errorMessage(error))}</p><div class="btnrow"><button class="btn" data-cloud="game-lobby">重试</button><button class="btn light" data-cloud="student-home">回到学习</button></div></section>`,true);
   }
 }
-async function startGameBreak() {
+async function startGameBreak(destination = 'arcade') {
   if(role!=='student'||recovering||booting||!sync||sync.conflict)return;
   if(!window.WQGameBreak){notice('小游戏未载入，请刷新页面后重试。');return;}
   const active=gameLobbyStatus?.reason==='active',secondsToPlay=Number($('game-duration')?.value);
   if(!active&&!gameDurations(gameCount(gameLobbyStatus?.balance_seconds)).includes(secondsToPlay)){notice('请选择余额足够支付的游戏时长。');return;}
   const ticket=++viewToken,accountId=user.id;
+  let prepared;
+  if(destination==='universe'){
+    if(!window.WQUniverse){notice('棋盘组件未载入，请刷新页面。');return;}
+    try {prepared=await window.WQUniverse.prepare({accountId,buildURL:'./universe-board.html?v=2ac61ca329e1f674',isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});}
+    catch(error){if(ticket===viewToken&&accountId===user?.id)notice(error.message);return;}
+  }
+  if(ticket!==viewToken||accountId!==user?.id){prepared?.store.close();return;}
   const startedAt=Date.now(),mono=typeof performance==='undefined'?startedAt:performance.now();
   let result;
   try { result=await rpc('start_game_break',active?{}:{p_seconds:secondsToPlay}); }
   catch(error){
+    prepared?.store.close();
     if(ticket!==viewToken||accountId!==user?.id)return;
     throw error;
   }
-  if(ticket!==viewToken||accountId!==user?.id)return;
+  if(ticket!==viewToken||accountId!==user?.id){prepared?.store.close();return;}
   const elapsed=Math.max(0,Date.now()-startedAt,(typeof performance==='undefined'?Date.now():performance.now())-mono);
   const seconds=Number(result.remaining_seconds);
   const sessionLimitMs=Math.min(3600,gameCount(result.duration_seconds))*1000;
   const remainingMs=Number.isFinite(seconds)?Math.max(0,Math.min(3600,seconds)*1000-elapsed):0;
-  if(!result.unlocked||remainingMs<=0){gameExpired();return;}
+  if(!result.unlocked||remainingMs<=0){prepared?.store.close();gameExpired();return;}
   page('<div class="cloud-heading"><div><span class="eyebrow">学习后的轻松时刻</span><h1>课后小游戏</h1></div><button class="btn light" data-cloud="student-home">结束游戏，回到学习</button></div><div id="game-break-root"></div>');
-  window.WQGameBreak.mount($('game-break-root'),{remainingMs,sessionLimitMs,
+  const settings={remainingMs,sessionLimitMs,
     beginRound:async game=>{
       if(ticket!==viewToken||accountId!==user?.id||role!=='student')throw Error('WQ_ARCADE_VIEW_CHANGED');
       const response=await rpc('begin_arcade_round',{p_game:game});
@@ -219,7 +230,11 @@ async function startGameBreak() {
     },
     onExpire:()=>{
     if(ticket===viewToken&&accountId===user?.id&&role==='student')gameExpired();
-  }});
+  }};
+  if(destination==='universe'){
+    page('<div class="cloud-heading"><div><span class="eyebrow">四个游戏站 · 一张旅行棋盘</span><h1>梁家大富翁</h1></div><button class="btn light" data-cloud="game-lobby">保存并返回大厅</button></div><div id="universe-root"></div><div id="cloud-message" role="status" hidden></div>');
+    window.WQUniverse.mount($('universe-root'),{...settings,prepared,isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});
+  }else window.WQGameBreak.mount($('game-break-root'),settings);
 }
 async function studentBoot() {
   const ticket=viewToken,accountId=user?.id;
@@ -383,6 +398,10 @@ document.addEventListener('click',async event=>{
   const action=button.dataset.cloud;button.disabled=true;
   const generation=authGeneration;
   try{
+    if(['student-home','game-lobby','manage-links','password-settings','logout'].includes(action)){
+      if(window.WQUniverse&&!await window.WQUniverse.prepareLeave())return;
+      if(generation!==authGeneration)return;
+    }
     if(action==='login-method'||action==='back-login'||action==='forgot-password'){
       if(user)return;
       loginEmail=$('login-email')?.value.trim()||loginEmail;
@@ -392,18 +411,19 @@ document.addEventListener('click',async event=>{
     }
     if(action==='password-settings'){passwordSettings();return;}
     if(action==='password-cancel'||action==='password-done'){if(user)await leavePasswordSettings();return;}
-    if(['student-home','manage-links','game-lobby','game-start','arcade-board','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
+    if(['student-home','manage-links','game-lobby','game-start','universe-start','arcade-board','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
     if(['refresh-parent','select-child','refresh-game-grade'].includes(action)&&role!=='parent')return;
     if(action==='register'){if(!user||role)return;await rpc('register_account',{p_role:button.dataset.role});if(generation!==authGeneration)return;await boot();}
     else if(action==='logout'){
       if(sync?.dirty){try{if(!await sync.flush())return;}catch{if(generation===authGeneration)status(sync?.conflict?'conflict':'error');return;}}
       if(generation!==authGeneration)return;
       const {error}=await db.auth.signOut({scope:'local'});if(generation!==authGeneration)return;if(error)throw error;recoveryAccount(null);reset();login();
-    }else if(action==='student-home'){if(recovering)return;window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;}
+    }else if(action==='student-home'){if(recovering)return;window.WQUniverse?.stop();window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;}
     else if(action==='manage-links'){if(recovering)return;passwordView=false;await studentLinks();}
     else if(action==='game-lobby')await gameLobby();
     else if(action==='arcade-board')await refreshArcadeBoard(button.dataset.game);
     else if(action==='game-start')await startGameBreak();
+    else if(action==='universe-start')await startGameBreak('universe');
     else if(action==='revoke-parent'){
       if(!confirm('解除这位家长的绑定？解除后，对方不能继续读取你的成绩。'))return;
       await rpc('revoke_parent_access',{p_parent_id:button.dataset.parent});if(generation!==authGeneration)return;await studentLinks('已解除绑定。');

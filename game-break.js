@@ -113,6 +113,7 @@
     const session = active;
     active = null;
     session.stopped = true;
+    session.cancelReturnRequest?.();
     session.roundVersion++;
     clearTimeout(session.tick);
     session.detach();
@@ -125,6 +126,7 @@
     stop();
     if (!container || typeof container.querySelector !== 'function') throw new TypeError('小游戏需要一个页面容器。');
     const document = container.ownerDocument;
+    const hosted = typeof options.onReturn === 'function';
     let initialMs = Number(options.remainingMs);
     if (!Number.isFinite(initialMs)) initialMs = 0;
     if (Number.isFinite(options.endsAt)) initialMs = Math.min(initialMs, options.endsAt - Date.now());
@@ -134,25 +136,56 @@
     active = session;
     container.classList.add('wq-game-break');
     container.innerHTML = `<header class="wq-break-header"><div><span class="wq-break-eyebrow">AFTER STUDY / 挑战时刻</span><h2>今天，刷新自己的纪录。</h2></div><div class="wq-break-clock"><span>本次休息剩余</span><strong class="wq-break-time" role="timer" aria-live="off">${formatTime(initialMs)}</strong></div><p class="wq-break-rule">本次 ${formatTime(sessionLimitMs)} · 换游戏、看说明也会继续计时 · 到时自动结束</p><div class="wq-break-meter" aria-hidden="true"><span></span></div></header><p class="wq-break-timer-announcement wq-break-sr" role="status" aria-live="polite"></p><div class="wq-break-body"></div>`;
-    const body = container.querySelector('.wq-break-body'), clock = container.querySelector('.wq-break-time'), meter = container.querySelector('.wq-break-meter span'), announcement = container.querySelector('.wq-break-timer-announcement');
+    if (hosted) container.querySelector('.wq-break-body').insertAdjacentHTML('beforebegin', '<section class="wq-break-return-confirm" role="alert" hidden></section>');
+    const body = container.querySelector('.wq-break-body'), clock = container.querySelector('.wq-break-time'), meter = container.querySelector('.wq-break-meter span'), announcement = container.querySelector('.wq-break-timer-announcement'), returnConfirm = hosted ? container.querySelector('.wq-break-return-confirm') : null;
 
     function live() { return active === session && !session.stopped && !session.expired; }
     function focus(selector) { const target = body.querySelector(selector); if (target) target.focus({ preventScroll: true }); }
     function clearRound() { session.roundVersion++; session.round = null; session.pending = false; session.pointer = null; }
+    function returnButton(label = '返回棋盘', disabled = false) { return `<button type="button" class="wq-break-back" data-action="return" ${disabled ? 'disabled' : ''}>${label}</button>`; }
+    function hideReturnConfirm() { if (returnConfirm) { returnConfirm.hidden = true; returnConfirm.innerHTML = ''; } }
+    function settleReturnRequest(value, error) {
+      const request = session.returnRequest; session.returnRequest = null; session.returnAfterFinish = false;
+      if (request) { if (error) request.reject(error); else request.resolve(value); }
+    }
+    session.cancelReturnRequest = () => settleReturnRequest(false);
+    function requestReturn() {
+      if (!hosted || active !== session || session.stopped || session.returned) return Promise.resolve(false);
+      if (session.returnRequest) return session.returnRequest.promise;
+      const request = {};
+      request.promise = new Promise((resolve, reject) => { request.resolve = resolve; request.reject = reject; });
+      session.returnRequest = request; returnToHost(); return request.promise;
+    }
+    function returnToHost(abandon = false) {
+      if (!hosted || active !== session || session.stopped || session.returned) return;
+      if (live()) check();
+      const round = session.round;
+      if (round?.finishing) { if (session.returnRequest) session.returnAfterFinish = true; hideReturnConfirm(); status('正在核验本局成绩，请等待结果后返回棋盘。'); return; }
+      if (round?.serverResult && !round.settled) { round.finished = false; finishRound(); return; }
+      if (round && !round.settled && !abandon) {
+        returnConfirm.innerHTML = '<h3>放弃本局并返回棋盘？</h3><p>本局没有已核验的成绩，放弃后不会提交游戏结果。游戏计时仍会继续。</p><div class="wq-break-result-actions"><button type="button" class="wq-break-back" data-action="cancel-return">继续本局</button><button type="button" class="wq-break-primary" data-action="confirm-return">放弃本局并返回棋盘</button></div>';
+        returnConfirm.hidden = false; returnConfirm.querySelector('[data-action="cancel-return"]').focus({ preventScroll: true }); return;
+      }
+      const receipt = session.settledReceipt || null;
+      const payload = { reason: receipt ? 'settled' : round ? 'abandoned' : session.expired ? 'expired' : 'cancelled', result: receipt };
+      const request = session.returnRequest; session.returnRequest = null;
+      session.returned = true; hideReturnConfirm(); stop();
+      try { Promise.resolve(options.onReturn(payload)).then(() => request?.resolve(true), error => request?.reject(error)); } catch (error) { request?.reject(error); }
+    }
     function expire() {
       if (!live()) return false;
       session.expired = true; clearTimeout(session.tick);
       clock.textContent = '0:00'; meter.style.width = '0%'; announcement.textContent = '本次游戏时间已到。';
       if (session.round) {
         // Stop all play, but let the last real round settle and its receipt remain visible.
-        body.querySelectorAll('button').forEach(button => { if (button.dataset.action !== 'retry') button.disabled = true; });
+        body.querySelectorAll('button').forEach(button => { if (!['retry', 'return'].includes(button.dataset.action)) button.disabled = true; });
         if (!session.round.finished && !session.round.finishing) advanceRound();
         if (!session.round.finished && !session.round.finishing) finishRound();
         return false;
       }
-      clearRound(); session.detach();
+      clearRound(); if (!hosted) session.detach();
       clock.textContent = '0:00'; meter.style.width = '0%'; announcement.textContent = '本次游戏时间已到。';
-      body.innerHTML = '<section class="wq-break-finished"><span class="wq-break-rest-icon" aria-hidden="true">✦</span><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">休息时间到，给眼睛放个假。</h3><p>看看远处，伸伸懒腰。下次带着新的学习成果，再来挑战纪录。</p></section>';
+      body.innerHTML = '<section class="wq-break-finished"><span class="wq-break-rest-icon" aria-hidden="true">✦</span><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">休息时间到，给眼睛放个假。</h3><p>看看远处，伸伸懒腰。下次带着新的学习成果，再来挑战纪录。</p>' + (hosted ? returnButton() : '') + '</section>';
       focus('h3');
       if (typeof options.onExpire === 'function') {
         // Host callbacks must never undo local expiry or leave live controls.
@@ -180,7 +213,7 @@
     function instructions(id) {
       const info = GAMES.find(game => game.id === id); if (!info) return;
       clearRound(); session.currentGame = id;
-      body.innerHTML = `<section class="wq-break-intro-panel wq-break-${id}"><button type="button" class="wq-break-back" data-action="menu">← 选择游戏</button><span class="wq-break-intro-symbol" aria-hidden="true">${info.icon}</span><span class="wq-break-eyebrow">${info.tag} / 最多 45 秒挑战</span><h3 tabindex="-1">${info.name}</h3><p>${info.description}</p><ol class="wq-break-rules">${info.rules.map(rule => `<li>${rule}</li>`).join('')}</ol><div class="wq-break-control-help">${info.controls}</div><div class="wq-break-intro-scores">${scores(id)}</div><button type="button" class="wq-break-primary" data-action="start" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>开始挑战 <span aria-hidden="true">→</span></button><p class="wq-break-status" role="status" aria-live="polite">${session.remaining() < MIN_ROUND ? '本次时间已用完，请回大厅查看余额。' : '准备好再开始；不足 45 秒时会按剩余时间缩短本局，成绩仍由服务器核验。'}</p></section>`;
+      body.innerHTML = `<section class="wq-break-intro-panel wq-break-${id}">${hosted ? returnButton("← 返回棋盘") : '<button type="button" class="wq-break-back" data-action="menu">← 选择游戏</button>'}<span class="wq-break-intro-symbol" aria-hidden="true">${info.icon}</span><span class="wq-break-eyebrow">${info.tag} / 最多 45 秒挑战</span><h3 tabindex="-1">${info.name}</h3><p>${info.description}</p><ol class="wq-break-rules">${info.rules.map(rule => `<li>${rule}</li>`).join('')}</ol><div class="wq-break-control-help">${info.controls}</div><div class="wq-break-intro-scores">${scores(id)}</div><button type="button" class="wq-break-primary" data-action="start" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>开始挑战 <span aria-hidden="true">→</span></button><p class="wq-break-status" role="status" aria-live="polite">${session.remaining() < MIN_ROUND ? '本次时间已用完，请回大厅查看余额。' : '准备好再开始；不足 45 秒时会按剩余时间缩短本局，成绩仍由服务器核验。'}</p></section>`;
       focus('h3');
     }
     function status(text) { const element = body.querySelector('.wq-break-status'); if (element) element.textContent = text; }
@@ -198,7 +231,7 @@
         if (!ticket || !ticket.round_id || !Number.isInteger(ticket.duration_ms) || ticket.duration_ms < MIN_ROUND || ticket.duration_ms > DURATION) throw new Error('invalid ticket');
         const state = replay(id, Number(ticket.seed), []);
         session.pending = false;
-        session.round = { id, ticket, trace: [], state, lane: 1, version, duration: Math.min(ticket.duration_ms, session.remaining()), remaining: allowance(Math.min(ticket.duration_ms, session.remaining()), () => performance.now(), () => Date.now()), elapsed: 0, lastDrawn: -1, renderedSlot: -1, finishing: false, finished: false, feedback: '', feedbackUntil: 0 };
+        session.round = { id, ticket, trace: [], state, lane: 1, version, duration: Math.min(ticket.duration_ms, session.remaining()), remaining: allowance(Math.min(ticket.duration_ms, session.remaining()), () => performance.now(), () => Date.now()), elapsed: 0, lastDrawn: -1, renderedSlot: -1, finishing: false, finished: false, settled: false, feedback: '', feedbackUntil: 0 };
         feedback('GO！', 0); gameShell(); drawRound(true); focus('.wq-break-playfield');
       } catch (error) {
         if (!live() || version !== session.roundVersion) return;
@@ -208,7 +241,7 @@
     }
     function gameShell() {
       const round = session.round, info = GAMES.find(game => game.id === round.id);
-      body.innerHTML = `<section class="wq-break-arena wq-break-${round.id}"><div class="wq-break-game-header"><button class="wq-break-back" type="button" data-action="menu">← 退出本局</button><span class="wq-break-game-label">${info.name}</span><span class="wq-break-round-clock" role="timer" aria-label="本局剩余时间">${Math.ceil(round.duration / 1000)} 秒</span></div><div class="wq-break-hud"><div><span>本局得分</span><strong class="wq-break-score">0</strong><small>结算前为暂计成绩</small></div><div class="wq-break-secondary-stat"></div></div><div class="wq-break-playfield" tabindex="0" aria-label="${info.name}游戏区域"><div class="wq-break-board"></div><div class="wq-break-feedback" aria-hidden="true"></div></div>${round.id === 'dodge' ? '<div class="wq-break-controls"><button type="button" data-lane-shift="-1" aria-label="向左移动">← <span>向左</span></button><span>躲陨石 · 追星星</span><button type="button" data-lane-shift="1" aria-label="向右移动"><span>向右</span> →</button></div>' : round.id === 'merge' ? '<div class="wq-break-controls wq-break-direction-controls"><button type="button" data-direction="0" aria-label="向左合成">←</button><button type="button" data-direction="1" aria-label="向上合成">↑</button><button type="button" data-direction="3" aria-label="向下合成">↓</button><button type="button" data-direction="2" aria-label="向右合成">→</button></div>' : '<div class="wq-break-beat-meter" aria-hidden="true"><span></span></div>'}<p class="wq-break-status" role="status" aria-live="polite">${info.controls}</p></section>`;
+      body.innerHTML = `<section class="wq-break-arena wq-break-${round.id}"><div class="wq-break-game-header">${hosted ? returnButton("← 退出本局") : '<button class="wq-break-back" type="button" data-action="menu">← 退出本局</button>'}<span class="wq-break-game-label">${info.name}</span><span class="wq-break-round-clock" role="timer" aria-label="本局剩余时间">${Math.ceil(round.duration / 1000)} 秒</span></div><div class="wq-break-hud"><div><span>本局得分</span><strong class="wq-break-score">0</strong><small>结算前为暂计成绩</small></div><div class="wq-break-secondary-stat"></div></div><div class="wq-break-playfield" tabindex="0" aria-label="${info.name}游戏区域"><div class="wq-break-board"></div><div class="wq-break-feedback" aria-hidden="true"></div></div>${round.id === 'dodge' ? '<div class="wq-break-controls"><button type="button" data-lane-shift="-1" aria-label="向左移动">← <span>向左</span></button><span>躲陨石 · 追星星</span><button type="button" data-lane-shift="1" aria-label="向右移动"><span>向右</span> →</button></div>' : round.id === 'merge' ? '<div class="wq-break-controls wq-break-direction-controls"><button type="button" data-direction="0" aria-label="向左合成">←</button><button type="button" data-direction="1" aria-label="向上合成">↑</button><button type="button" data-direction="3" aria-label="向下合成">↓</button><button type="button" data-direction="2" aria-label="向右合成">→</button></div>' : '<div class="wq-break-beat-meter" aria-hidden="true"><span></span></div>'}<p class="wq-break-status" role="status" aria-live="polite">${info.controls}</p></section>`;
     }
     function feedback(text, elapsed) { const round = session.round; round.feedback = text; round.feedbackUntil = elapsed + 550; }
     function drawRound(force) {
@@ -283,38 +316,54 @@
       if (round.state.done) finishRound(); else drawRound(true);
     }
     async function finishRound() {
-      const round = session.round; if (!round || round.finishing || round.finished || active !== session || session.stopped) return;
+      const round = session.round; if (!round || round.finishing || round.finished || round.settled || active !== session || session.stopped) return;
+      if (session.returnRequest) session.returnAfterFinish = true;
+      hideReturnConfirm();
       round.finishing = true;
-      body.innerHTML = `<section class="wq-break-result"><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">挑战结束，正在核验成绩…</h3><strong class="wq-break-result-score">${round.state.score.toLocaleString()}</strong><p class="wq-break-status" role="status">正在同步你的成绩与本周排名</p><button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button></section>`;
+      body.innerHTML = `<section class="wq-break-result"><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">挑战结束，正在核验成绩…</h3><strong class="wq-break-result-score">${round.state.score.toLocaleString()}</strong><p class="wq-break-status" role="status">正在同步你的成绩与本周排名</p>${hosted ? returnButton("正在核验成绩…", true) : '<button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button>'}</section>`;
       focus('h3');
       try {
-        const result = await options.finishRound(round.ticket.round_id, round.trace.map(event => ({ t: event.t, v: event.v })));
+        const result = round.serverResult || await options.finishRound(round.ticket.round_id, round.trace.map(event => ({ t: event.t, v: event.v })));
         if (active !== session || session.stopped || session.round !== round || session.roundVersion !== round.version) return;
         if (!result || !Number.isFinite(Number(result.score))) throw new Error('invalid result');
-        round.finished = true; round.finishing = false; session.bests[round.id] = result;
+        round.serverResult = result;
         const score = Number(result.score), personalBest = Number(result.personal_best) || 0, weekBest = Number(result.week_best) || 0;
         const rank = Number(result.rank);
-        body.innerHTML = `<section class="wq-break-result wq-break-${round.id}"><span class="wq-break-result-medal" aria-hidden="true">${score > 0 && score >= personalBest ? '✦' : '◇'}</span><span class="wq-break-eyebrow">${score > 0 && score >= personalBest ? 'PERSONAL BEST / 个人最佳' : 'CHALLENGE COMPLETE / 挑战完成'}</span><h3 tabindex="-1">${GAMES.find(game => game.id === round.id).name}</h3><strong class="wq-break-result-score">${score.toLocaleString()}<small>分</small></strong><p class="wq-break-verified">✓ 成绩已核验并同步</p><div class="wq-break-result-stats"><div><span>个人最佳</span><strong>${personalBest.toLocaleString()}</strong></div><div><span>本周最佳</span><strong>${weekBest.toLocaleString()}</strong></div><div><span>本周排名</span><strong>${Number.isInteger(rank) && rank > 0 ? '#' + rank : '—'}</strong></div></div><p class="wq-break-status">${result.nickname ? escapeHtml(result.nickname) + '，' : ''}${score > 0 && score >= personalBest ? '这一局就是你的最佳表现！' : '每次挑战，都有新的可能。'}${round.id === 'pulse' ? ` 本局最高 ${round.state.bestCombo} 连击。` : round.id === 'dodge' ? ` 收集了 ${round.state.stars} 颗星星。` : ` 最高合成 ${round.state.highest}。`}</p><div class="wq-break-result-actions"><button type="button" class="wq-break-primary" data-action="again" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>再挑战一次 ↗</button><button type="button" class="wq-break-back" data-action="menu" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>换个游戏</button></div>${session.remaining() < MIN_ROUND ? '<p class="wq-break-bottom-note">本次时间已用完，可回大厅查看剩余余额。</p>' : ''}</section>`;
+        round.receipt ||= Object.freeze({ roundId: String(round.ticket.round_id), game: round.id, score, rank: Number.isInteger(rank) && rank > 0 ? rank : null, personalBest, weekBest, nickname: String(result.nickname || ''), newBest: !!result.new_best });
+        if (typeof options.onSettled === 'function' && !round.hostSaved) {
+          status('成绩已核验，正在保存棋盘记录…');
+          await options.onSettled(round.receipt);
+          if (active !== session || session.stopped || session.round !== round || session.roundVersion !== round.version) return;
+          round.hostSaved = true;
+        }
+        round.finished = true; round.finishing = false; round.settled = true; session.bests[round.id] = result;
+        session.settledReceipt = round.receipt;
+        body.innerHTML = `<section class="wq-break-result wq-break-${round.id}"><span class="wq-break-result-medal" aria-hidden="true">${score > 0 && score >= personalBest ? '✦' : '◇'}</span><span class="wq-break-eyebrow">${score > 0 && score >= personalBest ? 'PERSONAL BEST / 个人最佳' : 'CHALLENGE COMPLETE / 挑战完成'}</span><h3 tabindex="-1">${GAMES.find(game => game.id === round.id).name}</h3><strong class="wq-break-result-score">${score.toLocaleString()}<small>分</small></strong><p class="wq-break-verified">✓ 成绩已核验并同步</p><div class="wq-break-result-stats"><div><span>个人最佳</span><strong>${personalBest.toLocaleString()}</strong></div><div><span>本周最佳</span><strong>${weekBest.toLocaleString()}</strong></div><div><span>本周排名</span><strong>${Number.isInteger(rank) && rank > 0 ? '#' + rank : '—'}</strong></div></div><p class="wq-break-status">${result.nickname ? escapeHtml(result.nickname) + '，' : ''}${score > 0 && score >= personalBest ? '这一局就是你的最佳表现！' : '每次挑战，都有新的可能。'}${round.id === 'pulse' ? ` 本局最高 ${round.state.bestCombo} 连击。` : round.id === 'dodge' ? ` 收集了 ${round.state.stars} 颗星星。` : ` 最高合成 ${round.state.highest}。`}</p><div class="wq-break-result-actions">${hosted ? returnButton() : `<button type="button" class="wq-break-primary" data-action="again" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>再挑战一次 ↗</button><button type="button" class="wq-break-back" data-action="menu" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>换个游戏</button>`}</div>${session.remaining() < MIN_ROUND ? '<p class="wq-break-bottom-note">本次时间已用完，可回大厅查看剩余余额。</p>' : ''}</section>`;
         focus('h3');
+        if (session.returnAfterFinish) returnToHost();
       } catch (error) {
         if (active !== session || session.stopped || session.round !== round || session.roundVersion !== round.version) return;
         round.finishing = false;
-        body.innerHTML = `<section class="wq-break-result"><h3 tabindex="-1">成绩暂未同步</h3><strong class="wq-break-result-score">${round.state.score.toLocaleString()}</strong><p class="wq-break-status" role="status">这是本机暂计分数，尚未进入排行榜。请检查网络后重试。</p><div class="wq-break-result-actions"><button type="button" class="wq-break-primary" data-action="retry">重试同步</button><button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button></div></section>`;
+        body.innerHTML = `<section class="wq-break-result"><h3 tabindex="-1">${round.serverResult ? '成绩已核验，棋盘记录尚未保存' : '成绩暂未同步'}</h3><strong class="wq-break-result-score">${Number(round.serverResult?.score ?? round.state.score).toLocaleString()}</strong><p class="wq-break-status" role="status">${round.serverResult ? '请保持页面打开并重试保存。会沿用本局已核验的成绩，不会重新开局或重复结算。' : '这是本机暂计分数，尚未进入排行榜。请检查网络后重试。'}</p><div class="wq-break-result-actions"><button type="button" class="wq-break-primary" data-action="retry">${round.serverResult ? '重试保存棋盘记录' : '重试同步'}</button>${hosted ? returnButton(round.serverResult ? '请先保存棋盘记录' : '放弃本局并返回棋盘', !!round.serverResult) : '<button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button>'}</div></section>`;
         round.finished = true; // Prevent the clock from silently resubmitting.
         focus('h3');
+        settleReturnRequest(false, new Error('WQ_ARCADE_SETTLEMENT_PENDING'));
       }
     }
     session.onClick = event => {
       const button = event.target.closest('button');
       if (!button || !container.contains(button) || button.disabled) return;
-      if (session.expired) { if (button.dataset.action === 'retry' && session.round?.finished) { session.round.finished = false; finishRound(); } return; }
-      if (!check()) return;
       const data = button.dataset;
+      if (hosted && data.action === 'return') { returnToHost(); return; }
+      if (hosted && data.action === 'confirm-return') { if (!returnConfirm.hidden) returnToHost(true); return; }
+      if (hosted && data.action === 'cancel-return') { hideReturnConfirm(); settleReturnRequest(false); focus('.wq-break-playfield'); return; }
+      if (session.expired) { if (data.action === 'retry' && session.round?.finished && !session.round.settled) { session.round.finished = false; finishRound(); } return; }
+      if (!check()) return;
       if (data.game) instructions(data.game);
       else if (data.action === 'menu') menu(true);
       else if (data.action === 'start') startRound();
       else if (data.action === 'again') instructions(session.currentGame);
-      else if (data.action === 'retry' && session.round) { session.round.finished = false; finishRound(); }
+      else if (data.action === 'retry' && session.round && !session.round.settled) { session.round.finished = false; finishRound(); }
       else if (data.laneShift != null && session.round && session.round.id === 'dodge') action(Number(data.laneShift));
       else if (data.direction != null && session.round && session.round.id === 'merge') action(Number(data.direction));
       else if (data.target != null && session.round && session.round.id === 'pulse') action(Number(data.target));
@@ -346,9 +395,10 @@
     const documentEvents = [['keydown', session.onKey], ['visibilitychange', session.onVisibility]];
     session.detach = () => { containerEvents.forEach(([name, handler]) => container.removeEventListener(name, handler)); documentEvents.forEach(([name, handler]) => document.removeEventListener(name, handler)); };
     containerEvents.forEach(([name, handler]) => container.addEventListener(name, handler)); documentEvents.forEach(([name, handler]) => document.addEventListener(name, handler));
-    menu(false);
+    if (GAMES.some(game => game.id === options.initialGame)) instructions(options.initialGame); else menu(false);
     function tick() { if (check()) { advanceRound(); if (live()) session.tick = setTimeout(tick, session.round && !session.round.finished && !session.round.finishing ? 40 : 200); } }
     tick();
+    return { requestReturn };
   }
 
   const api = { mount, stop };
