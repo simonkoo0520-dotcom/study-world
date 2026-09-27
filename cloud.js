@@ -218,16 +218,18 @@ async function studentBoot() {
   if(error) throw error;
   const state=row?E.validate(row.state):blankState();
   lastSaved=row?.updated_at||'';
-  sync=new CloudSync({revision:row?.revision||0,save:async(state,revision)=>rpc('save_family_state',{p_state:state,p_expected_revision:revision}),onStatus:status,onDraft:writeDraft});
-  window.WQApp.mount(state);shell.hidden=false;root.hidden=true;shell.inert=false;
-  status(row?'saved':'pending',row?.updated_at);
+  // Mounting the learning home can synchronously emit wq:save. Read the prior
+  // draft first, and never mount an older cloud state over an unresolved draft.
   const draft=readDraft();
+  sync=new CloudSync({revision:row?.revision||0,save:async(state,revision)=>rpc('save_family_state',{p_state:state,p_expected_revision:revision}),onStatus:status,onDraft:writeDraft});
   if(draft?.state){
     recovering=true;
     shell.hidden=true;
     page(`<section class="cloud-card"><h1>发现尚未同步的练习</h1><p>上次关闭页面前，有一些进度没有传到云端。</p><div class="btnrow">${draft.revision===sync.revision?'<button class="btn" data-cloud="restore-draft">继续这份练习</button>':'<p>云端已有其他设备保存的新版本，请先下载备份。</p>'}<button class="btn secondary" data-cloud="draft-download">下载未同步备份</button><button class="btn light" data-cloud="use-cloud">使用云端记录</button></div></section>`,true);
   }else {
     recovering=false;
+    status(row?'saved':'pending',row?.updated_at);
+    window.WQApp.mount(state);shell.hidden=false;root.hidden=true;shell.inert=false;
     if(!row){sync.queue(state);if(!await sync.flush())return;}
   }
 }
