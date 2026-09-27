@@ -62,6 +62,57 @@
     try{return {raw:canonical(copy),value:copy};}
     catch(cause){throw problem('INVALID_RECEIPT','游戏回执结构过于复杂，现有回执已保留。',cause);}
   }
+  function checksum(text){
+    let value=-1;
+    for(const byte of new TextEncoder().encode(text)){value^=byte;for(let bit=0;bit<8;bit++)value=(value>>>1)^((value&1)?0xedb88320:0);}
+    return ((value^-1)>>>0).toString(16).padStart(8,'0');
+  }
+  const whole=(value,max)=>Number.isSafeInteger(value)&&value>=0&&value<=max;
+  const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
+  const identity=value=>typeof value==='string'&&value.length>0&&value.length<100;
+  function proofState(raw){
+    // Do not infer commitment from a damaged current save or its fallback snapshot.
+    try{
+      const core=root.WQUniverseCore;
+      if(core?.KEY!==KEY||typeof core.validate!=='function'||!Number.isSafeInteger(core.MAX_PAYLOAD)||core.MAX_PAYLOAD<1||typeof raw!=='string'||raw.length>core.MAX_PAYLOAD*2+1000)return null;
+      const envelope=JSON.parse(raw),packed=envelope?.current;
+      if(envelope?.format!=='LIANG_UNIVERSE'||typeof packed?.payload!=='string'||packed.payload.length>core.MAX_PAYLOAD||packed.checksum!==checksum(packed.payload))return null;
+      const state=JSON.parse(packed.payload);
+      if(state?.schemaVersion!==3||!identity(state.universeId)||!whole(state.revision,1e12)||!object(state.arcadeClaims)||!Array.isArray(state.gameResults?.arcade))return null;
+      if(core.SCHEMA!==state.schemaVersion)return null;
+      core.validate(state);
+      return state;
+    }catch{return null;}
+  }
+  function captureLineage(state,token,receipt){
+    const active=state?.activeSession;
+    if(!active||active.gameId!=='arcade'||active.token!==token||active.arcadeGame!==receipt.game||!whole(active.learnerSlot,2)||typeof active.boardId!=='string'||!whole(active.turnNo,1e9)||typeof active.returnSnapshotHash!=='string')return null;
+    if(active.returnSnapshotHash!==checksum(JSON.stringify(active.returnSnapshot)))return null;
+    return {universeId:state.universeId,learnerSlot:active.learnerSlot,boardId:active.boardId,turnNo:active.turnNo,returnSnapshotHash:active.returnSnapshotHash};
+  }
+  function committedReceipt(state,token,receipt,lineage){
+    if(!state)return false;
+    // An imported earlier snapshot can restore this active token while retaining
+    // its claim. Resume must still consume the receipt, not start a paid new round.
+    if(state.activeSession?.token===token)return false;
+    const claim=state.arcadeClaims[receipt.roundId];
+    if(!object(claim)||claim.roundId!==receipt.roundId||claim.sessionToken!==token||claim.game!==receipt.game||claim.score!==receipt.score||(claim.rank??null)!==(receipt.rank??null)||!whole(claim.learnerSlot,2)||typeof claim.boardId!=='string'||claim.boardId.length>=100||!whole(claim.turnNo,1e9)||!whole(claim.at,1e15))return false;
+    if(claim.rank!=null&&(!whole(claim.rank,1e9)||claim.rank<1))return false;
+    const results=state.gameResults.arcade.filter(result=>result?.roundId===receipt.roundId);
+    if(results.length>1)return false;
+    if(results.length===1){
+      const fields=['roundId','sessionToken','game','score','rank','learnerSlot','boardId','turnNo','at'];
+      if(fields.some(key=>(results[0][key]??null)!==(claim[key]??null)))return false;
+    }
+    // Same-universe imports deliberately retain claims while rolling back visible
+    // score history. A matching tombstone is durable commitment, not a new award.
+    if(lineage!==undefined&&lineage!==null){
+      if(!object(lineage)||lineage.universeId!==state.universeId||lineage.learnerSlot!==claim.learnerSlot||lineage.boardId!==claim.boardId||lineage.turnNo!==claim.turnNo||typeof lineage.returnSnapshotHash!=='string')return false;
+      const returned=state.settlements?.returns?.[token];
+      if(returned&&returned.snapshotHash!==lineage.returnSnapshotHash)return false;
+    }
+    return true;
+  }
   async function open(accountId){
     const owner=account(accountId);
     if(!root.indexedDB||typeof root.indexedDB.open!=='function')throw problem('INDEXEDDB_UNAVAILABLE','此浏览器不能使用本机游戏存档。');
@@ -124,7 +175,7 @@
         }catch(error){if(transaction)abort(storageProblem(error));else reject(storageProblem(error));}
       });
     }
-    function receiptTransaction(mode,operation){
+    function receiptTransaction(mode,operation,includeSave=false){
       return new Promise((resolve,reject)=>{
         if(closed){reject(problem('STORE_CLOSED','这个游戏存档连接已关闭，请重新进入游戏。'));return;}
         let transaction,result,failure=null;
@@ -134,11 +185,11 @@
           request.onsuccess=()=>{try{handler(request.result);}catch(error){abort(error);}};
         };
         try{
-          transaction=db.transaction(RECEIPTS,mode);
+          transaction=db.transaction(includeSave?[STORE,RECEIPTS]:RECEIPTS,mode);
           transaction.oncomplete=()=>resolve(result);
           transaction.onabort=()=>reject(failure||storageProblem(transaction.error||{name:'AbortError'}));
           transaction.onerror=()=>{failure=failure||storageProblem(transaction.error);};
-          operation(transaction.objectStore(RECEIPTS),watch,value=>{result=value;});
+          operation(transaction.objectStore(RECEIPTS),watch,value=>{result=value;},includeSave?transaction.objectStore(STORE):null);
         }catch(error){if(transaction)abort(error);else reject(storageProblem(error));}
       });
     }
@@ -159,14 +210,17 @@
       receiptCapacity:()=>receiptTransaction('readonly',(store,watch,done)=>watch(store.index('byAccount').count(owner),count=>done({count,limit:MAX_RECEIPTS,available:Math.max(0,MAX_RECEIPTS-count)}))),
       saveReceipt:async(sessionToken,receipt)=>{
         const token=session(sessionToken),data=receiptData(receipt);
-        return receiptTransaction('readwrite',(store,watch,done)=>watch(store.get([owner,token]),record=>{
+        return receiptTransaction('readwrite',(store,watch,done,saves)=>watch(store.get([owner,token]),record=>{
           const prior=storedReceipt(record,token);
           if(prior){if(prior.raw!==data.raw)throw problem('RECEIPT_CONFLICT','这个游戏会话已有不同的结算回执，原回执已保留。');done();return;}
           watch(store.index('byAccount').count(owner),count=>{
             if(count>=MAX_RECEIPTS)throw problem('RECEIPTS_FULL','未确认的游戏回执已满，请先保存已有游戏结果再开始新一局。');
-            watch(store.add({accountId:owner,sessionToken:token,formatVersion:1,receipt:data.raw,createdAt:Date.now()}),()=>done());
+            watch(saves.get(owner),saved=>{
+              const lineage=captureLineage(proofState(storedRaw(saved,owner)),token,data.value);
+              watch(store.add({accountId:owner,sessionToken:token,formatVersion:1,receipt:data.raw,lineage,createdAt:Date.now()}),()=>done());
+            });
           });
-        }));
+        }),true);
       },
       readReceipt:async sessionToken=>{
         const token=session(sessionToken);
@@ -177,6 +231,31 @@
         // Only the host should call this, AFTER the matching board result commits.
         return receiptTransaction('readwrite',(store,watch,done)=>watch(store.delete([owner,token]),()=>done()));
       },
+      acknowledgeReceipt:async(sessionToken,roundId)=>{
+        const token=session(sessionToken);
+        return receiptTransaction('readwrite',(store,watch,done,saves)=>watch(store.get([owner,token]),record=>{
+          const receipt=storedReceipt(record,token)?.value;
+          if(!receipt){done({cleared:false,missing:true});return;}
+          if(receipt.roundId!==roundId)throw problem('RECEIPT_MISMATCH','游戏回执编号不一致。');
+          watch(saves.get(owner),saved=>{
+            if(!committedReceipt(proofState(storedRaw(saved,owner)),token,receipt,record.lineage))throw problem('RECEIPT_NOT_COMMITTED','棋盘结果尚未保存或回执不一致，结算回执已保留。');
+            watch(store.delete([owner,token]),()=>done({cleared:true,missing:false}));
+          });
+        }),true);
+      },
+      reconcileReceipts:()=>receiptTransaction('readwrite',(store,watch,done,saves)=>watch(saves.get(owner),saved=>{
+        const state=proofState(storedRaw(saved,owner));
+        watch(store.index('byAccount').getAll(owner),records=>{
+          let cleared=0,pending=0;
+          for(const record of records){
+            let receipt;
+            try{receipt=storedReceipt(record,record.sessionToken)?.value;}catch{continue;}
+            if(!committedReceipt(state,record.sessionToken,receipt,record.lineage))continue;
+            pending++;watch(store.delete([owner,record.sessionToken]),()=>{cleared++;if(!--pending)done({cleared,preserved:records.length-cleared});});
+          }
+          if(!pending)done({cleared:0,preserved:records.length});
+        });
+      }),true),
       close
     });
   }

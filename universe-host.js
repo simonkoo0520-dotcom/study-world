@@ -23,6 +23,11 @@ async function prepare({accountId,buildURL,isCurrent=()=>true}){
   try{
     const response=await fetch(buildURL,{cache:'no-cache'});if(!response.ok)throw Error('棋盘文件未能下载，请稍后重试。');
     const html=await response.text();if(html.length>12000000||!html.includes('LiangCore')||!/<head\b[^>]*>/i.test(html))throw Error('棋盘文件不完整。');
+    if(!isCurrent())throw Error('登录账号或页面已经改变。');
+    // Lost acknowledgements must not permanently occupy the account outbox.
+    // The store verifies the current board and removes only committed, inactive
+    // receipts atomically with that save; pending/invalid/foreign rows stay put.
+    await store.reconcileReceipts();
     const raw=await store.read();if(!isCurrent())throw Error('登录账号或页面已经改变。');
     return{store,raw,html,accountId};
   }catch(error){store.close();throw error;}
@@ -91,13 +96,8 @@ function mount(container,options){
         pendingSaves++;try{await prepared.store.write(raw,expectedRaw);}finally{pendingSaves--;}value={saved:true};
       }else if(data.type==='arcade')value=await launchArcade(data.payload||{});
       else if(data.type==='arcade-ack'){
-        const receipt=await prepared.store.readReceipt(data.payload?.sessionToken);
-        if(receipt&&receipt.roundId!==data.payload?.roundId)throw Error('游戏回执编号不一致。');
-        if(receipt){
-          const saved=JSON.parse(JSON.parse(await prepared.store.read()).current.payload);
-          if(!saved.gameResults?.arcade?.some(r=>r.sessionToken===data.payload.sessionToken&&r.roundId===receipt.roundId&&r.game===receipt.game&&r.score===receipt.score))throw Error('棋盘结果尚未保存，结算回执已保留。');
-          await prepared.store.clearReceipt(data.payload.sessionToken);
-        }value={cleared:true};
+        await prepared.store.acknowledgeReceipt(data.payload?.sessionToken,data.payload?.roundId);
+        value={cleared:true};
       }
       else if(data.type==='expired-saved'){
         const discarded=data.payload?.saved===false&&data.payload?.discarded===true;
