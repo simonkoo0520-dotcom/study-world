@@ -1,69 +1,123 @@
 (function (root) {
   'use strict';
 
-  const SYMBOLS = [
-    { icon: '✿', name: '花朵' }, { icon: '★', name: '星星' },
-    { icon: '☀', name: '太阳' }, { icon: '♬', name: '音符' }
-  ];
-  const DIFFERENCES = [
-    { common: '▲', odd: '▼', commonName: '向上三角形', oddName: '向下三角形' },
-    { common: '↗', odd: '↖', commonName: '右上方箭头', oddName: '左上方箭头' },
-    { common: '◒', odd: '◓', commonName: '下半圆涂色', oddName: '上半圆涂色' }
-  ];
+  const DURATION = 45000;
+  const MIN_ROUND = 1000;
   const GAMES = [
-    { id: 'memory', icon: '✿', name: '记忆翻翻乐', description: '翻开卡片，找出 4 对相同图案。', label: '记忆小挑战' },
-    { id: 'numbers', icon: '123', name: '数字小路', description: '按顺序点出 1 到 9，慢慢来。', label: '专注小挑战' },
-    { id: 'spot', icon: '↗', name: '找找不一样', description: '找出方向不同的那一个图案。', label: '观察小挑战' }
+    { id: 'dodge', name: '星际穿梭', tag: '反应 · 闪避', icon: '✦', description: '驾驶星舰穿过陨石雨，抢下星星，冲出你的最高分。', controls: '← → 方向键、左右按钮，或在赛道上左右滑动', rules: ['三条航道，避开红色陨石，收集金色星星。', '安全穿过一波得 10 分，吃到星星额外得 20 分。', '有 3 格护盾；最多 60 波，越稳分越高。'] },
+    { id: 'merge', name: '合成风暴', tag: '策略 · 合成', icon: '⚡', description: '让相同数字相撞，连锁合成更大方块。最多 45 秒，脑力全开。', controls: '方向键、方向按钮，或在棋盘上滑动', rules: ['滑动棋盘，相同数字会合成一个更大的数字。', '每次合成获得新方块的分值；一次移动可连出多组。', '本局时间内尽量冲高分，棋盘堵满就会结束。'] },
+    { id: 'pulse', name: '光速连击', tag: '手速 · 连击', icon: '◎', description: '追踪跳动的光点，打出十连击，让每一下都更值分。', controls: '点击发光方格；键盘可用 1234 / QWER / ASDF / ZXCV', rules: ['光点每 0.75 秒换一个位置，每拍只能点击一次。', '点对得 100 分，再加连击奖励，最高每次 200 分。', '点错扣 10 分；漏拍或点错都会中断连击。'] }
   ];
   let active = null;
 
-  function shuffle(values, random = Math.random) {
-    const result = values.slice();
-    for (let i = result.length - 1; i > 0; i--) {
-      const j = Math.floor(random() * (i + 1));
-      [result[i], result[j]] = [result[j], result[i]];
+  function createRandom(seed) {
+    let value = Number(seed);
+    if (!Number.isInteger(value) || value < 1 || value >= 2147483647) throw new TypeError('无效的挑战种子。');
+    return () => { value = value * 48271 % 2147483647; return value; };
+  }
+  function dodgeCourse(seed) {
+    const next = createRandom(seed);
+    return Array.from({ length: 60 }, () => {
+      const hazard = next() % 3;
+      return { hazard, star: (hazard + 1 + next() % 2) % 3 };
+    });
+  }
+  function pulseTargets(seed) {
+    const next = createRandom(seed);
+    const targets = [next() % 16];
+    while (targets.length < 60) targets.push((targets[targets.length - 1] + 1 + next() % 15) % 16);
+    return targets;
+  }
+  function spawnTile(board, next) {
+    const empty = board.map((value, index) => value ? -1 : index).filter(index => index >= 0);
+    if (!empty.length) return;
+    board[empty[next() % empty.length]] = next() % 10 === 0 ? 4 : 2;
+  }
+  function mergeMove(board, direction) {
+    const result = board.slice();
+    let score = 0;
+    for (let line = 0; line < 4; line++) {
+      const indices = Array.from({ length: 4 }, (_, step) => direction === 0 ? line * 4 + step : direction === 1 ? step * 4 + line : direction === 2 ? line * 4 + 3 - step : (3 - step) * 4 + line);
+      const values = indices.map(index => board[index]).filter(Boolean);
+      const merged = [];
+      for (let i = 0; i < values.length; i++) {
+        if (values[i] === values[i + 1]) { const value = values[i++] * 2; merged.push(value); score += value; }
+        else merged.push(values[i]);
+      }
+      indices.forEach((index, i) => { result[index] = merged[i] || 0; });
     }
-    return result;
+    return { board: result, score, changed: result.some((value, i) => value !== board[i]) };
+  }
+  function hasMoves(board) { return [0, 1, 2, 3].some(direction => mergeMove(board, direction).changed); }
+
+  // The backend replays this same deterministic input protocol. Only input
+  // events are uploaded; the browser's provisional score is never authoritative.
+  function replay(game, seed, trace) {
+    const events = Array.isArray(trace) ? trace : [];
+    if (game === 'dodge') {
+      const course = dodgeCourse(seed);
+      let score = 0, lives = 3, stars = 0, completed = 0;
+      for (const event of events) {
+        if (lives <= 0 || completed >= 60) break;
+        const wave = course[completed];
+        if (event.t !== (completed + 1) * 700 || !Number.isInteger(event.v) || event.v < 0 || event.v > 2) throw new TypeError('无效的飞行记录。');
+        if (event.v === wave.hazard) lives--;
+        else { score += 10; if (event.v === wave.star) { score += 20; stars++; } }
+        completed++;
+      }
+      return { score, lives, stars, completed, course, done: lives <= 0 || completed === 60 };
+    }
+    if (game === 'merge') {
+      const next = createRandom(seed);
+      let board = Array(16).fill(0), score = 0, moves = 0, previous = -80;
+      spawnTile(board, next); spawnTile(board, next);
+      for (const event of events) {
+        if (!Number.isInteger(event.t) || event.t < 0 || event.t >= DURATION || event.t - previous < 80 || !Number.isInteger(event.v) || event.v < 0 || event.v > 3) throw new TypeError('无效的合成记录。');
+        const moved = mergeMove(board, event.v);
+        previous = event.t;
+        if (moved.changed) { board = moved.board; score += moved.score; moves++; spawnTile(board, next); }
+      }
+      return { board, score, moves, highest: Math.max(...board), done: !hasMoves(board) };
+    }
+    if (game === 'pulse') {
+      const targets = pulseTargets(seed);
+      let score = 0, combo = 0, bestCombo = 0, hits = 0, lastSlot = -1;
+      for (const event of events) {
+        const slot = Math.floor(event.t / 750);
+        if (!Number.isInteger(event.t) || event.t < 0 || event.t >= DURATION || slot <= lastSlot || !Number.isInteger(event.v) || event.v < 0 || event.v > 15) throw new TypeError('无效的连击记录。');
+        if (slot !== lastSlot + 1) combo = 0;
+        if (event.v === targets[slot]) { combo++; hits++; score += 100 + Math.min(combo, 10) * 10; bestCombo = Math.max(bestCombo, combo); }
+        else { combo = 0; score = Math.max(0, score - 10); }
+        lastSlot = slot;
+      }
+      return { score, combo, bestCombo, hits, lastSlot, targets };
+    }
+    throw new TypeError('未知的挑战。');
   }
 
-  function memoryDeck(random) {
-    return shuffle(SYMBOLS.flatMap((_, index) => [index, index]), random);
-  }
-
-  function spotPuzzle(random = Math.random) {
-    const pattern = DIFFERENCES[Math.floor(random() * DIFFERENCES.length)];
-    const oddIndex = Math.floor(random() * 12);
-    return { pattern, oddIndex, tiles: Array.from({ length: 12 }, (_, i) => i === oddIndex ? pattern.odd : pattern.common) };
-  }
-
-  // Keep the largest observed elapsed time: neither a wall-clock rollback nor
-  // a monotonic clock that pauses during device sleep may restore play time.
+  // Count both clocks and retain the largest elapsed observation. Going back
+  // in wall time or suspending the device cannot restore earned game time.
   function allowance(remainingMs, monotonicNow, wallNow) {
     const budget = Number.isFinite(remainingMs) ? Math.max(0, remainingMs) : 0;
-    const monotonicStart = monotonicNow();
-    const wallStart = wallNow();
+    const monotonicStart = monotonicNow(), wallStart = wallNow();
     let elapsed = 0;
-    return function remaining() {
-      elapsed = Math.max(elapsed, monotonicNow() - monotonicStart, wallNow() - wallStart, 0);
-      return Math.max(0, budget - elapsed);
-    };
+    return () => { elapsed = Math.max(elapsed, monotonicNow() - monotonicStart, wallNow() - wallStart, 0); return Math.max(0, budget - elapsed); };
   }
-
   function formatTime(ms) {
     const seconds = Math.max(0, Math.ceil(ms / 1000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   }
-
+  function escapeHtml(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char])); }
   function stop() {
     if (!active) return;
     const session = active;
     active = null;
     session.stopped = true;
+    session.roundVersion++;
     clearTimeout(session.tick);
-    session.roundTimers.forEach(clearTimeout);
-    session.roundTimers.clear();
-    session.container.removeEventListener('click', session.onClick);
-    session.document.removeEventListener('visibilitychange', session.onVisibility);
+    session.detach();
+    session.round = null;
+    session.bests = {};
     session.container.querySelectorAll('button').forEach(button => { button.disabled = true; });
   }
 
@@ -74,192 +128,230 @@
     let initialMs = Number(options.remainingMs);
     if (!Number.isFinite(initialMs)) initialMs = 0;
     if (Number.isFinite(options.endsAt)) initialMs = Math.min(initialMs, options.endsAt - Date.now());
-    initialMs = Math.max(0, Math.min(3600000, initialMs));
-    const sessionLimitMs = Number.isFinite(options.sessionLimitMs) ? Math.max(0, Math.min(3600000, options.sessionLimitMs)) : initialMs;
-    initialMs = Math.min(initialMs, sessionLimitMs);
-    const session = {
-      container, document, stopped: false, expired: false, tick: null,
-      roundTimers: new Set(), roundVersion: 0, currentGame: null, game: null, announcedMinute: false,
-      remaining: allowance(initialMs, () => performance.now(), () => Date.now())
-    };
+    const sessionLimitMs = Number.isFinite(options.sessionLimitMs) ? Math.max(0, Math.min(3600000, options.sessionLimitMs)) : Math.max(0, Math.min(3600000, initialMs));
+    initialMs = Math.max(0, Math.min(3600000, initialMs, sessionLimitMs));
+    const session = { container, document, stopped: false, expired: false, tick: null, roundVersion: 0, round: null, currentGame: null, pending: false, bests: {}, pointer: null, remaining: allowance(initialMs, () => performance.now(), () => Date.now()) };
     active = session;
     container.classList.add('wq-game-break');
-    container.innerHTML = `<header class="wq-break-header">
-      <div><span class="wq-break-eyebrow">课后的小小休息</span><h2>玩一小局，换换心情</h2></div>
-      <div class="wq-break-clock"><span>本次剩余时间</span><strong class="wq-break-time" role="timer" aria-live="off">${formatTime(initialMs)}</strong></div>
-      <p class="wq-break-rule">本次 ${Math.ceil(sessionLimitMs / 60000)} 分钟，到时自动结束，刷新页面不会重新计时。</p>
-      <div class="wq-break-meter" aria-hidden="true"><span></span></div>
-    </header><p class="wq-break-timer-announcement wq-break-sr" role="status" aria-live="polite"></p><div class="wq-break-body"></div>`;
-    const body = container.querySelector('.wq-break-body');
-    const clock = container.querySelector('.wq-break-time');
-    const meter = container.querySelector('.wq-break-meter span');
-    const announcement = container.querySelector('.wq-break-timer-announcement');
+    container.innerHTML = `<header class="wq-break-header"><div><span class="wq-break-eyebrow">AFTER STUDY / 挑战时刻</span><h2>今天，刷新自己的纪录。</h2></div><div class="wq-break-clock"><span>本次休息剩余</span><strong class="wq-break-time" role="timer" aria-live="off">${formatTime(initialMs)}</strong></div><p class="wq-break-rule">本次 ${formatTime(sessionLimitMs)} · 换游戏、看说明也会继续计时 · 到时自动结束</p><div class="wq-break-meter" aria-hidden="true"><span></span></div></header><p class="wq-break-timer-announcement wq-break-sr" role="status" aria-live="polite"></p><div class="wq-break-body"></div>`;
+    const body = container.querySelector('.wq-break-body'), clock = container.querySelector('.wq-break-time'), meter = container.querySelector('.wq-break-meter span'), announcement = container.querySelector('.wq-break-timer-announcement');
 
     function live() { return active === session && !session.stopped && !session.expired; }
-    function clearRound() {
-      session.roundVersion++;
-      session.roundTimers.forEach(clearTimeout);
-      session.roundTimers.clear();
-    }
-    function focus(selector) {
-      const target = body.querySelector(selector);
-      if (target) target.focus({ preventScroll: true });
-    }
+    function focus(selector) { const target = body.querySelector(selector); if (target) target.focus({ preventScroll: true }); }
+    function clearRound() { session.roundVersion++; session.round = null; session.pending = false; session.pointer = null; }
     function expire() {
       if (!live()) return false;
-      session.expired = true;
-      clearTimeout(session.tick);
-      clearRound();
-      container.removeEventListener('click', session.onClick);
-      document.removeEventListener('visibilitychange', session.onVisibility);
-      clock.textContent = '0:00';
-      meter.style.width = '0%';
-      announcement.textContent = '本次游戏时间已到。';
-      body.innerHTML = `<section class="wq-break-finished"><div class="wq-break-rest-icon" aria-hidden="true">☀</div><h3 tabindex="-1">休息时间到啦</h3><p>放下屏幕，看看远处、伸伸懒腰。<br>今天的努力已经很棒了。</p><p class="small muted">可以关闭这个窗口，回到学习主页。</p></section>`;
+      session.expired = true; clearTimeout(session.tick);
+      clock.textContent = '0:00'; meter.style.width = '0%'; announcement.textContent = '本次游戏时间已到。';
+      if (session.round) {
+        // Stop all play, but let the last real round settle and its receipt remain visible.
+        body.querySelectorAll('button').forEach(button => { if (button.dataset.action !== 'retry') button.disabled = true; });
+        if (!session.round.finished && !session.round.finishing) advanceRound();
+        if (!session.round.finished && !session.round.finishing) finishRound();
+        return false;
+      }
+      clearRound(); session.detach();
+      clock.textContent = '0:00'; meter.style.width = '0%'; announcement.textContent = '本次游戏时间已到。';
+      body.innerHTML = '<section class="wq-break-finished"><span class="wq-break-rest-icon" aria-hidden="true">✦</span><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">休息时间到，给眼睛放个假。</h3><p>看看远处，伸伸懒腰。下次带着新的学习成果，再来挑战纪录。</p></section>';
       focus('h3');
-      if (typeof options.onExpire === 'function') options.onExpire();
+      if (typeof options.onExpire === 'function') {
+        // Host callbacks must never undo local expiry or leave live controls.
+        try { Promise.resolve(options.onExpire()).catch(() => {}); } catch (_) { /* The session is already safely expired. */ }
+      }
       return false;
     }
     function check() {
       if (!live()) return false;
-      const left = session.remaining();
-      if (left <= 0) return expire();
-      clock.textContent = formatTime(left);
-      meter.style.width = `${sessionLimitMs ? left / sessionLimitMs * 100 : 0}%`;
+      const left = session.remaining(); if (left <= 0) return expire();
+      clock.textContent = formatTime(left); meter.style.width = `${sessionLimitMs ? left / sessionLimitMs * 100 : 0}%`;
       container.classList.toggle('wq-break-last-minute', left <= 60000);
-      if (left <= 60000 && !session.announcedMinute) {
-        session.announcedMinute = true;
-        announcement.textContent = '本次游戏时间剩下不到一分钟。';
-      }
+      if (left <= 60000 && !session.announcedMinute) { session.announcedMinute = true; announcement.textContent = '本次休息剩余不到一分钟。'; }
       return true;
     }
-    function scheduleRound(callback, delay) {
-      const roundVersion = session.roundVersion;
-      const id = setTimeout(() => {
-        session.roundTimers.delete(id);
-        if (roundVersion === session.roundVersion && check()) callback();
-      }, delay);
-      session.roundTimers.add(id);
+    function scores(id) {
+      const result = session.bests[id];
+      return result ? `<span>个人最佳 <b>${Number(result.personal_best) || 0}</b></span><span>本周最佳 <b>${Number(result.week_best) || 0}</b></span>` : '<span>完成挑战，解锁你的个人纪录</span>';
     }
-    function menu(focusHeading = false) {
-      clearRound();
-      session.currentGame = null;
-      session.game = null;
-      body.innerHTML = `<div class="wq-break-menu-intro"><h3 tabindex="-1">想玩哪一个？</h3><p class="muted">随时都可以结束；换游戏也会继续计时。</p></div>
-        <div class="wq-break-choices">${GAMES.map(game => `<button class="wq-break-choice" type="button" data-game="${game.id}"><span class="wq-break-choice-icon" aria-hidden="true">${game.icon}</span><span class="wq-break-game-kind">${game.label}</span><strong>${game.name}</strong><span>${game.description}</span><span class="wq-break-choice-link">开始玩 <span aria-hidden="true">→</span></span></button>`).join('')}</div>
-        <p class="wq-break-bottom-note">小游戏没有积分排名。玩得开心，也记得给眼睛放个假。</p>`;
-      if (focusHeading) focus('h3');
+    function menu(shouldFocus) {
+      clearRound(); session.currentGame = null;
+      body.innerHTML = `<div class="wq-break-menu-intro"><div><span class="wq-break-eyebrow">PICK YOUR CHALLENGE</span><h3 tabindex="-1">选一场，亮出你的实力</h3></div><span class="wq-break-duration-badge">每局最多 45 秒</span></div><div class="wq-break-choices">${GAMES.map(game => `<button class="wq-break-choice wq-break-${game.id}" type="button" data-game="${game.id}"><span class="wq-break-card-art" aria-hidden="true">${game.id === 'dodge' ? '<i class="wq-art-orbit"></i><i class="wq-art-ship">▲</i><i class="wq-art-star">✦</i><i class="wq-art-rock"></i>' : game.id === 'merge' ? '<i class="wq-art-number">8</i><i class="wq-art-number">16</i><i class="wq-art-number">32</i>' : '<i class="wq-art-ring"></i><i class="wq-art-ring"></i><i class="wq-art-ring"></i><b>×10</b>'}</span><span class="wq-break-game-kind">${game.tag}</span><strong>${game.name}</strong><span class="wq-break-card-description">${game.description}</span><span class="wq-break-card-scores">${scores(game.id)}</span><span class="wq-break-choice-link">查看玩法 <span aria-hidden="true">↗</span></span></button>`).join('')}</div><p class="wq-break-bottom-note">每种游戏单独排名 · 每周重新挑战 · 排名以服务器核验成绩为准</p>`;
+      if (shouldFocus) focus('h3');
     }
-    function boardShell(name, instructions) {
-      body.innerHTML = `<div class="wq-break-game-header"><button class="btn small light" type="button" data-action="menu">← 选择游戏</button><span class="wq-break-game-label">${name}</span></div>
-        <h3 class="wq-break-game-heading" tabindex="-1">${name}</h3><p class="wq-break-instructions">${instructions}</p>
-        <div class="wq-break-board"></div><p class="wq-break-status" role="status" aria-live="polite"></p><div class="wq-break-round-end"></div>`;
-    }
-    function message(text) { body.querySelector('.wq-break-status').textContent = text; }
-    function finishRound(text) {
-      session.game.done = true;
-      body.querySelectorAll('.wq-break-tile').forEach(button => { button.disabled = true; });
-      message(text);
-      body.querySelector('.wq-break-round-end').innerHTML = `<div class="wq-break-round-card"><h4 tabindex="-1">这一局完成了！</h4><p>可以再玩一局，也可以现在去休息。</p><div class="btnrow"><button class="btn small" type="button" data-action="again">再玩一局</button><button class="btn small secondary" type="button" data-action="menu">换个小游戏</button></div></div>`;
-      focus('.wq-break-round-end h4');
-    }
-    function drawMemory(focusIndex) {
-      const game = session.game;
-      body.querySelector('.wq-break-board').innerHTML = `<div class="wq-break-grid wq-break-memory">${game.deck.map((symbol, index) => {
-        const shown = game.open.includes(index) || game.matched.has(index);
-        const matched = game.matched.has(index);
-        const label = `第 ${index + 1} 张，${shown ? SYMBOLS[symbol].name + (matched ? '，已配对' : '') : '尚未翻开'}`;
-        return `<button type="button" class="wq-break-tile ${shown ? 'is-open' : ''} ${matched ? 'is-matched' : ''}" data-tile="${index}" aria-label="${label}" aria-pressed="${shown}" ${matched ? 'disabled' : ''}><span aria-hidden="true">${shown ? SYMBOLS[symbol].icon : '?'}</span>${matched ? '<small aria-hidden="true">已配对</small>' : ''}</button>`;
-      }).join('')}</div>`;
-      if (focusIndex != null) focus(`button[data-tile="${focusIndex}"]:not(:disabled)`);
-    }
-    function startGame(id) {
-      const info = GAMES.find(game => game.id === id);
-      if (!info) return;
-      clearRound();
-      session.currentGame = id;
-      if (id === 'memory') {
-        session.game = { deck: memoryDeck(), open: [], matched: new Set(), done: false, busy: false };
-        boardShell(info.name, '一次翻开两张卡片，找出 4 对相同图案。');
-        drawMemory();
-        message('先选一张卡片。');
-      } else if (id === 'numbers') {
-        session.game = { numbers: shuffle(Array.from({ length: 9 }, (_, i) => i + 1)), next: 1, done: false };
-        boardShell(info.name, '从 1 开始，按从小到大的顺序点到 9。');
-        body.querySelector('.wq-break-board').innerHTML = `<div class="wq-break-grid wq-break-numbers">${session.game.numbers.map(number => `<button type="button" class="wq-break-tile" data-tile="${number}" aria-label="数字 ${number}">${number}</button>`).join('')}</div>`;
-        message('下一步：找到数字 1。');
-      } else {
-        session.game = { ...spotPuzzle(), done: false };
-        boardShell(info.name, '仔细看，哪一个图案的方向和其他的不一样？');
-        body.querySelector('.wq-break-board').innerHTML = `<div class="wq-break-grid wq-break-spot">${session.game.tiles.map((symbol, index) => `<button type="button" class="wq-break-tile" data-tile="${index}" aria-label="第 ${index + 1} 格，${index === session.game.oddIndex ? session.game.pattern.oddName : session.game.pattern.commonName}"><span aria-hidden="true">${symbol}</span></button>`).join('')}</div>`;
-        message('找到后，点一下那个图案。');
-      }
+    function instructions(id) {
+      const info = GAMES.find(game => game.id === id); if (!info) return;
+      clearRound(); session.currentGame = id;
+      body.innerHTML = `<section class="wq-break-intro-panel wq-break-${id}"><button type="button" class="wq-break-back" data-action="menu">← 选择游戏</button><span class="wq-break-intro-symbol" aria-hidden="true">${info.icon}</span><span class="wq-break-eyebrow">${info.tag} / 最多 45 秒挑战</span><h3 tabindex="-1">${info.name}</h3><p>${info.description}</p><ol class="wq-break-rules">${info.rules.map(rule => `<li>${rule}</li>`).join('')}</ol><div class="wq-break-control-help">${info.controls}</div><div class="wq-break-intro-scores">${scores(id)}</div><button type="button" class="wq-break-primary" data-action="start" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>开始挑战 <span aria-hidden="true">→</span></button><p class="wq-break-status" role="status" aria-live="polite">${session.remaining() < MIN_ROUND ? '本次时间已用完，请回大厅查看余额。' : '准备好再开始；不足 45 秒时会按剩余时间缩短本局，成绩仍由服务器核验。'}</p></section>`;
       focus('h3');
     }
-    function playTile(button) {
-      const game = session.game;
-      const index = Number(button.dataset.tile);
-      if (!game || game.done || !Number.isInteger(index)) return;
-      if (session.currentGame === 'memory') {
-        if (game.busy || index < 0 || index >= game.deck.length || game.matched.has(index) || game.open.includes(index)) return;
-        game.open.push(index);
-        if (game.open.length === 1) {
-          drawMemory(index);
-          message('再选一张，看看是不是一对。');
-        } else {
-          const [first, second] = game.open;
-          if (game.deck[first] === game.deck[second]) {
-            game.matched.add(first); game.matched.add(second); game.open = [];
-            drawMemory();
-            if (game.matched.size === game.deck.length) return finishRound('4 对图案都找到了。');
-            message(`找到一对！已经完成 ${game.matched.size / 2} / 4 对。`);
-            focus('button[data-tile]:not(:disabled)');
-          } else {
-            game.busy = true;
-            drawMemory(index);
-            message('记住这两个图案的位置，再试一次。');
-            scheduleRound(() => {
-              game.open = []; game.busy = false;
-              drawMemory(index);
-            }, 900);
-          }
+    function status(text) { const element = body.querySelector('.wq-break-status'); if (element) element.textContent = text; }
+    async function startRound() {
+      if (session.pending || session.round || !check()) return;
+      if (session.remaining() < MIN_ROUND) { status('本次时间已用完，请回大厅查看余额。'); return; }
+      if (typeof options.beginRound !== 'function' || typeof options.finishRound !== 'function') { status('挑战服务暂未连接，请返回大厅后重试。'); return; }
+      const id = session.currentGame, version = session.roundVersion;
+      session.pending = true;
+      const startButton = body.querySelector('[data-action="start"]'); if (startButton) startButton.disabled = true;
+      status('正在准备本局挑战…');
+      try {
+        const ticket = await options.beginRound(id);
+        if (!live() || version !== session.roundVersion || !check()) return;
+        if (!ticket || !ticket.round_id || !Number.isInteger(ticket.duration_ms) || ticket.duration_ms < MIN_ROUND || ticket.duration_ms > DURATION) throw new Error('invalid ticket');
+        const state = replay(id, Number(ticket.seed), []);
+        session.pending = false;
+        session.round = { id, ticket, trace: [], state, lane: 1, version, duration: Math.min(ticket.duration_ms, session.remaining()), remaining: allowance(Math.min(ticket.duration_ms, session.remaining()), () => performance.now(), () => Date.now()), elapsed: 0, lastDrawn: -1, renderedSlot: -1, finishing: false, finished: false, feedback: '', feedbackUntil: 0 };
+        feedback('GO！', 0); gameShell(); drawRound(true); focus('.wq-break-playfield');
+      } catch (error) {
+        if (!live() || version !== session.roundVersion) return;
+        session.pending = false; if (startButton) startButton.disabled = false;
+        status('暂时无法开始挑战，请检查网络或返回大厅后重试。');
+      }
+    }
+    function gameShell() {
+      const round = session.round, info = GAMES.find(game => game.id === round.id);
+      body.innerHTML = `<section class="wq-break-arena wq-break-${round.id}"><div class="wq-break-game-header"><button class="wq-break-back" type="button" data-action="menu">← 退出本局</button><span class="wq-break-game-label">${info.name}</span><span class="wq-break-round-clock" role="timer" aria-label="本局剩余时间">${Math.ceil(round.duration / 1000)} 秒</span></div><div class="wq-break-hud"><div><span>本局得分</span><strong class="wq-break-score">0</strong><small>结算前为暂计成绩</small></div><div class="wq-break-secondary-stat"></div></div><div class="wq-break-playfield" tabindex="0" aria-label="${info.name}游戏区域"><div class="wq-break-board"></div><div class="wq-break-feedback" aria-hidden="true"></div></div>${round.id === 'dodge' ? '<div class="wq-break-controls"><button type="button" data-lane-shift="-1" aria-label="向左移动">← <span>向左</span></button><span>躲陨石 · 追星星</span><button type="button" data-lane-shift="1" aria-label="向右移动"><span>向右</span> →</button></div>' : round.id === 'merge' ? '<div class="wq-break-controls wq-break-direction-controls"><button type="button" data-direction="0" aria-label="向左合成">←</button><button type="button" data-direction="1" aria-label="向上合成">↑</button><button type="button" data-direction="3" aria-label="向下合成">↓</button><button type="button" data-direction="2" aria-label="向右合成">→</button></div>' : '<div class="wq-break-beat-meter" aria-hidden="true"><span></span></div>'}<p class="wq-break-status" role="status" aria-live="polite">${info.controls}</p></section>`;
+    }
+    function feedback(text, elapsed) { const round = session.round; round.feedback = text; round.feedbackUntil = elapsed + 550; }
+    function drawRound(force) {
+      const round = session.round; if (!round || round.finishing || round.finished) return;
+      const state = round.state, board = body.querySelector('.wq-break-board'), elapsed = round.elapsed;
+      body.querySelector('.wq-break-score').textContent = state.score.toLocaleString();
+      body.querySelector('.wq-break-round-clock').textContent = `${Math.ceil((round.duration - elapsed) / 1000)} 秒`;
+      body.querySelector('.wq-break-feedback').textContent = elapsed < round.feedbackUntil ? round.feedback : '';
+      const stat = body.querySelector('.wq-break-secondary-stat');
+      if (round.id === 'dodge') {
+        stat.innerHTML = `<span>星舰护盾</span><strong class="wq-break-shields">${'◆'.repeat(state.lives)}<i>${'◇'.repeat(3 - state.lives)}</i></strong><small>第 ${Math.min(60, state.completed + 1)} / 60 波 · ${state.stars} 颗星</small>`;
+        const index = state.completed, progress = (elapsed - index * 700) / 700;
+        board.innerHTML = `<div class="wq-break-track"><div class="wq-break-track-lines"></div><div class="wq-break-distance">SECTOR ${String(Math.floor(index / 10) + 1).padStart(2, '0')}</div>${[1, 0].map(offset => {
+          const wave = state.course[index + offset]; if (!wave) return '';
+          const top = (progress - offset) * 70 + 8;
+          return `<div class="wq-break-obstacle" style="--lane:${wave.hazard};top:${top}%" aria-label="第 ${wave.hazard + 1} 道陨石">◆</div><div class="wq-break-star" style="--lane:${wave.star};top:${top}%" aria-label="第 ${wave.star + 1} 道星星">✦</div>`;
+        }).join('')}<div class="wq-break-ship" style="--lane:${round.lane}" aria-label="星舰位于第 ${round.lane + 1} 道"><span>▲</span><i></i></div><div class="wq-break-track-glow"></div></div>`;
+      } else if (round.id === 'merge') {
+        stat.innerHTML = `<span>最高方块</span><strong>${state.highest}</strong><small>${state.moves} 次有效移动</small>`;
+        if (force || round.lastDrawn !== round.trace.length) {
+          board.innerHTML = `<div class="wq-break-merge-grid">${state.board.map((value, index) => `<div class="wq-break-number-tile ${value ? 'has-value' : ''} ${value && (!round.drawnBoard || value !== round.drawnBoard[index]) ? 'is-new' : ''}" style="--level:${value ? Math.min(11, Math.log2(value)) : 0}" data-value="${value}" aria-label="第 ${index + 1} 格，${value || '空'}">${value || ''}</div>`).join('')}</div>`;
+          round.drawnBoard = state.board.slice();
+          round.lastDrawn = round.trace.length;
         }
-      } else if (session.currentGame === 'numbers') {
-        if (index !== game.next) { message(`慢慢来，下一步是数字 ${game.next}。`); return; }
-        button.disabled = true;
-        button.classList.add('is-matched');
-        button.setAttribute('aria-label', `数字 ${index}，已完成`);
-        game.next++;
-        if (game.next === 10) return finishRound('从 1 到 9，数字小路走完了。');
-        message(`下一步：找到数字 ${game.next}。`);
-        focus('button[data-tile]:not(:disabled)');
-      } else if (session.currentGame === 'spot') {
-        if (index !== game.oddIndex) { message('再看一次，找方向不一样的那个。'); return; }
-        button.classList.add('is-matched');
-        finishRound('找到了，这一个的方向不一样。');
+      } else {
+        const slot = Math.min(59, Math.floor(elapsed / 750));
+        const combo = state.lastSlot >= slot - 1 ? state.combo : 0;
+        stat.innerHTML = `<span>当前连击</span><strong class="wq-break-combo">×${combo}</strong><small>命中 ${state.hits} / ${slot + 1} 拍</small>`;
+        const accepted = state.lastSlot === slot;
+        const hit = accepted && round.trace[round.trace.length - 1].v === state.targets[slot];
+        if (force || round.renderedSlot !== slot || round.lastDrawn !== round.trace.length) {
+          const keys = '1234qwerasdfzxcv';
+          board.innerHTML = `<div class="wq-break-pulse-grid">${Array.from({ length: 16 }, (_, index) => `<button type="button" class="wq-break-pulse-tile ${index === state.targets[slot] ? accepted ? hit ? 'is-hit' : 'is-missed' : 'is-target' : ''}" data-target="${index}" ${accepted ? 'disabled' : ''} aria-label="第 ${index + 1} 格${index === state.targets[slot] ? accepted ? hit ? '，已命中' : '，本拍未命中' : '，发光目标' : ''}"><span aria-hidden="true">${index === state.targets[slot] ? accepted ? hit ? '✓' : '×' : '◎' : '·'}</span><small aria-hidden="true">${keys[index].toUpperCase()}</small></button>`).join('')}</div>`;
+          round.renderedSlot = slot; round.lastDrawn = round.trace.length;
+        }
+        body.querySelector('.wq-break-beat-meter span').style.width = `${100 - elapsed % 750 / 7.5}%`;
+      }
+    }
+    function advanceRound() {
+      const round = session.round; if (!round || round.finishing || round.finished) return;
+      round.elapsed = Math.min(round.duration, Math.floor(round.duration - round.remaining()));
+      if (round.id === 'dodge') {
+        while (round.trace.length < Math.min(60, Math.floor(round.elapsed / 700)) && !round.state.done) {
+          const old = round.state;
+          round.trace.push({ t: (round.trace.length + 1) * 700, v: round.lane });
+          round.state = replay(round.id, Number(round.ticket.seed), round.trace);
+          feedback(round.state.lives < old.lives ? '护盾 −1' : round.state.stars > old.stars ? '✦ +30' : '+10', round.elapsed);
+        }
+      }
+      if (round.elapsed >= round.duration || round.state.done) { finishRound(); return; }
+      drawRound(false);
+    }
+    function action(value) {
+      if (!check()) return;
+      advanceRound();
+      const round = session.round; if (!round || round.finishing || round.finished) return;
+      const elapsed = round.elapsed;
+      if (round.id === 'dodge') { round.lane = Math.max(0, Math.min(2, round.lane + value)); drawRound(true); return; }
+      if (round.trace.length >= 300) { status('本局已达到操作上限，请等待结算。'); return; }
+      if (round.id === 'merge') {
+        const previous = round.trace[round.trace.length - 1];
+        if (previous && elapsed - previous.t < 80) return;
+        const move = mergeMove(round.state.board, value); if (!move.changed) return;
+        round.trace.push({ t: elapsed, v: value });
+        if (move.score) feedback(`合成 +${move.score}`, elapsed);
+      } else {
+        const slot = Math.floor(elapsed / 750); if (round.state.lastSlot === slot) return;
+        round.trace.push({ t: elapsed, v: value });
+        feedback(value === round.state.targets[slot] ? '命中！' : '失误 −10', elapsed);
+      }
+      round.state = replay(round.id, Number(round.ticket.seed), round.trace);
+      if (round.state.done) finishRound(); else drawRound(true);
+    }
+    async function finishRound() {
+      const round = session.round; if (!round || round.finishing || round.finished || active !== session || session.stopped) return;
+      round.finishing = true;
+      body.innerHTML = `<section class="wq-break-result"><span class="wq-break-eyebrow">CHALLENGE COMPLETE</span><h3 tabindex="-1">挑战结束，正在核验成绩…</h3><strong class="wq-break-result-score">${round.state.score.toLocaleString()}</strong><p class="wq-break-status" role="status">正在同步你的成绩与本周排名</p><button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button></section>`;
+      focus('h3');
+      try {
+        const result = await options.finishRound(round.ticket.round_id, round.trace.map(event => ({ t: event.t, v: event.v })));
+        if (active !== session || session.stopped || session.round !== round || session.roundVersion !== round.version) return;
+        if (!result || !Number.isFinite(Number(result.score))) throw new Error('invalid result');
+        round.finished = true; round.finishing = false; session.bests[round.id] = result;
+        const score = Number(result.score), personalBest = Number(result.personal_best) || 0, weekBest = Number(result.week_best) || 0;
+        const rank = Number(result.rank);
+        body.innerHTML = `<section class="wq-break-result wq-break-${round.id}"><span class="wq-break-result-medal" aria-hidden="true">${score > 0 && score >= personalBest ? '✦' : '◇'}</span><span class="wq-break-eyebrow">${score > 0 && score >= personalBest ? 'PERSONAL BEST / 个人最佳' : 'CHALLENGE COMPLETE / 挑战完成'}</span><h3 tabindex="-1">${GAMES.find(game => game.id === round.id).name}</h3><strong class="wq-break-result-score">${score.toLocaleString()}<small>分</small></strong><p class="wq-break-verified">✓ 成绩已核验并同步</p><div class="wq-break-result-stats"><div><span>个人最佳</span><strong>${personalBest.toLocaleString()}</strong></div><div><span>本周最佳</span><strong>${weekBest.toLocaleString()}</strong></div><div><span>本周排名</span><strong>${Number.isInteger(rank) && rank > 0 ? '#' + rank : '—'}</strong></div></div><p class="wq-break-status">${result.nickname ? escapeHtml(result.nickname) + '，' : ''}${score > 0 && score >= personalBest ? '这一局就是你的最佳表现！' : '每次挑战，都有新的可能。'}${round.id === 'pulse' ? ` 本局最高 ${round.state.bestCombo} 连击。` : round.id === 'dodge' ? ` 收集了 ${round.state.stars} 颗星星。` : ` 最高合成 ${round.state.highest}。`}</p><div class="wq-break-result-actions"><button type="button" class="wq-break-primary" data-action="again" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>再挑战一次 ↗</button><button type="button" class="wq-break-back" data-action="menu" ${session.remaining() < MIN_ROUND ? 'disabled' : ''}>换个游戏</button></div>${session.remaining() < MIN_ROUND ? '<p class="wq-break-bottom-note">本次时间已用完，可回大厅查看剩余余额。</p>' : ''}</section>`;
+        focus('h3');
+      } catch (error) {
+        if (active !== session || session.stopped || session.round !== round || session.roundVersion !== round.version) return;
+        round.finishing = false;
+        body.innerHTML = `<section class="wq-break-result"><h3 tabindex="-1">成绩暂未同步</h3><strong class="wq-break-result-score">${round.state.score.toLocaleString()}</strong><p class="wq-break-status" role="status">这是本机暂计分数，尚未进入排行榜。请检查网络后重试。</p><div class="wq-break-result-actions"><button type="button" class="wq-break-primary" data-action="retry">重试同步</button><button type="button" class="wq-break-back" data-action="menu">返回游戏选择</button></div></section>`;
+        round.finished = true; // Prevent the clock from silently resubmitting.
+        focus('h3');
       }
     }
     session.onClick = event => {
       const button = event.target.closest('button');
-      if (!button || !container.contains(button) || button.disabled || !check()) return;
-      if (button.dataset.game) startGame(button.dataset.game);
-      else if (button.dataset.action === 'menu') menu(true);
-      else if (button.dataset.action === 'again') startGame(session.currentGame);
-      else if (button.dataset.tile != null) playTile(button);
+      if (!button || !container.contains(button) || button.disabled) return;
+      if (session.expired) { if (button.dataset.action === 'retry' && session.round?.finished) { session.round.finished = false; finishRound(); } return; }
+      if (!check()) return;
+      const data = button.dataset;
+      if (data.game) instructions(data.game);
+      else if (data.action === 'menu') menu(true);
+      else if (data.action === 'start') startRound();
+      else if (data.action === 'again') instructions(session.currentGame);
+      else if (data.action === 'retry' && session.round) { session.round.finished = false; finishRound(); }
+      else if (data.laneShift != null && session.round && session.round.id === 'dodge') action(Number(data.laneShift));
+      else if (data.direction != null && session.round && session.round.id === 'merge') action(Number(data.direction));
+      else if (data.target != null && session.round && session.round.id === 'pulse') action(Number(data.target));
     };
-    session.onVisibility = () => { check(); };
-    container.addEventListener('click', session.onClick);
-    document.addEventListener('visibilitychange', session.onVisibility);
-    menu();
-    function tick() {
-      if (check()) session.tick = setTimeout(tick, 200);
-    }
+    session.onKey = event => {
+      const round = session.round; if (!round || round.finishing || round.finished || !live() || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.target && /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName || '')) return;
+      const directions = { ArrowLeft: 0, ArrowUp: 1, ArrowRight: 2, ArrowDown: 3 };
+      if (round.id === 'dodge' && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) { event.preventDefault(); action(event.key === 'ArrowLeft' ? -1 : 1); }
+      else if (round.id === 'merge' && directions[event.key] != null) { event.preventDefault(); action(directions[event.key]); }
+      else if (round.id === 'pulse' && !event.repeat) { const index = '1234qwerasdfzxcv'.indexOf(String(event.key).toLowerCase()); if (String(event.key).length === 1 && index >= 0) { event.preventDefault(); action(index); } }
+    };
+    session.onPointerDown = event => {
+      const round = session.round;
+      if (!round || round.finishing || round.finished || round.id === 'pulse' || !event.target.closest('.wq-break-playfield')) return;
+      session.pointer = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    };
+    session.onPointerUp = event => {
+      const pointer = session.pointer, round = session.round; session.pointer = null;
+      if (!pointer || pointer.id !== event.pointerId || !round) return;
+      const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 20) return;
+      if (round.id === 'dodge') { if (Math.abs(dx) > Math.abs(dy)) action(dx < 0 ? -1 : 1); }
+      else if (round.id === 'merge') action(Math.abs(dx) > Math.abs(dy) ? dx < 0 ? 0 : 2 : dy < 0 ? 1 : 3);
+    };
+    session.onPointerCancel = () => { session.pointer = null; };
+    session.onVisibility = () => { if (check()) advanceRound(); };
+    const containerEvents = [['click', session.onClick], ['pointerdown', session.onPointerDown], ['pointerup', session.onPointerUp], ['pointercancel', session.onPointerCancel]];
+    const documentEvents = [['keydown', session.onKey], ['visibilitychange', session.onVisibility]];
+    session.detach = () => { containerEvents.forEach(([name, handler]) => container.removeEventListener(name, handler)); documentEvents.forEach(([name, handler]) => document.removeEventListener(name, handler)); };
+    containerEvents.forEach(([name, handler]) => container.addEventListener(name, handler)); documentEvents.forEach(([name, handler]) => document.addEventListener(name, handler));
+    menu(false);
+    function tick() { if (check()) { advanceRound(); if (live()) session.tick = setTimeout(tick, session.round && !session.round.finished && !session.round.finishing ? 40 : 200); } }
     tick();
   }
 
   const api = { mount, stop };
   if (root) root.WQGameBreak = api;
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { ...api, allowance, formatTime, shuffle, memoryDeck, spotPuzzle };
-  }
+  if (typeof module !== 'undefined' && module.exports) module.exports = { ...api, allowance, formatTime, createRandom, dodgeCourse, pulseTargets, mergeMove, replay, hasMoves };
 })(typeof window === 'undefined' ? null : window);

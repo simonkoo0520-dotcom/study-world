@@ -21,18 +21,30 @@ function rewardQuestionId(value) {
 function rewardRevision(value) {
   return typeof value==='string'&&/^[a-f0-9]{16,64}$/.test(value)?value:'';
 }
+function cleanSubmissionTimes(value,total,isSession=false) {
+  const validTime=time=>time===null||(Number.isInteger(time)&&time>0&&time<=9999999999999);
+  if(!Array.isArray(value?.submittedAt)||value.submittedAt.length!==total||!value.submittedAt.every(validTime))return {};
+  if(!Array.isArray(value.correctionAt)||value.correctionAt.length!==total||!value.correctionAt.every(validTime))return {};
+  for(let i=0;i<total;i++){
+    const submitted=value.submittedAt[i],corrected=value.correctionAt[i];
+    if(submitted!==null&&(!Number.isInteger(value.choices?.[i])||value.choices[i]<0||value.choices[i]>3))return {};
+    if(submitted!==null&&isSession&&(value.mode==='test'?value.finished!==true:value.checked?.[i]!==true))return {};
+    if(corrected!==null&&(submitted===null||corrected<submitted))return {};
+  }
+  return {submittedAt:value.submittedAt.slice(),correctionAt:value.correctionAt.slice()};
+}
 function cleanRewardReceipt(run) {
   const total=run?.total,validChoice=value=>value===null||(Number.isInteger(value)&&value>=0&&value<4);
   if(!rewardRevision(run?.catalogRevision))return {};
   if(!Number.isInteger(total)||total<1||total>40||!Array.isArray(run.ids)||run.ids.length!==total||!run.ids.every(rewardQuestionId)||new Set(run.ids).size!==total)return {};
   if(!Array.isArray(run.choices)||!Array.isArray(run.rewardChoices)||run.choices.length!==total||run.rewardChoices.length!==total||!run.choices.every(validChoice)||!run.rewardChoices.every(validChoice))return {};
   if(!Number.isInteger(run.at)||run.at<0||run.at>9999999999999||!Number.isInteger(run.correctedAt)||run.correctedAt<0||run.correctedAt>9999999999999||(run.correctedAt>0&&run.correctedAt<run.at))return {};
-  return {ids:run.ids.slice(),choices:run.choices.slice(),rewardChoices:run.rewardChoices.slice(),correctedAt:run.correctedAt,catalogRevision:run.catalogRevision};
+  return {ids:run.ids.slice(),choices:run.choices.slice(),rewardChoices:run.rewardChoices.slice(),correctedAt:run.correctedAt,catalogRevision:run.catalogRevision,...cleanSubmissionTimes(run,total)};
 }
   function cleanSession(x) {
     if(!x || !safeKey(x.course) || !Array.isArray(x.ids) || x.ids.length<1 || x.ids.length>40 || !['practice','test','review'].includes(x.mode)) return null;
     const ids=x.ids.filter(rewardQuestionId); if(ids.length!==x.ids.length || new Set(ids).size!==ids.length) return null;
-    return {id:str(x.id,100)||id(),course:x.course,mode:x.mode,catalogRevision:rewardRevision(x.catalogRevision),ids,index:num(x.index,0,ids.length-1),choices:ids.map((_,i)=>Number.isInteger(x.choices?.[i])&&x.choices[i]>=0&&x.choices[i]<4?x.choices[i]:null),checked:ids.map((_,i)=>x.mode!=='test'&&x.checked?.[i]===true),started:num(x.started,0,9999999999999,Date.now()),finished:x.finished===true,reviewIndex:num(x.reviewIndex,0,ids.length-1),xpGain:num(x.xpGain,0,1000),recorded:x.recorded===true,correctionActive:x.correctionActive===true,correctionIndex:num(x.correctionIndex,0,ids.length-1),correctionChoice:Number.isInteger(x.correctionChoice)&&x.correctionChoice>=0&&x.correctionChoice<4?x.correctionChoice:null,correctionFeedback:x.correctionFeedback===true};
+    return {id:str(x.id,100)||id(),course:x.course,mode:x.mode,catalogRevision:rewardRevision(x.catalogRevision),ids,index:num(x.index,0,ids.length-1),choices:ids.map((_,i)=>Number.isInteger(x.choices?.[i])&&x.choices[i]>=0&&x.choices[i]<4?x.choices[i]:null),checked:ids.map((_,i)=>x.mode!=='test'&&x.checked?.[i]===true),started:num(x.started,0,9999999999999,Date.now()),finished:x.finished===true,reviewIndex:num(x.reviewIndex,0,ids.length-1),xpGain:num(x.xpGain,0,1000),recorded:x.recorded===true,correctionActive:x.correctionActive===true,correctionIndex:num(x.correctionIndex,0,ids.length-1),correctionChoice:Number.isInteger(x.correctionChoice)&&x.correctionChoice>=0&&x.correctionChoice<4?x.correctionChoice:null,correctionFeedback:x.correctionFeedback===true,...cleanSubmissionTimes(x,ids.length,true)};
   }
   function validate(raw) {
     if(!raw || raw.format!=='WordQuest9' || raw.version!==VERSION || !Array.isArray(raw.profiles) || raw.profiles.length<1 || raw.profiles.length>12) throw new Error('不是本版有效备份。旧版备份请用“导入旧版角色”。');
@@ -82,7 +94,7 @@ function cleanRewardReceipt(run) {
     return chosen;
   }
 
-  function start(course,questions,mode,catalogRevision=root.WQManifest?.contentRevision||'') { if(!questions.length)throw new Error('所选条件下没有题目');return {id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,7),course,mode,catalogRevision:rewardRevision(catalogRevision),ids:questions.map(q=>q.id),index:0,choices:questions.map(()=>null),checked:questions.map(()=>false),started:Date.now(),finished:false,reviewIndex:0,xpGain:0,recorded:false}; }
+  function start(course,questions,mode,catalogRevision=root.WQManifest?.contentRevision||'') { if(!questions.length)throw new Error('所选条件下没有题目');return {id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,7),course,mode,catalogRevision:rewardRevision(catalogRevision),ids:questions.map(q=>q.id),index:0,choices:questions.map(()=>null),checked:questions.map(()=>false),submittedAt:questions.map(()=>null),correctionAt:questions.map(()=>null),started:Date.now(),finished:false,reviewIndex:0,xpGain:0,recorded:false}; }
   function choose(s,index,option){if(s.finished||s.checked[index]||!Number.isInteger(option)||option<0||option>3||index<0||index>=s.ids.length)return false;s.choices[index]=option;return true;}
   function apply(p,q,choice,runId,course='') {
     const r=own(p.records,q.id)?p.records[q.id]:{seen:0,right:0,wrong:false,earned:false,recovered:false,lastRun:'',lastAt:0};
@@ -93,15 +105,17 @@ function cleanRewardReceipt(run) {
   }
   function check(p,s,q) {
     const i=s.index;if(s.mode==='test'||s.finished||s.checked[i]||s.choices[i]===null||q.id!==s.ids[i])return false;
-    s.xpGain+=apply(p,q,s.choices[i],s.id,s.course);s.checked[i]=true;return true;
+    s.xpGain+=apply(p,q,s.choices[i],s.id,s.course);s.checked[i]=true;if(!Array.isArray(s.submittedAt))s.submittedAt=s.ids.map(()=>null);if(!Array.isArray(s.correctionAt))s.correctionAt=s.ids.map(()=>null);s.submittedAt[i]=Date.now();return true;
   }
   function finish(p,s,questions){
     if(s.finished)return result(s,questions);
     if(questions.length!==s.ids.length||questions.some((q,i)=>q.id!==s.ids[i]))throw new Error('题目版本不匹配');
     if(s.mode!=='test'&&s.checked.some(x=>!x))throw new Error('请先完成本轮练习');
     for(let i=0;i<questions.length;i++)s.xpGain+=apply(p,questions[i],s.choices[i],s.id,s.course);
+    if(!Array.isArray(s.submittedAt))s.submittedAt=s.ids.map(()=>null);if(!Array.isArray(s.correctionAt))s.correctionAt=s.ids.map(()=>null);
+    if(s.mode==='test'){const submitted=Date.now();s.submittedAt=s.choices.map(choice=>Number.isInteger(choice)&&choice>=0&&choice<4?submitted:null);}
     s.finished=true;const res=result(s,questions);
-    if(!s.recorded){p.runs.push({id:s.id,course:s.course,mode:s.mode,total:res.total,answered:s.choices.filter(choice=>Number.isInteger(choice)&&choice>=0&&choice<4).length,correct:res.correct,at:Date.now(),catalogRevision:s.catalogRevision,ids:s.ids.slice(),choices:s.choices.slice(),rewardChoices:s.choices.slice(),correctedAt:0});p.runs=p.runs.slice(-150);s.recorded=true;}return res;
+    if(!s.recorded){p.runs.push({id:s.id,course:s.course,mode:s.mode,total:res.total,answered:s.choices.filter(choice=>Number.isInteger(choice)&&choice>=0&&choice<4).length,correct:res.correct,at:Date.now(),catalogRevision:s.catalogRevision,ids:s.ids.slice(),choices:s.choices.slice(),rewardChoices:s.choices.slice(),correctedAt:0,submittedAt:s.submittedAt.slice(),correctionAt:s.correctionAt.slice()});p.runs=p.runs.slice(-150);s.recorded=true;}return res;
   }
 function correct(p,s,questions,index,choice) {
   if(!s||s!==p.session||!s.finished||!s.recorded||!Array.isArray(questions)||!Number.isInteger(index)||index<0||index>=questions.length||!Number.isInteger(choice)||choice<0||choice>3)return false;
@@ -111,6 +125,12 @@ function correct(p,s,questions,index,choice) {
   if(run.rewardChoices[index]===questions[index].answer)return false;
   const changed=run.rewardChoices[index]!==choice;
   run.rewardChoices[index]=choice;
+  // A timestamp is evidence of this explicit re-answer, never inferred from a score or old correction.
+  // Unanswered questions and legacy receipts remain useful for learning, but earn no retrospective time.
+  if(choice===questions[index].answer&&receipt.submittedAt?.[index]&&!receipt.correctionAt[index]){
+    run.correctionAt[index]=Math.max(receipt.submittedAt[index],run.at,Date.now());
+    if(Array.isArray(s.correctionAt))s.correctionAt[index]=run.correctionAt[index];
+  }
   const complete=questions.every((question,i)=>run.rewardChoices[i]===question.answer);
   if(complete&&!run.correctedAt)run.correctedAt=Math.max(run.at,Date.now());
   // Corrections have their own receipt. Original score, choices, XP and attempt statistics stay intact.

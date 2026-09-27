@@ -152,8 +152,8 @@ function correctionSummary() {
   const run=correctionRun();
   if(!run)return '<p class="small muted">这份旧成绩暂不支持本轮订正，可从学科页面开始新练习。</p>';
   const remaining=qs.filter((q,i)=>run.rewardChoices[i]!==q.answer).length;
-  if(!remaining)return '<p class="learning-tip">'+(run.correctedAt?'本轮已订正至全部正确。':'本轮首次作答已全部正确。')+'原始成绩保留，游戏时间按符合条件的新题核算。</p>';
-  return '<div class="panel"><h2>把错题弄懂，再试一次</h2><p>还有 '+remaining+' 题需要订正。全部答对后，这一轮的新题才可计入游戏时间；原始分数保留。</p><button class="btn secondary" data-act="correct-round">订正本轮错题</button></div>';
+  if(!remaining)return '<p class="learning-tip">'+(run.correctedAt?'本轮已订正至全部正确。':'本轮首次作答已全部正确。')+'原始成绩保留。符合条件的题目会逐题核算游戏时间，查看游戏大厅可确认余额。</p>';
+  return '<div class="panel"><h2>把错题弄懂，再试一次</h2><p>还有 '+remaining+' 题需要订正。每题第一次作答正确可获 1 分钟；答错后订正或重做正确可获 30 秒，不必等整轮全部正确。同一题只奖励一次，原始分数保留。实际入账以同步后的游戏大厅为准。</p><button class="btn secondary" data-act="correct-round">订正本轮错题</button></div>';
 }
 function correctionPage(focus=true) {
   const s=P().session,run=correctionRun();
@@ -187,7 +187,7 @@ function handleCorrectionClick(button) {
     else s.correctionFeedback=true;
     save();
     if(result.complete){results();toast('本轮已全部订正，原始成绩保留。');}
-    else {correctionPage(false);if(result.correct)toast('这题已订正。');else $('answer-explanation')?.focus?.({preventScroll:true});}
+    else {correctionPage(false);if(result.correct)toast('这题已订正。符合条件的游戏时间将在同步后核算。');else $('answer-explanation')?.focus?.({preventScroll:true});}
     return true;
   }
   return false;

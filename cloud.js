@@ -12,7 +12,13 @@ const SUBJECTS = {bm:'马来文',english:'英文',chinese:'华文',math:'数学'
 let db, user, role, sync, booting = false, bootRequested = false, authGeneration = 0, links = [], selectedChild = '', parentTimer, lastSaved = '', loginEmail = '', lastSend = 0, viewToken = 0, recovering = false;
 let loginMethod = 'password', passwordRecovery = false, passwordView = false;
 let gameLobbyStatus = null;
-const GAME_DURATIONS = [300,600,900,1800,3600];
+let arcadeGame = 'dodge', arcadeRequest = 0;
+const ARCADE_GAMES = [
+  {id:'dodge',name:'星际穿梭',tag:'闪避 × 收集',copy:'三条航道、三格护盾。穿过陨石带，抢下沿途的能量星。',art:'<i>✦</i><b>▲</b><i>✧</i>'},
+  {id:'merge',name:'合成风暴',tag:'2048 × 策略',copy:'滑动合成，连锁升级。最多 45 秒，你能造出多大的能量方块？',art:'<i>2</i><b>8</b><i>4</i>'},
+  {id:'pulse',name:'光速连击',tag:'反应 × 连击',copy:'锁定发光目标，保持连击。每一次准确出手都让分数上涨。',art:'<i>+</i><b>◎</b><i>+</i>'}
+];
+const GAME_DURATIONS = [30,60,300,600,900];
 const recoveryKey = 'wordquest.passwordRecovery';
 const redirectURL = () => new URL('./', location.href).href;
 function recoveryAccount(value) {
@@ -29,15 +35,18 @@ const blankState = () => ({...E.initial(),profiles:[E.profile('同学','P1','oth
 function page(html, narrow = false) {
   window.WQGameBreak?.stop();
   shell.hidden = true; root.hidden = false; root.innerHTML = `<main class="cloud-page ${narrow?'cloud-login':''}">${brand}${html}</main>`;
+  window.scrollTo?.({top:0,behavior:'instant'});
 }
 function errorMessage(error) {
-  if (/WQ_GAME_LEARNING_REQUIRED/.test(error?.message || '')) return '先完成今天的学习计划，再来玩小游戏。';
-  if (/WQ_GAME_GRADE_REQUIRED/.test(error?.message || '')) return '请先填写并保存注册年级，再开始累计游戏时间。';
+  if (/WQ_ARCADE_TIME_REQUIRED/.test(error?.message || '')) return '本次游戏时间已用完。请回到大厅查看免费时间和答题时间。';
+  if (/WQ_ARCADE_START_COOLDOWN/.test(error?.message || '')) return '请稍等几秒再开始新一局。';
+  if (/WQ_ARCADE_DAILY_LIMIT/.test(error?.message || '')) return '今天的挑战次数已用完，明天再来刷新纪录。';
+  if (/WQ_ARCADE_/.test(error?.message || '')) return '这局成绩暂时无法确认，请返回游戏选择页后再试。';
+  if (/WQ_GAME_LEARNING_REQUIRED|WQ_GAME_GRADE_REQUIRED|WQ_GAME_QUESTIONS_REQUIRED/.test(error?.message || '')) return '游戏时间服务仍在使用旧规则，请刷新后重新检查，或联系老师更新服务。';
   if (/WQ_GAME_GRADE_LOCKED|WQ_GAME_GRADE_ALREADY/.test(error?.message || '')) return '注册年级已经保存。需要修改时，请由已绑定的家长或管理员处理。';
   if (/WQ_GAME_INVALID_GRADE|WQ_GAME_GRADE_INVALID/.test(error?.message || '')) return '请选择小一至中三的有效注册年级。';
   if (/WQ_GAME_PARENT_LINK_REQUIRED/.test(error?.message || '')) return '请先绑定这个学生账号，再读取或修改注册年级。';
   if (/WQ_GAME_INSUFFICIENT|WQ_GAME_INVALID_DURATION|WQ_GAME_DURATION/.test(error?.message || '')) return '请选择余额足够支付的游戏时长，或重新检查最新余额。';
-  if (/WQ_GAME_QUESTIONS_REQUIRED/.test(error?.message || '')) return '各科分别累计 20 道满分或订正全对的新题，才能兑换游戏时间。';
   if (/WQ_GAME_TIME_USED/.test(error?.message || '')) return '本次游戏已经结束。可以查看剩余游戏余额，准备好后再选择下一次时长。';
   if (error?.code === 'invalid_credentials' || /invalid login credentials/i.test(error?.message || '')) return '邮箱或密码不正确。还没设置密码的话，请先用邮箱链接登录，再设置密码。';
   if (error?.code === 'email_not_confirmed') return '请先通过邮箱链接验证邮箱，再使用密码登录。';
@@ -91,7 +100,7 @@ async function leavePasswordSettings() {
 }
 function accountBar() {
   bar.hidden=false;bar.className='cloud-account';
-  bar.innerHTML=`<span class="account-email">${role==='student'?'学生':'家长'} · ${esc(user.email)}</span><span id="sync-status" class="cloud-status" role="status"></span>${role==='student'?'<button class="btn small light" data-cloud="student-home">继续练习</button><button class="btn small secondary" data-cloud="manage-links">家长绑定</button><button class="btn small secondary" data-cloud="game-lobby">小游戏</button>':''}<button class="btn small light" data-cloud="password-settings">设置密码</button><button class="btn small light" data-cloud="logout">退出登录</button>`;
+  bar.innerHTML=`<span class="account-email">${role==='student'?'学生':'家长'} · ${esc(user.email)}</span><span id="sync-status" class="cloud-status" role="status"></span>${role==='student'?'<button class="btn small light" data-cloud="student-home">继续练习</button><button class="btn small secondary" data-cloud="manage-links">家长绑定</button><button class="btn small arcade-nav" data-cloud="game-lobby">🎮 游戏大厅 · 周榜</button>':''}<button class="btn small light" data-cloud="password-settings">设置密码</button><button class="btn small light" data-cloud="logout">退出登录</button>`;
 }
 function status(state, detail) {
   const el=$('sync-status'); if(!el) return;
@@ -106,28 +115,42 @@ function status(state, detail) {
 }
 const gameCount = value => Number.isFinite(Number(value)) ? Math.max(0,Math.floor(Number(value))) : 0;
 const gameMinutes = value => `${Math.floor(gameCount(value)/60)} 分钟${gameCount(value)%60?` ${gameCount(value)%60} 秒`:''}`;
-function gradeOptions(selected = '') {return `<option value="" ${selected?'':'selected'} disabled>请选择真实年级</option>${Object.entries(GRADES).map(([id,name])=>`<option value="${id}" ${selected===id?'selected':''}>${name}</option>`).join('')}`;}
-function gameGradeEnrollment(returnToLearning = false) {
-  page(`<section class="cloud-card"><span class="eyebrow">先记录你的学习阶段</span><h1>设置注册年级</h1><p>请选择你目前的真实年级。小游戏奖励只计算这个年级或以上的合资格题目。</p><p class="cloud-hint">未登记前完成的练习不会产生游戏奖励，也不会在登记后补发；普通学习仍可继续。</p><form id="game-grade-form" class="cloud-form" data-return="${returnToLearning?'learning':'lobby'}"><label class="cloud-label" for="game-grade">注册年级</label><select class="cloud-input" id="game-grade" required>${gradeOptions()}</select><p class="cloud-hint">你只能自行设置一次。保存后若填错或升年级，请由已绑定的家长或管理员修改。练习页面切换年级不会改变这里的记录。</p><button class="btn" type="submit">保存并锁定注册年级</button></form><div id="cloud-message" role="status" aria-live="polite" hidden></div><button class="cloud-text-button" type="button" data-cloud="student-home">稍后设置，先继续学习</button></section>`,true);
+const gameDurations = balance => [...new Set([...GAME_DURATIONS.filter(seconds=>seconds<=balance),...(balance>0?[Math.min(3600,balance)]:[])])].sort((a,b)=>a-b);
+function gameResetTime(value) {
+  const time=new Date(value);
+  return Number.isFinite(time.getTime())?time.toLocaleString('zh-CN',{timeZone:'Asia/Kuala_Lumpur',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'})+'（马来西亚时间）':'以服务器的马来西亚日期为准';
 }
-async function promptMissingGameGrade(ticket,accountId) {
-  if(ticket!==viewToken||accountId!==user?.id||role!=='student'||recovering||sync?.dirty)return;
-  try {
-    const result=await rpc('get_student_game_grade',{p_student_id:accountId});
-    if(ticket!==viewToken||accountId!==user?.id||role!=='student'||recovering||sync?.dirty)return;
-    if(result&&typeof result==='object'&&!Array.isArray(result)&&result.registered_grade===null)await gameLobby(true);
-  } catch {
-    if(ticket===viewToken&&accountId===user?.id&&role==='student'&&!recovering)window.WQApp?.setNotice('暂时无法确认小游戏注册年级。学习可以继续；累计奖励前，请进入“小游戏”完成登记。');
+function gradeOptions(selected = '') {return `<option value="" ${selected?'':'selected'} disabled>请选择真实年级</option>${Object.entries(GRADES).map(([id,name])=>`<option value="${id}" ${selected===id?'selected':''}>${name}</option>`).join('')}`;}
+function arcadePreview() {
+  return `<section class="arcade-preview" aria-label="三款挑战游戏"><div class="arcade-intro"><div><span class="eyebrow">THE NEXT HIGH SCORE IS YOURS</span><h2>下一次，超越自己。</h2><p>三种玩法 · 单局最高分 · 每周重新出发</p></div><span class="arcade-round-badge">每局 ≤ 45 秒</span></div><div class="arcade-preview-grid">${ARCADE_GAMES.map(game=>`<article class="arcade-preview-card arcade-${game.id}"><div class="arcade-preview-art" aria-hidden="true">${game.art}</div><span class="arcade-card-tag">${game.tag}</span><h3>${game.name}</h3><p>${game.copy}</p><button class="btn small light" data-cloud="arcade-board" data-game="${game.id}">看本周榜 ↗</button></article>`).join('')}</div></section>
+  <section class="panel arcade-rank-panel"><div class="sectionhead"><div><span class="eyebrow">WEEKLY LEADERBOARD</span><h2>本周挑战榜</h2></div><span class="arcade-rank-note">只比较游戏分数</span></div><div class="arcade-rank-tabs" role="group" aria-label="选择游戏排行榜">${ARCADE_GAMES.map(game=>`<button type="button" class="btn small ${arcadeGame===game.id?'':'light'}" data-cloud="arcade-board" data-game="${game.id}" aria-pressed="${arcadeGame===game.id}">${game.name}</button>`).join('')}</div><div id="arcade-board" aria-live="polite"><p class="cloud-muted">正在读取本周成绩…</p></div><p class="cloud-hint">每款游戏分别排名，只取每人本周最高分；每周一按马来西亚时间重新开榜。榜上使用系统游戏昵称，邮箱和学习档案不公开。</p></section>`;
+}
+async function refreshArcadeBoard(game = arcadeGame) {
+  if(role!=='student'||!$('arcade-board')||!ARCADE_GAMES.some(item=>item.id===game))return;
+  arcadeGame=game;
+  const request=++arcadeRequest,ticket=viewToken,accountId=user?.id,container=$('arcade-board');
+  container.innerHTML='<p class="cloud-muted">正在读取本周成绩…</p>';
+  document.querySelectorAll?.('[data-cloud="arcade-board"]').forEach(button=>{
+    if(button.hasAttribute('aria-pressed')){button.setAttribute('aria-pressed',String(button.dataset.game===game));button.classList.toggle('light',button.dataset.game!==game);}
+  });
+  try{
+    const result=await rpc('arcade_leaderboard',{p_game:game});
+    if(request!==arcadeRequest||ticket!==viewToken||accountId!==user?.id||!container.isConnected)return;
+    const entries=Array.isArray(result?.entries)?result.entries.slice(0,10):[],me=result?.me;
+    const title=ARCADE_GAMES.find(item=>item.id===game).name;
+    container.innerHTML=`<div class="arcade-board-heading"><h3>${title}</h3><span>${gameCount(result?.total_players)} 位本周挑战者</span></div>${me?`<div class="arcade-own-score"><span>你的游戏昵称 <strong>${esc(me.nickname)}</strong></span><span>本周最佳 <strong>${gameCount(me.week_best)}</strong></span><span>个人最佳 <strong>${gameCount(me.personal_best)}</strong></span><span>本周排名 <strong>${me.rank?'#'+gameCount(me.rank):'待挑战'}</strong></span></div>`:'<p class="cloud-hint">完成第一局后，你的专属游戏昵称和个人最佳成绩会显示在这里。</p>'}${entries.length?`<div class="tablewrap"><table class="arcade-leaderboard"><thead><tr><th>名次</th><th>挑战者</th><th>本周最高分</th></tr></thead><tbody>${entries.map(entry=>`<tr class="${entry.is_me?'is-me':''}"><td><span class="arcade-place">${gameCount(entry.rank)}</span></td><td>${esc(entry.nickname)}${entry.is_me?' <span class="arcade-you">你</span>':''}</td><td><strong>${gameCount(entry.score)}</strong></td></tr>`).join('')}</tbody></table></div>`:'<div class="arcade-empty-board"><span aria-hidden="true">✦</span><h3>这一周的纪录，等你写下</h3><p>还没有挑战成绩。开始并完成一局，就能留下你的分数。</p></div>'}`;
+  }catch{
+    if(request!==arcadeRequest||ticket!==viewToken||accountId!==user?.id||!container.isConnected)return;
+    container.innerHTML='<p class="cloud-error">排行榜暂时无法读取。请稍后重试。</p><button class="btn small light" data-cloud="arcade-board" data-game="'+game+'">重新读取排行榜</button>';
   }
 }
 function gameExpired() {
   page('<section class="cloud-card"><span class="eyebrow">这一段小休息结束了</span><h1>游戏时间到了</h1><p>放松一下眼睛，离开屏幕走动走动。准备好后，再继续学习。</p><div class="btnrow"><button class="btn" data-cloud="student-home">回到学习</button><button class="btn light" data-cloud="game-lobby">查看游戏余额</button></div></section>',true);
 }
-async function gameLobby(enrollment = false) {
-  if(role!=='student'||recovering||(booting&&!enrollment)||!sync)return;
+async function gameLobby() {
+  if(role!=='student'||recovering||booting||!sync)return;
   const ticket=++viewToken,accountId=user.id;
   passwordView=false;
-  if(enrollment){gameGradeEnrollment(true);return;}
   page('<div class="cloud-loading"><p>正在同步学习记录，检查游戏时间…</p></div><div id="cloud-message" role="status" hidden></div>');
   try {
     const saved=await sync.flush();
@@ -136,12 +159,16 @@ async function gameLobby(enrollment = false) {
     const result=await rpc('game_break_status');
     if(ticket!==viewToken||accountId!==user?.id)return;
     gameLobbyStatus=result;
-    if(result.requires_grade||!GRADES[result.registered_grade]){gameGradeEnrollment();return;}
-    const balance=Math.min(3600,gameCount(result.balance_seconds)),active=result.reason==='active',remaining=Math.min(3600,gameCount(result.remaining_seconds));
-    const durations=GAME_DURATIONS.filter(seconds=>seconds<=balance),defaultDuration=durations.includes(900)?900:durations.at(-1);
-    const bySubject=Array.isArray(result.by_subject)?result.by_subject.filter(item=>Object.hasOwn(SUBJECTS,item.subject)):[];
-    const messages={learning_required:'先完成今天的学习计划，并标记完成，再开始游戏。已有余额会保留。',questions_required:'各科分别累计合资格的新题；同一题不会反复换取时间。',ready:'学习记录已经同步。选择一个余额足够的时长，再开始休息。',active:'你已经开始了一次游戏。继续游戏会沿用原来的结束时间。',time_used:'本次游戏时间已经用完；未使用的余额仍会保留。'};
-    page(`<div class="cloud-heading"><div><span class="eyebrow">先学习，再休息</span><h1>课后小游戏</h1><p class="cloud-muted">记忆翻翻乐 · 数字小路 · 找找不一样</p></div><button class="btn light" data-cloud="student-home">回到学习</button></div><section class="panel game-break-lobby"><h2>认真完成练习，积存游戏时间</h2><p>注册年级：<strong>${GRADES[result.registered_grade]}</strong>。只计算这个年级或以上、已结束并同步、满分或订正后全对的练习新题。每一科单独累计，每满 20 题，马来文和英文各得 15 分钟，其他科目各得 5 分钟。</p><div class="reportgrid"><div class="metric"><strong>${gameMinutes(balance)}</strong><span>尚未使用的余额</span></div><div class="metric"><strong>${gameMinutes(remaining)}</strong><span>已开始这次的剩余时间</span></div><div class="metric"><strong>60 分钟</strong><span>总储存上限（包括正在玩的时间）</span></div></div><p class="${result.unlocked?'cloud-success':'cloud-hint'}">${messages[result.reason]||'完成学习并同步后，即可查看游戏时间。'}</p>${active?`<p>本次已分配 ${gameMinutes(result.duration_seconds)}，剩余 ${gameMinutes(remaining)}。</p>`:`<label class="cloud-label" for="game-duration">这次想玩多久？</label><select class="cloud-input" id="game-duration" ${durations.length?'':'disabled'}>${durations.length?durations.map(seconds=>`<option value="${seconds}" ${seconds===defaultDuration?'selected':''}>${seconds/60} 分钟</option>`).join(''):'<option value="">先积存至少 5 分钟</option>'}</select>`}<div class="btnrow" style="margin-top:16px"><button class="btn" data-cloud="game-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续本次游戏':'开始所选时长'}</button><button class="btn light" data-cloud="game-lobby">重新检查</button></div><div id="cloud-message" role="status" aria-live="polite" hidden></div><div class="tablewrap"><table><thead><tr><th>科目</th><th>本轮合资格新题</th><th>每 20 题可得</th></tr></thead><tbody>${Object.entries(SUBJECTS).map(([subject,name])=>{const progress=bySubject.find(item=>item.subject===subject);return `<tr><td>${name}</td><td>${Math.min(19,gameCount(progress?.progress_questions))} / 20</td><td>${subject==='bm'||subject==='english'?15:5} 分钟</td></tr>`;}).join('')}</tbody></table></div><p class="cloud-hint">游戏余额和各科题数跨日保留，上限 60 分钟；达到上限后不会继续囤积时间。旧练习不会追补奖励。点击开始后连续计时，关闭页面、换游戏或换设备都不会暂停或重置；到时自动结束，不会自动扣余额开启下一次。</p><p class="cloud-hint">注册年级需要已绑定家长或管理员修改；练习页面的浏览年级不会改变注册年级。学习计划的完成标记由学生填写，并非老师批改或家长确认。</p></section>`);
+    if(result.policy_version!==2)throw Error('WQ_GAME_LEARNING_REQUIRED');
+    const balance=gameCount(result.balance_seconds),active=result.reason==='active',remaining=gameCount(result.remaining_seconds);
+    const durations=gameDurations(balance),defaultDuration=durations.includes(900)?900:durations.at(-1);
+    const messages={ready:'现在就可以玩。先使用今天的免费时间，再使用答题获得的时间。',active:'你已经开始了一次游戏。继续游戏会沿用原来的结束时间。',time_used:'可用时间已用完。每答对一道新题可获得 1 分钟，答错后正确订正可获得 30 秒。'};
+    page(`<div class="cloud-heading"><div><span class="eyebrow">每天免费 · 答题加时</span><h1>游戏大厅</h1><p class="cloud-muted">星际穿梭 · 合成风暴 · 光速连击</p></div><button class="btn light" data-cloud="student-home">回到学习</button></div>
+    <section class="arcade-wallet"><div class="arcade-wallet-stat"><span>${active?'本次游戏剩余':'可用游戏时间'}</span><strong>${gameMinutes(active?remaining:balance)}</strong><small>今日免费剩余：${gameMinutes(result.free_seconds)}<br>答题时间余额：${gameMinutes(result.earned_seconds)}<br>免费时间下次重置：${esc(gameResetTime(result.next_reset_at))}</small></div><div class="arcade-wallet-action"><p class="${result.unlocked?'cloud-success':'cloud-hint'}">${messages[result.reason]||'请重新检查服务器记录的游戏时间。'}</p>${active?`<p>本次已分配 ${gameMinutes(result.duration_seconds)}；未分配余额 ${gameMinutes(balance)}。</p>`:`<label class="cloud-label" for="game-duration">这次想玩多久？</label><select class="cloud-input" id="game-duration" ${durations.length?'':'disabled'}>${durations.length?durations.map(seconds=>`<option value="${seconds}" ${seconds===defaultDuration?'selected':''}>${gameMinutes(seconds)}${seconds===balance?'（全部余额）':''}</option>`).join(''):'<option value="">暂无可用时间</option>'}</select>`}<div class="btnrow"><button class="btn arcade-launch" data-cloud="game-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续本次游戏':'开始游戏'}</button><button class="btn light" data-cloud="game-lobby">重新检查</button></div><div id="cloud-message" role="status" aria-live="polite" hidden></div><p class="caption">点击开始后连续计时，切换游戏或关闭页面不会暂停。新场次最迟在马来西亚午夜结束；未分配的答题时间跨日保留。</p></div></section>
+    ${arcadePreview()}
+    <section class="panel arcade-reward-details"><h2>答题时间 · 等级 ${Math.max(1,gameCount(result.level))}</h2><p>已储存 <strong>${gameMinutes(result.total_earned_seconds)}</strong> 答题时间，当前额度 <strong>${gameMinutes(result.cap_seconds)}</strong>。${gameCount(result.level)>=25?'已达到最高储存额度。':`再完成 ${gameCount(result.next_level_remaining)} 道不同的题目，储存额度增加 5 分钟。`}</p><p>储存上限包含本次已分配、尚未用完的答题时间；其中本次尚未用完 ${gameMinutes(result.active_earned_seconds)}。</p><p>每天免费 15 分钟，马来西亚时间 00:00 重置；免费时间不占答题时间的储存额度。每个孩子分别计算。</p><ul><li>新题首次提交正确：获得 1 分钟。</li><li>答错：不获得时间；之后正确订正：获得 30 秒。</li><li>正确作答或正确订正一道不同题目，都计入一次升级进度。同一道题不会重复领取。</li></ul><p class="cloud-hint">答题记录同步并由服务器核对后才入账。答题时间可跨日累积；存满时仍计升级进度，超出的时间不留作待领取。原有超出新额度的余额会保留。</p></section>`);
+    void refreshArcadeBoard();
+
   }catch(error){
     if(ticket!==viewToken||accountId!==user?.id)return;
     page(`<section class="cloud-card"><h1>暂时无法打开小游戏</h1><p class="cloud-error">${esc(errorMessage(error))}</p><div class="btnrow"><button class="btn" data-cloud="game-lobby">重试</button><button class="btn light" data-cloud="student-home">回到学习</button></div></section>`,true);
@@ -151,7 +178,7 @@ async function startGameBreak() {
   if(role!=='student'||recovering||booting||!sync||sync.conflict)return;
   if(!window.WQGameBreak){notice('小游戏未载入，请刷新页面后重试。');return;}
   const active=gameLobbyStatus?.reason==='active',secondsToPlay=Number($('game-duration')?.value);
-  if(!active&&(!GAME_DURATIONS.includes(secondsToPlay)||secondsToPlay>gameCount(gameLobbyStatus?.balance_seconds))){notice('请选择余额足够支付的游戏时长。');return;}
+  if(!active&&!gameDurations(gameCount(gameLobbyStatus?.balance_seconds)).includes(secondsToPlay)){notice('请选择余额足够支付的游戏时长。');return;}
   const ticket=++viewToken,accountId=user.id;
   const startedAt=Date.now(),mono=typeof performance==='undefined'?startedAt:performance.now();
   let result;
@@ -167,7 +194,20 @@ async function startGameBreak() {
   const remainingMs=Number.isFinite(seconds)?Math.max(0,Math.min(3600,seconds)*1000-elapsed):0;
   if(!result.unlocked||remainingMs<=0){gameExpired();return;}
   page('<div class="cloud-heading"><div><span class="eyebrow">学习后的轻松时刻</span><h1>课后小游戏</h1></div><button class="btn light" data-cloud="student-home">结束游戏，回到学习</button></div><div id="game-break-root"></div>');
-  window.WQGameBreak.mount($('game-break-root'),{remainingMs,sessionLimitMs,onExpire:()=>{
+  window.WQGameBreak.mount($('game-break-root'),{remainingMs,sessionLimitMs,
+    beginRound:async game=>{
+      if(ticket!==viewToken||accountId!==user?.id||role!=='student')throw Error('WQ_ARCADE_VIEW_CHANGED');
+      const response=await rpc('begin_arcade_round',{p_game:game});
+      if(ticket!==viewToken||accountId!==user?.id||role!=='student')throw Error('WQ_ARCADE_VIEW_CHANGED');
+      return response;
+    },
+    finishRound:async(roundId,trace)=>{
+      if(ticket!==viewToken||accountId!==user?.id||role!=='student')throw Error('WQ_ARCADE_VIEW_CHANGED');
+      const response=await rpc('finish_arcade_round',{p_round_id:roundId,p_trace:trace});
+      if(ticket!==viewToken||accountId!==user?.id||role!=='student')throw Error('WQ_ARCADE_VIEW_CHANGED');
+      return response;
+    },
+    onExpire:()=>{
     if(ticket===viewToken&&accountId===user?.id&&role==='student')gameExpired();
   }});
 }
@@ -189,7 +229,6 @@ async function studentBoot() {
   }else {
     recovering=false;
     if(!row){sync.queue(state);if(!await sync.flush())return;}
-    await promptMissingGameGrade(ticket,accountId);
   }
 }
 async function loadLinks() {links=await rpc('list_family_links');if(!Array.isArray(links))links=[];return links;}
@@ -225,7 +264,7 @@ async function refreshParentGameGrade(message = '') {
     const result=await rpc('get_student_game_grade',{p_student_id:id});
     if(ticket!==viewToken||selectedChild!==id||accountId!==user?.id||!container.isConnected)return;
     const grade=GRADES[result.registered_grade]?result.registered_grade:'';
-    container.innerHTML=`<section class="panel"><h2>小游戏注册年级</h2><p>目前记录：<strong>${grade?GRADES[grade]:'尚未设置'}</strong>。只有注册年级或以上的合资格练习，才会累计游戏时间。</p><form id="parent-grade-form" data-student="${esc(id)}"><label class="cloud-label" for="parent-game-grade-select">孩子的真实年级</label><select class="cloud-input" id="parent-game-grade-select" required>${gradeOptions(grade)}</select><button class="btn small secondary" type="submit" style="margin-top:14px">保存注册年级</button></form><p class="cloud-hint">学生只能自行设置一次。年级填错或升年级时，可由已绑定家长或管理员修改；这里不会修改孩子的练习记录。</p><div id="parent-grade-message" role="status" aria-live="polite" ${message?'':'hidden'} class="cloud-success">${esc(message)}</div></section>`;
+    container.innerHTML=`<section class="panel"><h2>小游戏注册年级</h2><p>目前记录：<strong>${grade?GRADES[grade]:'尚未设置'}</strong>。年级资料供家长参考，不影响每日免费时间或已经核验的答题奖励。</p><form id="parent-grade-form" data-student="${esc(id)}"><label class="cloud-label" for="parent-game-grade-select">孩子的真实年级</label><select class="cloud-input" id="parent-game-grade-select" required>${gradeOptions(grade)}</select><button class="btn small secondary" type="submit" style="margin-top:14px">保存注册年级</button></form><p class="cloud-hint">年级填错或升年级时，可由已绑定家长或管理员修改；这里不会修改孩子的练习记录或游戏余额。</p><div id="parent-grade-message" role="status" aria-live="polite" ${message?'':'hidden'} class="cloud-success">${esc(message)}</div></section>`;
   } catch(error) {
     if(ticket!==viewToken||selectedChild!==id||accountId!==user?.id||!container.isConnected)return;
     container.innerHTML=`<section class="panel"><h2>小游戏注册年级</h2><p class="cloud-error">${esc(errorMessage(error))}</p><button class="btn small light" data-cloud="refresh-game-grade">重新读取年级</button></section>`;
@@ -270,7 +309,7 @@ async function boot() {
   }finally{booting=false;if(bootRequested){bootRequested=false;setTimeout(()=>boot(),0);}}
 }
 document.addEventListener('submit',async event=>{
-  if(!['login-form','reset-request-form','password-form','invite-form','accept-form','game-grade-form','parent-grade-form'].includes(event.target.id))return;
+  if(!['login-form','reset-request-form','password-form','invite-form','accept-form','parent-grade-form'].includes(event.target.id))return;
   event.preventDefault();const form=event.target,button=form.querySelector('button');button.disabled=true;
   const generation=authGeneration;
   try{
@@ -302,22 +341,12 @@ document.addEventListener('submit',async event=>{
       if(error)throw error;
       recoveryAccount(null);
       page('<section class="cloud-card"><h1>密码已设置</h1><p>下次可以直接用邮箱和密码登录，也可以继续使用邮箱链接。</p><button class="btn" data-cloud="password-done">继续使用学科冒险</button></section>',true);
-    }else if(form.id==='game-grade-form'){
-      if(role!=='student'||recovering||booting)return;
-      const grade=$('game-grade').value;
-      if(!Object.hasOwn(GRADES,grade)){notice('请选择你的真实年级。');return;}
-      await rpc('register_game_grade',{p_grade:grade});
-      if(generation!==authGeneration||!form.isConnected)return;
-      if(form.dataset.return==='learning'){
-        ++viewToken;root.hidden=true;shell.hidden=false;
-        window.WQApp?.setNotice(`注册年级已保存为${GRADES[grade]}。从现在开始，合资格练习可以累计游戏时间。`);
-      }else await gameLobby();
     }else if(form.id==='parent-grade-form'){
       const childId=form.dataset.student,grade=$('parent-game-grade-select').value;
       if(role!=='parent'||childId!==selectedChild||!Object.hasOwn(GRADES,grade))return;
       await rpc('set_student_game_grade',{p_student_id:childId,p_grade:grade});
       if(generation!==authGeneration||!form.isConnected||selectedChild!==childId)return;
-      await refreshParentGameGrade('注册年级已保存。之后的合资格练习按新年级计算。');
+      await refreshParentGameGrade('注册年级已保存，学习成绩和游戏时间保留。');
     }else if(form.id==='invite-form'){
       if(role!=='student')return;
       const result=await rpc('create_parent_invite',{p_email:$('parent-email').value.trim().toLowerCase()});
@@ -345,7 +374,7 @@ document.addEventListener('click',async event=>{
     }
     if(action==='password-settings'){passwordSettings();return;}
     if(action==='password-cancel'||action==='password-done'){if(user)await leavePasswordSettings();return;}
-    if(['student-home','manage-links','game-lobby','game-start','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
+    if(['student-home','manage-links','game-lobby','game-start','arcade-board','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
     if(['refresh-parent','select-child','refresh-game-grade'].includes(action)&&role!=='parent')return;
     if(action==='register'){if(!user||role)return;await rpc('register_account',{p_role:button.dataset.role});if(generation!==authGeneration)return;await boot();}
     else if(action==='logout'){
@@ -355,6 +384,7 @@ document.addEventListener('click',async event=>{
     }else if(action==='student-home'){if(recovering)return;window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;}
     else if(action==='manage-links'){if(recovering)return;passwordView=false;await studentLinks();}
     else if(action==='game-lobby')await gameLobby();
+    else if(action==='arcade-board')await refreshArcadeBoard(button.dataset.game);
     else if(action==='game-start')await startGameBreak();
     else if(action==='revoke-parent'){
       if(!confirm('解除这位家长的绑定？解除后，对方不能继续读取你的成绩。'))return;
@@ -366,8 +396,8 @@ document.addEventListener('click',async event=>{
     else if(action==='draft-download'){const state=sync?.pending||readDraft()?.state||window.WQApp?.snapshot();if(state)download(state);}
     else if(action==='restore-draft'){
       const draft=readDraft();if(!draft||draft.revision!==sync.revision)throw Error('Draft conflict');
-      const ticket=viewToken,accountId=user.id,state=E.validate(draft.state);recovering=false;window.WQApp.mount(state);sync.queue(state);root.hidden=true;shell.hidden=false;
-      if(await sync.flush())await promptMissingGameGrade(ticket,accountId);
+      const state=E.validate(draft.state);recovering=false;window.WQApp.mount(state);sync.queue(state);root.hidden=true;shell.hidden=false;
+      await sync.flush();
     }else if(action==='use-cloud'||action==='reload-cloud'){
       if((readDraft()||sync?.dirty)&&!confirm('使用云端版本会放弃本页未同步的改动。请先下载备份。继续？'))return;
       sync?.stop();writeDraft(null);recovering=false;$('sync-warning')?.remove();await boot();
