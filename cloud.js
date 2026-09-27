@@ -65,6 +65,16 @@ function errorMessage(error) {
 function notice(text, ok = false) { const box = $('cloud-message'); if (box) {box.className = ok ? 'cloud-success' : 'cloud-error';box.textContent = text;box.hidden = false;} }
 async function rpc(name, args = {}) { const {data,error} = await db.rpc(name,args); if(error) throw error; return data; }
 function readDraft() { try {return JSON.parse(sessionStorage.getItem(key()) || 'null');}catch{return null;} }
+function sameSavedContent(left,right) {
+  // JSONB may reorder object keys. Ignore only the root save timestamp; every
+  // nested field, array order and unrecognized field still protects a real draft.
+  function canonical(value,top=false) {
+    if(Array.isArray(value))return '['+value.map(item=>canonical(item)).join(',')+']';
+    if(value&&typeof value==='object')return '{'+Object.keys(value).filter(name=>!top||name!=='updated').sort().map(name=>JSON.stringify(name)+':'+canonical(value[name])).join(',')+'}';
+    return JSON.stringify(value);
+  }
+  try{return !!left&&!!right&&canonical(left,true)===canonical(right,true);}catch{return false;}
+}
 function writeDraft(value) {
   try {if(value) sessionStorage.setItem(key(),JSON.stringify(value));else sessionStorage.removeItem(key());}
   catch {window.WQApp?.setNotice('当前浏览器不能保存临时备份。请保持网页打开，直到显示“已同步”。');}
@@ -220,7 +230,13 @@ async function studentBoot() {
   lastSaved=row?.updated_at||'';
   // Mounting the learning home can synchronously emit wq:save. Read the prior
   // draft first, and never mount an older cloud state over an unresolved draft.
-  const draft=readDraft();
+  let draft=readDraft();
+  if(row&&Number.isSafeInteger(draft?.revision)&&draft.revision>=0&&Number.isSafeInteger(row.revision)&&row.revision>=draft.revision&&sameSavedContent(draft.state,row.state)){
+    // A pagehide save may reach the server after navigation drops its response.
+    // Clear only an identical copy at this or a newer cloud revision; keep every
+    // content difference, invalid revision, or draft newer than the cloud.
+    writeDraft(null);draft=null;
+  }
   sync=new CloudSync({revision:row?.revision||0,save:async(state,revision)=>rpc('save_family_state',{p_state:state,p_expected_revision:revision}),onStatus:status,onDraft:writeDraft});
   if(draft?.state){
     recovering=true;
