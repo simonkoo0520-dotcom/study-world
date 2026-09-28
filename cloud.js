@@ -177,7 +177,7 @@ async function gameLobby() {
     const messages={ready:'现在就可以玩。先使用今天的免费时间，再使用答题获得的时间。',active:'你已经开始了一次游戏。继续游戏会沿用原来的结束时间。',time_used:'可用时间已用完。每答对一道新题可获得 1 分钟，答错后正确订正可获得 30 秒。'};
     page(`<div class="cloud-heading"><div><span class="eyebrow">每天免费 · 答题加时</span><h1>游戏大厅</h1><p class="cloud-muted">星际穿梭 · 合成风暴 · 光速连击</p></div><button class="btn light" data-cloud="student-home">回到学习</button></div>
     <section class="arcade-wallet"><div class="arcade-wallet-stat"><span>${active?'本次游戏剩余':'可用游戏时间'}</span><strong>${gameMinutes(active?remaining:balance)}</strong><small>今日免费剩余：${gameMinutes(result.free_seconds)}<br>答题时间余额：${gameMinutes(result.earned_seconds)}<br>免费时间下次重置：${esc(gameResetTime(result.next_reset_at))}</small></div><div class="arcade-wallet-action"><p class="${result.unlocked?'cloud-success':'cloud-hint'}">${messages[result.reason]||'请重新检查服务器记录的游戏时间。'}</p>${active?`<p>本次已分配 ${gameMinutes(result.duration_seconds)}；未分配余额 ${gameMinutes(balance)}。</p>`:`<label class="cloud-label" for="game-duration">这次想玩多久？</label><select class="cloud-input" id="game-duration" ${durations.length?'':'disabled'}>${durations.length?durations.map(seconds=>`<option value="${seconds}" ${seconds===defaultDuration?'selected':''}>${gameMinutes(seconds)}${seconds===balance?'（全部余额）':''}</option>`).join(''):'<option value="">暂无可用时间</option>'}</select>`}<div class="btnrow"><button class="btn arcade-launch" data-cloud="game-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续本次游戏':'开始游戏'}</button><button class="btn light" data-cloud="game-lobby">重新检查</button></div><div id="cloud-message" role="status" aria-live="polite" hidden></div><p class="caption">点击开始后连续计时，切换游戏或关闭页面不会暂停。新场次最迟在马来西亚午夜结束；未分配的答题时间跨日保留。</p></div></section>
-    <section class="universe-entry"><span class="eyebrow">一起出发 · 沿途挑战</span><h2>梁家大富翁</h2><p>掷骰从 Masai 走到 Rawang。沿途玩钓鱼、厨房和后备箱，把鱼做成料理，再运回 Masai。也能挑战三款街机，或进入旧版 WordQuest v6 学习站。完成游戏后，回到原来的格子继续走。</p><button class="btn" data-cloud="universe-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续棋盘旅程':'用所选时间进入棋盘'}</button><p class="caption">与小游戏共用上方时长。棋盘按登录孩子保存在这台浏览器，可导出导入；v6 成绩单独保留，不发放线上答题分钟。</p></section>
+    <section class="universe-entry"><span class="eyebrow">一起出发 · 沿途挑战</span><h2>梁家大富翁</h2><p>掷骰从 Masai 走到 Rawang。钓鱼、做菜、装箱带回家，再探索三层迷宫或参加两圈卡丁车比赛。料理可以自愿使用，不带料理也能通关；三款街机和旧版 WordQuest v6 继续保留。完成游戏后，回到原来的格子继续走。</p><button class="btn" data-cloud="universe-start" ${result.unlocked&&(active||durations.length)?'':'disabled'}>${active?'继续棋盘旅程':'用所选时间进入棋盘'}</button><p class="caption">与小游戏共用上方时长。棋盘按登录孩子保存在这台浏览器，可导出导入；v6 成绩单独保留，不发放线上答题分钟。</p></section>
     ${arcadePreview()}
     <section class="panel arcade-reward-details"><h2>答题时间 · 等级 ${Math.max(1,gameCount(result.level))}</h2><p>已储存 <strong>${gameMinutes(result.total_earned_seconds)}</strong> 答题时间，当前额度 <strong>${gameMinutes(result.cap_seconds)}</strong>。${gameCount(result.level)>=25?'已达到最高储存额度。':`再完成 ${gameCount(result.next_level_remaining)} 道不同的题目，储存额度增加 5 分钟。`}</p><p>储存上限包含本次已分配、尚未用完的答题时间；其中本次尚未用完 ${gameMinutes(result.active_earned_seconds)}。</p><p>每天免费 15 分钟，马来西亚时间 00:00 重置；免费时间不占答题时间的储存额度。每个孩子分别计算。</p><ul><li>新题首次提交正确：获得 1 分钟。</li><li>答错：不获得时间；之后正确订正：获得 30 秒。</li><li>正确作答或正确订正一道不同题目，都计入一次升级进度。同一道题不会重复领取。</li></ul><p class="cloud-hint">答题记录同步并由服务器核对后才入账。答题时间可跨日累积；存满时仍计升级进度，超出的时间不留作待领取。原有超出新额度的余额会保留。</p></section>`);
     void refreshArcadeBoard();
@@ -196,7 +196,7 @@ async function startGameBreak(destination = 'arcade') {
   let prepared;
   if(destination==='universe'){
     if(!window.WQUniverse){notice('棋盘组件未载入，请刷新页面。');return;}
-    try {prepared=await window.WQUniverse.prepare({accountId,buildURL:'./universe-board.html?v=1efc23f8ba773895',isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});}
+    try {prepared=await window.WQUniverse.prepare({accountId,buildURL:'./universe-board.html?v=cca10428981b5958',isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});}
     catch(error){if(ticket===viewToken&&accountId===user?.id)notice(error.message);return;}
   }
   if(ticket!==viewToken||accountId!==user?.id){prepared?.store.close();return;}
@@ -232,7 +232,7 @@ async function startGameBreak(destination = 'arcade') {
     if(ticket===viewToken&&accountId===user?.id&&role==='student')gameExpired();
   }};
   if(destination==='universe'){
-    page('<div class="cloud-heading"><div><span class="eyebrow">七个游戏站 · 一张旅行棋盘</span><h1>梁家大富翁</h1></div><button class="btn light" data-cloud="game-lobby">保存并返回大厅</button></div><div id="universe-root"></div><div id="cloud-message" role="status" hidden></div>');
+    page('<div class="cloud-heading"><div><span class="eyebrow">九个游戏站 · 一张旅行棋盘</span><h1>梁家大富翁</h1></div><button class="btn light" data-cloud="game-lobby">保存并返回大厅</button></div><div id="universe-root"></div><div id="cloud-message" role="status" hidden></div>');
     window.WQUniverse.mount($('universe-root'),{...settings,prepared,isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});
   }else window.WQGameBreak.mount($('game-break-root'),settings);
 }

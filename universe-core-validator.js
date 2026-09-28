@@ -1,5 +1,5 @@
-/* Generated from the exact v0.4 board engines and core. */
-(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.4_linked/src/core-v4.js');return;}
+/* Generated from the exact v0.5 board engines and core. */
+(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.5_adventure/src/core-v5.js');return;}
 (function(root,factory){'use strict';const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;root.LiangGames=root.LiangGames||{};root.LiangGames.fishing=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const ITEMS=['fish','slipper','ball','jar'],STAGES=['casting','waiting','bite','reeling','celebrate'];
@@ -514,6 +514,429 @@ return{id,version,title,create,step,validate,result,mount};
 });
 
 ;
+(function (root, factory) {
+  'use strict';
+  const game = factory();
+  if (typeof module === 'object' && module.exports) module.exports = game;
+  root.LiangGames = root.LiangGames || {};
+  root.LiangGames.dungeon = game;
+})(typeof globalThis === 'object' ? globalThis : this, function () {
+  'use strict';
+  const SIZE = 9;
+  const DIRS = { up: [0, -1], right: [1, 0], down: [0, 1], left: [-1, 0] };
+  const ORDER = ['up', 'right', 'down', 'left'];
+  const ENEMIES = {
+    dust: { name: '灰尘团', hp: 2, colour: '#9bacc0', glyph: '尘' },
+    toy: { name: '旧玩具', hp: 3, colour: '#dba381', glyph: '玩' },
+    robot: { name: '扫地机器人', hp: 4, colour: '#82bdc8', glyph: '扫' }
+  };
+  const ITEMS = [
+    { id: 'textbook', name: '今年课本', mark: '书', note: '翻开书页，找到“今年课本”。已记入这次探索的发现清单。' },
+    { id: 'homework', name: '去年作业', mark: '页', note: '从纸袋里找到“去年作业”。比上一层的课本更旧一些。' },
+    { id: 'lesson-plan', name: '旧教案', mark: '册', note: '在深处找到“旧教案”。这次探索的发现已经记下。' }
+  ];
+  const copy = x => JSON.parse(JSON.stringify(x));
+  const int = (x, lo, hi) => Number.isInteger(x) && x >= lo && x <= hi;
+  const same = (a, b) => a.x === b.x && a.y === b.y;
+  const key = (x, y) => y * SIZE + x;
+  const open = (floor, x, y) => x >= 0 && y >= 0 && x < SIZE && y < SIZE && floor.tiles[y][x] === '.';
+  const alive = floor => floor.enemies.filter(e => e.hp > 0);
+  function random(seed) {
+    let n = seed >>> 0;
+    return () => { n = (Math.imul(n, 1664525) + 1013904223) >>> 0; return n; };
+  }
+  function distances(floor, from) {
+    const result = Array(SIZE * SIZE).fill(-1), queue = [{ x: from.x, y: from.y }];
+    result[key(from.x, from.y)] = 0;
+    for (let i = 0; i < queue.length; i++) for (const direction of ORDER) {
+      const [dx, dy] = DIRS[direction], p = { x: queue[i].x + dx, y: queue[i].y + dy };
+      if (open(floor, p.x, p.y) && result[key(p.x, p.y)] < 0) { result[key(p.x, p.y)] = result[key(queue[i].x, queue[i].y)] + 1; queue.push(p); }
+    }
+    return result;
+  }
+  function visible(s, x, y) { return Math.abs(s.player.x - x) + Math.abs(s.player.y - y) <= 2; }
+  function reveal(s) {
+    const floor = s.floors[s.floor];
+    for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) if (visible(s, x, y)) floor.seen[key(x, y)] = true;
+  }
+  function makeFloor(next, index, difficulty) {
+    const grid = Array.from({ length: SIZE }, () => Array(SIZE).fill('#'));
+    const stack = [{ x: 1, y: 1 }]; grid[1][1] = '.';
+    while (stack.length) {
+      const at = stack[stack.length - 1];
+      const candidates = ORDER.map(d => DIRS[d]).map(([dx, dy]) => ({ x: at.x + dx * 2, y: at.y + dy * 2, dx, dy })).filter(p => p.x > 0 && p.x < SIZE - 1 && p.y > 0 && p.y < SIZE - 1 && grid[p.y][p.x] === '#');
+      if (!candidates.length) { stack.pop(); continue; }
+      const to = candidates[next() % candidates.length]; grid[at.y + to.dy][at.x + to.dx] = '.'; grid[to.y][to.x] = '.'; stack.push({ x: to.x, y: to.y });
+    }
+    // A few connected loops permit detours and reduce long blind alleys.
+    for (let n = 0; n < 2 + (2 - difficulty); n++) {
+      const choices = [];
+      for (let y = 1; y < SIZE - 1; y++) for (let x = 1; x < SIZE - 1; x++) if (grid[y][x] === '#' && ((grid[y - 1][x] === '.' && grid[y + 1][x] === '.') || (grid[y][x - 1] === '.' && grid[y][x + 1] === '.'))) choices.push({ x, y });
+      if (choices.length) { const p = choices[next() % choices.length]; grid[p.y][p.x] = '.'; }
+    }
+    const floor = { index, title: ['今年课本区', '去年作业区', '旧教案区'][index], tiles: grid.map(row => row.join('')), exit: null, seen: Array(SIZE * SIZE).fill(false), enemies: [], item: null };
+    const reach = distances(floor, { x: 1, y: 1 });
+    const cells = [];
+    for (let y = 1; y < SIZE - 1; y++) for (let x = 1; x < SIZE - 1; x++) if (open(floor, x, y)) cells.push({ x, y, distance: reach[key(x, y)] });
+    cells.sort((a, b) => b.distance - a.distance || a.y - b.y || a.x - b.x);
+    floor.exit = { x: cells[0].x, y: cells[0].y };
+    const side = cells.filter(c => !same(c, floor.exit) && c.distance >= 5);
+    const artifact = side[Math.min(side.length - 1, 2 + next() % Math.max(1, Math.min(7, side.length)))];
+    floor.item = { id: ITEMS[index].id, x: artifact.x, y: artifact.y, found: false };
+    const count = Math.min(3, 1 + Math.floor((index + difficulty + 1) / 2));
+    const choices = side.filter(c => Math.abs(c.x - floor.exit.x) + Math.abs(c.y - floor.exit.y) > 0);
+    for (let n = 0; n < count; n++) {
+      const candidates = choices.filter(c => !floor.enemies.some(e => Math.abs(e.x - c.x) + Math.abs(e.y - c.y) < 3));
+      const p = candidates[next() % candidates.length];
+      if (!p) break;
+      const kind = n === 0 ? 'dust' : (index === 2 && n === count - 1 ? 'robot' : 'toy');
+      floor.enemies.push({ id: 'f' + index + '-e' + n, kind, x: p.x, y: p.y, hp: ENEMIES[kind].hp, stride: difficulty === 2 && kind === 'robot' ? 1 : kind === 'toy' ? 3 : 2, offset: next() % 4 });
+    }
+    return floor;
+  }
+  function collect(s) {
+    const item = s.floors[s.floor].item;
+    if (!item.found && same(item, s.player)) {
+      item.found = true; s.discoveries.push(item.id);
+      s.notice = ITEMS[s.floor].note;
+      s.latestDiscovery = item.id;
+    }
+  }
+  function enemyTurn(s) {
+    const floor = s.floors[s.floor], reach = distances(floor, s.player);
+    for (const e of alive(floor)) {
+      if ((s.turns + e.offset) % e.stride !== 0) continue;
+      const d = reach[key(e.x, e.y)];
+      if (d === 1) { s.health = Math.max(0, s.health - 1); s.hits += 1; s.notice = ENEMIES[e.kind].name + '挡了你一下，体力 −1。朝它挥拖鞋，或找机会绕开。'; continue; }
+      if (d < 2 || d > 4 + s.config.difficulty) continue;
+      const choices = ORDER.map(direction => { const [dx, dy] = DIRS[direction]; return { x: e.x + dx, y: e.y + dy, direction }; }).filter(p => open(floor, p.x, p.y) && !same(p, s.player) && !alive(floor).some(other => other !== e && same(other, p)) && reach[key(p.x, p.y)] >= 0 && reach[key(p.x, p.y)] < d);
+      if (choices.length) { const p = choices[(e.offset + s.turns) % choices.length]; e.x = p.x; e.y = p.y; }
+    }
+  }
+  function advance(s, { skipEnemies = false } = {}) {
+    s.turns += 1; s.satiety = Math.max(0, s.satiety - 1);
+    if (s.phase === 'playing' && !skipEnemies) enemyTurn(s);
+    if (s.phase === 'playing' && s.health <= 0) { s.phase = 'lost'; s.reason = '体力用完了，先休息一下。下次可以观察敌人的位置，选择绕路或先挥拖鞋。'; s.notice = s.reason; }
+    if (s.phase === 'playing' && s.satiety <= 0) { s.phase = 'lost'; s.reason = '这一局的行动值用完了。下次少走回头路；基础路线不需要料理也能完成。'; s.notice = s.reason; }
+    reveal(s);
+    return s;
+  }
+  function apply(s, action) {
+    if (s.phase !== 'playing' || !action || typeof action !== 'object' || Array.isArray(action)) return s;
+    if (action.type === 'tick') { if (int(action.dt, 1, 250)) s.elapsedMs = Math.min(3600000, s.elapsedMs + action.dt); return s; }
+    if (action.type === 'use-meal') {
+      if (s.mealsUsed >= s.config.mealCharges || s.satiety >= s.satietyMax) return s;
+      const gain = Math.min(s.satietyMax - s.satiety, 40);
+      if (gain > 0) { s.satiety += gain; s.mealsUsed += 1; s.mealRestored = gain; s.notice = '用了 1 份可选料理，行动值 +' + gain + '。局内行动值与共享零食分开。'; }
+      return s;
+    }
+    const floor = s.floors[s.floor];
+    if (action.type === 'wait') { s.notice = '原地等一回合，看看附近的敌人怎样移动。'; return advance(s); }
+    if (action.type === 'descend') {
+      if (!same(s.player, floor.exit)) { s.notice = '先走到楼梯所在的格子，再继续。楼梯要在探索中找到。'; return s; }
+      if (s.floor === 2) { s.phase = 'won'; s.reason = '走完三层，顺利离开杂物房！这次找到 ' + s.discoveries.length + ' 件旧物。'; s.notice = s.reason; return advance(s, { skipEnemies: true }); }
+      s.floor += 1; s.player = { x: 1, y: 1, facing: 'right' }; s.notice = '到了第 ' + (s.floor + 1) + ' 层：' + s.floors[s.floor].title + '。先看清附近的路，再走下一步。'; s.latestDiscovery = null;
+      return advance(s, { skipEnemies: true });
+    }
+    if (!['move', 'attack'].includes(action.type) || !ORDER.includes(action.direction)) return s;
+    const [dx, dy] = DIRS[action.direction], p = { x: s.player.x + dx, y: s.player.y + dy };
+    const enemy = alive(floor).find(e => same(e, p));
+    s.player.facing = action.direction;
+    if (enemy) {
+      enemy.hp = Math.max(0, enemy.hp - 2); s.swings += 1;
+      if (!enemy.hp) { s.defeated += 1; s.notice = '把' + ENEMIES[enemy.kind].name + '赶开了，路空出来了。'; }
+      else s.notice = ENEMIES[enemy.kind].name + '还挡着路，再挥一次拖鞋就能赶开。';
+      return advance(s);
+    }
+    if (action.type === 'attack') { s.notice = '这个方向没有相邻敌人。靠近后再挥拖鞋，或者换条路走。'; return s; }
+    if (!open(floor, p.x, p.y)) { s.notice = '这边是柜子，换个方向试试。碰到柜子不会消耗行动值。'; return s; }
+    s.player.x = p.x; s.player.y = p.y; s.moves += 1; s.notice = same(p, floor.exit) ? (s.floor === 2 ? '找到最后的出口了！点“带着发现离开”。' : '找到楼梯了！点“走下楼梯”进入下一层。') : '走了一格。蓝色是已看清的路，暗处还没有探索。';
+    collect(s);
+    return advance(s);
+  }
+  function baseline(initial) {
+    const s = copy(initial); s.health = s.healthMax = 10000; s.satiety = s.satietyMax = 10000;
+    let count = 0;
+    while (s.phase === 'playing' && count < 2048) {
+      const floor = s.floors[s.floor];
+      const near = ORDER.find(direction => { const [dx, dy] = DIRS[direction]; return alive(floor).some(e => e.x === s.player.x + dx && e.y === s.player.y + dy); });
+      if (near) apply(s, { type: 'attack', direction: near });
+      else if (same(s.player, floor.exit)) apply(s, { type: 'descend' });
+      else {
+        const d = distances(floor, floor.exit), at = d[key(s.player.x, s.player.y)];
+        const direction = ORDER.find(name => { const [dx, dy] = DIRS[name]; return open(floor, s.player.x + dx, s.player.y + dy) && d[key(s.player.x + dx, s.player.y + dy)] === at - 1; });
+        if (!direction) throw new Error('迷宫生成后未找到基础通路。');
+        apply(s, { type: 'move', direction });
+      }
+      count += 1;
+    }
+    if (s.phase !== 'won') throw new Error('基础路线未完成，拒绝使用这张地图。');
+    return { actions: s.turns, damage: s.hits };
+  }
+  function create(config) {
+    config = config || {};
+    const c = { seed: config.seed == null ? 24601 : config.seed, difficulty: config.difficulty == null ? 0 : config.difficulty, mode: config.mode == null ? 'practice' : config.mode, mealCharges: config.mealCharges == null ? 0 : config.mealCharges };
+    if (!int(c.seed, 0, 0xffffffff) || !int(c.difficulty, 0, 2) || !['practice', 'inventory'].includes(c.mode) || !int(c.mealCharges, 0, 1) || c.mode === 'practice' && c.mealCharges !== 0) throw new Error('迷宫配置无效；练习关不携带共享料理。');
+    const next = random(c.seed);
+    const s = { phase: 'playing', config: c, elapsedMs: 0, floor: 0, floors: [0, 1, 2].map(i => makeFloor(next, i, c.difficulty)), player: { x: 1, y: 1, facing: 'right' }, health: 1, healthMax: 1, satiety: 1, satietyMax: 1, mealsUsed: 0, mealRestored: 0, turns: 0, moves: 0, swings: 0, hits: 0, defeated: 0, discoveries: [], latestDiscovery: null, proof: null, notice: '找出三层楼梯，探索越深越旧的物件。先按方向走一格；你不行动，敌人也不会行动。', reason: '' };
+    s.proof = baseline(s);
+    s.health = s.healthMax = s.proof.damage + [8, 6, 4][c.difficulty];
+    s.satiety = s.satietyMax = s.proof.actions + [60, 35, 18][c.difficulty];
+    reveal(s); return s;
+  }
+  function validate(s) {
+    const fail = () => { throw new Error('迷宫进度无效，未替换原进度。'); };
+    if (!s || !['playing', 'won', 'lost'].includes(s.phase) || !s.config || !int(s.config.seed, 0, 0xffffffff) || !int(s.config.difficulty, 0, 2) || !['practice', 'inventory'].includes(s.config.mode) || !int(s.config.mealCharges, 0, 1) || s.config.mode === 'practice' && s.config.mealCharges !== 0) fail();
+    if (!int(s.elapsedMs, 0, 3600000) || !int(s.floor, 0, 2) || !Array.isArray(s.floors) || s.floors.length !== 3 || !s.player || !ORDER.includes(s.player.facing) || !int(s.mealsUsed, 0, s.config.mealCharges) || !s.proof || !int(s.proof.actions, 1, 2048) || !int(s.proof.damage, 0, 1000)) fail();
+    if (s.healthMax !== s.proof.damage + [8, 6, 4][s.config.difficulty] || s.satietyMax !== s.proof.actions + [60, 35, 18][s.config.difficulty] || !int(s.health, 0, s.healthMax) || !int(s.satiety, 0, s.satietyMax) || !int(s.mealRestored, s.mealsUsed ? 1 : 0, s.mealsUsed ? 40 : 0)) fail();
+    for (const field of ['turns', 'moves', 'swings', 'hits', 'defeated']) if (!int(s[field], 0, 100000)) fail();
+    if (s.moves + s.swings > s.turns || s.defeated > s.swings || s.health !== Math.max(0, s.healthMax - s.hits) || s.satiety !== Math.max(0, s.satietyMax - s.turns + s.mealRestored) || typeof s.notice !== 'string' || typeof s.reason !== 'string') fail();
+    if (!Array.isArray(s.discoveries) || new Set(s.discoveries).size !== s.discoveries.length || !s.discoveries.every(id => ITEMS.some(item => item.id === id)) || !(s.latestDiscovery === null || s.discoveries.includes(s.latestDiscovery))) fail();
+    let dead = 0;
+    s.floors.forEach((floor, index) => {
+      if (!floor || floor.index !== index || typeof floor.title !== 'string' || !Array.isArray(floor.tiles) || floor.tiles.length !== SIZE || !floor.tiles.every(row => typeof row === 'string' && row.length === SIZE && /^[#.]+$/.test(row)) || !open(floor, 1, 1) || !floor.exit || !int(floor.exit.x, 0, SIZE - 1) || !int(floor.exit.y, 0, SIZE - 1) || !open(floor, floor.exit.x, floor.exit.y)) fail();
+      if (!Array.isArray(floor.seen) || floor.seen.length !== SIZE * SIZE || !floor.seen.every(x => typeof x === 'boolean') || !Array.isArray(floor.enemies) || floor.enemies.length < 1 || floor.enemies.length > 3 || !floor.item || floor.item.id !== ITEMS[index].id || !int(floor.item.x, 0, SIZE - 1) || !int(floor.item.y, 0, SIZE - 1) || !open(floor, floor.item.x, floor.item.y) || typeof floor.item.found !== 'boolean' || floor.item.found !== s.discoveries.includes(floor.item.id)) fail();
+      const positions = new Set(), ids = new Set();
+      for (const [enemyIndex, e] of floor.enemies.entries()) {
+        if (!e || e.id !== 'f' + index + '-e' + enemyIndex || ids.has(e.id) || !ENEMIES[e.kind] || !int(e.hp, 0, ENEMIES[e.kind].hp) || !int(e.x, 0, SIZE - 1) || !int(e.y, 0, SIZE - 1) || !open(floor, e.x, e.y) || !int(e.stride, 1, 3) || !int(e.offset, 0, 3)) fail();
+        ids.add(e.id);
+        if (!e.hp) dead += 1;
+        else { if (positions.has(key(e.x, e.y)) || index === s.floor && same(e, s.player)) fail(); positions.add(key(e.x, e.y)); }
+      }
+    });
+    if (!int(s.player.x, 0, SIZE - 1) || !int(s.player.y, 0, SIZE - 1) || !open(s.floors[s.floor], s.player.x, s.player.y) || s.defeated !== dead) fail();
+    if (s.phase === 'playing' && (!s.health || !s.satiety) || s.phase === 'won' && (s.floor !== 2 || !same(s.player, s.floors[2].exit) || s.turns < 3 || !s.moves) || s.phase === 'lost' && s.health > 0 && s.satiety > 0) fail();
+    return true;
+  }
+  function step(s, action) { validate(s); return apply(copy(s), action); }
+  function result(s) {
+    validate(s); if (s.phase === 'playing') return null;
+    return { status: s.phase, score: s.phase === 'won' ? 600 + s.discoveries.length * 80 + s.defeated * 20 + s.health * 5 + s.satiety : 0, mealsUsed: s.mealsUsed, discoveries: copy(s.discoveries) };
+  }
+  function mount(container, options) {
+    if (!container?.appendChild || !options || typeof options.onAction !== 'function') throw new Error('迷宫需要可用的容器和操作回调。');
+    validate(options.state);
+    const doc = container.ownerDocument;
+    let state = copy(options.state), paused = false, disposed = false;
+    const el = doc.createElement('section'); el.className = 'lg-dungeon'; el.tabIndex = 0; el.dataset.testid = 'dungeon-game'; el.setAttribute('aria-label', '杂物房迷宫');
+    el.innerHTML = `<style>
+      .lg-dungeon{--d-ink:#eef3ed;--d-soft:#a9c4c8;--d-gold:#f0d295;--d-floor:#244855;box-sizing:border-box;font:16px/1.5 system-ui,-apple-system,"Microsoft YaHei",sans-serif;color:var(--d-ink);background:linear-gradient(135deg,#142f40,#122c35);border:1px solid #426574;border-radius:22px;padding:18px;max-width:1100px;margin:auto;outline-offset:4px;color-scheme:dark}.lg-dungeon *{box-sizing:border-box}.lg-dungeon p{margin:5px 0;color:inherit;font:inherit}.lg-dungeon h2,.lg-dungeon h3{margin:0;color:inherit;line-height:1.35}.lg-dungeon h2{font-size:25px}.lg-dungeon h3{font-size:17px}.lg-dungeon header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:0 0 14px}.lg-dungeon .d-subtitle{font-size:13px;color:var(--d-soft)}.lg-dungeon button{font:inherit;font-weight:700;min-height:46px;border:1px solid #638a91;border-radius:12px;background:#244b57;color:#eef6ef;padding:10px 14px;cursor:pointer;touch-action:manipulation}.lg-dungeon button:hover:not(:disabled){background:#376774}.lg-dungeon button:disabled{opacity:.45;cursor:default}.lg-dungeon button:focus-visible{outline:3px solid #ffd986;outline-offset:2px}.lg-dungeon .d-floor-badge{white-space:nowrap;border:1px solid #709190;border-radius:13px;padding:9px 12px;background:#213f48;color:#f5dbac;font-weight:800}.lg-dungeon .d-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}.lg-dungeon .d-stat{padding:9px 12px;border:1px solid #446773;border-radius:13px;background:#102b38}.lg-dungeon .d-stat-label{display:flex;justify-content:space-between;font-size:13px;gap:8px}.lg-dungeon .d-meter{height:8px;background:#315260;border-radius:8px;overflow:hidden;margin-top:7px}.lg-dungeon .d-meter span{display:block;height:100%;background:#81c8a7;width:100%}.lg-dungeon .d-meter.food span{background:#e8bd72}.lg-dungeon .d-main{display:grid;grid-template-columns:minmax(290px,1.15fr) minmax(260px,.85fr);gap:16px}.lg-dungeon .d-map-wrap{min-width:0;border-radius:17px;overflow:hidden;background:#071923;border:1px solid #4a6673;padding:8px}.lg-dungeon .d-map{display:block;width:100%;max-height:510px;aspect-ratio:1;user-select:none}.lg-dungeon .d-map text{font-family:inherit}.lg-dungeon .d-map-caption{font-size:12px;color:#a8c2c7;padding:6px 5px 2px}.lg-dungeon .d-panel{min-width:0;padding:14px;border:1px solid #496976;border-radius:17px;background:#173541}.lg-dungeon .d-goal{color:#f6daa1;font-size:15px;min-height:45px;margin:7px 0 12px}.lg-dungeon .d-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:255px;margin:12px auto}.lg-dungeon .d-pad button{min-height:52px;font-size:22px;padding:8px}.lg-dungeon .d-pad .d-up{grid-column:2}.lg-dungeon .d-pad .d-left{grid-column:1}.lg-dungeon .d-pad .d-down{grid-column:2}.lg-dungeon .d-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.lg-dungeon .d-leave{grid-column:1/-1;background:#dfc489;color:#193843;border-color:#efdcae}.lg-dungeon .d-leave:hover:not(:disabled){background:#f4ddb0}.lg-dungeon .d-meal{margin-top:10px;width:100%;font-size:14px}.lg-dungeon .d-hint{font-size:12px;color:#b5cace;margin-top:7px}.lg-dungeon .d-sight{margin-top:12px;padding:10px;border-radius:10px;background:#244653;min-height:58px;font-size:13px}.lg-dungeon .d-notice{margin:14px 0 10px;padding:12px 14px;min-height:48px;border:1px solid #65817d;background:#263e41;border-radius:13px;color:#edf4e8;font-size:14px}.lg-dungeon .d-notice[data-kind=won]{background:#245242;border-color:#83b594}.lg-dungeon .d-notice[data-kind=lost]{background:#62443a;border-color:#bb9987}.lg-dungeon .d-found{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.lg-dungeon .d-found span{padding:7px 11px;border-radius:10px;background:#223f4a;border:1px solid #426371;color:#9bb7bd;font-size:13px}.lg-dungeon .d-found span[data-found=true]{background:#4a4936;border-color:#b4a270;color:#fae4b0}.lg-dungeon .d-pause{display:none;color:#ffe0a0;font-weight:800}.lg-dungeon.d-paused .d-pause{display:block}.lg-dungeon .d-keys{font-size:12px;color:#a8c1c7;margin-top:11px}.lg-dungeon .d-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#bed1d3;margin:7px 0 0}.lg-dungeon .d-discovery-flash{box-shadow:0 0 0 2px #d9bf87}.lg-dungeon [hidden]{display:none!important}
+      @media(max-width:690px){.lg-dungeon{padding:11px;border-radius:16px}.lg-dungeon header{gap:8px;margin-bottom:9px}.lg-dungeon h2{font-size:21px}.lg-dungeon .d-subtitle{font-size:12px}.lg-dungeon .d-floor-badge{font-size:13px;padding:7px 8px}.lg-dungeon .d-stats{gap:6px;margin-bottom:9px}.lg-dungeon .d-stat{padding:7px 9px}.lg-dungeon .d-main{grid-template-columns:1fr;gap:10px}.lg-dungeon .d-map-wrap{padding:5px}.lg-dungeon .d-map{max-height:340px}.lg-dungeon .d-panel{padding:11px}.lg-dungeon .d-pad{margin:8px auto;max-width:290px;grid-template-columns:repeat(4,1fr)}.lg-dungeon .d-pad button{min-height:46px}.lg-dungeon .d-pad .d-up{grid-column:2;grid-row:1}.lg-dungeon .d-pad .d-left{grid-column:1;grid-row:1}.lg-dungeon .d-pad .d-down{grid-column:3;grid-row:1}.lg-dungeon .d-pad [data-direction=right]{grid-column:4;grid-row:1}.lg-dungeon .d-pad [data-game-action=wait]{display:none}.lg-dungeon .d-goal{min-height:0;margin:5px 0;font-size:14px}.lg-dungeon .d-legend{font-size:11px}.lg-dungeon .d-map-caption{font-size:11px}.lg-dungeon .d-keys{font-size:11px}.lg-dungeon .d-notice{margin-top:10px}}
+    </style><header><div><h2>杂物房迷宫</h2><p class="d-subtitle">走一步，看清一片。找楼梯，向更旧的物件出发。</p><p class="d-pause">已暂停，敌人与行动值都停在原处。</p></div><div class="d-floor-badge" data-testid="dungeon-floor"></div></header>
+    <div class="d-stats"><div class="d-stat"><div class="d-stat-label"><span>体力</span><strong data-testid="dungeon-health"></strong></div><div class="d-meter"><span data-health-meter></span></div></div><div class="d-stat"><div class="d-stat-label"><span>局内行动值</span><strong data-testid="dungeon-satiety"></strong></div><div class="d-meter food"><span data-food-meter></span></div></div></div>
+    <div class="d-main"><div class="d-map-wrap"><svg class="d-map" data-testid="dungeon-map" viewBox="0 0 450 450" role="img" aria-label="带迷雾的杂物房格子地图"></svg><p class="d-map-caption" data-testid="dungeon-map-caption"></p><div class="d-legend"><span>● 你</span><span>▤ 柜子</span><span>▱ 楼梯</span><span>◇ 旧物</span></div></div><section class="d-panel"><h3>这一层怎么走</h3><p class="d-goal" data-testid="dungeon-goal"></p><div class="d-pad" aria-label="移动方向"><button class="d-up" type="button" data-game-action="move" data-direction="up" data-testid="dungeon-up" aria-label="向上走">↑</button><button class="d-left" type="button" data-game-action="move" data-direction="left" data-testid="dungeon-left" aria-label="向左走">←</button><button type="button" data-game-action="wait" data-testid="dungeon-wait" aria-label="等一回合">等</button><button type="button" data-game-action="move" data-direction="right" data-testid="dungeon-right" aria-label="向右走">→</button><button class="d-down" type="button" data-game-action="move" data-direction="down" data-testid="dungeon-down" aria-label="向下走">↓</button></div><div class="d-actions"><button type="button" data-game-action="attack" data-testid="dungeon-attack">挥拖鞋</button><button type="button" data-game-action="wait" data-testid="dungeon-observe">等一回合</button><button class="d-leave" type="button" data-game-action="descend" data-testid="dungeon-descend">走下楼梯</button></div><button class="d-meal" type="button" data-game-action="use-meal" data-testid="dungeon-meal">使用可选料理</button><p class="d-hint" data-testid="dungeon-meal-hint"></p><div class="d-sight" data-testid="dungeon-enemies"></div></section></div>
+    <div class="d-notice" role="status" aria-live="polite" data-testid="dungeon-notice"></div><section aria-label="这次探索的发现"><h3>这次找到的旧物</h3><div class="d-found">${ITEMS.map(item => `<span data-discovery="${item.id}" data-testid="dungeon-discovery-${item.id}">${item.mark} · ${item.name}</span>`).join('')}</div><p class="d-hint">只记录本局发现；不会变成鱼、料理或学习成绩。</p></section><p class="d-keys">方向键 / WASD 移动；朝敌人走会挥拖鞋；空格等待；E 下楼梯；F 朝面前挥拖鞋；M 使用可选料理。敌人只在你行动后移动。</p>`;
+    container.appendChild(el);
+    const $ = selector => el.querySelector(selector);
+    function tileSVG(s) {
+      const floor = s.floors[s.floor], parts = [];
+      const colours = [['#254654', '#49646a'], ['#51463d', '#796754'], ['#3c3b55', '#69607a']][s.floor];
+      for (let y = 0; y < SIZE; y++) for (let x = 0; x < SIZE; x++) {
+        const sx = x * 50, sy = y * 50, seen = floor.seen[key(x, y)], lit = visible(s, x, y);
+        if (!seen) { parts.push(`<rect x="${sx + 1}" y="${sy + 1}" width="48" height="48" rx="5" fill="#0c202b"/><circle cx="${sx + 25}" cy="${sy + 25}" r="1.5" fill="#273b45"/>`); continue; }
+        const wall = floor.tiles[y][x] === '#';
+        parts.push(`<g opacity="${lit ? 1 : 0.55}"><rect x="${sx + 1}" y="${sy + 1}" width="48" height="48" rx="5" fill="${wall ? '#40515a' : colours[0]}" stroke="${wall ? '#61757b' : colours[1]}" stroke-width="1"/>${wall ? `<path d="M${sx + 8} ${sy + 15}h34M${sx + 8} ${sy + 33}h34" stroke="#233943" stroke-width="3"/><rect x="${sx + 12}" y="${sy + 6}" width="27" height="35" rx="3" fill="none" stroke="#82918a" opacity=".35"/>` : ''}`);
+        if (!wall && same({ x, y }, floor.exit)) parts.push(`<path d="M${sx + 10} ${sy + 35}h10v-8h10v-8h10" fill="none" stroke="#e8d095" stroke-width="5"/><text x="${sx + 25}" y="${sy + 13}" text-anchor="middle" fill="#f6e6bd" font-size="10">${s.floor === 2 ? '出口' : '下层'}</text>`);
+        if (!floor.item.found && floor.item.x === x && floor.item.y === y) parts.push(`<path d="M${sx + 25} ${sy + 8}l15 17-15 17-15-17z" fill="#d9b980" stroke="#ffe7b0" stroke-width="2"/><text x="${sx + 25}" y="${sy + 30}" text-anchor="middle" fill="#3a443d" font-weight="800" font-size="16">${ITEMS[s.floor].mark}</text>`);
+        parts.push('</g>');
+      }
+      for (const e of alive(floor)) if (visible(s, e.x, e.y)) {
+        const p = ENEMIES[e.kind], cx = e.x * 50 + 25, cy = e.y * 50 + 25;
+        parts.push(`<g data-enemy-id="${e.id}">${e.kind === 'dust' ? `<path d="M${cx - 17} ${cy + 8}q-10-13 0-20q1-12 12-8q9-12 17 0q13 0 9 14q9 10-4 16z" fill="${p.colour}"/>` : e.kind === 'robot' ? `<ellipse cx="${cx}" cy="${cy}" rx="20" ry="17" fill="${p.colour}" stroke="#173d4a" stroke-width="3"/><path d="M${cx - 11} ${cy - 5}h22" stroke="#406c78" stroke-width="5"/>` : `<rect x="${cx - 17}" y="${cy - 18}" width="34" height="34" rx="7" fill="${p.colour}"/><circle cx="${cx - 12}" cy="${cy + 16}" r="6" fill="#67514c"/><circle cx="${cx + 12}" cy="${cy + 16}" r="6" fill="#67514c"/>`}<text x="${cx}" y="${cy + 7}" text-anchor="middle" fill="#213840" font-size="17" font-weight="800">${p.glyph}</text></g>`);
+      }
+      const px = s.player.x * 50 + 25, py = s.player.y * 50 + 25;
+      parts.push(`<g data-testid="dungeon-player"><circle cx="${px}" cy="${py}" r="19" fill="#f0d08d" stroke="#fff0ca" stroke-width="3"/><text x="${px}" y="${py + 6}" text-anchor="middle" fill="#173c45" font-size="17" font-weight="800">你</text></g>`);
+      return parts.join('');
+    }
+    function render() {
+      const f = state.floors[state.floor], stopped = paused || state.phase !== 'playing';
+      el.dataset.phase = state.phase; el.classList.toggle('d-paused', paused && state.phase === 'playing');
+      $('[data-testid="dungeon-floor"]').textContent = '第 ' + (state.floor + 1) + ' / 3 层';
+      $('[data-testid="dungeon-health"]').textContent = state.health + ' / ' + state.healthMax;
+      $('[data-testid="dungeon-satiety"]').textContent = state.satiety + ' / ' + state.satietyMax;
+      $('[data-health-meter]').style.width = state.health / state.healthMax * 100 + '%';
+      $('[data-food-meter]').style.width = state.satiety / state.satietyMax * 100 + '%';
+      $('[data-testid="dungeon-map"]').innerHTML = tileSVG(state);
+      $('[data-testid="dungeon-map-caption"]').textContent = f.title + ' · 已走 ' + state.turns + ' 回合 · 位置 ' + state.player.x + ',' + state.player.y;
+      $('[data-testid="dungeon-goal"]').textContent = same(state.player, f.exit) ? (state.floor === 2 ? '就在最后出口！带着你的发现离开。' : '你已到楼梯口，可以走进下一层。') : '探索暗处，找到楼梯。朝相邻敌人走会挥拖鞋；也可以绕开它。';
+      for (const b of el.querySelectorAll('button')) b.disabled = stopped;
+      const leave = $('[data-testid="dungeon-descend"]'); leave.textContent = state.floor === 2 ? '带着发现离开' : '走下楼梯'; leave.disabled = stopped || !same(state.player, f.exit);
+      const meal = $('[data-testid="dungeon-meal"]'); meal.disabled = stopped || state.mealsUsed >= state.config.mealCharges || state.satiety === state.satietyMax;
+      meal.textContent = state.mealsUsed ? '料理已使用' : state.config.mealCharges ? '使用 1 份料理 · 行动值 +' + Math.min(40, state.satietyMax - state.satiety) : '本局未携带料理';
+      $('[data-testid="dungeon-meal-hint"]').textContent = state.config.mealCharges ? '自愿使用，最多恢复 40 点，不超过开局上限。仅实际使用才消费。' : '基础路线不用料理也能完成。饱食是这局行动值，不是共享零食。';
+      const near = alive(f).filter(e => visible(state, e.x, e.y));
+      $('[data-testid="dungeon-enemies"]').textContent = near.length ? '看见：' + near.map(e => ENEMIES[e.kind].name + (Math.abs(e.x - state.player.x) + Math.abs(e.y - state.player.y) === 1 ? '（就在旁边）' : '')).join('、') + '。你不行动，它们也会等着。' : '附近暂时没有敌人。可以慢慢观察，不用抢时间。';
+      const notice = $('[data-testid="dungeon-notice"]'); if (notice.textContent !== state.notice) notice.textContent = state.notice; notice.dataset.kind = state.phase;
+      for (const item of ITEMS) { const card = $('[data-discovery="' + item.id + '"]'); card.dataset.found = String(state.discoveries.includes(item.id)); card.classList.toggle('d-discovery-flash', state.latestDiscovery === item.id); card.textContent = (state.discoveries.includes(item.id) ? '✓ ' : '◇ ') + item.name; }
+    }
+    function emit(action) { if (!disposed && !paused && state.phase === 'playing') options.onAction(action); }
+    function click(event) {
+      const b = event.target.closest('[data-game-action]'); if (!b || !el.contains(b) || b.disabled) return;
+      const type = b.dataset.gameAction;
+      emit(type === 'move' ? { type, direction: b.dataset.direction } : type === 'attack' ? { type, direction: state.player.facing } : { type });
+    }
+    function keydown(event) {
+      if (disposed || paused || state.phase !== 'playing' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+      const direction = { ArrowUp: 'up', ArrowRight: 'right', ArrowDown: 'down', ArrowLeft: 'left', w: 'up', W: 'up', a: 'left', A: 'left', s: 'down', S: 'down', d: 'right', D: 'right' }[event.key];
+      let action = direction ? { type: 'move', direction } : event.code === 'Space' || event.key === ' ' ? { type: 'wait' } : event.key.toLowerCase() === 'e' ? { type: 'descend' } : event.key.toLowerCase() === 'f' ? { type: 'attack', direction: state.player.facing } : event.key.toLowerCase() === 'm' ? { type: 'use-meal' } : null;
+      if (action) { event.preventDefault(); emit(action); }
+    }
+    el.addEventListener('click', click); el.addEventListener('keydown', keydown); render();
+    return {
+      update(next) { if (disposed) return; validate(next); state = copy(next); render(); },
+      setPaused(value) { if (disposed) return; paused = Boolean(value); render(); },
+      dispose() { if (disposed) return; disposed = true; el.removeEventListener('click', click); el.removeEventListener('keydown', keydown); el.remove(); }
+    };
+  }
+  return { id: 'dungeon', version: 1, title: '杂物房迷宫', create, step, validate, result, mount };
+});
+
+;
+/* G02: procedural illustrative tracks, deterministic racing, no inventory writes. */
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else(root.LiangGames||(root.LiangGames={})).kart=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const id='kart',version=1,title='梁家卡丁车';
+const TRACKS={
+ 'masai-market':{name:'Masai巴刹',length:1600,curves:[0,.48,.25,-.55,-.3,.5,.2,0],sky:'#baded8',grass:'#669f7f',road:'#536369',accent:'#f5bc6b'},
+ 'north-south':{name:'南北大道',length:1800,curves:[0,.27,.48,.12,-.48,-.3,.2,0],sky:'#aed8ed',grass:'#80aa68',road:'#516375',accent:'#aad6e8'}
+};
+const clone=value=>JSON.parse(JSON.stringify(value));
+const assert=(condition,message)=>{if(!condition)throw Error(message);};
+const int=(n,a,b)=>Number.isSafeInteger(n)&&n>=a&&n<=b;
+const num=(n,a,b)=>typeof n==='number'&&Number.isFinite(n)&&n>=a&&n<=b;
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const round=(n,p=100000)=>Math.round(n*p)/p||0;
+function normalize(config={}){
+ const seed=config.seed??1,difficulty=config.difficulty??0,mode=config.mode??'practice',mealCharges=config.mealCharges??0;
+ assert(int(seed,0,4294967295)&&int(difficulty,0,2)&&int(mealCharges,0,1),'赛车配置无效。');
+ assert(['practice','inventory'].includes(mode)&&!(mode==='practice'&&mealCharges),'练习模式不消耗共享料理。');
+ const trackId=config.trackId??(seed%2?'north-south':'masai-market');assert(Object.hasOwn(TRACKS,trackId),'这条赛道不在本批清单中。');
+ return{seed,difficulty,mode,trackId,mealCharges};
+}
+function curve(config,distance){const t=TRACKS[config.trackId],at=((distance%t.length)+t.length)%t.length/t.length*8,i=Math.floor(at),u=at-i,smooth=u*u*(3-2*u);return(t.curves[i]+(t.curves[(i+1)%8]-t.curves[i])*smooth)*[.75,.95,1.1][config.difficulty];}
+function obstacles(config){let seed=(config.seed^0x62bf0419)>>>0;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed;},length=TRACKS[config.trackId].length;return Array.from({length:6+config.difficulty},(_,i)=>({id:i,z:Math.round(length*(i+1)/(8+config.difficulty)),x:[-.68,0,.68][random()%3],kind:i%2?'crate':'cone'}));}
+function aiLane(s,i){return(i===0?-.38:.38)+Math.sin(s.ai[i].distance/130+(s.config.seed%101))*.09;}
+function limit(config){return[110000,100000,90000][config.difficulty];}
+function create(config){config=normalize(config);return{version,config,phase:'playing',started:false,elapsedMs:0,distance:0,speed:0,x:0,input:{throttle:0,brake:0,steer:0},inputCount:0,checkpoints:0,lapTimes:[],ai:[{distance:0,finishMs:null},{distance:0,finishMs:null}],mealsUsed:0,boostMs:0,collisionMs:0,collisions:0,hitObstacles:[],notice:'完成两圈，领先至少一辆电脑车。基础车辆无需任何道具。',lastEvent:'ready'};}
+function rank(s){return 1+s.ai.filter(a=>a.distance>s.distance||a.finishMs!==null&&a.finishMs<s.elapsedMs).length;}
+function validate(s){
+ assert(s&&s.version===1,'赛车进度版本无效。');const c=normalize(s.config),t=TRACKS[c.trackId],total=t.length*2;
+ assert(JSON.stringify(c)===JSON.stringify(s.config),'赛车配置不完整。');assert(['playing','won','lost'].includes(s.phase)&&typeof s.started==='boolean','赛车阶段无效。');
+ assert(int(s.elapsedMs,0,limit(c))&&num(s.distance,0,total)&&num(s.speed,0,130)&&num(s.x,-1.8,1.8),'赛车位置或时间无效。');
+ assert(s.input&&int(s.input.throttle,0,1)&&int(s.input.brake,0,1)&&int(s.input.steer,-1,1)&&int(s.inputCount,0,100000),'赛车输入无效。');
+ assert(int(s.checkpoints,0,8)&&s.checkpoints===Math.floor((s.distance+.000001)/(t.length/4)),'赛车不能跳过检查点。');
+ assert(Array.isArray(s.lapTimes)&&s.lapTimes.length===Math.floor(s.checkpoints/4)&&s.lapTimes.every(n=>int(n,1,limit(c)))&&s.lapTimes.reduce((a,b)=>a+b,0)<=s.elapsedMs,'圈速记录无效。');
+ assert(Array.isArray(s.ai)&&s.ai.length===2&&s.ai.every(a=>num(a.distance,0,total)&&(a.finishMs===null&&a.distance<total||int(a.finishMs,1,s.elapsedMs)&&a.distance===total)),'电脑车记录无效。');
+ assert(int(s.mealsUsed,0,c.mealCharges)&&int(s.boostMs,0,5000)&&int(s.collisionMs,0,1200)&&int(s.collisions,0,10000),'赛车强化或碰撞记录无效。');assert(!s.boostMs||s.mealsUsed===1,'没有使用料理，不能获得料理加速。');
+ const validHits=new Set(obstacles(c).flatMap(o=>['0:'+o.id,'1:'+o.id]));assert(Array.isArray(s.hitObstacles)&&new Set(s.hitObstacles).size===s.hitObstacles.length&&s.hitObstacles.every(h=>validHits.has(h)),'障碍碰撞记录无效。');
+ assert(typeof s.notice==='string'&&s.notice.length<=200&&typeof s.lastEvent==='string','赛车提示无效。');
+ if(!s.started)assert(s.elapsedMs===0&&s.distance===0&&s.speed===0&&s.checkpoints===0&&s.mealsUsed===0&&s.phase==='playing','比赛尚未开始，不能提前完成。');
+ if(s.phase==='playing')assert(s.distance<total&&s.elapsedMs<limit(c),'已结束的比赛不能继续。');
+ if(s.phase==='won')assert(s.started&&s.inputCount>0&&s.checkpoints===8&&s.distance===total&&rank(s)<=2,'没有完成有效比赛，不能获胜。');
+ if(s.phase==='lost')assert(s.started&&(s.elapsedMs===limit(c)||s.distance===total&&rank(s)===3),'比赛失败原因无效。');return true;
+}
+function step(state,action){
+ validate(state);assert(action&&typeof action.type==='string','赛车操作无效。');const s=clone(state);if(s.phase!=='playing')return s;
+ if(action.type==='start'){if(!s.started){s.started=true;s.notice='油门起步！弯道可松油门或刹车，回到路面就能继续。';s.lastEvent='started';}return s;}
+ if(action.type==='drive'){
+  assert(int(action.throttle,0,1)&&int(action.brake,0,1)&&int(action.steer,-1,1),'赛车控制值无效。');if(!s.started)return s;
+  s.input={throttle:action.throttle,brake:action.brake,steer:action.steer};s.inputCount++;return s;
+ }
+ if(action.type==='use-meal'){
+  if(!s.started||s.speed<8||s.distance<=0){s.notice='先开动车辆，再使用料理加速。';return s;}
+  if(s.mealsUsed>=s.config.mealCharges){s.notice=s.config.mealCharges?'本局料理加速已经用过了。':'本局没有携带料理；基础车辆也能完成比赛。';return s;}
+  s.mealsUsed++;s.boostMs=5000;s.notice='料理已启用：5 秒小加速，弯道仍要控制方向。';s.lastEvent='meal';return s;
+ }
+ assert(action.type==='tick'&&int(action.dt,1,250),'赛车计时或操作无效。');if(!s.started)return s;
+ // Bounded 25 ms physics steps make collision/checkpoint checks robust even for a 250 ms tick.
+ let remaining=Math.min(action.dt,limit(s.config)-s.elapsedMs);
+ while(remaining>0&&s.phase==='playing'){
+  const dt=Math.min(25,remaining),seconds=dt/1000,track=TRACKS[s.config.trackId],total=track.length*2,base=86+s.config.difficulty*3;
+  remaining-=dt;s.elapsedMs+=dt;s.boostMs=Math.max(0,s.boostMs-dt);s.collisionMs=Math.max(0,s.collisionMs-dt);
+  const offroad=Math.abs(s.x)>1.04,max=offroad?24:base+(s.boostMs?18:0);
+  const acceleration=s.input.brake?-92:s.input.throttle?38+(s.boostMs?14:0):-24;
+  const beforeSpeed=s.speed;let nextSpeed=beforeSpeed+acceleration*seconds;
+  // Normal acceleration stops at the limit. A boost ending or grass entry
+  // decelerates from the previous speed; throttle cannot add speed above it.
+  if(beforeSpeed>max)nextSpeed=Math.min(nextSpeed,Math.max(max,beforeSpeed-(offroad?105:36)*seconds));else nextSpeed=Math.min(nextSpeed,max);
+  s.speed=round(clamp(nextSpeed,0,130));
+  const steering=(.75+s.speed/base*1.1)*s.input.steer,drift=curve(s.config,s.distance)*(s.speed/base)*.75;
+  s.x=round(clamp(s.x+(s.speed>1?steering-drift:0)*seconds,-1.8,1.8));
+  const old=s.distance;let next=Math.min(total,round(old+s.speed*seconds));
+  const gate=(s.checkpoints+1)*track.length/4;
+  if(next>=gate&&Math.abs(s.x)>1.04){next=gate-.001;s.notice='检查点在路面上，请回到赛道中央通过。';s.lastEvent='checkpoint-missed';}
+  s.distance=next;
+  for(const obstacle of obstacles(s.config))for(let lap=Math.floor(old/track.length);lap<=Math.min(1,Math.floor(next/track.length));lap++){
+   const at=lap*track.length+obstacle.z,key=lap+':'+obstacle.id;
+   if(old<=at+8&&next>=at-8&&Math.abs(s.x-obstacle.x)<.23&&!s.hitObstacles.includes(key)){
+    s.hitObstacles.push(key);s.collisions++;s.speed=round(s.speed*.5);s.collisionMs=1000;s.notice='碰到路障，速度降低了。稳住方向继续跑！';s.lastEvent='collision';
+   }
+  }
+  s.ai.forEach((a,i)=>{
+   if(a.finishMs!==null)return;
+   const behind=s.distance-a.distance,catchup=behind>170?1.035:behind< -170?.965:1;
+   const pace=(i===0?[66,73,80][s.config.difficulty]:[54,61,67][s.config.difficulty])*(.98+(s.config.seed%9)*.003)*catchup*(1-Math.abs(curve(s.config,a.distance))*.085);
+   a.distance=round(Math.min(total,a.distance+pace*seconds));if(a.distance===total)a.finishMs=s.elapsedMs;
+   if(!s.collisionMs&&Math.abs(a.distance-s.distance)<10&&Math.abs(aiLane(s,i)-s.x)<.22&&s.speed>20){s.speed=round(s.speed*.72);s.collisionMs=1200;s.collisions++;s.notice='擦到电脑车，稍微让开再超车。';s.lastEvent='collision';}
+  });
+  if(s.distance>=gate&&s.checkpoints<8){s.checkpoints++;s.lastEvent='checkpoint';if(s.checkpoints%4===0){s.lapTimes.push(s.elapsedMs-s.lapTimes.reduce((a,b)=>a+b,0));s.notice=s.checkpoints===4?'第一圈完成！还有一圈，保持节奏。':'两圈完成。';}else if(!s.boostMs)s.notice='检查点 '+s.checkpoints+' / 8 已通过。';}
+  if(s.distance===total){s.phase=rank(s)<=2?'won':'lost';s.lastEvent='finished';s.notice=s.phase==='won'?'两圈完成，领先了电脑车！返回棋盘保存本次成绩。':'两圈完成，但电脑车都领先了。下次试试提前刹车、减少碰撞。';s.input={throttle:0,brake:0,steer:0};}
+  else if(s.elapsedMs===limit(s.config)){s.phase='lost';s.lastEvent='timeout';s.notice='本轮时间到了。可以再试一次：过弯松油门，回到路面再加速。';s.input={throttle:0,brake:0,steer:0};}
+ }
+ return s;
+}
+function result(s){validate(s);if(s.phase==='playing')return null;return{status:s.phase,score:s.phase==='won'?Math.max(1,2500+(3-rank(s))*800+Math.floor((limit(s.config)-s.elapsedMs)/50)-s.collisions*25):Math.floor(s.distance/8),mealsUsed:s.mealsUsed,trackId:s.config.trackId,rank:rank(s),lapsCompleted:Math.floor(s.checkpoints/4),lapTimes:s.lapTimes.slice(),elapsedMs:s.elapsedMs,collisions:s.collisions,finished:s.checkpoints===8};}
+const CSS=`.kart-game{position:relative;box-sizing:border-box;background:#eaf3ee;border:1px solid #c1d5ce;border-radius:20px;padding:16px;color:#173e4b;font:15px/1.5 system-ui,sans-serif}.kart-game *{box-sizing:border-box}.kart-game h2,.kart-game p{margin:0}.kart-game .kr-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.kart-game h2{font-size:25px}.kart-game .kr-kicker{font-size:11px;letter-spacing:.12em;color:#658378;font-weight:800}.kart-game .kr-track{font-size:13px;color:#526e70}.kart-game .kr-pill{background:#fff5d7;border:1px solid #ddca94;padding:7px 11px;border-radius:9px;white-space:nowrap;font-weight:750}.kart-game .kr-screen{position:relative;border-radius:14px;overflow:hidden;border:4px solid #314d57;background:#9fcacb;aspect-ratio:16/10}.kart-game canvas{display:block;width:100%;height:100%}.kart-game .kr-hud{position:absolute;left:10px;right:10px;top:10px;display:flex;gap:6px;justify-content:space-between;pointer-events:none}.kart-game .kr-hud span{background:#16323ddd;color:#fff;border:1px solid #ffffff30;border-radius:8px;padding:6px 9px;font-weight:750;font-size:13px;font-variant-numeric:tabular-nums}.kart-game .kr-turn{position:absolute;bottom:10px;left:10px;background:#16323ddb;color:#fff;border-radius:8px;padding:5px 10px;font-size:12px}.kart-game .kr-overlay{position:absolute;inset:0;background:#163645c9;display:grid;place-items:center;padding:20px}.kart-game .kr-card{background:#fcfbf0;border:1px solid #d9d6ba;border-radius:15px;padding:18px;width:min(420px,100%);text-align:center;box-shadow:0 12px 38px #071d3155}.kart-game .kr-card strong{font-size:21px}.kart-game .kr-card p{margin:8px 0;font-size:13px}.kart-game button{font:inherit;min-width:48px;min-height:48px;border-radius:10px;padding:9px 12px;border:1px solid #b3ccbf;background:#fff;color:#173e4b;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}.kart-game button:focus-visible{outline:3px solid #d69036;outline-offset:2px}.kart-game button:disabled{opacity:.55;cursor:default}.kart-game .kr-primary{background:#087d70;border-color:#087d70;color:white;font-weight:800}.kart-game .kr-controls{display:grid;grid-template-columns:1fr 1fr 1.5fr 1fr;gap:8px;margin-top:12px}.kart-game .kr-controls button[aria-pressed=true]{background:#d1eadb;border-color:#338a69;box-shadow:inset 0 0 0 2px #72b79d}.kart-game .kr-controls .kr-primary[aria-pressed=true]{background:#087d70;color:#fff}.kart-game .kr-tools{display:flex;gap:10px;align-items:center;margin-top:10px}.kart-game .kr-tools button{font-size:13px;flex:none}.kart-game .kr-tools p{font-size:12px;color:#51726e}.kart-game .kr-notice{padding:10px 12px;margin-top:10px;border-left:4px solid #318d78;background:#fff;border-radius:6px;font-size:13px;min-height:42px}.kart-game .kr-help{font-size:12px;color:#5f7976;margin-top:8px}.kart-game .kr-progress{height:7px;background:#c9ddd0;margin-top:12px;border-radius:8px;overflow:hidden}.kart-game .kr-progress i{display:block;height:100%;background:#1b8772}.kart-game .kr-result{background:#fff7d7;border:1px solid #dfce8f;padding:13px;border-radius:10px;margin-top:12px}.kart-game .kr-result strong{font-size:18px}.kart-game .kr-result p{font-size:13px}.kart-game .kr-statusline{display:flex;justify-content:space-between;font-size:12px;color:#52726e;margin-top:5px}.kart-game [hidden]{display:none!important}@media(max-width:600px){.kart-game{padding:9px;border-radius:13px}.kart-game h2{font-size:21px}.kart-game .kr-head{gap:6px}.kart-game .kr-pill{padding:5px 8px;font-size:12px}.kart-game .kr-screen{aspect-ratio:4/3}.kart-game .kr-hud{left:5px;right:5px;top:5px;gap:4px}.kart-game .kr-hud span{font-size:11px;padding:5px}.kart-game .kr-controls{gap:5px;grid-template-columns:1fr 1fr 1.35fr 1fr}.kart-game button{padding:8px 5px;font-size:14px}.kart-game .kr-tools{align-items:start}.kart-game .kr-card{padding:12px}.kart-game .kr-card p{font-size:12px}.kart-game .kr-help{line-height:1.7}}@media(prefers-reduced-motion:reduce){.kart-game *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}`;
+function mount(container,{state,onAction}){
+ validate(state);assert(container&&typeof onAction==='function','赛车画面缺少宿主。');const doc=container.ownerDocument,win=doc.defaultView,root=doc.createElement('section');root.className='kart-game';root.dataset.testid='kart-game';root.tabIndex=0;root.setAttribute('aria-label',title);container.replaceChildren(root);
+ let current=clone(state),previous=clone(state),visualAt=win.performance.now(),paused=false,disposed=false,neutralizing=false,interval=null,frame=null,gas=false,lastNotice='',keys=new Set(),holds=new Map();const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
+ root.innerHTML=`<style>${CSS}</style><header class="kr-head"><div><div class="kr-kicker">LIANG · TWO LAP CHALLENGE</div><h2>${title}</h2><p class="kr-track" data-testid="kart-track"></p></div><span class="kr-pill">基础练习车</span></header><div class="kr-screen"><canvas data-testid="kart-canvas" aria-label="程序绘制的赛车示意画面"></canvas><div class="kr-hud"><span data-testid="kart-lap"></span><span data-testid="kart-rank"></span><span data-testid="kart-speed"></span><span data-testid="kart-clock"></span></div><span class="kr-turn" data-testid="kart-position"></span><div class="kr-overlay" data-testid="kart-overlay"><div class="kr-card"><strong data-testid="kart-ready-title">两圈小比赛</strong><p data-testid="kart-ready-copy">按油门起步，过弯调整方向。完成两圈，领先至少一辆电脑车。</p><button class="kr-primary" type="button" data-game-action="start">开始比赛</button></div></div></div><div class="kr-progress"><i data-testid="kart-progress"></i></div><div class="kr-statusline"><span data-testid="kart-checkpoints"></span><span>赛道示意 · 非真实路线</span></div><div class="kr-controls"><button type="button" data-game-action="left" aria-label="向左转">◀ 左转</button><button type="button" data-game-action="right" aria-label="向右转">右转 ▶</button><button type="button" class="kr-primary" data-game-action="throttle" aria-pressed="false">油门：关</button><button type="button" data-game-action="brake" aria-label="按住刹车">刹车</button></div><div class="kr-tools"><button type="button" data-game-action="use-meal">料理加速 · 5秒</button><p data-testid="kart-meal-status"></p></div><p class="kr-notice" data-testid="kart-notice" role="status" aria-live="polite"></p><p class="kr-help">触屏：点油门保持加速，按住左右转向或刹车。键盘：↑/W 油门，←/A、→/D 转向，↓/S 刹车；空格使用料理。</p><section class="kr-result" data-testid="kart-result" hidden></section>`;
+ const find=test=>root.querySelector('[data-testid="'+test+'"]'),canvas=find('kart-canvas'),ctx=canvas.getContext('2d');
+ const live=()=>!disposed&&!paused&&current.phase==='playing';
+ function emit(action){if(live())onAction(action);}
+ function controls(){const values=[...holds.values()],left=keys.has('ArrowLeft')||keys.has('KeyA')||values.includes('left'),right=keys.has('ArrowRight')||keys.has('KeyD')||values.includes('right');return{throttle:gas||keys.has('ArrowUp')||keys.has('KeyW')?1:0,brake:keys.has('ArrowDown')||keys.has('KeyS')||values.includes('brake')?1:0,steer:left===right?0:left?-1:1};}
+ function syncInput(){if(!live()||!current.started)return;const input=controls();if(JSON.stringify(input)!==JSON.stringify(current.input))emit({type:'drive',...input});}
+ // A host may permit this exact release even after its account timer expires.
+ // It changes only controls, so a restored race cannot inherit held pedals.
+ function notifyNeutral(){if(!neutralizing&&current.phase==='playing'&&current.started&&(current.input.throttle||current.input.brake||current.input.steer)){neutralizing=true;try{onAction({type:'drive',throttle:0,brake:0,steer:0});}finally{neutralizing=false;}}}
+ function quad(points,color){ctx.fillStyle=color;ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fill();}
+ function car(x,y,size,color,label){ctx.fillStyle='#16313d';ctx.fillRect(x-size*.47,y-size*.1,size*.22,size*.55);ctx.fillRect(x+size*.25,y-size*.1,size*.22,size*.55);ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x-size*.36,y-size*.48,size*.72,size*.94,size*.12);ctx.fill();ctx.fillStyle='#1e454b';ctx.fillRect(x-size*.24,y-size*.25,size*.48,size*.23);ctx.fillStyle='#e8f5ee';ctx.fillRect(x-size*.27,y+size*.27,size*.16,size*.08);ctx.fillRect(x+size*.11,y+size*.27,size*.16,size*.08);ctx.fillStyle='#fff5d4';ctx.font='bold '+Math.max(9,size*.19)+'px system-ui';ctx.textAlign='center';ctx.fillText(label,x,y+size*.19);}
+ function draw(){
+  if(disposed||!ctx)return;const width=canvas.clientWidth,height=canvas.clientHeight,dpr=Math.min(2,win.devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);
+  const mix=reduced.matches?1:clamp((win.performance.now()-visualAt)/100,0,1),distance=previous.distance+(current.distance-previous.distance)*mix,x=previous.x+(current.x-previous.x)*mix,t=TRACKS[current.config.trackId],horizon=height*.28;
+  ctx.fillStyle=t.sky;ctx.fillRect(0,0,width,height);ctx.fillStyle=current.config.trackId==='north-south'?'#76a894':'#83b5a1';ctx.beginPath();ctx.moveTo(0,horizon+10);for(let i=0;i<=12;i++)ctx.lineTo(width*i/12,horizon-12-Math.sin(i*1.7)*18);ctx.lineTo(width,horizon+40);ctx.lineTo(0,horizon+40);ctx.fill();ctx.fillStyle=t.grass;ctx.fillRect(0,horizon,width,height-horizon);
+  function projection(z){const p=1/(1+z/80),y=horizon+(height-horizon)*p,half=width*.44*p,bend=curve(current.config,distance+z)*width*.28*(1-p)*(1-p);return{y,half,center:width/2+bend,p};}
+  for(let i=44;i>=0;i--){const z0=i*13,z1=(i+1)*13,a=projection(z0),b=projection(z1),stripe=Math.floor((distance+z0)/32)%2;quad([[a.center-a.half*1.14,a.y],[a.center+a.half*1.14,a.y],[b.center+b.half*1.14,b.y],[b.center-b.half*1.14,b.y]],stripe?'#eddbb5':'#bf7565');quad([[a.center-a.half,a.y],[a.center+a.half,a.y],[b.center+b.half,b.y],[b.center-b.half,b.y]],stripe?t.road:'#5d6c70');if(stripe)for(const lane of[-.34,.34])quad([[a.center+a.half*lane-1.6*a.p,a.y],[a.center+a.half*lane+1.6*a.p,a.y],[b.center+b.half*lane+1.6*b.p,b.y],[b.center+b.half*lane-1.6*b.p,b.y]],'#dae6d7');}
+  const sprites=[];for(let lap=Math.floor(distance/t.length);lap<=Math.min(1,Math.floor(distance/t.length)+1);lap++)for(const item of obstacles(current.config)){const z=lap*t.length+item.z-distance;if(z>5&&z<540)sprites.push({z,kind:item.kind,x:item.x});}current.ai.forEach((a,i)=>{const z=a.distance-distance;if(z>8&&z<550)sprites.push({z,kind:'car',x:aiLane(current,i),i});});sprites.sort((a,b)=>b.z-a.z);
+  for(const sprite of sprites){const p=projection(sprite.z),sx=p.center+sprite.x*p.half,sy=p.y,size=Math.max(7,p.p*width*.115);if(sprite.kind==='car')car(sx,sy,size,['#f4bc70','#94c3dc'][sprite.i],'AI '+(sprite.i+1));else if(sprite.kind==='crate'){ctx.fillStyle='#bf9365';ctx.fillRect(sx-size*.35,sy-size*.55,size*.7,size*.6);ctx.strokeStyle='#795f44';ctx.strokeRect(sx-size*.35,sy-size*.55,size*.7,size*.6);}else{quad([[sx,sy-size*.6],[sx-size*.3,sy],[sx+size*.3,sy]],'#ed9860');ctx.fillStyle='#fff1cd';ctx.fillRect(sx-size*.16,sy-size*.25,size*.32,size*.09);}}
+  const nextGate=(current.checkpoints+1)*t.length/4,z=nextGate-distance;if(current.checkpoints<8&&z>0&&z<440){const p=projection(z);ctx.strokeStyle='#f8ebae';ctx.lineWidth=Math.max(2,p.p*5);ctx.beginPath();ctx.moveTo(p.center-p.half,p.y);ctx.lineTo(p.center-p.half,p.y-p.p*height*.2);ctx.lineTo(p.center+p.half,p.y-p.p*height*.2);ctx.lineTo(p.center+p.half,p.y);ctx.stroke();}
+  if(current.config.trackId==='masai-market')for(let i=0;i<4;i++){const z=((i*160+620-distance%160)%620)+35,p=projection(z),side=i%2?-1:1,sx=p.center+side*p.half*1.52,size=width*.17*p.p;ctx.fillStyle='#d8cdb2';ctx.fillRect(sx-size/2,p.y-size*.65,size,size*.7);quad([[sx-size*.6,p.y-size*.65],[sx+size*.6,p.y-size*.65],[sx+size*.44,p.y-size*.95],[sx-size*.44,p.y-size*.95]],i%2?'#db9c78':'#79b2a4');}
+  const playerX=width/2+x*width*.36;car(playerX,height*.82,width*.13,current.collisionMs?'#d2916c':'#46b6ad','YOU');if(current.boostMs){ctx.fillStyle='#f6ca68';ctx.fillRect(playerX-width*.025,height*.92,width*.015,height*.035);ctx.fillRect(playerX+width*.01,height*.92,width*.015,height*.035);}ctx.fillStyle='#17364170';ctx.fillRect(0,height-8,width,8);
+ }
+ function ui(){
+  const t=TRACKS[current.config.trackId],playing=current.phase==='playing',remaining=Math.max(0,Math.ceil((limit(current.config)-current.elapsedMs)/1000));find('kart-track').textContent=t.name+' · 示意赛道 · '+['轻松','标准','挑战'][current.config.difficulty];find('kart-lap').textContent='圈 '+Math.min(2,Math.floor(current.checkpoints/4)+1)+'/2';find('kart-rank').textContent='第 '+rank(current)+' / 3';find('kart-speed').textContent='速度 '+Math.round(current.speed);find('kart-clock').textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');
+  const position=find('kart-position'),bend=curve(current.config,current.distance);position.textContent=Math.abs(current.x)>1.04?'在草地上 · 回到路面':bend>.13?'右弯 · 提前控制方向':bend<-.13?'左弯 · 提前控制方向':'直道 · 保持路线';position.dataset.x=String(current.x);position.dataset.curve=String(bend);find('kart-progress').style.width=(current.distance/(t.length*2)*100)+'%';find('kart-checkpoints').textContent='检查点 '+current.checkpoints+' / 8';
+  if(current.notice!==lastNotice){find('kart-notice').textContent=current.notice;lastNotice=current.notice;}find('kart-meal-status').textContent=current.boostMs?'加速剩余 '+Math.ceil(current.boostMs/1000)+' 秒':current.mealsUsed?'本局已使用 1 份料理':current.config.mealCharges?'可选：开动车辆后使用 1 份 Masai 料理':'未带料理：不影响基础通关';
+  for(const button of root.querySelectorAll('[data-game-action]')){const action=button.dataset.gameAction;button.disabled=paused||!playing||action!=='start'&&!current.started||action==='use-meal'&&(current.mealsUsed>=current.config.mealCharges||current.speed<8||current.distance<=0);if(action==='throttle'){button.textContent=current.input.throttle?'油门：开':'油门：关';button.setAttribute('aria-pressed',String(!!current.input.throttle));}if(action==='left'||action==='right'||action==='brake')button.setAttribute('aria-pressed',String(action==='brake'?!!current.input.brake:current.input.steer===(action==='left'?-1:1)));}
+  find('kart-overlay').hidden=!(paused||!current.started);find('kart-ready-title').textContent=paused?'比赛已暂停':'两圈小比赛';find('kart-ready-copy').textContent=paused?'时间与输入已停止。恢复后重新踩油门。':'按油门起步，过弯调整方向。完成两圈，领先至少一辆电脑车。';root.querySelector('[data-game-action=start]').hidden=paused;
+  const out=result(current),box=find('kart-result');box.hidden=!out;if(out)box.innerHTML='<strong>'+(out.status==='won'?'完赛成功！':'再挑战一次')+'</strong><p>第 '+out.rank+' 名 · '+out.lapsCompleted+' 圈 · '+out.score+' 分。'+(out.mealsUsed?'本局实际使用了 1 份料理。':'本局没有消耗料理。')+'</p><p>请使用宿主的返回按钮保存本局结果。</p>';
+ }
+ function animation(){if(disposed||paused)return;draw();if(!reduced.matches)frame=win.requestAnimationFrame(animation);}
+ function scheduling(){win.clearInterval(interval);win.cancelAnimationFrame(frame);interval=null;frame=null;if(live()){interval=win.setInterval(()=>{if(current.started){syncInput();emit({type:'tick',dt:100});}},100);if(!reduced.matches)frame=win.requestAnimationFrame(animation);}draw();}
+ function update(next){if(disposed)return;validate(next);const was=current.phase;previous=current;current=clone(next);visualAt=win.performance.now();ui();if(was!==current.phase){keys.clear();holds.clear();gas=false;scheduling();}else if(reduced.matches)draw();}
+ function click(event){if(!live())return;const button=event.target.closest('[data-game-action]');if(!button||button.disabled)return;const action=button.dataset.gameAction;if(action==='start'){emit({type:'start'});root.focus({preventScroll:true});}else if(action==='throttle'){gas=!gas;syncInput();}else if(action==='use-meal')emit({type:'use-meal'});}
+ function down(event){if(!live()||!current.started)return;const button=event.target.closest('[data-game-action]');if(!button||button.disabled||!['left','right','brake'].includes(button.dataset.gameAction))return;event.preventDefault();holds.set(event.pointerId,button.dataset.gameAction);button.setPointerCapture?.(event.pointerId);syncInput();}
+ function up(event){if(!holds.has(event.pointerId))return;holds.delete(event.pointerId);syncInput();}
+ function keydown(event){if(!live())return;if(!current.started){if(event.code==='Enter'){event.preventDefault();emit({type:'start'});}return;}if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyS','KeyA','KeyD'].includes(event.code)){event.preventDefault();keys.add(event.code);syncInput();}else if(event.code==='Space'&&event.target===root){event.preventDefault();if(!event.repeat)emit({type:'use-meal'});}}
+ function keyup(event){if(keys.delete(event.code)){event.preventDefault();syncInput();}}
+ function release(){keys.clear();holds.clear();gas=false;syncInput();}
+ const visibility=()=>{if(doc.hidden)release();},resize=()=>draw(),motion=()=>scheduling();root.addEventListener('click',click);root.addEventListener('pointerdown',down);doc.addEventListener('pointerup',up);doc.addEventListener('pointercancel',up);root.addEventListener('keydown',keydown);doc.addEventListener('keyup',keyup);win.addEventListener('blur',release);doc.addEventListener('visibilitychange',visibility);win.addEventListener('resize',resize);reduced.addEventListener?.('change',motion);
+ ui();scheduling();return{update,setPaused(value){if(disposed)return;paused=!!value;keys.clear();holds.clear();gas=false;try{if(paused)notifyNeutral();else syncInput();}finally{ui();scheduling();}},dispose(){if(disposed)return;disposed=true;try{notifyNeutral();}finally{win.clearInterval(interval);win.cancelAnimationFrame(frame);keys.clear();holds.clear();gas=false;root.removeEventListener('click',click);root.removeEventListener('pointerdown',down);doc.removeEventListener('pointerup',up);doc.removeEventListener('pointercancel',up);root.removeEventListener('keydown',keydown);doc.removeEventListener('keyup',keyup);win.removeEventListener('blur',release);doc.removeEventListener('visibilitychange',visibility);win.removeEventListener('resize',resize);reduced.removeEventListener?.('change',motion);root.remove();}}};
+}
+return{id,version,title,create,step,validate,result,mount};
+});
+
+;
 /* Liang Universe v0.3: compatible learning saves and verified arcade receipts. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LiangLegacyCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
@@ -701,7 +1124,7 @@ return{KEY,SCHEMA,MAX_PAYLOAD,CHARS,KEYS,ARCADE,clone,uid,fresh,validate,migrate
 /* v0.4 delegates unchanged learning/arcade behavior to the frozen v0.3 core. */
 (function(root,factory){
  if(typeof module==='object'&&module.exports)module.exports=factory(require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js')});
- else root.WQUniverseCore=factory(root.LiangLegacyCore,root.LiangGames);
+ else root.LiangCore=factory(root.LiangLegacyCore,root.LiangGames);
 })(typeof globalThis!=='undefined'?globalThis:this,function(L,G){
 'use strict';
 const SCHEMA=4,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
@@ -874,5 +1297,248 @@ function encode(s){const bytes=new TextEncoder().encode(JSON.stringify(pack(s)))
 function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))).state;}
 return{...L,SCHEMA,KEY,MAX_PAYLOAD,IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
 });
+
+;
+/* v0.5 extends the verified v0.4 resource rules; frozen v4 verifies migrations. */
+(function(root,factory){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./core-v4.js'),require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js'),dungeon:require('./games/dungeon.js'),kart:require('./games/kart.js')});
+ else root.WQUniverseCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
+})(typeof globalThis!=='undefined'?globalThis:this,function(V4,L,G){
+'use strict';
+const SCHEMA=5,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
+const RESOURCE_IDS=['fishing','kitchen','trunk'],ADVENTURE_IDS=['dungeon','kart'],IDS=[...RESOURCE_IDS,...ADVENTURE_IDS],ITEMS=['fish','meal'],REGIONS=['Rawang','Masai'],OLD=['slipper','ball','jar'];
+const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),obj=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const int=(x,min=0,max=1e9)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
+const ident=x=>typeof x==='string'&&/^[A-Za-z0-9:_-]{1,140}$/.test(x);
+function check(value,message){if(!value)throw Error(message);}
+const stock=()=>({Rawang:{fish:0,meal:0},Masai:{fish:0,meal:0}});
+const extra=()=>({adventureMeals:{}});
+function engine(id){check(IDS.includes(id)&&G?.[id]?.version===1,'游戏组件未正确载入，请刷新后重试。');return G[id];}
+function fresh(){return {...V4.fresh(),schemaVersion:SCHEMA,...extra()};}
+function legacyProjection(s){const p=clone(s);p.schemaVersion=3;p.migrationArchive=null;if(p.activeSession?.gameId==='module')p.activeSession=null;return p;}
+function validateModuleResult(r){
+ check(obj(r)&&ident(r.runId)&&ident(r.sessionToken)&&IDS.includes(r.moduleId)&&r.version===1&&['practice','inventory'].includes(r.mode)&&['won','lost','abandoned'].includes(r.status)&&int(r.score)&&int(r.at,0,1e15)&&typeof r.actionHash==='string','游戏结算记录无效。');
+ check(obj(r.goods)&&int(r.goods.fish,0,12)&&int(r.goods.meals,0,12)&&Array.isArray(r.goods.shipped)&&r.goods.shipped.length<=12&&r.goods.shipped.every(x=>obj(x)&&ident(x.id)&&ITEMS.includes(x.itemId)&&x.qty===1)&&new Set(r.goods.shipped.map(x=>x.id)).size===r.goods.shipped.length,'游戏物资凭证无效。');
+ check(Array.isArray(r.goods.collectibles)&&r.goods.collectibles.length<=3&&r.goods.collectibles.every(x=>OLD.includes(x)),'河里旧物记录无效。');
+ if(ADVENTURE_IDS.includes(r.moduleId)){
+  check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'冒险与赛车只记录本局结果，不自动生产共享物资。');
+  check(int(r.mealsUsed,0,1)&&(r.mode!=='practice'||r.mealsUsed===0)&&(r.mealsUsed===0?r.mealProofHash===null:typeof r.mealProofHash==='string'),'料理使用凭证无效。');
+  if(r.discoveries!==undefined)check(r.moduleId==='dungeon'&&Array.isArray(r.discoveries)&&r.discoveries.length<=100&&r.discoveries.every(x=>typeof x==='string'&&x.length<=100),'本局发现记录无效。');
+ }
+ else if(r.mode==='practice'||r.status!=='won')check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'练习或未通关记录不能增加共享物资。');
+ else if(r.moduleId==='fishing')check(r.goods.fish>0&&r.goods.meals===0&&!r.goods.shipped.length,'钓鱼只能产出鱼和确认过的旧物。');
+ else if(r.moduleId==='kitchen')check(r.goods.fish===0&&int(r.goods.meals,1,3)&&!r.goods.shipped.length&&!r.goods.collectibles.length,'厨房只能加工料理，不能额外产生鱼或收藏。');
+ else check(r.goods.fish===0&&r.goods.meals===0&&r.goods.shipped.length>0&&!r.goods.collectibles.length,'运输只能转移装车清单中的物资。');
+}
+function checkRunInventory(s,run){
+ if(!run||run.config.mode!=='inventory')return;
+ const available=s.economy.inventory.Rawang;
+ if(run.moduleId==='kitchen')check(int(run.config.units,1,3)&&available.fish>=run.config.units,'这局厨房需要的鱼已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ if(run.moduleId==='trunk'){
+  const counts={fish:0,meal:0};for(const cargo of run.config.cargo)counts[cargo.itemId]+=cargo.qty;
+  check(ITEMS.every(item=>available[item]>=counts[item]),'这局运输清单中的物资已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ }
+ if(ADVENTURE_IDS.includes(run.moduleId)&&run.config.mealCharges===1&&run.state.mealsUsed===0)check(s.economy.inventory.Masai.meal>=1,'这局尚未使用的可选料理已被其他进度消费，不能恢复旧选择。请保留两个备份，在现有进度选择不带料理的新一局。');
+}
+function replay(run,{onMealUse}={}){
+ check(obj(run)&&ident(run.id)&&IDS.includes(run.moduleId)&&run.version===1&&obj(run.config)&&['practice','inventory'].includes(run.config.mode)&&int(run.config.seed,0,0xffffffff)&&int(run.config.difficulty,0,2)&&int(run.startedAt,0,1e15),'游戏开局资料无效。');
+ check(Array.isArray(run.actions)&&run.actions.length<=20000&&JSON.stringify(run.actions).length<=1800000,'本局操作记录过大或损坏，请先导出备份。');
+ const E=engine(run.moduleId),adventure=ADVENTURE_IDS.includes(run.moduleId);let state=E.create(clone(run.config));
+ if(adventure)check(int(run.config.mealCharges,0,1)&&(run.config.mode!=='practice'||run.config.mealCharges===0)&&state.mealsUsed===0,'新游戏料理配置无效。');
+ for(let index=0;index<run.actions.length;index++){const action=run.actions[index];check(obj(action)&&JSON.stringify(action).length<=2000,'游戏操作记录无效。');const before=state.mealsUsed;state=E.step(state,clone(action));if(adventure){check(int(state.mealsUsed,0,run.config.mealCharges)&&state.mealsUsed>=before&&(state.mealsUsed===before||action.type==='use-meal'&&before===0&&state.mealsUsed===1),'料理必须由真实生效的使用操作产生，不能回退或重复使用。');if(state.mealsUsed!==before)onMealUse?.(index,clone(state));}}
+ E.validate(state);check(eq(state,run.state),'游戏进度与实际操作记录不一致。');return state;
+}
+// Old consumption prefixes never change. Retain only exact, fully verified
+// serialized prefixes, bounded by one maximum save payload. New/edited bytes
+// and changed engine functions must replay again; no balances or claims cache.
+const MAX_REPLAY_CACHE_UNITS=MAX_PAYLOAD,mealReplayCache=new Map();let mealReplayUnits=0;
+function validateMealPrefix(run){
+ const serialized=JSON.stringify(run),E=engine(run.moduleId),prior=mealReplayCache.get(serialized);
+ if(prior&&prior.create===E.create&&prior.step===E.step&&prior.validate===E.validate){mealReplayCache.delete(serialized);mealReplayCache.set(serialized,prior);return;}
+ let useIndex=-1;const state=replay(run,{onMealUse:index=>{useIndex=index;}});check(state.mealsUsed===1&&useIndex===run.actions.length-1,'料理消费缺少首次真实生效的操作前缀。');
+ if(prior){mealReplayCache.delete(serialized);mealReplayUnits-=serialized.length;}
+ if(serialized.length>MAX_REPLAY_CACHE_UNITS)return;
+ while(mealReplayUnits+serialized.length>MAX_REPLAY_CACHE_UNITS){const oldest=mealReplayCache.keys().next().value;mealReplayCache.delete(oldest);mealReplayUnits-=oldest.length;}
+ mealReplayCache.set(serialized,{create:E.create,step:E.step,validate:E.validate});mealReplayUnits+=serialized.length;
+}
+function validate(s){
+ check(obj(s),'存档结构无效。');if(s.schemaVersion!==SCHEMA){const e=Error('请先迁移旧版存档，未覆盖现有资料。');e.code='UNSUPPORTED_SCHEMA';throw e;}
+ L.validate(legacyProjection(s));
+ if(s.migrationArchive!==null){const a=s.migrationArchive;check(obj(a)&&[1,2,3,4].includes(a.schemaVersion)&&typeof a.payload==='string'&&a.payload.length<=MAX_PAYLOAD&&a.checksum===crc(a.payload),'升级前备份校验失败。');const old=JSON.parse(a.payload);check(old.schemaVersion===a.schemaVersion,'升级前备份版本不一致。');V4.migrate(old);}
+ check(obj(s.modules)&&obj(s.modules.claims)&&Array.isArray(s.modules.results),'小游戏记录缺失。');
+ for(const [id,r] of Object.entries(s.modules.claims)){validateModuleResult(r);check(id===r.runId,'小游戏凭证编号不一致。');}
+ check(new Set(Object.values(s.modules.claims).map(r=>r.sessionToken)).size===Object.keys(s.modules.claims).length,'同一个小游戏会话不能有两份结算凭证。');
+ check(new Set(s.modules.results.map(r=>r.runId)).size===s.modules.results.length,'小游戏结果重复。');
+ for(const r of s.modules.results){validateModuleResult(r);check(eq(r,s.modules.claims[r.runId]),'小游戏结果与凭证不一致。');}
+ if(s.modules.pending){const run=s.modules.pending;replay(run);check(!s.modules.claims[run.id],'已结算游戏不能再作为未完成局。');const a=s.activeSession;check(a?.gameId==='module'&&a.moduleId===run.moduleId&&a.runId===run.id&&a.token===run.sessionToken,'未完成游戏与会话不一致。');}
+ if(s.activeSession?.gameId==='module'){
+  const a=s.activeSession;check(s.modules.pending&&ident(a.token)&&int(a.learnerSlot,0,2)&&a.runKey===null&&a.returnSnapshotHash===crc(JSON.stringify(a.returnSnapshot))&&eq(a.returnSnapshot,s.board)&&a.boardId===(s.board?.id||'')&&a.turnNo===(s.board?.turnNo||0),'小游戏返回位置或回合损坏。');
+ }
+ check(obj(s.adventureMeals),'冒险料理消费凭证缺失。');
+ for(const [id,proof] of Object.entries(s.adventureMeals)){
+  check(obj(proof)&&proof.run?.id===id&&ADVENTURE_IDS.includes(proof.run.moduleId)&&proof.run.config?.mode==='inventory'&&proof.run.config.mealCharges===1&&int(proof.at,0,1e15)&&proof.transactionId==='adventure-meal:'+id&&proof.actionHash===crc(JSON.stringify({config:proof.run.config,actions:proof.run.actions})),'冒险料理消费来源无效。');
+  validateMealPrefix(proof.run);
+  const pending=s.modules.pending?.id===id?s.modules.pending:null,claim=s.modules.claims[id];
+  check(pending||claim,'料理已经扣除，但找不到本局进度或结束凭证。');
+  if(pending)check(pending.sessionToken===proof.run.sessionToken&&pending.state.mealsUsed===1&&eq(pending.config,proof.run.config)&&eq(pending.actions.slice(0,proof.run.actions.length),proof.run.actions),'导入的旧进度早于已经使用的料理。请保留原档，使用较新的完整备份继续。');
+  if(claim)check(claim.moduleId===proof.run.moduleId&&claim.sessionToken===proof.run.sessionToken&&claim.mealsUsed===1&&claim.mealProofHash===proof.actionHash,'已结束游戏与料理消费来源不一致。');
+ }
+ for(const r of Object.values(s.modules.claims))if(ADVENTURE_IDS.includes(r.moduleId))check(!!s.adventureMeals[r.runId]===(r.mealsUsed===1),'游戏料理结果与消费凭证不一致。');
+ if(s.modules.pending&&ADVENTURE_IDS.includes(s.modules.pending.moduleId))check(!!s.adventureMeals[s.modules.pending.id]===(s.modules.pending.state.mealsUsed===1),'游戏已使用料理，缺少原子消费凭证。');
+ const e=s.economy;check(obj(e)&&e.version===1&&obj(e.inventory)&&Array.isArray(e.ledger)&&Array.isArray(e.riverCollection),'物资账本缺失。');
+ check(new Set(e.ledger.map(t=>t.id)).size===e.ledger.length,'物资交易重复。');let expected=stock();const collection=new Set();
+ for(const t of e.ledger){
+  check(obj(t)&&ident(t.id)&&int(t.at,0,1e15)&&['fish-production','fish-cooking','cargo-transfer','meal-consume','adventure-meal-consume'].includes(t.type)&&obj(t.delta),'物资交易格式无效。');
+  for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta[zone])&&int(t.delta[zone][item],-12,12),'物资变化数量无效。');expected[zone][item]+=t.delta[zone][item];check(int(expected[zone][item],0,1e8),'物资不足或账本超出限制。');}
+  const r=t.delta.Rawang,m=t.delta.Masai;
+  if(t.type==='adventure-meal-consume'){
+   const proof=s.adventureMeals[t.runId];check(proof&&t.id===proof.transactionId&&t.sessionToken===proof.run.sessionToken&&t.moduleId===proof.run.moduleId&&t.actionHash===proof.actionHash&&t.at===proof.at&&r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1,'冒险料理消费流水与真实操作不一致。');
+  }
+  else if(t.type==='meal-consume')check(r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1&&typeof t.boardId==='string'&&int(t.turnNo,1),'料理消费记录无效。');
+  else{
+   const claim=s.modules.claims[t.runId];check(claim?.mode==='inventory'&&claim.status==='won'&&t.id==='module:'+claim.runId&&t.actionHash===claim.actionHash,'物资没有对应的真实游戏结算。');
+   if(t.type==='fish-production'){check(claim.moduleId==='fishing'&&r.fish===claim.goods.fish&&r.fish>0&&r.meal===0&&m.fish===0&&m.meal===0,'钓鱼产出不守恒。');for(const id of claim.goods.collectibles)collection.add(id);}
+   if(t.type==='fish-cooking')check(claim.moduleId==='kitchen'&&r.fish===-claim.goods.meals&&r.meal===claim.goods.meals&&r.meal>0&&m.fish===0&&m.meal===0,'料理加工不守恒。');
+   if(t.type==='cargo-transfer'){const counts={fish:0,meal:0};for(const cargo of claim.goods.shipped)counts[cargo.itemId]++;check(claim.moduleId==='trunk'&&counts.fish+counts.meal>0&&r.fish===-counts.fish&&r.meal===-counts.meal&&m.fish===counts.fish&&m.meal===counts.meal,'运输必须等量转移真实物资。');}
+  }
+ }
+ for(const zone of REGIONS)for(const item of ITEMS)check(obj(e.inventory[zone])&&e.inventory[zone][item]===expected[zone][item],'库存与物资流水不一致。');
+ for(const r of Object.values(s.modules.claims))if(RESOURCE_IDS.includes(r.moduleId)&&r.mode==='inventory'&&r.status==='won')check(e.ledger.some(t=>t.id==='module:'+r.runId&&t.runId===r.runId),'已发放的物资凭证缺少对应流水，不能覆盖原档。');
+ for(const proof of Object.values(s.adventureMeals))check(e.ledger.some(t=>t.id===proof.transactionId&&t.type==='adventure-meal-consume'),'已扣除料理的操作凭证缺少消费流水。');
+ check(e.riverCollection.every(x=>OLD.includes(x))&&new Set(e.riverCollection).size===e.riverCollection.length&&eq([...collection].sort(),e.riverCollection.slice().sort()),'河里旧物收藏与来源不一致。');
+ checkRunInventory(s,s.modules.pending);
+ if(e.diceChoice){const c=e.diceChoice;check(obj(c)&&ident(c.id)&&e.ledger.some(t=>t.id===c.id&&t.type==='meal-consume')&&s.board?.phase==='roll'&&c.boardId===s.board.id&&c.turnNo===s.board.turnNo&&c.turn===s.board.turn&&Array.isArray(c.rolls)&&c.rolls.length===2&&c.rolls.every(x=>int(x,1,6)),'料理骰子选择记录无效。');}
+ return clone(s);
+}
+// A rejected action must leave the caller's live save untouched. Validate and
+// finish all work on a detached draft before publishing any claim or inventory.
+function atomic(s,operation){const draft=validate(s),result=operation(draft);validate(draft);Object.assign(s,draft);return result;}
+function migrate(input){
+ if(input?.schemaVersion===SCHEMA)return{state:validate(input),migrated:false,fromVersion:SCHEMA,toVersion:SCHEMA};
+ const old=V4.migrate(input).state,payload=JSON.stringify(input);check(payload.length<=MAX_PAYLOAD,'升级前备份超过大小限制，原档保留。');
+ const state={...old,schemaVersion:SCHEMA,...extra(),migrationArchive:{schemaVersion:input.schemaVersion,payload,checksum:crc(payload)}};
+ state.migrations.push({from:input.schemaVersion,to:SCHEMA,at:Date.now(),note:'保留完整旧档、未完成游戏与全部资源流水；新增冒险料理凭证，不补发历史奖励。'});
+ return{state:validate(state),migrated:true,fromVersion:input.schemaVersion,toVersion:SCHEMA};
+}
+function launchModuleDraft(s,id,options={}){
+ check(obj(options),'游戏模式配置无效。');
+ check(!s.activeSession&&!s.modules.pending,'请先继续或结束尚未完成的一局。');check(!s.economy.diceChoice,'请先选好本回合的骰子。');const E=engine(id);
+ const mode=options.mode??'practice',difficulty=options.difficulty??0;check(['practice','inventory'].includes(mode)&&int(difficulty,0,2),'游戏模式无效。');
+ const seed=parseInt(crc(uid()),16)>>>0,config={seed,mode,difficulty};
+ if(ADVENTURE_IDS.includes(id)){
+  const charges=options.mealCharges??0;check(int(charges,0,1)&&(mode!=='practice'||charges===0),'每局最多选择一份料理，练习关不使用仓库物资。');
+  check(charges===0||s.economy.inventory.Masai.meal>=1,'Masai 没有料理，可不带料理开始，或先从 Rawang 运一份过来。');config.mealCharges=charges;
+  if(id==='kart'&&options.trackId!==undefined){check(['masai-market','north-south'].includes(options.trackId),'赛道尚未接入。');config.trackId=options.trackId;}
+ }
+ if(id==='kitchen'){const units=options.units??3;check(int(units,1,3),'每局请选择一至三份料理。');config.units=mode==='practice'?units:Math.min(units,s.economy.inventory.Rawang.fish);check(config.units>0,'Rawang 还没有鱼。可以先玩练习关，或去河边钓鱼。');}
+ if(id==='trunk'&&mode==='inventory'){
+  config.cargo=[];const amounts=options.cargo??s.economy.inventory.Rawang;check(obj(amounts),'装箱数量清单无效。');
+  for(const item of ['meal','fish']){check(int(amounts[item]??0,0,s.economy.inventory.Rawang[item]),'装箱数量超过 Rawang 库存。');const count=Math.min(amounts[item]??0,12-config.cargo.length);for(let n=0;n<count;n++)config.cargo.push({id:item+'-'+(n+1),itemId:item,qty:1});}
+  check(config.cargo.length>0,'Rawang 暂无可运物资。可以先玩装箱练习。');
+ }
+ const initial=E.create(clone(config));E.validate(initial);
+ const token=uid(),runId=uid(),slot=s.board?.players[s.board.turn].learnerSlot??0;
+ s.activeSession={gameId:'module',moduleId:id,runId,token,learnerSlot:slot,boardId:s.board?.id||'',turnNo:s.board?.turnNo||0,returnSnapshot:clone(s.board),returnSnapshotHash:crc(JSON.stringify(s.board)),runKey:null};
+ s.modules.pending={id:runId,sessionToken:token,moduleId:id,version:E.version,config,startedAt:Date.now(),actions:[],state:initial};
+ L.note(s,'进入'+E.title+(mode==='practice'?' · 练习关':' · 联动物资关'));return clone(s.activeSession);
+}
+function launchModule(s,id,options={}){return atomic(s,draft=>launchModuleDraft(draft,id,options));}
+function updateModuleDraft(s,token,actions,state){
+ const run=s.modules.pending;check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&run,'游戏会话已改变。');
+ check(eq(s.activeSession.returnSnapshot,s.board)&&s.activeSession.returnSnapshotHash===crc(JSON.stringify(s.board)),'棋盘位置或回合已改变，未覆盖本局进度。');
+ checkRunInventory(s,run);
+ check(Array.isArray(actions)&&actions.length>=run.actions.length&&eq(actions.slice(0,run.actions.length),run.actions),'游戏进度不能倒退或替换已保存操作。');
+ const next={...run,actions:clone(actions),state:clone(state)};let use=null;replay(next,{onMealUse:(index,usedState)=>{use={index,state:usedState};}});s.modules.pending=next;
+ if(ADVENTURE_IDS.includes(run.moduleId)&&next.state.mealsUsed===1&&!s.adventureMeals[run.id]){
+  check(run.config.mode==='inventory'&&run.config.mealCharges===1&&use,'没有可用料理，未扣除任何库存。');
+  const proofRun={...clone(next),actions:clone(next.actions.slice(0,use.index+1)),state:use.state},at=Date.now(),actionHash=crc(JSON.stringify({config:proofRun.config,actions:proofRun.actions})),transactionId='adventure-meal:'+run.id,delta=stock();delta.Masai.meal=-1;
+  transaction(s,{id:transactionId,type:'adventure-meal-consume',at,runId:run.id,sessionToken:token,moduleId:run.moduleId,actionHash,delta});
+  s.adventureMeals[run.id]={run:proofRun,at,actionHash,transactionId};
+ }
+ return{saved:true,mealsUsed:next.state.mealsUsed??0};
+}
+function updateModule(s,token,actions,state){return atomic(s,draft=>updateModuleDraft(draft,token,actions,state));}
+function transaction(s,t){
+ check(!s.economy.ledger.some(x=>x.id===t.id),'此物资交易已经结算。');
+ const nextInventory=clone(s.economy.inventory);
+ for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta?.[zone])&&int(t.delta[zone][item],-12,12),'物资交易数量无效。');const next=nextInventory[zone][item]+t.delta[zone][item];check(int(next,0,1e8),'物资不足，未扣除也未发放，请保留存档。');nextInventory[zone][item]=next;}
+ s.economy.inventory=nextInventory;s.economy.ledger.push(clone(t));
+}
+function settleModuleDraft(s,token){
+ const already=Object.values(s.modules.claims).find(r=>r.sessionToken===token);if(already)return{duplicate:true,result:clone(already)};
+ check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&s.modules.pending,'没有可结算的小游戏。');
+ const run=s.modules.pending,state=replay(run),outcome=engine(run.moduleId).result(state);
+ check(outcome&&['won','lost'].includes(outcome.status)&&int(outcome.score),'游戏尚未完成，不能结算。');
+ const goods={fish:0,meals:0,shipped:[],collectibles:[]};
+ if(run.config.mode==='inventory'&&outcome.status==='won'){
+  if(run.moduleId==='fishing'){check(int(outcome.fish,1,12)&&Array.isArray(outcome.collectibles)&&outcome.collectibles.every(id=>OLD.includes(id)),'钓鱼结果无效。');goods.fish=outcome.fish;goods.collectibles=clone(outcome.collectibles);}
+  if(run.moduleId==='kitchen'){check(int(outcome.meals,1,run.config.units),'料理数量无效。');goods.meals=outcome.meals;}
+  if(run.moduleId==='trunk'){check(Array.isArray(outcome.shipped)&&outcome.shipped.length>0&&new Set(outcome.shipped.map(x=>x.id)).size===outcome.shipped.length&&outcome.shipped.every(x=>run.config.cargo.some(c=>eq(c,x))),'运输清单不是开局时的真实物资。');goods.shipped=clone(outcome.shipped);}
+ }
+ const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:outcome.status,score:outcome.score,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods};
+ if(ADVENTURE_IDS.includes(run.moduleId)){
+  check(int(outcome.mealsUsed,0,1)&&outcome.mealsUsed===state.mealsUsed,'本局料理使用结果无效。');r.mealsUsed=state.mealsUsed;r.mealProofHash=s.adventureMeals[run.id]?.actionHash??null;
+  if(run.moduleId==='dungeon'&&outcome.discoveries!==undefined)r.discoveries=clone(outcome.discoveries);
+ }
+ validateModuleResult(r);s.modules.claims[r.runId]=clone(r);s.modules.results.push(clone(r));
+ if(RESOURCE_IDS.includes(run.moduleId)&&r.status==='won'&&r.mode==='inventory'){
+  const delta=stock(),type=run.moduleId==='fishing'?'fish-production':run.moduleId==='kitchen'?'fish-cooking':'cargo-transfer';
+  if(type==='fish-production'){delta.Rawang.fish=goods.fish;for(const id of goods.collectibles)if(!s.economy.riverCollection.includes(id))s.economy.riverCollection.push(id);}
+  if(type==='fish-cooking'){delta.Rawang.fish=-goods.meals;delta.Rawang.meal=goods.meals;}
+  if(type==='cargo-transfer')for(const c of goods.shipped){delta.Rawang[c.itemId]-=c.qty;delta.Masai[c.itemId]+=c.qty;}
+  transaction(s,{id:'module:'+r.runId,type,at:r.at,runId:r.runId,actionHash:r.actionHash,delta});
+ }
+ L.closeSession(s,token);s.modules.pending=null;L.note(s,engine(run.moduleId).title+'：'+(r.status==='won'?'通关':'本局结束')+'，'+r.score+'分。'+(r.mode==='practice'?'练习成绩已记录，不改变物资。':'物资与游戏结果已分别保存。'));
+ return{duplicate:false,result:clone(r)};
+}
+function settleModule(s,token){return atomic(s,draft=>settleModuleDraft(draft,token));}
+function closeSession(s,token){return atomic(s,draft=>{
+ const isModule=draft.activeSession?.gameId==='module',run=isModule?draft.modules.pending:null;
+ if(run&&ADVENTURE_IDS.includes(run.moduleId)){
+  check(draft.activeSession.token===token,'过期游戏会话。');const state=replay(run),proof=draft.adventureMeals[run.id];
+  const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:'abandoned',score:0,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods:{fish:0,meals:0,shipped:[],collectibles:[]},mealsUsed:state.mealsUsed,mealProofHash:proof?.actionHash??null};
+  validateModuleResult(r);draft.modules.claims[run.id]=clone(r);draft.modules.results.push(clone(r));
+ }
+ const result=L.closeSession(draft,token);if(isModule)draft.modules.pending=null;return result;
+});}
+function prepareMealDiceDraft(s,a,b){
+ check(s.board?.phase==='roll'&&!s.activeSession&&!s.economy.diceChoice,'当前不能使用料理，请先完成本回合或游戏。');check(int(a,1,6)&&int(b,1,6),'骰子数值无效。');
+ const id='dice:'+uid(),delta=stock();delta.Masai.meal=-1;transaction(s,{id,type:'meal-consume',at:Date.now(),boardId:s.board.id,turnNo:s.board.turnNo,delta});
+ s.economy.diceChoice={id,boardId:s.board.id,turnNo:s.board.turnNo,turn:s.board.turn,rolls:[a,b]};L.note(s,'使用一份 Masai 料理，本回合可在两个骰子结果中选择一个。');return clone(s.economy.diceChoice);
+}
+function prepareMealDice(s,a,b){return atomic(s,draft=>prepareMealDiceDraft(draft,a,b));}
+function chooseMealDice(s,index){return atomic(s,draft=>{const c=draft.economy.diceChoice;check(c&&int(index,0,1)&&c.boardId===draft.board?.id&&c.turnNo===draft.board.turnNo&&c.turn===draft.board.turn,'骰子选择已失效。');L.roll(draft,c.rolls[index]);draft.economy.diceChoice=null;});}
+function roll(s,d){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先选择已掷出的一个骰子。');return L.roll(draft,d);});}
+function startBoard(s,n,names){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先完成料理骰子的选择。');return L.startBoard(draft,n,names);});}
+function prepareImport(current,incoming){
+ validate(current);const s=migrate(incoming).state;
+ if(current.universeId===s.universeId){
+  Object.assign(s.claims,current.claims);Object.assign(s.arcadeClaims,current.arcadeClaims);
+  for(const r of s.gameResults.arcade){const old=current.arcadeClaims[r.roundId];check(!old||eq(old,r),'导入街机结果与本机凭证冲突。');}
+  for(const [id,r] of Object.entries(current.modules.claims)){check(!s.modules.claims[id]||eq(s.modules.claims[id],r),'导入小游戏结果与本机凭证冲突。');s.modules.claims[id]=clone(r);}
+  for(const [id,proof] of Object.entries(current.adventureMeals)){check(!s.adventureMeals[id]||eq(s.adventureMeals[id],proof),'导入的料理消费凭证与本机真实使用记录冲突。');s.adventureMeals[id]=clone(proof);}
+  const left=current.economy.ledger,right=s.economy.ledger,min=Math.min(left.length,right.length);check(eq(left.slice(0,min),right.slice(0,min)),'两台设备的物资账本已经分叉，不能相加或自动覆盖。请先保留两个备份。');
+  if(left.length>=right.length)s.economy=clone(current.economy);
+  // A pending choice already consumed a meal. Keep it from the selected
+  // authoritative ledger branch; dropping it would lose a paid advantage.
+  // An already chosen local turn keeps its null choice and cannot use it twice.
+  if(s.economy.diceChoice){const choice=s.economy.diceChoice;check(s.board?.phase==='roll'&&choice.boardId===s.board.id&&choice.turnNo===s.board.turnNo&&choice.turn===s.board.turn,'已使用料理的骰子选择还未完成，与备份棋盘回合不一致。请先在当前进度选好骰子，再导入；原存档和料理扣除记录均已保留。');}
+  if(s.modules.pending&&s.modules.claims[s.modules.pending.id]){L.closeSession(s,s.activeSession.token);s.modules.pending=null;}
+ }
+ for(const r of Object.values(s.settlements.runs))if(r.status==='started'){r.status='invalidated';r.sessionToken=null;}
+ if(s.activeSession)s.activeSession.runKey=null;return validate(s);
+}
+function pack(s){validate(s);const payload=JSON.stringify(s);check(payload.length<=MAX_PAYLOAD,'宇宙存档超过大小限制，请保留备份。');return{payload,checksum:crc(payload)};}
+function unpack(p){check(obj(p)&&typeof p.payload==='string'&&p.payload.length<=MAX_PAYLOAD&&p.checksum===crc(p.payload),'存档校验失败，原档未覆盖。');const originalState=JSON.parse(p.payload);return{...migrate(originalState),originalState};}
+function wrap(s,old){let previous=null;if(old){if(old.schemaVersion===SCHEMA)previous=pack(old);else{V4.migrate(old);const payload=JSON.stringify(old);check(payload.length<=MAX_PAYLOAD,'旧备份过大。');previous={payload,checksum:crc(payload)};}}return JSON.stringify({format:'LIANG_UNIVERSE',current:pack(s),previous});}
+function unwrap(raw){check(typeof raw==='string'&&raw.length<=MAX_PAYLOAD*2+1000,'存档文件过大。');const w=JSON.parse(raw);check(w?.format==='LIANG_UNIVERSE','这不是梁家宇宙存档。');try{return{...unpack(w.current),recovered:false};}catch(e){if(e.code==='UNSUPPORTED_SCHEMA')throw e;if(w.previous)return{...unpack(w.previous),recovered:true};throw e;}}
+function encode(s){const bytes=new TextEncoder().encode(JSON.stringify(pack(s)));let text='';for(let n=0;n<bytes.length;n+=8192)text+=String.fromCharCode(...bytes.subarray(n,n+8192));return'LU1.'+(typeof btoa==='function'?btoa(text):Buffer.from(text,'binary').toString('base64')).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))).state;}
+// Preserve the verified legacy rules while preventing a late error in any
+// public mutation from leaving half of a learning/arcade/board operation saved.
+const legacyMutations=Object.fromEntries(['note','nextTurn','launch','launchArcade','recordArcadeResult','storeLegacy','beginRun','recordSubmission','changeCharacter','invalidateRun','reward'].map(name=>[name,(s,...args)=>atomic(s,draft=>L[name](draft,...args))]));
+return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,IDS,RESOURCE_IDS,ADVENTURE_IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
+});
+
 
 })();
