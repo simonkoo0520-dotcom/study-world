@@ -35,6 +35,7 @@ async function prepare({accountId,buildURL,isCurrent=()=>true}){
 function mount(container,options){
   stop();
   const {prepared,remainingMs,sessionLimitMs,isCurrent=()=>true}=options;
+  const pageClasses=container.ownerDocument.body.classList;
   const nonce=crypto.randomUUID(),started=Date.now(),mono=performance.now();
   let elapsed=0;
   const remaining=()=>{elapsed=Math.max(elapsed,Date.now()-started,performance.now()-mono);return Math.max(0,remainingMs-elapsed);};
@@ -116,7 +117,7 @@ function mount(container,options){
   const timer=setInterval(()=>{if(!live()){dispose();return;}const seconds=Math.ceil(remaining()/1000);clock.textContent=Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');if(!seconds)expire();},200);
   function beforeUnload(event){if(live()&&!acknowledged){event.preventDefault();event.returnValue='';}}
   addEventListener('beforeunload',beforeUnload);
-  function dispose(){if(stopped)return;stopped=true;clearInterval(timer);removeEventListener('message',receive);removeEventListener('beforeunload',beforeUnload);if(arcade)window.WQGameBreak.stop();arcadeReturn?.({cancelled:true});prepared.store.close();expiryWaiters.splice(0).forEach(resolve=>resolve(false));if(current===controller)current=null;}
+  function dispose(){if(stopped)return;stopped=true;clearInterval(timer);removeEventListener('message',receive);removeEventListener('beforeunload',beforeUnload);if(arcade)window.WQGameBreak.stop();arcadeReturn?.({cancelled:true});prepared.store.close();expiryWaiters.splice(0).forEach(resolve=>resolve(false));pageClasses.remove('wq-universe-active');if(current===controller)current=null;}
   async function prepareLeave(){
     if(!live()||acknowledged)return true;
     if(leavePromise)return leavePromise;
@@ -129,7 +130,7 @@ function mount(container,options){
     })();
     try{return await leavePromise;}catch(error){if(live())status.textContent='保存还未完成：'+error.message;return false;}finally{leavePromise=null;}
   }
-  const controller={stop:dispose,prepareLeave};current=controller;return controller;
+  const controller={stop:dispose,prepareLeave};pageClasses.add('wq-universe-active');current=controller;return controller;
 }
 function stop(){current?.stop();}
 async function prepareLeave(){return current?current.prepareLeave():true;}
