@@ -40,7 +40,7 @@ function mount(container,options){
   const remaining=()=>{elapsed=Math.max(elapsed,Date.now()-started,performance.now()-mono);return Math.max(0,remainingMs-elapsed);};
   let stopped=false,expired=false,acknowledged=false,leavePromise=null,expiryWaiters=[],arcade=null,arcadeReturn=null,arcadeOpening=false,pendingSaves=0;
   const seen=new Set();
-  container.innerHTML='<section class="universe-host"><div class="universe-host-bar"><div><strong>梁家大富翁 · 游戏宇宙</strong><p>本账号在这台浏览器保存 · 换设备请先导出存档</p></div><strong class="universe-clock" role="timer"></strong></div><p class="universe-host-status" role="status">棋盘与四个游戏站共用本次游戏时间。完成后回到原来的格子。</p><iframe class="universe-frame" title="梁家大富翁棋盘" sandbox="allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox"></iframe><div class="universe-arcade" hidden></div></section>';
+  container.innerHTML='<section class="universe-host"><div class="universe-host-bar"><div><strong>梁家大富翁 · 游戏宇宙</strong><p>本账号在这台浏览器保存 · 换设备请先导出存档</p></div><strong class="universe-clock" role="timer"></strong></div><p class="universe-host-status" role="status">棋盘与七个游戏站共用本次游戏时间。完成后回到原来的格子。</p><iframe class="universe-frame" title="梁家大富翁棋盘" sandbox="allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox"></iframe><div class="universe-arcade" hidden></div></section>';
   const frame=container.querySelector('iframe'),arcadeRoot=container.querySelector('.universe-arcade'),status=container.querySelector('.universe-host-status'),clock=container.querySelector('.universe-clock');
   const live=()=>!stopped&&container.isConnected&&isCurrent();
   const send=message=>{if(live())frame.contentWindow.postMessage({channel,nonce,message},'*');};

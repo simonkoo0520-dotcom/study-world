@@ -1,5 +1,521 @@
+/* Generated from the exact v0.4 board engines and core. */
+(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.4_linked/src/core-v4.js');return;}
+(function(root,factory){'use strict';const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;root.LiangGames=root.LiangGames||{};root.LiangGames.fishing=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const ITEMS=['fish','slipper','ball','jar'],STAGES=['casting','waiting','bite','reeling','celebrate'];
+const NAMES={fish:'河鱼',slipper:'旧拖鞋',ball:'旧皮球',jar:'旧罐子'};
+const clone=x=>JSON.parse(JSON.stringify(x));
+const int=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+function assert(ok,msg){if(!ok)throw new Error('钓鱼：'+msg);}
+function normalize(config){const c=config||{};assert(typeof c==='object'&&!Array.isArray(c),'配置无效');const seed=c.seed===undefined?1:c.seed,difficulty=c.difficulty===undefined?0:c.difficulty,mode=c.mode===undefined?'practice':c.mode;assert(int(seed,0,4294967295),'种子无效');assert(int(difficulty,0,2),'难度无效');assert(mode==='practice'||mode==='inventory','模式无效');return{seed,difficulty,mode};}
+function random(seed,n){let x=(seed+Math.imul(n+1,0x9e3779b9))>>>0;x^=x>>>16;x=Math.imul(x,0x21f0aaad);x^=x>>>15;x=Math.imul(x,0x735a2d97);return (x^(x>>>15))>>>0;}
+function spotFor(s){return random(s.config.seed,s.casts+s.catches.length*7)%3;}
+function create(config){const c=normalize(config);return{version:1,phase:'playing',config:c,elapsedMs:0,limitMs:60000-c.difficulty*5000,stage:'casting',stageMs:0,selectedSpot:1,targetSpot:random(c.seed,0)%3,casts:0,hooks:0,inputCount:0,mistakes:0,catches:[],reeling:false,tension:0,progress:0,dangerMs:0,slackMs:0,waitMs:0,biteWindowMs:1100-c.difficulty*150,kind:'fish',message:'先找鱼影，再抛竿。浮标往下沉时，马上提竿！',reason:''};}
+function validate(s){assert(s&&typeof s==='object'&&!Array.isArray(s),'存档无效');assert(s.version===1,'存档版本无效');const c=normalize(s.config);assert(JSON.stringify(c)===JSON.stringify(s.config),'配置字段无效');assert(['playing','won','lost'].includes(s.phase),'阶段无效');assert(STAGES.includes(s.stage),'钓鱼阶段无效');assert(s.limitMs===60000-c.difficulty*5000&&int(s.elapsedMs,0,s.limitMs),'时间无效');assert(int(s.stageMs,0,s.limitMs),'阶段时间无效');for(const key of ['selectedSpot','targetSpot'])assert(int(s[key],0,2),'钓点无效');for(const key of ['casts','hooks','inputCount'])assert(int(s[key],0,1000000),'操作次数无效');assert(int(s.mistakes,0,3),'失误次数无效');assert(Array.isArray(s.catches)&&s.catches.length<=3,'收获无效');assert(s.hooks<=s.casts&&s.catches.length<=s.hooks,'收获操作不完整');const ids=new Set();s.catches.forEach(x=>{assert(x&&ITEMS.includes(x.kind)&&int(x.elapsedMs,1,s.elapsedMs)&&int(x.castId,1,s.casts),'收获记录无效');assert(!ids.has(x.castId),'重复收获');ids.add(x.castId);});assert(typeof s.reeling==='boolean','收线状态无效');for(const key of ['tension','progress'])assert(Number.isFinite(s[key])&&s[key]>=0&&s[key]<=100,'鱼线数值无效');for(const key of ['dangerMs','slackMs','waitMs'])assert(int(s[key],0,s.limitMs),'计时无效');assert(s.biteWindowMs===1100-c.difficulty*150,'提竿窗口无效');assert(ITEMS.includes(s.kind)&&typeof s.message==='string'&&typeof s.reason==='string','提示无效');assert(s.phase!=='won'||(s.catches.length===3&&s.inputCount>=6),'通关证据不足');assert(s.phase!=='playing'||(s.catches.length<3&&s.mistakes<3&&s.elapsedMs<s.limitMs),'游戏应已结束');assert(s.phase!=='lost'||(s.mistakes===3||s.elapsedMs===s.limitMs),'失败原因无效');return true;}
+function finish(s,phase,reason){s.phase=phase;s.reason=reason;s.reeling=false;s.message=reason;}
+function miss(s,message){s.mistakes++;s.reeling=false;s.stage='casting';s.stageMs=0;s.progress=0;s.tension=0;s.dangerMs=0;s.slackMs=0;s.targetSpot=spotFor(s);s.message=message+' 再找一处鱼影试试。';if(s.mistakes===3)finish(s,'lost','今天鱼太机灵了！下次看准浮标，收线时记得松一松。');}
+function step(state,action){validate(state);assert(action&&typeof action==='object'&&!Array.isArray(action),'操作无效');assert(['tick','select','cast','hook','reel'].includes(action.type),'未知操作');if(action.type==='tick')assert(int(action.dt,1,250),'每次计时须为 1 至 250 毫秒');if(action.type==='select'||(action.type==='cast'&&action.spot!==undefined))assert(int(action.spot,0,2),'钓点须为 0、1 或 2');if(action.type==='reel')assert(typeof action.active==='boolean','收线操作无效');const s=clone(state);if(s.phase!=='playing')return s;
+ if(action.type==='select'){if(s.stage==='casting'){s.selectedSpot=action.spot;s.inputCount++;}return s;}
+ if(action.type==='cast'){if(s.stage!=='casting')return s;if(action.spot!==undefined)s.selectedSpot=action.spot;s.casts++;s.inputCount++;s.stage='waiting';s.stageMs=0;s.waitMs=950+(random(s.config.seed,s.casts+10)%500)+(s.selectedSpot===s.targetSpot?0:1300);s.kind=s.catches.length<2?'fish':ITEMS[random(s.config.seed,s.casts+30)%ITEMS.length];s.message=s.selectedSpot===s.targetSpot?'抛到鱼影旁边了！看着浮标，等它下沉。':'这里暂时没鱼影。耐心等一等，鱼也可能游过来。';return s;}
+ if(action.type==='hook'){if(s.stage==='waiting'){s.inputCount++;miss(s,'提竿太早，鱼儿还没咬钩。');}else if(s.stage==='bite'){s.inputCount++;s.hooks++;s.stage='reeling';s.stageMs=0;s.progress=0;s.tension=30;s.dangerMs=0;s.slackMs=0;s.reeling=false;s.message='咬住了！按住收线；鱼线快到红色时，松开一下。';}return s;}
+ if(action.type==='reel'){if(s.stage==='reeling'&&s.reeling!==action.active){s.reeling=action.active;s.inputCount++;}return s;}
+ const dt=Math.min(action.dt,s.limitMs-s.elapsedMs);s.elapsedMs+=dt;s.stageMs+=dt;
+ if(s.stage==='waiting'&&s.stageMs>=s.waitMs){s.stage='bite';s.stageMs=0;s.message='浮标沉了！现在提竿！';}
+ else if(s.stage==='bite'&&s.stageMs>=s.biteWindowMs)miss(s,'鱼儿松口了。浮标下沉时要快一点提竿。');
+ else if(s.stage==='reeling'){
+  const surge=Math.sin(s.stageMs/600+(random(s.config.seed,s.casts)%628)/100),seconds=dt/1000;
+  s.progress=clamp(s.progress+(s.reeling?(25-s.config.difficulty*2-3*Math.max(surge,0)):-3.5)*seconds,0,100);
+  s.tension=clamp(s.tension+(s.reeling?(33+s.config.difficulty*3+12*Math.max(surge,0)):-43)*seconds,0,100);
+  s.dangerMs=s.tension>=98?s.dangerMs+dt:0;s.slackMs=s.tension<=3?s.slackMs+dt:0;
+  if(s.dangerMs>=350)miss(s,'鱼线绷得太紧，鱼儿挣脱了。到橙色就松开一下。');
+  else if(s.slackMs>=1800)miss(s,'鱼线松了太久，鱼儿游走了。松开一下后，继续收线。');
+  else if(s.progress>=100){s.catches.push({kind:s.kind,elapsedMs:s.elapsedMs,castId:s.casts});s.reeling=false;s.stage='celebrate';s.stageMs=0;s.message='钓到了'+NAMES[s.kind]+'！'+(s.kind==='fish'?'收好这份新鲜收获。':'顺手把旧物带离河流。');if(s.catches.length===3)finish(s,'won','三次收获，满载而归！鱼可以带到厨房，旧物进入收藏。');}
+  else s.message=s.tension>=75?'鱼线紧了！松开收线按钮，让它回到绿色。':s.tension<15?'可以收线了，别让鱼线松太久。':surge>.6?'鱼儿正在用力！留意鱼线的松紧。':'稳住！按住收线，鱼线紧了就松开。';
+ }else if(s.stage==='celebrate'&&s.stageMs>=1000){s.stage='casting';s.stageMs=0;s.targetSpot=spotFor(s);s.progress=0;s.tension=0;s.message='还有新的鱼影！换个钓点，继续试试。';}
+ if(s.phase==='playing'&&s.elapsedMs>=s.limitMs)finish(s,'lost','时间到了。先看浮标，再一收一松，下次会钓得更稳。');
+ validate(s);return s;
+}
+function result(s){validate(s);if(s.phase==='playing')return null;const won=s.phase==='won';return{status:s.phase,score:Math.max(0,s.catches.length*100+(won?Math.ceil((s.limitMs-s.elapsedMs)/1000)*3:0)-s.mistakes*20),fish:won?s.catches.filter(x=>x.kind==='fish').length:0,collectibles:won?s.catches.filter(x=>x.kind!=='fish').map(x=>x.kind):[]};}
+const CSS=`
+.lg-fishing{--water:#257886;--ink:#163f48;--gold:#f9bf52;color:var(--ink);font:16px/1.5 system-ui,"Microsoft YaHei",sans-serif;max-width:1000px;margin:auto;background:#fffdf4;border:1px solid #c1ddd6;border-radius:24px;overflow:hidden;box-shadow:0 12px 28px #173c3910}.lg-fishing *{box-sizing:border-box}.lf-top{padding:20px 24px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}.lf-top h2{font-size:25px;letter-spacing:.02em;margin:0}.lf-eyebrow{font-size:12px;color:#557b69;font-weight:800;letter-spacing:.14em}.lf-stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.lf-stat{background:#e9f2e4;border-radius:13px;padding:7px 12px;font-weight:800;font-size:14px}.lf-stat[data-low=true]{background:#ffe1cf;color:#943518}.lf-goal{margin:0;padding:0 24px 14px;color:#53706d;font-size:14px}.lf-river{position:relative;margin:0 16px;border-radius:18px;overflow:hidden;background:#84c6ce;isolation:isolate}.lf-river svg{display:block;width:100%;height:auto;max-height:310px;min-height:180px}.lf-water-line{stroke:#fff;stroke-width:2;opacity:.22;fill:none;stroke-linecap:round}.lf-fish-shadow{opacity:.7;transition:transform .5s}.lf-float{transition:transform .12s}.lf-float[data-bite=true]{animation:lf-dip .28s infinite alternate}.lf-ripple{transform-origin:center;animation:lf-ripple 2s infinite;opacity:.3}.lf-river-label{position:absolute;bottom:12px;left:14px;background:#103e4bd9;color:#fff;padding:5px 12px;border-radius:99px;font-size:13px;font-weight:700}.lf-catch-pop{position:absolute;top:18px;left:50%;transform:translateX(-50%);background:#fffbe8;color:#365634;padding:12px 22px;border-radius:18px;box-shadow:0 5px 18px #123a4240;font-size:24px;font-weight:900;white-space:nowrap}.lf-body{padding:16px 24px 22px}.lf-message{min-height:52px;background:#edf4e8;border-left:4px solid #6fa16f;padding:10px 13px;border-radius:6px 12px 12px 6px;font-weight:700;margin-bottom:14px}.lf-message[data-alert=true]{background:#fff0db;border-color:#eda42e;color:#784c15}.lf-spots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.lg-fishing button{font:inherit;min-height:48px;border:1px solid #b5d4cd;background:#fffef8;color:#285c58;border-radius:12px;cursor:pointer;touch-action:manipulation}.lg-fishing button:focus-visible{outline:3px solid #e09824;outline-offset:3px}.lg-fishing button:disabled{cursor:default;opacity:.5}.lf-spots button[aria-pressed=true]{background:#dcefdc;border:2px solid #3b7c65;box-shadow:0 2px 0 #3b7c65}.lf-spot-hint{font-size:12px;display:block;min-height:18px}.lf-controls{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:10px}.lf-controls button{font-weight:800;transition:transform .1s,background .1s}.lf-controls .lf-primary{color:#fff;background:#277c70;border-color:#23685f;box-shadow:0 3px 0 #18524a}.lf-controls .lf-hook:not(:disabled){background:#ffc656;color:#473613;border-color:#e1a338;animation:lf-ready .7s infinite alternate}.lf-controls .lf-reel{touch-action:none;background:#2a708e;color:#fff;border-color:#1f5770;box-shadow:0 3px 0 #174358}.lf-controls .lf-reel[aria-pressed=true]{background:#153f57;transform:translateY(2px);box-shadow:none}.lf-meter-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:14px}.lf-meter-title{display:flex;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:5px}.lf-meter{height:17px;border-radius:99px;background:#dde8df;overflow:hidden;border:1px solid #c5d8cd}.lf-meter-fill{height:100%;background:#3b987d;transition:width .08s linear;min-width:0}.lf-tension{background:linear-gradient(90deg,#e1ead6 0 8%,#bfdcbc 8% 65%,#f8d982 65% 80%,#ec9687 80% 100%);position:relative;overflow:visible}.lf-needle{position:absolute;top:-4px;bottom:-4px;width:4px;background:#234b53;border:1px solid white;border-radius:3px;transition:left .08s linear}.lf-bag{display:flex;gap:8px;align-items:center;margin-top:15px;flex-wrap:wrap}.lf-catch{min-width:63px;border:1px dashed #b2cbbb;border-radius:10px;padding:5px 9px;font-size:12px;text-align:center;color:#6e8579;background:#f7f8eb}.lf-catch[data-filled=true]{background:#e5f1dd;border-style:solid;color:#2a624b;font-weight:800}.lf-help{margin:12px 0 0;font-size:12px;color:#637f77}.lf-overlay{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#163c44a8;color:white;font-size:26px;font-weight:900}.lg-fishing [hidden]{display:none!important}.lf-end{border:1px solid #adcdb6;border-radius:14px;background:#f1f6e8;padding:12px 14px;margin-top:12px}.lf-end strong{display:block;font-size:20px}.lf-end small{display:block;color:#567360;margin-top:4px}@keyframes lf-dip{to{transform:translateY(9px)}}@keyframes lf-ripple{to{opacity:.05;stroke-width:4}}@keyframes lf-ready{to{box-shadow:0 0 0 4px #ffc65644}}@media(max-width:520px){.lf-top{padding:15px 16px 8px;align-items:flex-start}.lf-top h2{font-size:21px}.lf-stats{gap:5px}.lf-stat{font-size:12px;padding:5px 8px}.lf-goal{padding:0 16px 12px}.lf-body{padding:14px 16px 18px}.lf-river{margin:0 10px}.lf-controls{gap:7px;grid-template-columns:1fr 1fr 1.2fr}.lf-controls button{font-size:14px}.lf-meter-wrap{gap:12px}.lf-message{font-size:14px;min-height:64px}.lf-spots{gap:6px}.lf-catch-pop{font-size:19px}.lf-help{font-size:11px}}@media(prefers-reduced-motion:reduce){.lg-fishing *{animation:none!important;transition:none!important}}
+`;
+function mount(container,options){assert(container&&typeof container.appendChild==='function','挂载位置无效');assert(options&&typeof options.onAction==='function','操作回调无效');validate(options.state);let state=clone(options.state),paused=false,disposed=false,last=0,raf=0,held=false,lastMessage='';const doc=container.ownerDocument,win=doc.defaultView;const el=doc.createElement('section');el.className='lg-fishing';el.setAttribute('data-testid','fishing-game');el.setAttribute('aria-label','河边钓鱼游戏');el.innerHTML=`<style>${CSS}</style><header class="lf-top"><div><div class="lf-eyebrow">RIVER POCKET · 技巧挑战</div><h2>河边钓鱼</h2></div><div class="lf-stats"><span class="lf-stat" data-testid="fishing-time"></span><span class="lf-stat" data-testid="fishing-lives"></span></div></header><p class="lf-goal">目标：钓起 3 件物品。看浮标、稳住鱼线，满载回家。</p><div class="lf-river" data-testid="fishing-river"><svg viewBox="0 0 880 286" role="img" aria-label="有三个钓点的河流，鱼影提示当前适合抛竿的位置"><defs><linearGradient id="lf-water" x2="0" y2="1"><stop stop-color="#73b7bd"/><stop offset="1" stop-color="#2a7889"/></linearGradient><linearGradient id="lf-bank" x2="0" y2="1"><stop stop-color="#c6dda8"/><stop offset="1" stop-color="#e4dfb4"/></linearGradient></defs><path fill="url(#lf-bank)" d="M0 0H880V94Q695 61 517 93T160 83Q57 108 0 82Z"/><path fill="url(#lf-water)" d="M0 80Q125 108 234 88T492 94T880 90V286H0Z"/><path fill="#86af74" d="M0 58Q134 44 224 64T407 64T608 64T880 57V86Q650 69 513 94T176 83Q78 96 0 82Z"/><g fill="#477b65"><path d="M52 83l-8-31 14 26 3-35 6 37 13-22-6 26Z"/><path d="M768 84l-8-27 15 24 7-40 3 40 16-21-7 26Z"/></g><g class="lf-water-line"><path d="M44 142h55m80 89h57m100-115h50m82 91h82m95-70h58m56 103h67"/><path d="M80 260h76m113-70h65m82 57h43m61-91h65m168 33h53"/></g><g fill="#e1e9bc" stroke="#739c66" stroke-width="2"><ellipse cx="71" cy="125" rx="25" ry="9"/><ellipse cx="777" cy="214" rx="25" ry="10"/><ellipse cx="739" cy="232" rx="18" ry="7"/></g><g data-testid="fishing-shadow" class="lf-fish-shadow" fill="#245865"><path d="M-24 0Q0-18 29 0Q0 18-24 0l-15 10V-10Z"/><path d="M42 18q15-11 30 0-15 11-30 0l-8 6V12Z" opacity=".6"/></g><g data-testid="fishing-spot-rings" fill="none" stroke="#e6f5df" stroke-width="2" opacity=".55"><ellipse cx="235" cy="173" rx="68" ry="24"/><ellipse cx="440" cy="150" rx="68" ry="24"/><ellipse cx="645" cy="181" rx="68" ry="24"/></g><path data-testid="fishing-line" d="M50 274Q135 70 440 150" fill="none" stroke="#f6f2cf" stroke-width="1.8"/><path d="M15 286L91 188" stroke="#dbbd7e" stroke-width="9" stroke-linecap="round"/><path d="M30 267L91 188" stroke="#846541" stroke-width="3"/><g data-testid="fishing-float-position"><g class="lf-float" data-testid="fishing-float"><ellipse class="lf-ripple" cx="0" cy="8" rx="25" ry="8" fill="none" stroke="#e2f7ef" stroke-width="2"/><path d="M0-21V9" stroke="#f9f3c3" stroke-width="3"/><ellipse cy="-1" rx="7" ry="12" fill="#fff5cb"/><path d="M-7-1a7 12 0 0114 0Z" fill="#df6e4f"/></g></g></svg><div class="lf-river-label" data-testid="fishing-stage"></div><div class="lf-catch-pop" data-testid="fishing-catch-pop" hidden></div><div class="lf-overlay" data-testid="fishing-paused" hidden>已暂停</div></div><div class="lf-body"><div class="lf-message" data-testid="fishing-message" role="status" aria-live="polite"></div><div class="lf-spots">${[0,1,2].map((n)=>`<button type="button" data-game-action="select" data-spot="${n}" data-testid="fishing-spot-${n}" aria-pressed="false">${['左边水湾','河流中间','右边芦苇'][n]}<span class="lf-spot-hint"></span></button>`).join('')}</div><div class="lf-meter-wrap"><div><div class="lf-meter-title"><span>收线进度</span><span data-testid="fishing-progress-label">0%</span></div><div class="lf-meter" role="progressbar" aria-label="收线进度" aria-valuemin="0" aria-valuemax="100" data-testid="fishing-progress"><div class="lf-meter-fill"></div></div></div><div><div class="lf-meter-title"><span>鱼线松紧</span><span data-testid="fishing-tension-label">等待抛竿</span></div><div class="lf-meter lf-tension" role="meter" aria-label="鱼线松紧" aria-valuemin="0" aria-valuemax="100" data-testid="fishing-tension"><span class="lf-needle"></span></div></div></div><div class="lf-controls"><button class="lf-primary" type="button" data-game-action="cast" data-testid="fishing-cast">抛竿</button><button class="lf-hook" type="button" data-game-action="hook" data-testid="fishing-hook">提竿</button><button class="lf-reel" type="button" data-game-action="reel" data-testid="fishing-reel" aria-pressed="false">按住收线</button></div><div class="lf-bag"><strong style="font-size:13px">收获篮</strong>${[0,1,2].map(n=>`<span class="lf-catch" data-testid="fishing-catch-${n}">等待收获</span>`).join('')}</div><p class="lf-help">键盘：← → 选钓点，空格抛竿 / 提竿；咬钩后按住空格收线，松开空格放松鱼线。</p><div class="lf-end" data-testid="fishing-result" hidden><strong></strong><span></span><small></small></div></div>`;container.appendChild(el);const q=s=>el.querySelector(s),qa=s=>Array.from(el.querySelectorAll(s));const spots=qa('[data-game-action="select"]'),cast=q('[data-game-action="cast"]'),hook=q('[data-game-action="hook"]'),reel=q('[data-game-action="reel"]');
+function emit(action){if(disposed||paused||state.phase!=='playing')return;options.onAction(action);}
+function release(){held=false;if(!disposed&&!paused&&state.phase==='playing'&&state.stage==='reeling'&&state.reeling)emit({type:'reel',active:false});}
+function press(e){if(e){e.preventDefault();if(e.pointerId!==undefined&&reel.setPointerCapture)try{reel.setPointerCapture(e.pointerId);}catch(_){}}if(paused||disposed||state.stage!=='reeling')return;held=true;emit({type:'reel',active:true});}
+const listeners=[];function listen(target,type,fn,opt){target.addEventListener(type,fn,opt);listeners.push(()=>target.removeEventListener(type,fn,opt));}
+spots.forEach((b,i)=>listen(b,'click',()=>emit({type:'select',spot:i})));listen(cast,'click',()=>emit({type:'cast'}));listen(hook,'click',()=>emit({type:'hook'}));listen(reel,'pointerdown',press);listen(reel,'pointerup',release);listen(reel,'pointercancel',release);listen(reel,'lostpointercapture',release);listen(win,'pointerup',release);listen(win,'blur',release);listen(doc,'visibilitychange',()=>{if(doc.hidden)release();last=0;});
+function keydown(e){if(disposed||paused||state.phase!=='playing'||e.altKey||e.ctrlKey||e.metaKey||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;if(!['Space','ArrowLeft','ArrowRight'].includes(e.code))return;e.preventDefault();if(e.repeat)return;if(e.code==='ArrowLeft'||e.code==='ArrowRight'){emit({type:'select',spot:(state.selectedSpot+(e.code==='ArrowLeft'?2:1))%3});return;}if(state.stage==='casting')emit({type:'cast'});else if(state.stage==='waiting'||state.stage==='bite')emit({type:'hook'});else if(state.stage==='reeling')press();}
+function keyup(e){if(e.code==='Space'){if(!paused&&!disposed)e.preventDefault();release();}}
+listen(win,'keydown',keydown);listen(win,'keyup',keyup);
+function render(){const active=!paused&&state.phase==='playing',reeling=state.stage==='reeling';q('[data-testid="fishing-time"]').textContent=Math.ceil((state.limitMs-state.elapsedMs)/1000)+' 秒';q('[data-testid="fishing-time"]').dataset.low=String(state.limitMs-state.elapsedMs<10000);q('[data-testid="fishing-lives"]').textContent='机会 '+(3-state.mistakes)+'/3';const msg=q('[data-testid="fishing-message"]');if(lastMessage!==state.message){msg.textContent=state.message;lastMessage=state.message;}msg.dataset.alert=String(state.stage==='bite'||(reeling&&state.tension>75));q('[data-testid="fishing-stage"]').textContent={casting:'找鱼影 · 选钓点',waiting:'耐心等浮标下沉',bite:'咬钩了！快提竿',reeling:'一收一松 · 稳住鱼线',celebrate:'收获入篮'}[state.stage];spots.forEach((b,i)=>{b.disabled=!active||state.stage!=='casting';b.setAttribute('aria-pressed',String(state.selectedSpot===i));b.querySelector('span').textContent=i===state.targetSpot?'有鱼影游动':'水波轻轻晃';});cast.disabled=!active||state.stage!=='casting';hook.disabled=!active||!['waiting','bite'].includes(state.stage);reel.disabled=!active||!reeling;reel.setAttribute('aria-pressed',String(active&&state.reeling));reel.textContent=state.reeling?'松开，放松鱼线':'按住收线';q('[data-testid="fishing-progress-label"]').textContent=Math.round(state.progress)+'%';q('[data-testid="fishing-progress"]').setAttribute('aria-valuenow',Math.round(state.progress));q('.lf-meter-fill').style.width=state.progress+'%';q('[data-testid="fishing-tension"]').setAttribute('aria-valuenow',Math.round(state.tension));q('.lf-needle').style.left='calc('+state.tension+'% - 2px)';q('[data-testid="fishing-tension-label"]').textContent=!reeling?'等待抛竿':state.tension>=75?'太紧，松开！':state.tension<15?'较松，继续收线':'松紧刚好';const points=[[235,173],[440,150],[645,181]],p=points[state.selectedSpot],t=points[state.targetSpot];q('[data-testid="fishing-shadow"]').setAttribute('transform',`translate(${t[0]},${t[1]+20})`);q('[data-testid="fishing-float-position"]').setAttribute('transform',`translate(${p[0]},${p[1]})`);q('[data-testid="fishing-float-position"]').style.opacity=state.stage==='casting'?'0':'1';q('[data-testid="fishing-float"]').dataset.bite=String(state.stage==='bite');q('[data-testid="fishing-line"]').setAttribute('d',`M91 188Q${p[0]*.55} ${reeling?80:40} ${p[0]} ${p[1]}`);q('[data-testid="fishing-line"]').style.opacity=state.stage==='casting'?'0':'1';state.catches.forEach((x,i)=>{const node=q('[data-testid="fishing-catch-'+i+'"]');node.textContent=({fish:'🐟 ',slipper:'🩴 ',ball:'⚽ ',jar:'🏺 '}[x.kind])+NAMES[x.kind];node.dataset.filled='true';});const pop=q('[data-testid="fishing-catch-pop"]');pop.hidden=state.stage!=='celebrate';pop.textContent='钓到 '+NAMES[state.kind]+'！';q('[data-testid="fishing-paused"]').hidden=!paused;const end=q('[data-testid="fishing-result"]');end.hidden=state.phase==='playing';if(state.phase!=='playing'){const r=result(state);end.querySelector('strong').textContent=state.phase==='won'?'满载而归！':'再来一次，会更稳';end.querySelector('span').textContent='得分 '+r.score+' · 本局收获 '+state.catches.length+'/3';end.querySelector('small').textContent=state.phase==='won'?`完成结算后，可获得 ${r.fish} 条鱼${r.collectibles.length?'和 '+r.collectibles.length+' 件旧物收藏':''}。`:'本局未通关，不领取鱼或收藏。原来的库存不会减少。';}}
+function loop(now){if(disposed)return;raf=win.requestAnimationFrame(loop);if(paused||doc.hidden||state.phase!=='playing'){last=0;return;}if(!last){last=now;return;}const dt=Math.min(250,Math.floor(now-last));if(dt<16)return;last=now;emit({type:'tick',dt});}
+render();raf=win.requestAnimationFrame(loop);return{update(next){if(disposed)return;validate(next);state=clone(next);if(state.stage!=='reeling')held=false;render();},setPaused(value){if(disposed)return;if(value&&!paused)release();paused=!!value;held=false;last=0;render();},dispose(){if(disposed)return;held=false;disposed=true;win.cancelAnimationFrame(raf);listeners.forEach(fn=>fn());el.remove();}};
+}
+return{id:'fishing',version:1,title:'河边钓鱼',create,step,validate,result,mount};
+});
+
+;
+(function (root, factory) {
+  'use strict';
+  const game = factory();
+  if (typeof module === 'object' && module.exports) module.exports = game;
+  root.LiangGames = root.LiangGames || {};
+  root.LiangGames.kitchen = game;
+})(typeof globalThis === 'object' ? globalThis : this, function () {
+  'use strict';
+  const RECIPES = [
+    { id: 'steam', title: '清蒸鱼饭', cuts: 3, min: 90, max: 120, cookMs: 5000, colour: '#42a594', garnish: '葱段' },
+    { id: 'tomato', title: '番茄鱼汤', cuts: 4, min: 110, max: 145, cookMs: 5500, colour: '#e58057', garnish: '番茄' },
+    { id: 'pan', title: '香煎鱼饭', cuts: 3, min: 130, max: 170, cookMs: 4500, colour: '#cb9e41', garnish: '配菜' }
+  ];
+  const STATIONS = ['prep', 'stove', 'serve'];
+  const STAGES = ['empty', 'raw', 'chopped', 'cooking', 'plated'];
+  const HEAT = ['关火', '小火', '中火', '大火'];
+  const CUT_GAP = 180;
+  const copy = value => JSON.parse(JSON.stringify(value));
+  const integer = (value, min, max) => Number.isInteger(value) && value >= min && value <= max;
+  const recipeFor = (s, slot) => RECIPES.find(r => r.id === s.orders[slot.order]?.recipeId);
+  const cookTarget = (s, r) => r.cookMs + s.config.difficulty * 1200;
+  const emptySlot = () => ({ stage: 'empty', order: -1, cuts: 0, heat: 0, temp100: 2500, cookMs: 0, scorchMs: 0, lastCutMs: -CUT_GAP });
+  function create(config) {
+    config = config || {};
+    const c = {
+      seed: config.seed == null ? 1731 : config.seed,
+      difficulty: config.difficulty == null ? 0 : config.difficulty,
+      mode: config.mode == null ? 'practice' : config.mode,
+      units: config.units == null ? 3 : config.units
+    };
+    if (!integer(c.seed, 0, 0xffffffff) || !integer(c.difficulty, 0, 2) || !['practice', 'inventory'].includes(c.mode) || !integer(c.units, 1, 3)) throw new Error('厨房配置无效。');
+    let seed = c.seed >>> 0;
+    const next = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed; };
+    const offset = next() % RECIPES.length;
+    const orders = Array.from({ length: c.units }, (_, i) => ({ id: 'order-' + (i + 1), recipeId: RECIPES[(offset + i) % RECIPES.length].id, status: 'waiting' }));
+    return {
+      phase: 'playing', config: c, elapsedMs: 0, timeLimitMs: 55000 + c.units * 30000 - c.difficulty * 8000,
+      station: 'prep', activeSlot: 0, orders, slots: [emptySlot(), emptySlot()], served: 0, mistakes: 0,
+      actions: 0, notice: '先选一张订单取料。两口锅可以同时做菜；换操作台时，锅里的菜还会继续加热。', reason: ''
+    };
+  }
+  function validate(s) {
+    const fail = () => { throw new Error('厨房存档无效。'); };
+    if (!s || !['playing', 'won', 'lost'].includes(s.phase) || !s.config || !integer(s.config.seed, 0, 0xffffffff) || !integer(s.config.difficulty, 0, 2) || !['practice', 'inventory'].includes(s.config.mode) || !integer(s.config.units, 1, 3)) fail();
+    if (!integer(s.elapsedMs, 0, 200000) || s.timeLimitMs !== 55000 + s.config.units * 30000 - s.config.difficulty * 8000 || s.elapsedMs > s.timeLimitMs || !STATIONS.includes(s.station) || !integer(s.activeSlot, 0, 1) || !integer(s.served, 0, s.config.units) || !integer(s.mistakes, 0, 1000000) || !integer(s.actions, 0, 1000000) || typeof s.notice !== 'string' || typeof s.reason !== 'string') fail();
+    if (!Array.isArray(s.orders) || s.orders.length !== s.config.units || !Array.isArray(s.slots) || s.slots.length !== 2) fail();
+    if (s.orders.some((o, i) => !o || o.id !== 'order-' + (i + 1) || !RECIPES.some(r => r.id === o.recipeId) || !['waiting', 'cooking', 'served'].includes(o.status))) fail();
+    if (s.served !== s.orders.filter(o => o.status === 'served').length) fail();
+    const assigned = new Set();
+    for (const slot of s.slots) {
+      if (!slot || !STAGES.includes(slot.stage) || !integer(slot.order, -1, s.orders.length - 1) || !integer(slot.cuts, 0, 4) || !integer(slot.heat, 0, 3) || !integer(slot.temp100, 2500, 30000) || !integer(slot.cookMs, 0, 20000) || !integer(slot.scorchMs, 0, 7000) || !integer(slot.lastCutMs, -CUT_GAP, s.elapsedMs)) fail();
+      if (slot.stage === 'empty') {
+        if (slot.order !== -1 || slot.cuts || slot.heat || slot.cookMs || slot.scorchMs || slot.temp100 !== 2500) fail();
+      } else {
+        const r = recipeFor(s, slot);
+        if (!r || assigned.has(slot.order) || s.orders[slot.order].status !== 'cooking' || slot.cuts > r.cuts || slot.cookMs > cookTarget(s, r)) fail();
+        assigned.add(slot.order);
+        if (slot.stage === 'raw' && slot.cuts >= r.cuts) fail();
+        if (slot.stage !== 'raw' && slot.cuts !== r.cuts) fail();
+        if (slot.stage !== 'cooking' && slot.heat !== 0) fail();
+        if (slot.stage === 'plated' && slot.cookMs !== cookTarget(s, r)) fail();
+      }
+    }
+    if (s.orders.some((o, i) => o.status === 'cooking' && !assigned.has(i))) fail();
+    if (s.phase === 'won' && (s.served !== s.config.units || s.slots.some(x => x.stage !== 'empty') || !s.actions)) fail();
+    if (s.phase === 'playing' && (s.elapsedMs >= s.timeLimitMs || s.served === s.config.units)) fail();
+    return true;
+  }
+  function step(state, action) {
+    validate(state);
+    const s = copy(state);
+    if (s.phase !== 'playing' || !action || typeof action !== 'object' || Array.isArray(action)) return s;
+    const slot = s.slots[s.activeSlot];
+    const r = recipeFor(s, slot);
+    const say = message => { s.notice = message; return s; };
+    const mistake = message => { s.mistakes += 1; return say(message); };
+    if (action.type === 'tick') {
+      if (!integer(action.dt, 1, 250)) return s;
+      const dt = Math.min(action.dt, s.timeLimitMs - s.elapsedMs);
+      s.elapsedMs += dt;
+      for (let i = 0; i < s.slots.length; i++) {
+        const pot = s.slots[i];
+        if (pot.stage !== 'cooking') continue;
+        const recipe = recipeFor(s, pot);
+        const before = pot.temp100;
+        // Integer hundredths of a degree avoid accumulated floating-point state.
+        const rate = pot.heat * 1600 - Math.round((before - 2500) * 20 / 100);
+        pot.temp100 = Math.max(2500, Math.min(30000, before + Math.round(rate * dt / 1000)));
+        const temp = Math.round((before + pot.temp100) / 2);
+        const target = cookTarget(s, recipe);
+        if (temp >= recipe.min * 100 && temp <= recipe.max * 100) pot.cookMs = Math.min(target, pot.cookMs + dt);
+        if (temp > (recipe.max + 12) * 100) pot.scorchMs = Math.min(7000, pot.scorchMs + dt);
+        else pot.scorchMs = Math.max(0, pot.scorchMs - Math.round(dt / 2));
+        if (pot.scorchMs >= 6500 - s.config.difficulty * 750) {
+          s.phase = 'lost';
+          s.reason = '锅 ' + (i + 1) + ' 过热太久，菜烧焦了。下次看到红色提醒就先关火降温。';
+          s.notice = s.reason;
+          break;
+        }
+      }
+      if (s.phase === 'playing' && s.elapsedMs >= s.timeLimitMs) {
+        s.phase = 'lost';
+        s.reason = '时间到了，还有订单没有上菜。下次可以让两口锅同时工作。';
+        s.notice = s.reason;
+      }
+      return s;
+    }
+    if (action.type === 'station') {
+      if (!STATIONS.includes(action.station)) return s;
+      s.station = action.station;
+      s.notice = action.station === 'prep' ? '选空锅和订单取料，再把配菜切好。' : action.station === 'stove' ? '选择锅，放入食材并调火。绿色温度区间内，熟度才会增加。' : '选择已装盘的料理，点“上菜”。';
+      return s;
+    }
+    if (action.type === 'slot') {
+      if (!integer(action.slot, 0, 1)) return s;
+      s.activeSlot = action.slot;
+      return s;
+    }
+    if (action.type === 'take') {
+      if (!integer(action.order, 0, s.orders.length - 1)) return s;
+      if (s.station !== 'prep') return say('取料要到备料台。');
+      if (slot.stage !== 'empty') return say('这口锅正在使用，换一口空锅。');
+      if (s.orders[action.order].status !== 'waiting') return say('这张订单已经开始制作，请选另一张。');
+      slot.order = action.order;
+      slot.stage = 'raw';
+      s.orders[action.order].status = 'cooking';
+      s.actions += 1;
+      return say('食材放好了。点击“切配菜”，每次一刀。');
+    }
+    if (action.type === 'cut') {
+      if (s.station !== 'prep' || slot.stage !== 'raw') return say('先在备料台为这口锅取料。');
+      if (s.elapsedMs - slot.lastCutMs < CUT_GAP) return say('慢一点切，等刀落稳再切下一刀。');
+      slot.lastCutMs = s.elapsedMs;
+      slot.cuts += 1;
+      s.actions += 1;
+      if (slot.cuts >= r.cuts) { slot.stage = 'chopped'; return say('切好了！到炉灶区，把食材放进锅里。'); }
+      return say('还要切 ' + (r.cuts - slot.cuts) + ' 刀。');
+    }
+    if (action.type === 'load') {
+      if (s.station !== 'stove' || slot.stage !== 'chopped') return say('食材切好后，才能在炉灶区下锅。');
+      slot.stage = 'cooking';
+      slot.heat = 2;
+      s.actions += 1;
+      return say('已经下锅。目标温度是 ' + r.min + '–' + r.max + '°C；太热就转小火或关火。');
+    }
+    if (action.type === 'heat') {
+      if (!integer(action.level, 0, 3)) return s;
+      if (s.station !== 'stove' || slot.stage !== 'cooking') return say('选正在烹调的锅，再调火。');
+      slot.heat = action.level;
+      s.actions += 1;
+      return say(HEAT[slot.heat] + (slot.heat === 0 ? '了，温度会慢慢下降。锅还热，别忘了回来查看。' : '。注意两口锅的温度，随时可以换台备料。'));
+    }
+    if (action.type === 'plate') {
+      if (s.station !== 'stove' || slot.stage !== 'cooking') return say('选正在烹调的锅，熟了再装盘。');
+      if (slot.cookMs < cookTarget(s, r)) return mistake('还没有熟。让温度保持在绿色区间，熟度达到 100% 再装盘。');
+      slot.stage = 'plated'; slot.heat = 0; s.actions += 1;
+      return say('已装盘，自动关火。到出餐台上菜！');
+    }
+    if (action.type === 'serve') {
+      if (s.station !== 'serve' || slot.stage !== 'plated') return say('先把做熟的菜装盘，再到出餐台上菜。');
+      s.orders[slot.order].status = 'served';
+      s.slots[s.activeSlot] = emptySlot();
+      s.served += 1; s.actions += 1;
+      if (s.served === s.config.units) {
+        s.phase = 'won';
+        s.reason = s.config.units + ' 份料理全部上桌！你照顾好了火候，也完成了每张订单。';
+        return say(s.reason);
+      }
+      return say('上菜成功！还差 ' + (s.config.units - s.served) + ' 份。空锅可以回备料台继续做。');
+    }
+    return s;
+  }
+  function result(s) {
+    validate(s);
+    if (s.phase === 'playing') return null;
+    if (s.phase === 'lost') return { status: 'lost', score: 0, meals: 0 };
+    return { status: 'won', score: Math.max(1, s.served * 100 + Math.floor((s.timeLimitMs - s.elapsedMs) / 1000) - s.mistakes * 15), meals: s.served };
+  }
+  function mount(container, options) {
+    if (!container || typeof container.appendChild !== 'function' || !options || typeof options.onAction !== 'function') throw new Error('厨房需要可用的容器和动作回调。');
+    validate(options.state);
+    let state = copy(options.state), paused = false, disposed = false, timer = null, lastTime = 0;
+    const document = container.ownerDocument;
+    const el = document.createElement('section');
+    el.className = 'lg-kitchen'; el.tabIndex = 0; el.setAttribute('aria-label', '外婆的厨房游戏'); el.dataset.testid = 'kitchen-game';
+    const fishSVG = '<svg viewBox="0 0 180 100" aria-hidden="true"><ellipse cx="85" cy="52" rx="51" ry="29" fill="#bedde3" stroke="#397984" stroke-width="4"/><path d="M130 52l34-26v52z" fill="#86bdc8" stroke="#397984" stroke-width="4"/><path d="M63 31q-16 20 0 42M75 31q-16 20 0 42" fill="none" stroke="#6ca4b0" stroke-width="3"/><circle cx="48" cy="45" r="4" fill="#23515d"/></svg>';
+    el.innerHTML = `<style>
+      .lg-kitchen{--k-ink:#193e45;--k-soft:#eff6f2;--k-accent:#25766e;color:var(--k-ink);background:#f6f2e8;border-radius:22px;padding:18px;font:16px/1.5 system-ui,-apple-system,"Microsoft YaHei",sans-serif;box-sizing:border-box;outline-offset:4px;max-width:1100px;margin:auto}
+      .lg-kitchen *{box-sizing:border-box}.lg-kitchen button{font:inherit;min-height:46px;border:1px solid #a3c1b6;border-radius:12px;background:#fff;color:var(--k-ink);padding:10px 15px;cursor:pointer;touch-action:manipulation}.lg-kitchen button:hover:not(:disabled){background:#e4f4e9;border-color:#25766e}.lg-kitchen button:focus-visible{outline:3px solid #326be0;outline-offset:2px}.lg-kitchen button:disabled{opacity:.5;cursor:default}.lg-kitchen button[aria-pressed="true"]{background:#25766e;color:white;border-color:#17594f}
+      .lg-kitchen .k-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0}.lg-kitchen h2{font-size:25px;margin:0}.lg-kitchen p{margin:5px 0;color:inherit}.lg-kitchen .k-badge{padding:7px 12px;background:#fff;border:1px solid #d9dacc;border-radius:12px;font-variant-numeric:tabular-nums}.lg-kitchen .k-orders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}.lg-kitchen .k-order{position:relative;background:#fffef9;border-top:6px solid var(--recipe-colour,#42a594);padding:10px 12px;border-radius:7px 7px 13px 13px;box-shadow:0 3px 7px #233e3910}.lg-kitchen .k-order strong{display:block}.lg-kitchen .k-order small{display:block;color:#49616a}.lg-kitchen .k-order[data-status="served"]{background:#def0d9}.lg-kitchen .k-order-status{font-weight:700;margin-top:5px;font-size:14px}
+      .lg-kitchen .k-workspace{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:14px}.lg-kitchen .k-room{border:2px solid #bdd0c3;border-radius:20px;overflow:hidden;background:repeating-linear-gradient(0deg,transparent 0 54px,#c6dcd12b 54px 56px),repeating-linear-gradient(90deg,#e0ede6 0 54px,#c6dcd18c 54px 56px)}.lg-kitchen .k-rack{height:40px;background:#93b4a6;border-bottom:7px solid #688d7e;display:flex;gap:16px;align-items:center;padding:0 20px;color:#274f43;letter-spacing:10px;font-size:22px}.lg-kitchen .k-pots{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 12px 14px;background:linear-gradient(transparent 72%,#c3a983 72%)}.lg-kitchen .k-pot{padding:12px 8px;min-width:0;background:#fffffff0;text-align:left;position:relative;border:2px solid #9eb9ac}.lg-kitchen .k-pot[aria-pressed="true"]{background:#fff9df;color:var(--k-ink);border:2px solid #af842d;box-shadow:0 0 0 3px #e6c77177}.lg-kitchen .k-pot-title{display:flex;justify-content:space-between;gap:5px;font-size:15px;font-weight:800}.lg-kitchen .k-pot-art{height:90px;position:relative;margin:4px 0}.lg-kitchen .k-pan{position:absolute;border:9px solid #42545d;border-top-width:7px;width:84%;height:58px;left:1%;top:27px;border-radius:14px 14px 40px 40px;background:#bdc3bf;box-shadow:0 5px #1c3541}.lg-kitchen .k-pan:after{content:"";position:absolute;right:-24%;top:6px;width:28%;height:13px;border-radius:0 12px 12px 0;background:#3b4b51}.lg-kitchen .k-pan-food{position:absolute;left:20%;top:9px;width:61%;height:26px;background:var(--recipe-colour,#a7bdb7);border-radius:50%;opacity:0}.lg-kitchen .k-pot[data-stage="raw"] .k-pan-food,.lg-kitchen .k-pot[data-stage="chopped"] .k-pan-food,.lg-kitchen .k-pot[data-stage="cooking"] .k-pan-food,.lg-kitchen .k-pot[data-stage="plated"] .k-pan-food{opacity:1}.lg-kitchen .k-pot[data-stage="plated"] .k-pan{border-color:#f9f8ef;border-width:8px;border-radius:50%;box-shadow:0 3px 0 1px #b4bdaa;background:#fff}.lg-kitchen .k-pot[data-stage="plated"] .k-pan:after{display:none}.lg-kitchen .k-steam{position:absolute;left:25%;top:5px;opacity:0;color:#548477;letter-spacing:7px;font-size:27px}.lg-kitchen .k-pot[data-stage="cooking"] .k-steam{opacity:.65;animation:k-steam 1.8s ease-in-out infinite}.lg-kitchen .k-paused .k-steam,.lg-kitchen.k-paused .k-steam,.lg-kitchen.k-ended .k-steam{animation-play-state:paused}.lg-kitchen .k-pot-detail{font-size:13px;min-height:21px}.lg-kitchen .k-meter{height:10px;background:#dfe7e4;border-radius:6px;margin-top:7px;overflow:hidden}.lg-kitchen .k-meter span{display:block;height:100%;background:#42a594;width:0;transition:width .08s linear}.lg-kitchen .k-pot-alert{min-height:20px;font-size:12px;font-weight:700;color:#a72f21}.lg-kitchen .k-shelf{padding:8px 16px;background:#8baf9e;color:#173f32;font-size:13px;font-weight:700}
+      .lg-kitchen .k-controls{min-width:0;background:#fff;border:1px solid #d4dfd6;border-radius:20px;padding:14px}.lg-kitchen .k-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 12px;padding:0;border:0}.lg-kitchen .k-tabs button{padding:9px 5px;font-weight:700}.lg-kitchen .k-instruction{min-height:52px;font-size:15px;color:#415b5b}.lg-kitchen .k-pane[hidden]{display:none}.lg-kitchen .k-take-orders{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.lg-kitchen .k-take-orders button{flex:1;min-width:100px;font-size:14px}.lg-kitchen .k-prep-art{height:76px;position:relative;background:#ead5a9;border:5px solid #d1b681;border-radius:18px;margin:10px 0}.lg-kitchen .k-prep-art svg{position:absolute;height:70px;width:130px;left:8px;top:-2px}.lg-kitchen .k-chop-count{position:absolute;right:14px;top:18px;font-weight:800;color:#715a31}.lg-kitchen .k-primary{width:100%;background:#25766e;color:#fff;border-color:#17594f;font-weight:800}.lg-kitchen .k-primary:hover:not(:disabled){background:#195e56;color:white}.lg-kitchen .k-heat{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:12px 0}.lg-kitchen .k-heat button{padding:10px 4px}.lg-kitchen .k-thermo{margin:13px 0}.lg-kitchen .k-thermo-track{position:relative;height:16px;border-radius:8px;background:linear-gradient(90deg,#d6e6f2,#fcebc6 60%,#f3bcaa);overflow:visible}.lg-kitchen .k-target-band{position:absolute;top:0;bottom:0;background:#75b798bb}.lg-kitchen .k-temp-marker{position:absolute;width:4px;height:26px;top:-5px;background:#173e49;border-radius:2px;left:0;transform:translateX(-50%)}.lg-kitchen .k-temp-label{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-top:7px;font-variant-numeric:tabular-nums}.lg-kitchen .k-cooking-progress{font-size:14px;font-weight:700;margin:8px 0}.lg-kitchen .k-serve-art{height:115px;display:grid;place-content:center;border-radius:15px;background:#f2f7ed;font-size:43px;margin:12px 0}.lg-kitchen .k-notice{padding:12px 14px;margin:14px 0 7px;border:1px solid #ccdccc;border-radius:13px;background:#fffdf3;min-height:52px}.lg-kitchen .k-notice[data-kind="won"]{background:#e1f3dc;border-color:#78a967}.lg-kitchen .k-notice[data-kind="lost"]{background:#fff0e5;border-color:#dba98c}.lg-kitchen .k-keys{font-size:12px;color:#536969}.lg-kitchen .k-pause-label{display:none;font-weight:800;color:#835821}.lg-kitchen.k-paused .k-pause-label{display:inline}.lg-kitchen .k-live{font-size:14px;min-height:20px}.lg-kitchen [hidden]{display:none!important}
+      @keyframes k-steam{0%,100%{transform:translateY(3px);opacity:.45}50%{transform:translateY(-6px);opacity:.8}}@media(prefers-reduced-motion:reduce){.lg-kitchen .k-steam{animation:none!important}.lg-kitchen .k-meter span{transition:none}}
+      @media(max-width:690px){.lg-kitchen{padding:12px;border-radius:16px}.lg-kitchen h2{font-size:21px}.lg-kitchen .k-top{align-items:flex-start;gap:8px}.lg-kitchen .k-top>div:first-child{flex:1;min-width:0}.lg-kitchen .k-top p{font-size:13px}.lg-kitchen .k-badge{font-size:13px;padding:7px 9px}.lg-kitchen .k-orders{gap:6px;margin:10px 0}.lg-kitchen .k-order{padding:8px;font-size:13px}.lg-kitchen .k-order small{font-size:11px}.lg-kitchen .k-workspace{grid-template-columns:1fr;gap:10px}.lg-kitchen .k-room{order:1}.lg-kitchen .k-controls{order:2;padding:11px}.lg-kitchen .k-pot-art{height:56px}.lg-kitchen .k-pan{top:5px;height:48px}.lg-kitchen .k-steam{top:-8px}.lg-kitchen .k-rack{height:23px;font-size:15px}.lg-kitchen .k-pots{padding:8px}.lg-kitchen .k-pot{padding:8px}.lg-kitchen .k-pot-alert{min-height:17px}.lg-kitchen .k-shelf{padding:6px 10px;font-size:11px}.lg-kitchen .k-keys{font-size:11px}.lg-kitchen .k-prep-art{height:64px}.lg-kitchen .k-instruction{font-size:14px;min-height:42px}}
+    </style>
+    <header class="k-top"><div><h2>外婆的厨房</h2><p>看订单、备食材、顾火候，再把菜送上桌。</p></div><div class="k-badge"><strong data-testid="kitchen-progress"></strong><br><span data-testid="kitchen-time"></span> <span class="k-pause-label">已暂停</span></div></header>
+    <div class="k-orders" data-testid="kitchen-orders" style="grid-template-columns:repeat(${state.orders.length},minmax(0,1fr))">${state.orders.map((o, i) => `<article class="k-order" data-order-card="${i}"><strong data-order-title="${i}"></strong><small data-order-recipe="${i}"></small><div class="k-order-status" data-order-status="${i}"></div></article>`).join('')}</div>
+    <div class="k-workspace"><div class="k-room"><div class="k-rack" aria-hidden="true">♧ ♧ ◇ ♧</div><div class="k-pots">${[0, 1].map(i => `<button class="k-pot" type="button" data-game-action="slot" data-slot="${i}" data-testid="kitchen-slot-${i}" aria-label="选择锅 ${i + 1}"><span class="k-pot-title"><span>锅 ${i + 1}</span><span data-pot-heat="${i}"></span></span><div class="k-pot-art" aria-hidden="true"><span class="k-steam">∿∿</span><div class="k-pan"><span class="k-pan-food"></span></div></div><div class="k-pot-detail" data-pot-name="${i}"></div><div class="k-pot-detail" data-pot-status="${i}"></div><div class="k-meter"><span data-pot-progress="${i}"></span></div><div class="k-pot-alert" data-pot-alert="${i}"></div></button>`).join('')}</div><div class="k-shelf">换台操作不会暂停炉火。两口锅的情况一直显示在这里。</div></div>
+    <div class="k-controls"><nav class="k-tabs" aria-label="厨房操作台"><button type="button" data-game-action="station" data-station="prep" data-testid="kitchen-station-prep">① 备料</button><button type="button" data-game-action="station" data-station="stove" data-testid="kitchen-station-stove">② 炉灶</button><button type="button" data-game-action="station" data-station="serve" data-testid="kitchen-station-serve">③ 出餐</button></nav>
+    <p class="k-instruction" data-testid="kitchen-instruction"></p>
+    <div class="k-pane" data-pane="prep"><div class="k-take-orders">${state.orders.map((o, i) => `<button type="button" data-game-action="take" data-order="${i}" data-testid="kitchen-take-${i}"></button>`).join('')}</div><div class="k-prep-art" aria-hidden="true">${fishSVG}<span class="k-chop-count" data-testid="kitchen-cuts"></span></div><button type="button" class="k-primary" data-game-action="cut" data-testid="kitchen-cut">切配菜</button></div>
+    <div class="k-pane" data-pane="stove" hidden><button type="button" class="k-primary" data-game-action="load" data-testid="kitchen-load">食材下锅</button><div class="k-thermo"><div class="k-thermo-track"><span class="k-target-band"></span><span class="k-temp-marker"></span></div><div class="k-temp-label"><strong data-testid="kitchen-temperature"></strong><span data-testid="kitchen-target"></span></div></div><div class="k-heat">${HEAT.map((title, i) => `<button type="button" data-game-action="heat" data-level="${i}" data-testid="kitchen-heat-${i}">${title}</button>`).join('')}</div><p class="k-cooking-progress" data-testid="kitchen-cook-progress"></p><button type="button" class="k-primary" data-game-action="plate" data-testid="kitchen-plate">熟了，装盘</button></div>
+    <div class="k-pane" data-pane="serve" hidden><div class="k-serve-art" aria-hidden="true">◉</div><p class="k-live" data-testid="kitchen-serve-name"></p><button type="button" class="k-primary" data-game-action="serve" data-testid="kitchen-serve">上菜</button></div></div></div>
+    <div class="k-notice" data-testid="kitchen-notice" role="status" aria-live="polite"></div><p class="k-keys">键盘：1 / 2 / 3 换操作台；A / S 选锅；← / → 调火；空格完成当前步骤。也可以点按钮操作。</p>`;
+    container.appendChild(el);
+    const $ = selector => el.querySelector(selector);
+    const all = selector => Array.from(el.querySelectorAll(selector));
+    function emit(action) {
+      if (disposed || paused || state.phase !== 'playing') return;
+      options.onAction(action);
+    }
+    function render() {
+      const slot = state.slots[state.activeSlot], recipe = recipeFor(state, slot);
+      const enabled = !paused && state.phase === 'playing';
+      el.classList.toggle('k-paused', paused); el.classList.toggle('k-ended', state.phase !== 'playing'); el.dataset.phase = state.phase;
+      $('[data-testid="kitchen-progress"]').textContent = '已上菜 ' + state.served + ' / ' + state.config.units;
+      const seconds = Math.ceil((state.timeLimitMs - state.elapsedMs) / 1000);
+      $('[data-testid="kitchen-time"]').textContent = '剩余 ' + Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+      state.orders.forEach((order, i) => {
+        const r = RECIPES.find(x => x.id === order.recipeId), card = $('[data-order-card="' + i + '"]');
+        card.dataset.status = order.status; card.style.setProperty('--recipe-colour', r.colour);
+        $('[data-order-title="' + i + '"]').textContent = (i + 1) + '. ' + r.title;
+        $('[data-order-recipe="' + i + '"]').textContent = '切 ' + r.cuts + ' 刀 · ' + r.min + '–' + r.max + '°C';
+        $('[data-order-status="' + i + '"]').textContent = order.status === 'served' ? '✓ 已上菜' : order.status === 'cooking' ? '正在制作' : '等待取料';
+        const take = $('[data-testid="kitchen-take-' + i + '"]');
+        take.textContent = '订单 ' + (i + 1) + ' 取料'; take.disabled = !enabled || slot.stage !== 'empty' || order.status !== 'waiting';
+      });
+      state.slots.forEach((pot, i) => {
+        const r = recipeFor(state, pot), button = $('[data-testid="kitchen-slot-' + i + '"]');
+        button.dataset.stage = pot.stage; button.setAttribute('aria-pressed', String(i === state.activeSlot)); button.disabled = !enabled; button.style.setProperty('--recipe-colour', r?.colour || '#a7bdb7');
+        $('[data-pot-name="' + i + '"]').textContent = r ? r.title : '空锅，准备接单';
+        $('[data-pot-heat="' + i + '"]').textContent = pot.stage === 'cooking' ? HEAT[pot.heat] : '';
+        const ready = r && pot.cookMs >= cookTarget(state, r);
+        const status = pot.stage === 'empty' ? '先去备料台' : pot.stage === 'raw' ? '切配 ' + pot.cuts + ' / ' + r.cuts : pot.stage === 'chopped' ? '已切好，等下锅' : pot.stage === 'plated' ? '已装盘，等上菜' : Math.round(pot.temp100 / 100) + '°C · ' + (ready ? '熟了，快装盘' : '熟度 ' + Math.floor(pot.cookMs / cookTarget(state, r) * 100) + '%');
+        $('[data-pot-status="' + i + '"]').textContent = status;
+        $('[data-pot-progress="' + i + '"]').style.width = (pot.stage === 'raw' ? pot.cuts / r.cuts : pot.stage === 'chopped' || pot.stage === 'plated' ? 1 : pot.stage === 'cooking' ? pot.cookMs / cookTarget(state, r) : 0) * 100 + '%';
+        $('[data-pot-alert="' + i + '"]').textContent = pot.stage === 'cooking' && pot.temp100 > (r.max + 12) * 100 ? '过热！先关火降温' : pot.stage === 'cooking' && pot.scorchMs > 0 ? '正在降温，继续留意' : pot.stage === 'cooking' && ready ? '✓ 可以装盘了' : '';
+      });
+      all('[data-game-action="station"]').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.station === state.station)); button.disabled = !enabled; });
+      all('[data-pane]').forEach(pane => { pane.hidden = pane.dataset.pane !== state.station; });
+      const detail = state.station === 'prep' ? (slot.stage === 'empty' ? '已选锅 ' + (state.activeSlot + 1) + '。选一张待做订单取料。' : slot.stage === 'raw' ? '把' + recipe.garnish + '切好：还差 ' + (recipe.cuts - slot.cuts) + ' 刀。每次一刀，不用急。' : '这口锅已备好食材。去炉灶区下锅，或选另一口空锅备料。') : state.station === 'stove' ? (slot.stage === 'cooking' ? '让温度保持在绿色区间。熟度 100% 后马上装盘；离开这里时炉火仍会继续。' : slot.stage === 'chopped' ? '食材已切好，点击下锅。开始用中火，也可随时调火。' : slot.stage === 'plated' ? '料理已装盘。去出餐台完成这张订单。' : '先去备料台取料、切配菜，再回来下锅。') : (slot.stage === 'plated' ? recipe.title + '准备好了，点击上菜。' : '这里接收已经装盘的料理。选一口已装盘的锅再上菜。');
+      $('[data-testid="kitchen-instruction"]').textContent = detail;
+      $('[data-testid="kitchen-cuts"]').textContent = recipe ? slot.cuts + ' / ' + recipe.cuts + ' 刀' : '等待取料';
+      $('[data-testid="kitchen-cut"]').disabled = !enabled || slot.stage !== 'raw';
+      $('[data-testid="kitchen-load"]').disabled = !enabled || slot.stage !== 'chopped';
+      $('[data-testid="kitchen-temperature"]').textContent = Math.round(slot.temp100 / 100) + '°C';
+      $('[data-testid="kitchen-target"]').textContent = recipe ? '目标 ' + recipe.min + '–' + recipe.max + '°C' : '先选择一份料理';
+      $('.k-target-band').style.left = (recipe ? (recipe.min - 25) / 275 * 100 : 0) + '%';
+      $('.k-target-band').style.width = (recipe ? (recipe.max - recipe.min) / 275 * 100 : 0) + '%';
+      $('.k-temp-marker').style.left = (slot.temp100 - 2500) / 27500 * 100 + '%';
+      $('[data-testid="kitchen-cook-progress"]').textContent = recipe ? '熟度 ' + Math.floor(slot.cookMs / cookTarget(state, recipe) * 100) + '%' + (slot.scorchMs ? ' · 过热警戒 ' + Math.floor(slot.scorchMs / (6500 - state.config.difficulty * 750) * 100) + '%' : '') : '熟度 0%';
+      all('[data-game-action="heat"]').forEach(button => { button.disabled = !enabled || slot.stage !== 'cooking'; button.setAttribute('aria-pressed', String(Number(button.dataset.level) === slot.heat && slot.stage === 'cooking')); });
+      $('[data-testid="kitchen-plate"]').disabled = !enabled || slot.stage !== 'cooking' || !recipe || slot.cookMs < cookTarget(state, recipe);
+      $('[data-testid="kitchen-serve"]').disabled = !enabled || slot.stage !== 'plated';
+      $('[data-testid="kitchen-serve-name"]').textContent = slot.stage === 'plated' ? recipe.title + ' · 一份' : '还没有装盘的料理';
+      const notice = $('[data-testid="kitchen-notice"]');
+      if (notice.textContent !== state.notice) notice.textContent = state.notice;
+      notice.dataset.kind = state.phase;
+    }
+    function click(event) {
+      const button = event.target.closest('[data-game-action]');
+      if (!button || !el.contains(button) || button.disabled) return;
+      const type = button.dataset.gameAction;
+      emit(type === 'station' ? { type, station: button.dataset.station } : type === 'slot' ? { type, slot: Number(button.dataset.slot) } : type === 'take' ? { type, order: Number(button.dataset.order) } : type === 'heat' ? { type, level: Number(button.dataset.level) } : { type });
+    }
+    function key(event) {
+      if (disposed || paused || state.phase !== 'playing' || event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
+      const tag = event.target.tagName?.toLowerCase();
+      if (['input', 'textarea', 'select'].includes(tag)) return;
+      let action = null;
+      if (['1', '2', '3'].includes(event.key)) action = { type: 'station', station: STATIONS[Number(event.key) - 1] };
+      else if (['a', 'A', 's', 'S'].includes(event.key)) action = { type: 'slot', slot: event.key.toLowerCase() === 'a' ? 0 : 1 };
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') action = { type: 'heat', level: Math.max(0, Math.min(3, state.slots[state.activeSlot].heat + (event.key === 'ArrowLeft' ? -1 : 1))) };
+      else if (event.code === 'Space' || event.key === ' ') {
+        const pot = state.slots[state.activeSlot];
+        if (state.station === 'prep') action = pot.stage === 'empty' ? { type: 'take', order: state.orders.findIndex(o => o.status === 'waiting') } : { type: 'cut' };
+        else if (state.station === 'stove') action = { type: pot.stage === 'chopped' ? 'load' : 'plate' };
+        else action = { type: 'serve' };
+      }
+      if (action) { event.preventDefault(); emit(action); }
+    }
+    function stopTimer() { if (timer != null) { clearInterval(timer); timer = null; } }
+    function syncTimer() {
+      if (disposed || paused || state.phase !== 'playing') return stopTimer();
+      if (timer != null) return;
+      lastTime = Date.now();
+      timer = setInterval(() => {
+        if (disposed || paused || state.phase !== 'playing') return;
+        const now = Date.now(), dt = Math.max(1, Math.min(250, now - lastTime));
+        lastTime = now;
+        emit({ type: 'tick', dt });
+      }, 100);
+    }
+    el.addEventListener('click', click); el.addEventListener('keydown', key);
+    render(); syncTimer();
+    return {
+      update(next) {
+        if (disposed) return;
+        validate(next);
+        if (next.config.units !== state.config.units) throw new Error('同一厨房局不能更换订单数量。');
+        state = copy(next); render(); syncTimer();
+      },
+      setPaused(value) { if (disposed) return; paused = Boolean(value); render(); syncTimer(); },
+      dispose() { if (disposed) return; disposed = true; stopTimer(); el.removeEventListener('click', click); el.removeEventListener('keydown', key); el.remove(); }
+    };
+  }
+  return { id: 'kitchen', version: 1, title: '外婆的厨房', create, step, validate, result, mount };
+});
+
+;
+/* G10: deterministic packing game. Only the universe host transfers inventory. */
+(function(root,factory){const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;else(root.LiangGames||(root.LiangGames={})).trunk=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const id='trunk',version=1,title='后备箱大师';
+const clone=value=>JSON.parse(JSON.stringify(value));
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const assert=(condition,message)=>{if(!condition)throw Error(message);};
+const integer=(n,min,max)=>Number.isSafeInteger(n)&&n>=min&&n<=max;
+const SHAPES={curry:[[0,0],[1,0],[2,0],[1,1]],durian:[[1,0],[2,0],[0,1],[1,1]],drinks:[[0,0],[1,0],[0,1],[1,1]],vegetables:[[0,0],[0,1],[1,1]],basket:[[0,0],[1,0],[2,0],[0,1],[0,2]],fish:[[0,0],[1,0],[1,1]],meal:[[0,0],[1,0],[0,1],[1,1]]};
+const LABELS={curry:'咖喱锅',durian:'榴莲袋',drinks:'饮料箱',vegetables:'青菜袋',basket:'青菜篮',fish:'鱼箱',meal:'料理盒'};
+const COLORS={curry:'#f1ad52',durian:'#bace69',drinks:'#72c6e9',vegetables:'#70cf9b',basket:'#c3d78c',fish:'#88c5ea',meal:'#f2b67f'};
+function normalized(config={}){
+ const seed=config.seed??1,difficulty=config.difficulty??0,mode=config.mode??'practice';
+ assert(integer(seed,0,4294967295),'装箱种子无效。');assert(integer(difficulty,0,2),'装箱难度无效。');assert(['practice','inventory'].includes(mode),'装箱模式无效。');
+ const out={seed,difficulty,mode};
+ if(config.units!==undefined){assert(integer(config.units,1,3),'货物组数无效。');out.units=config.units;}
+ if(mode==='inventory'){
+  assert(Array.isArray(config.cargo)&&config.cargo.length>=1&&config.cargo.length<=12,'每次请选择 1 至 12 件货物。');
+  out.cargo=config.cargo.map(c=>{assert(c&&typeof c.id==='string'&&/^[A-Za-z0-9:_-]{1,100}$/.test(c.id)&&!['__proto__','constructor','prototype'].includes(c.id)&&['fish','meal'].includes(c.itemId)&&c.qty===1,'货物编号或数量无效。');return{id:c.id,itemId:c.itemId,qty:1};});
+  assert(new Set(out.cargo.map(c=>c.id)).size===out.cargo.length,'货物编号不能重复。');
+ }else assert(config.cargo===undefined||Array.isArray(config.cargo)&&config.cargo.length===0,'练习货物不能混入真实库存。');
+ return out;
+}
+function generator(seed){let x=seed>>>0;return()=>{x=(Math.imul(1664525,x)+1013904223)>>>0;return x;};}
+function piecesFor(config){
+ let pieces=config.mode==='inventory'?config.cargo.map(c=>({...c,kind:c.itemId})):['curry','durian','drinks','vegetables',...(config.difficulty>=1?['basket']:[]),...(config.difficulty>=2?['drinks']:[])].map((kind,i)=>({id:'practice-'+i,itemId:null,qty:1,kind}));
+ const random=generator(config.seed);
+ pieces=pieces.map(p=>({...p,rotation:config.difficulty===0?0:random()%4}));
+ if(config.difficulty>0)for(let i=pieces.length-1;i>0;i--){const j=random()%(i+1);[pieces[i],pieces[j]]=[pieces[j],pieces[i]];}
+ return pieces;
+}
+function layout(config){const width=6,height=config.difficulty===2?5:4,blocked=config.difficulty===0?[]:config.difficulty===1?[[0,0],[5,0]]:[[0,0],[5,0],[0,4],[5,4]];return{width,height,blocked,limitMs:[180000,150000,120000][config.difficulty]};}
+function cells(piece,rotation=piece.rotation){
+ let points=SHAPES[piece.kind].map(p=>p.slice());
+ for(let i=0;i<rotation;i++){points=points.map(([x,y])=>[-y,x]);const minX=Math.min(...points.map(p=>p[0])),minY=Math.min(...points.map(p=>p[1]));points=points.map(([x,y])=>[x-minX,y-minY]);}
+ return points;
+}
+function occupied(state,except=null){const map=new Map();for(const [key,at]of Object.entries(state.placements)){if(key===except)continue;const piece=state.pieces.find(p=>p.id===key);for(const [dx,dy]of cells(piece))map.set((at.x+dx)+','+(at.y+dy),key);}return map;}
+function fits(state,piece,x,y,rotation=piece.rotation){
+ const map=occupied(state,piece.id),blocked=new Set(state.grid.blocked.map(p=>p.join(',')));
+ for(const [dx,dy]of cells(piece,rotation)){const px=x+dx,py=y+dy,key=px+','+py;if(px<0||py<0||px>=state.grid.width||py>=state.grid.height)return'outside';if(blocked.has(key))return'wheel';if(map.has(key))return'collision';}
+ return null;
+}
+function count(state){return Object.keys(state.placements).length;}
+function create(config){
+ config=normalized(config);return{version,config,phase:'playing',elapsedMs:0,grid:layout(config),pieces:piecesFor(config),placements:{},selected:null,moves:0,placementsMade:0,mistakes:0,lastEvent:'start',notice:config.mode==='practice'?'把所有练习物品装进车里，再核对清单发车。':'选好位置装货。只有装进车里的货物会运到 Masai。'};
+}
+function validate(state){
+ assert(state&&state.version===version,'装箱存档版本无效。');const config=normalized(state.config),expected=piecesFor(config);
+ assert(same(config,state.config)&&same(layout(config),state.grid),'装箱关卡配置被改变。');
+ assert(['playing','won','lost'].includes(state.phase)&&integer(state.elapsedMs,0,state.grid.limitMs),'装箱阶段或时间无效。');
+ assert(Array.isArray(state.pieces)&&state.pieces.length===expected.length,'装箱物品清单无效。');
+ state.pieces.forEach((p,i)=>assert(p&&p.id===expected[i].id&&p.itemId===expected[i].itemId&&p.kind===expected[i].kind&&p.qty===1&&integer(p.rotation,0,3),'装箱物品被改变。'));
+ assert(state.placements&&typeof state.placements==='object'&&!Array.isArray(state.placements),'装箱位置无效。');
+ for(const [key,at]of Object.entries(state.placements)){const p=state.pieces.find(item=>item.id===key);assert(p&&at&&integer(at.x,0,state.grid.width-1)&&integer(at.y,0,state.grid.height-1),'货物坐标无效。');assert(!fits(state,p,at.x,at.y),'货物重叠或超出后备箱。');}
+ assert(state.selected===null||state.pieces.some(p=>p.id===state.selected),'所选货物无效。');
+ assert(integer(state.moves,0,1000000)&&integer(state.placementsMade,0,state.moves)&&integer(state.mistakes,0,1000000),'装箱操作记录无效。');
+ assert(typeof state.notice==='string'&&state.notice.length<=200&&typeof state.lastEvent==='string'&&state.lastEvent.length<=30,'装箱提示无效。');
+ assert(state.phase!=='playing'||state.elapsedMs<state.grid.limitMs,'已经超时的装箱局不能继续。');
+ assert(state.phase!=='lost'||state.elapsedMs===state.grid.limitMs,'失败原因无效。');
+ if(state.phase==='won')assert(state.elapsedMs<state.grid.limitMs&&state.placementsMade>0&&count(state)>0&&(config.mode==='inventory'||count(state)===state.pieces.length),'没有实际装好的货物，不能结算。');
+ return true;
+}
+function refusal(s,why){s.mistakes++;s.lastEvent=why;s.notice=why==='outside'?'这件货物伸到车外了。换个位置，或转个方向。':why==='wheel'?'灰色位置是轮拱，不能放货。试试旁边的空位。':'这里已有货物。先挪开它，或找另一个位置。';return s;}
+function step(state,action){
+ validate(state);assert(action&&typeof action.type==='string','装箱操作无效。');const s=clone(state);if(s.phase!=='playing')return s;
+ if(action.type==='tick'){assert(integer(action.dt,1,250),'计时步长无效。');s.elapsedMs=Math.min(s.grid.limitMs,s.elapsedMs+action.dt);if(s.elapsedMs===s.grid.limitMs){s.phase='lost';s.lastEvent='timeout';s.notice='这一轮时间到了。货物还在出发地，没有扣除。可以重新挑战。';}return s;}
+ if(action.type==='ship'){
+  if(!count(s)||!s.placementsMade){s.mistakes++;s.lastEvent='empty';s.notice='先把至少一件货物放进车里，才能发车。';return s;}
+  if(s.config.mode==='practice'&&count(s)!==s.pieces.length){s.mistakes++;s.lastEvent='incomplete';s.notice='练习关要装齐所有物品。还没装下的可以换个方向。';return s;}
+  s.phase='won';s.lastEvent='shipped';s.notice=s.config.mode==='inventory'?'装车清单已完成。返回棋盘后由仓库保存运输结果。':'全部装好了！练习物品不进入共享仓库。';return s;
+ }
+ assert(['select','place','rotate','remove'].includes(action.type),'不支持这个装箱操作。');
+ const key=action.id??s.selected,p=s.pieces.find(item=>item.id===key);if(!p){assert(action.id===undefined,'这件货物不在本次清单中。');s.notice='先选一件货物。';s.lastEvent='select-needed';return s;}
+ s.selected=p.id;
+ if(action.type==='select'){s.notice=LABELS[p.kind]+'：点空格放置，或拖进后备箱。R 键可以旋转。';s.lastEvent='selected';return s;}
+ if(action.type==='rotate'){
+  const direction=action.direction??1;assert(direction===1||direction===-1,'旋转方向无效。');const next=(p.rotation+direction+4)%4,at=s.placements[p.id];
+  if(at){const why=fits(s,p,at.x,at.y,next);if(why)return refusal(s,why);s.moves++;}
+  p.rotation=next;s.lastEvent='rotated';s.notice='已旋转 '+LABELS[p.kind]+'。';return s;
+ }
+ if(action.type==='remove'){if(s.placements[p.id]){delete s.placements[p.id];s.moves++;s.lastEvent='removed';s.notice=LABELS[p.kind]+' 已取回，还可以重新摆放。';}else{s.lastEvent='not-packed';s.notice='这件货物还在车外，可以直接放进空位。';}return s;}
+ assert(integer(action.x,-20,20)&&integer(action.y,-20,20),'放置坐标无效。');const why=fits(s,p,action.x,action.y);if(why)return refusal(s,why);
+ s.placements[p.id]={x:action.x,y:action.y};s.moves++;s.placementsMade++;s.lastEvent='placed';s.notice=count(s)===s.pieces.length?'都装进去了！检查清单，再按“核对并发车”。':LABELS[p.kind]+' 放好了。继续试试其他货物。';return s;
+}
+function result(state){
+ validate(state);if(state.phase==='playing')return null;const won=state.phase==='won',packed=won?count(state):0,area=won?occupied(state).size:0,capacity=state.grid.width*state.grid.height-state.grid.blocked.length;
+ return{status:state.phase,score:won?Math.max(1,packed*100+Math.floor(area/capacity*100)+Math.floor((state.grid.limitMs-state.elapsedMs)/1000)*2-state.mistakes*4-Math.max(0,state.moves-packed)):0,shipped:won&&state.config.mode==='inventory'?state.config.cargo.filter(c=>Object.hasOwn(state.placements,c.id)).map(c=>({...c})):[],packed,total:state.pieces.length,usedCells:area,capacity};
+}
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function icon(kind){
+ if(kind==='fish')return'<path d="M5 15q9-12 20 0Q14 27 5 15l-5-6v12z" fill="#245b78"/><circle cx="21" cy="13" r="1.5" fill="white"/>';
+ if(kind==='drinks')return'<rect x="6" y="5" width="12" height="22" rx="4" fill="#267391"/><rect x="8" y="1" width="8" height="6" rx="2" fill="#e9ffff"/><path d="M6 13h12v7H6" fill="#e9ffff"/>';
+ if(kind==='vegetables'||kind==='basket')return'<path d="M13 29V12M13 20Q-2 18 3 4q14 0 10 16M13 16Q11 0 25 2q3 14-12 14" fill="#277349" stroke="#155534" stroke-width="2"/>';
+ if(kind==='durian')return'<path d="m14 0 4 6 7-2-1 8 6 3-6 5 1 7-8-1-3 5-5-6-7 1 1-8-3-4 5-5 1-7 6 3z" fill="#71812e"/><path d="m10 10 5 12 4-12" stroke="#dae88b" stroke-width="2" fill="none"/>';
+ return'<path d="M0 13h28c-1 11-4 15-14 15S1 24 0 13" fill="#914c2a"/><ellipse cx="14" cy="13" rx="14" ry="5" fill="#f7d990"/><path d="M9 7c-5-4 3-4 0-7m10 7c-5-4 3-4 0-7" stroke="#fff5d7" stroke-width="2" fill="none"/>';
+}
+function miniature(piece){const points=cells(piece),w=Math.max(...points.map(p=>p[0]))+1,h=Math.max(...points.map(p=>p[1]))+1,[x,y]=points[0];return`<svg viewBox="0 0 ${w*32} ${h*32}" aria-hidden="true">${points.map(([x,y])=>`<rect x="${x*32+1}" y="${y*32+1}" width="30" height="30" rx="5" fill="${COLORS[piece.kind]}" stroke="#203f4e" stroke-opacity=".22"/>`).join('')}<g transform="translate(${x*32+6},${y*32+5}) scale(.68)">${icon(piece.kind)}</g></svg>`;}
+const CSS=`
+.trunk-game{--ink:#123d4c;--mint:#087f72;box-sizing:border-box;color:var(--ink);font:16px/1.5 system-ui,sans-serif;background:linear-gradient(145deg,#f2f8ee,#e0edf1);border:1px solid #c9ddda;border-radius:22px;padding:20px;position:relative;overflow:hidden}.trunk-game *{box-sizing:border-box}.trunk-game button{font:inherit;min-height:44px;border:1px solid #bdd2d1;border-radius:10px;background:#fff;color:var(--ink);cursor:pointer}.trunk-game button:focus-visible{outline:3px solid #ed9b32;outline-offset:3px}.trunk-game button:disabled{cursor:default;opacity:.62}.trunk-game h2,.trunk-game h3,.trunk-game p{margin:0}.trunk-game .tg-kicker{font-weight:750;letter-spacing:.09em;font-size:11px;color:#477174}.trunk-game .tg-header{display:flex;gap:14px;align-items:start;justify-content:space-between;margin-bottom:16px}.trunk-game .tg-header h2{font-size:26px;line-height:1.3}.trunk-game .tg-route{font-size:13px;margin-top:5px;color:#507078}.trunk-game .tg-clock{font:700 22px/1.3 ui-monospace,monospace;background:white;border:1px solid #c9dcda;border-radius:12px;padding:8px 12px;text-align:center;white-space:nowrap}.trunk-game .tg-clock small{display:block;font:11px system-ui;color:#577476}.trunk-game .tg-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(245px,.8fr);gap:20px;align-items:start}.trunk-game .tg-car{background:linear-gradient(90deg,#648a8c,#91b1af 12%,#739a99 88%,#496f75);border:2px solid #527879;border-radius:38px 38px 28px 28px;padding:18px 19px 24px;box-shadow:inset 0 0 0 5px #b9d0c633,0 12px 18px #45676b18;position:relative}.trunk-game .tg-car:before{content:'';display:block;width:64%;height:24px;margin:0 auto 12px;border-radius:28px 28px 5px 5px;background:linear-gradient(110deg,#254755,#496970);border:3px solid #c2d3cd}.trunk-game .tg-grid{display:grid;gap:3px;background:#203b48;border:8px solid #304e5a;border-radius:12px;padding:4px;touch-action:none}.trunk-game .tg-cell{aspect-ratio:1;min-height:0;min-width:0;border-radius:4px;border:1px dashed #76928d66;background:#e3e8df;color:#183c46;padding:0;position:relative;display:grid;place-items:center;font-size:14px;font-weight:800}.trunk-game .tg-cell:disabled{opacity:1}.trunk-game .tg-cell.blocked{background:repeating-linear-gradient(45deg,#60737c,#60737c 5px,#4e656e 5px,#4e656e 10px);border:0;color:#c4d6d6}.trunk-game .tg-cell.packed{border:1px solid #25485440}.trunk-game .tg-cell.packed.selected{box-shadow:inset 0 0 0 3px #fff6dc}.trunk-game .tg-cell.preview{box-shadow:inset 0 0 0 3px #038b77;background:#b9f0d2!important}.trunk-game .tg-cell.preview.invalid{box-shadow:inset 0 0 0 3px #bd5851;background:#ffe0d5!important}.trunk-game .tg-cell svg{width:66%;height:66%;max-width:31px;max-height:31px;pointer-events:none}.trunk-game .tg-bumper{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}.trunk-game .tg-light{width:38px;height:12px;background:#e59b77;border:2px solid #365e64;border-radius:4px}.trunk-game .tg-plate{border-radius:4px;background:#dce3d5;color:#365759;font:700 10px/1.2 system-ui;letter-spacing:.15em;padding:4px 8px}.trunk-game .tg-progress{display:flex;justify-content:space-between;font-size:13px;margin:12px 0 4px;gap:8px}.trunk-game .tg-meter{height:8px;background:#cadcd4;border-radius:9px;overflow:hidden}.trunk-game .tg-meter span{display:block;height:100%;background:#258c79;transition:width .16s}.trunk-game .tg-palette{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}.trunk-game .tg-piece{padding:8px;min-width:0;position:relative;touch-action:none;text-align:left;display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;align-items:center}.trunk-game .tg-piece svg{width:52px;height:57px}.trunk-game .tg-piece.selected{border:2px solid #0f8a78;background:#edfaf4;box-shadow:0 0 0 2px #0f8a7814}.trunk-game .tg-piece strong{font-size:13px;line-height:1.3;display:block}.trunk-game .tg-piece small{font-size:11px;display:block;margin-top:4px;color:#678180}.trunk-game .tg-tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.trunk-game .tg-tools button{padding:7px 14px;flex:1}.trunk-game .tg-hint{font-size:12px;color:#496d74;margin-top:10px}.trunk-game .tg-notice{border-left:4px solid #259888;background:#ffffffbd;border-radius:5px;padding:11px 13px;margin-top:16px;min-height:48px;font-size:14px}.trunk-game .tg-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.trunk-game .tg-footer p{font-size:12px;color:#517174;max-width:400px}.trunk-game .tg-primary{background:#087f72;color:white;border-color:#087f72;padding:10px 19px;font-weight:750;white-space:nowrap}.trunk-game .tg-modal{position:absolute;inset:0;background:#133740cc;z-index:10;display:grid;place-items:center;padding:20px}.trunk-game .tg-dialog{background:#f7faf3;border:1px solid #afc8bc;border-radius:18px;padding:22px;max-width:440px;width:100%;box-shadow:0 18px 65px #0d2c3a44}.trunk-game .tg-dialog h3{font-size:23px}.trunk-game .tg-manifest{padding:12px 0;max-height:190px;overflow:auto}.trunk-game .tg-manifest div{display:flex;justify-content:space-between;padding:5px;border-bottom:1px solid #dfe8dd;font-size:14px}.trunk-game .tg-dialog .tg-tools{margin-top:16px}.trunk-game .tg-summary{margin-top:16px;background:#fff8dc;border:1px solid #e2d4a2;border-radius:12px;padding:16px}.trunk-game .tg-summary strong{font-size:20px}.trunk-game .tg-ghost{position:fixed;pointer-events:none;width:100px;height:100px;z-index:100000;opacity:.88;filter:drop-shadow(0 6px 8px #102e4055)}.trunk-game .tg-ghost svg{width:100%;height:100%}.trunk-game .tg-paused{background:#213d4e;color:#fff;padding:9px 12px;margin-bottom:12px;border-radius:8px}.trunk-game .tg-small{font-size:13px;color:#597376}@media(max-width:720px){.trunk-game{padding:14px;border-radius:15px}.trunk-game .tg-body{grid-template-columns:1fr;gap:16px}.trunk-game .tg-car{max-width:510px;width:100%;margin:auto;padding:12px 12px 17px}.trunk-game .tg-grid{border-width:5px;gap:2px}.trunk-game .tg-cell{min-height:37px}.trunk-game .tg-header h2{font-size:23px}.trunk-game .tg-palette{grid-template-columns:repeat(2,minmax(0,1fr))}.trunk-game .tg-piece{grid-template-columns:42px minmax(0,1fr)}.trunk-game .tg-piece svg{width:42px;height:48px}.trunk-game .tg-footer{align-items:stretch;flex-direction:column}.trunk-game .tg-footer .tg-primary{width:100%}.trunk-game .tg-grid{touch-action:none}}
+`;
+const SMALL_CSS='@media(max-width:480px){.trunk-game{padding:8px}.trunk-game .tg-car{padding:4px 4px 12px}.trunk-game .tg-grid{border-width:2px;padding:2px;gap:2px;grid-template-columns:repeat(6,minmax(44px,1fr))!important}.trunk-game .tg-cell{min-width:44px;min-height:44px}.trunk-game .tg-car:before{height:19px;margin-top:7px;margin-bottom:9px}}';
+function mount(container,{state,onAction}){
+ validate(state);assert(container&&typeof onAction==='function','装箱画面缺少宿主。');let current=clone(state),paused=false,disposed=false,timer=null,review=false,drag=null,ghost=null,suppressUntil=0,lastSignature='',focusAfter=null;
+ const root=container.ownerDocument.createElement('section'),doc=container.ownerDocument,win=doc.defaultView;root.className='trunk-game';root.dataset.testid='trunk-game';root.setAttribute('aria-label',title);root.tabIndex=-1;container.replaceChildren(root);
+ function live(){return!disposed&&!paused&&current.phase==='playing';}
+ function emit(action){if(live())onAction(action);}
+ function cleanupDrag(){drag=null;ghost?.remove();ghost=null;root.querySelectorAll('.preview').forEach(c=>c.classList.remove('preview','invalid'));}
+ function signature(){return JSON.stringify([current.phase,current.pieces,current.placements,current.selected,current.notice,current.moves,current.mistakes,paused,review]);}
+ function clock(){const left=Math.ceil((current.grid.limitMs-current.elapsedMs)/1000),node=root.querySelector('[data-testid=trunk-clock]');if(node)node.textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');}
+ function render(){
+  const active=doc.activeElement;if(active&&root.contains(active))focusAfter=active.dataset.focusKey||null;
+  const packed=occupied(current),selected=current.pieces.find(p=>p.id===current.selected),blocked=new Set(current.grid.blocked.map(p=>p.join(','))),terminal=current.phase!=='playing',disabled=paused||terminal?'disabled':'',capacity=current.grid.width*current.grid.height-current.grid.blocked.length;
+  let grid='';for(let y=0;y<current.grid.height;y++)for(let x=0;x<current.grid.width;x++){
+   const owner=packed.get(x+','+y),piece=current.pieces.find(p=>p.id===owner),at=piece&&current.placements[owner],first=piece&&cells(piece)[0],marked=first&&x===at.x+first[0]&&y===at.y+first[1],isBlocked=blocked.has(x+','+y);
+   grid+=`<button type="button" class="tg-cell${isBlocked?' blocked':''}${piece?' packed':''}${owner===current.selected?' selected':''}" data-game-action="grid" data-focus-key="cell-${x}-${y}" data-testid="trunk-cell-${x}-${y}" data-x="${x}" data-y="${y}" ${owner?`data-piece-id="${esc(owner)}" style="background:${COLORS[piece.kind]}"`:''} aria-label="第 ${y+1} 行第 ${x+1} 格${isBlocked?'：轮拱，不能放货':piece?'：'+LABELS[piece.kind]:'：空位'}" ${disabled}>${isBlocked?'×':marked?`<svg viewBox="0 0 30 32" aria-hidden="true">${icon(piece.kind)}</svg>`:''}</button>`;
+  }
+  const mode=current.config.mode==='inventory',out=result(current),manifest=current.pieces.filter(p=>current.placements[p.id]);
+  root.innerHTML=`<style>${CSS}</style>${paused?'<div class="tg-paused" role="status">已暂停，货物和时间都停在这里。</div>':''}<header class="tg-header"><div><div class="tg-kicker">LIANG · PACK & GO</div><h2>${title}</h2><p class="tg-route">Rawang <span aria-hidden="true">→</span> Masai · ${mode?'真实货物运输':'零库存练习'} · ${['轻松装箱','转个方向','空间高手'][current.config.difficulty]}</p></div><div class="tg-clock"><span data-testid="trunk-clock"></span><small>本关剩余</small></div></header><div class="tg-body"><div><div class="tg-car"><div class="tg-grid" role="group" aria-label="后备箱格子" data-testid="trunk-grid" style="grid-template-columns:repeat(${current.grid.width},minmax(0,1fr))">${grid}</div><div class="tg-bumper"><span class="tg-light"></span><span class="tg-plate">LIANG FAMILY</span><span class="tg-light"></span></div></div><div class="tg-progress"><strong data-testid="trunk-progress">已装 ${count(current)} / ${current.pieces.length} 件</strong><span>空间 ${packed.size} / ${capacity} 格</span></div><div class="tg-meter"><span style="width:${packed.size/capacity*100}%"></span></div></div><section><h3>${mode?'选择要运的货物':'把这些物品都装好'}</h3><p class="tg-small">${mode?'尽量利用空间，没装上的货物留在 Rawang。':'先摆大件，再用小件填空隙。'}</p><div class="tg-palette" data-testid="trunk-palette">${current.pieces.map((p,i)=>`<button type="button" class="tg-piece${p.id===current.selected?' selected':''}" data-game-action="select" data-focus-key="piece-${esc(p.id)}" data-testid="trunk-piece-${esc(p.id)}" data-piece-id="${esc(p.id)}" aria-pressed="${p.id===current.selected}" ${disabled}>${miniature(p)}<span><strong>${LABELS[p.kind]}${mode?' '+(i+1):''}</strong><small>${current.placements[p.id]?'已装好 · 可挪动':cells(p).length+' 格 · 在车外'}</small></span></button>`).join('')}</div><div class="tg-tools"><button type="button" data-game-action="rotate" data-focus-key="rotate" ${disabled||!selected?'disabled':''}>↻ 旋转 <small>R</small></button><button type="button" data-game-action="remove" data-focus-key="remove" ${disabled||!selected||!current.placements[selected.id]?'disabled':''}>取回货物</button></div><p class="tg-hint">点选货物，再点空格；也可拖动。键盘：方向键选格，空格放置，R 旋转，Delete 取回。</p></section></div><p class="tg-notice" data-testid="trunk-notice" role="status" aria-live="polite">${esc(current.notice)}</p>${terminal?`<div class="tg-summary" data-testid="trunk-result"><strong>${out.status==='won'?'装箱完成':'再试一次'}</strong><p>${out.status==='won'?`本轮 ${out.score} 分 · 装好 ${out.packed} 件。${mode?'请使用上方返回按钮，保存运输结果。':'练习没有使用共享库存。'}`:'可以返回后重新挑战。未完成装箱，不会转移货物。'}</p></div>`:`<footer class="tg-footer"><p>${mode?'只运清单里实际装好的货物。发车后由宿主统一结算，未装货物不扣除。':'练习材料只用于本关。装齐所有物品后才能完成挑战。'}</p><button class="tg-primary" type="button" data-game-action="review" data-focus-key="review" ${disabled}>核对并发车</button></footer>`}${review&&!paused&&!terminal?`<div class="tg-modal"><section class="tg-dialog" role="dialog" aria-modal="true" aria-labelledby="trunk-review-title"><h3 id="trunk-review-title">确认装车清单</h3><p class="tg-small">${mode?'以下货物将运到 Masai。':'这是练习清单，不改变共享库存。'}</p><div class="tg-manifest">${manifest.map(p=>`<div><span>${LABELS[p.kind]}</span><strong>1 件</strong></div>`).join('')}</div><p>已装 ${manifest.length} 件，车外还有 ${current.pieces.length-manifest.length} 件。</p><div class="tg-tools"><button type="button" data-game-action="cancel-review" data-focus-key="cancel-review">继续调整</button><button type="button" class="tg-primary" data-game-action="ship" data-focus-key="ship">确认发车</button></div></section></div>`:''}`;
+  root.querySelector('style').textContent+=SMALL_CSS;
+  lastSignature=signature();clock();if(focusAfter){const target=Array.from(root.querySelectorAll('[data-focus-key]')).find(el=>el.dataset.focusKey===focusAfter);target?.focus({preventScroll:true});focusAfter=null;}
+ }
+ function scheduling(){if(timer){win.clearInterval(timer);timer=null;}if(live())timer=win.setInterval(()=>emit({type:'tick',dt:250}),250);}
+ function update(next){if(disposed)return;validate(next);const previousPhase=current.phase;current=clone(next);if(current.phase!=='playing'){review=false;cleanupDrag();}if(signature()!==lastSignature)render();else clock();if(previousPhase!==current.phase)scheduling();}
+ function showReview(){if(!live())return;if(!count(current)||current.config.mode==='practice'&&count(current)!==current.pieces.length){emit({type:'ship'});return;}review=true;cleanupDrag();render();root.querySelector('[data-game-action=cancel-review]')?.focus();}
+ function click(event){if(!live()||event.detail>0&&win.performance.now()<suppressUntil)return;const button=event.target.closest('[data-game-action]');if(!button||!root.contains(button)||button.disabled)return;const act=button.dataset.gameAction;if(review&&!['ship','cancel-review'].includes(act))return;
+  if(act==='select')emit({type:'select',id:button.dataset.pieceId});
+  else if(act==='grid'){if(button.dataset.pieceId&&(!current.selected||current.selected===button.dataset.pieceId))emit({type:'select',id:button.dataset.pieceId});else emit({type:'place',x:Number(button.dataset.x),y:Number(button.dataset.y)});}
+  else if(act==='rotate'||act==='remove')emit({type:act});else if(act==='review')showReview();else if(act==='cancel-review'){review=false;render();root.querySelector('[data-game-action=review]')?.focus();}else if(act==='ship'){review=false;emit({type:'ship'});}
+ }
+ function keydown(event){if(!live())return;if(review){if(event.key==='Escape'){event.preventDefault();review=false;render();root.querySelector('[data-game-action=review]')?.focus();}else if(event.key==='Tab'){const buttons=Array.from(root.querySelectorAll('.tg-dialog button'));if(buttons.length){event.preventDefault();buttons[doc.activeElement===buttons[0]?1:0].focus();}}return;}
+  if(event.key.toLowerCase()==='r'){event.preventDefault();emit({type:'rotate',direction:event.shiftKey?-1:1});return;}
+  if(['Delete','Backspace'].includes(event.key)){event.preventDefault();emit({type:'remove'});return;}
+  const cell=event.target.closest('[data-game-action=grid]');if(cell&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){event.preventDefault();const x=Math.max(0,Math.min(current.grid.width-1,Number(cell.dataset.x)+(event.key==='ArrowRight'?1:event.key==='ArrowLeft'?-1:0))),y=Math.max(0,Math.min(current.grid.height-1,Number(cell.dataset.y)+(event.key==='ArrowDown'?1:event.key==='ArrowUp'?-1:0)));root.querySelector(`[data-testid="trunk-cell-${x}-${y}"]`)?.focus();}
+ }
+ function preview(x,y,key){root.querySelectorAll('.preview').forEach(el=>el.classList.remove('preview','invalid'));const p=current.pieces.find(p=>p.id===key);if(!p)return;const invalid=!!fits(current,p,x,y);for(const[dx,dy]of cells(p)){const el=root.querySelector(`[data-testid="trunk-cell-${x+dx}-${y+dy}"]`);el?.classList.add('preview');if(invalid)el?.classList.add('invalid');}}
+ function point(clientX,clientY){const grid=root.querySelector('[data-testid=trunk-grid]');if(!grid)return null;const box=grid.getBoundingClientRect(),style=win.getComputedStyle(grid),left=box.left+parseFloat(style.borderLeftWidth)+parseFloat(style.paddingLeft),top=box.top+parseFloat(style.borderTopWidth)+parseFloat(style.paddingTop),width=box.width-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth)-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight),height=box.height-parseFloat(style.borderTopWidth)-parseFloat(style.borderBottomWidth)-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);if(clientX<left||clientY<top||clientX>=left+width||clientY>=top+height)return null;return{x:Math.floor((clientX-left)/width*current.grid.width),y:Math.floor((clientY-top)/height*current.grid.height)};}
+ function down(event){if(!live()||review||event.button!==0&&event.pointerType!=='touch')return;const target=event.target.closest('[data-piece-id]');if(!target||!root.contains(target))return;const key=target.dataset.pieceId,at=current.placements[key],onGrid=target.dataset.gameAction==='grid';drag={id:key,pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,moved:false,offsetX:onGrid?Number(target.dataset.x)-at.x:0,offsetY:onGrid?Number(target.dataset.y)-at.y:0};if(!onGrid)emit({type:'select',id:key});}
+ function move(event){if(!live()||!drag||event.pointerId!==drag.pointerId)return;if(!drag.moved&&Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>6){drag.moved=true;emit({type:'select',id:drag.id});}if(!drag.moved)return;event.preventDefault();if(!ghost){ghost=doc.createElement('div');ghost.className='tg-ghost';ghost.innerHTML=miniature(current.pieces.find(p=>p.id===drag.id));root.append(ghost);}ghost.style.left=(event.clientX-22)+'px';ghost.style.top=(event.clientY-22)+'px';const cell=point(event.clientX,event.clientY);if(cell)preview(cell.x-drag.offsetX,cell.y-drag.offsetY,drag.id);else root.querySelectorAll('.preview').forEach(el=>el.classList.remove('preview','invalid'));}
+ function up(event){if(!drag||event.pointerId!==drag.pointerId)return;const item=drag,cell=point(event.clientX,event.clientY);cleanupDrag();if(!live()||!item.moved)return;suppressUntil=win.performance.now()+500;if(cell)emit({type:'place',id:item.id,x:cell.x-item.offsetX,y:cell.y-item.offsetY});}
+ const cancel=()=>cleanupDrag();root.addEventListener('click',click);root.addEventListener('keydown',keydown);root.addEventListener('pointerdown',down);doc.addEventListener('pointermove',move,{passive:false});doc.addEventListener('pointerup',up);doc.addEventListener('pointercancel',cancel);
+ render();scheduling();return{update,setPaused(value){if(disposed)return;paused=!!value;if(paused){review=false;cleanupDrag();}render();scheduling();},dispose(){if(disposed)return;disposed=true;win.clearInterval(timer);timer=null;cleanupDrag();root.removeEventListener('click',click);root.removeEventListener('keydown',keydown);root.removeEventListener('pointerdown',down);doc.removeEventListener('pointermove',move);doc.removeEventListener('pointerup',up);doc.removeEventListener('pointercancel',cancel);root.remove();}};
+}
+return{id,version,title,create,step,validate,result,mount};
+});
+
+;
 /* Liang Universe v0.3: compatible learning saves and verified arcade receipts. */
-(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.WQUniverseCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LiangLegacyCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const KEY='liang_universe_save',SCHEMA=3,MAX_PAYLOAD=16000000;
 const ARCADE=['dodge','merge','pulse'];
@@ -180,3 +696,183 @@ function encode(s){const j=JSON.stringify(pack(s)),bytes=new TextEncoder().encod
 function decode(code){assert(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes))).state;}
 return{KEY,SCHEMA,MAX_PAYLOAD,CHARS,KEYS,ARCADE,clone,uid,fresh,validate,migrate,crc,note,startBoard,roll,nextTurn,launch,launchArcade,recordArcadeResult,storeLegacy,beginRun,recordSubmission,changeCharacter,invalidateRun,reward,closeSession,prepareImport,wrap,unwrap,encode,decode};
 });
+
+;
+/* v0.4 delegates unchanged learning/arcade behavior to the frozen v0.3 core. */
+(function(root,factory){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js')});
+ else root.WQUniverseCore=factory(root.LiangLegacyCore,root.LiangGames);
+})(typeof globalThis!=='undefined'?globalThis:this,function(L,G){
+'use strict';
+const SCHEMA=4,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
+const IDS=['fishing','kitchen','trunk'],ITEMS=['fish','meal'],REGIONS=['Rawang','Masai'],OLD=['slipper','ball','jar'];
+const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),obj=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const int=(x,min=0,max=1e9)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
+const ident=x=>typeof x==='string'&&/^[A-Za-z0-9:_-]{1,140}$/.test(x);
+function check(value,message){if(!value)throw Error(message);}
+const stock=()=>({Rawang:{fish:0,meal:0},Masai:{fish:0,meal:0}});
+const extra=()=>({modules:{pending:null,claims:{},results:[]},economy:{version:1,inventory:stock(),ledger:[],riverCollection:[],diceChoice:null}});
+function engine(id){check(IDS.includes(id)&&G?.[id]?.version===1,'游戏组件未正确载入，请刷新后重试。');return G[id];}
+function fresh(){return {...L.fresh(),schemaVersion:SCHEMA,...extra()};}
+function legacyProjection(s){const p=clone(s);p.schemaVersion=3;p.migrationArchive=null;if(p.activeSession?.gameId==='module')p.activeSession=null;return p;}
+function validateModuleResult(r){
+ check(obj(r)&&ident(r.runId)&&ident(r.sessionToken)&&IDS.includes(r.moduleId)&&r.version===1&&['practice','inventory'].includes(r.mode)&&['won','lost','abandoned'].includes(r.status)&&int(r.score)&&int(r.at,0,1e15)&&typeof r.actionHash==='string','游戏结算记录无效。');
+ check(obj(r.goods)&&int(r.goods.fish,0,12)&&int(r.goods.meals,0,12)&&Array.isArray(r.goods.shipped)&&r.goods.shipped.length<=12&&r.goods.shipped.every(x=>obj(x)&&ident(x.id)&&ITEMS.includes(x.itemId)&&x.qty===1)&&new Set(r.goods.shipped.map(x=>x.id)).size===r.goods.shipped.length,'游戏物资凭证无效。');
+ check(Array.isArray(r.goods.collectibles)&&r.goods.collectibles.length<=3&&r.goods.collectibles.every(x=>OLD.includes(x)),'河里旧物记录无效。');
+ if(r.mode==='practice'||r.status!=='won')check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'练习或未通关记录不能增加共享物资。');
+ else if(r.moduleId==='fishing')check(r.goods.fish>0&&r.goods.meals===0&&!r.goods.shipped.length,'钓鱼只能产出鱼和确认过的旧物。');
+ else if(r.moduleId==='kitchen')check(r.goods.fish===0&&int(r.goods.meals,1,3)&&!r.goods.shipped.length&&!r.goods.collectibles.length,'厨房只能加工料理，不能额外产生鱼或收藏。');
+ else check(r.goods.fish===0&&r.goods.meals===0&&r.goods.shipped.length>0&&!r.goods.collectibles.length,'运输只能转移装车清单中的物资。');
+}
+function checkRunInventory(s,run){
+ if(!run||run.config.mode!=='inventory')return;
+ const available=s.economy.inventory.Rawang;
+ if(run.moduleId==='kitchen')check(int(run.config.units,1,3)&&available.fish>=run.config.units,'这局厨房需要的鱼已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ if(run.moduleId==='trunk'){
+  const counts={fish:0,meal:0};for(const cargo of run.config.cargo)counts[cargo.itemId]+=cargo.qty;
+  check(ITEMS.every(item=>available[item]>=counts[item]),'这局运输清单中的物资已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ }
+}
+function replay(run){
+ check(obj(run)&&ident(run.id)&&IDS.includes(run.moduleId)&&run.version===1&&obj(run.config)&&['practice','inventory'].includes(run.config.mode)&&int(run.config.seed,0,0xffffffff)&&int(run.config.difficulty,0,2)&&int(run.startedAt,0,1e15),'游戏开局资料无效。');
+ check(Array.isArray(run.actions)&&run.actions.length<=20000&&JSON.stringify(run.actions).length<=1800000,'本局操作记录过大或损坏，请先导出备份。');
+ const E=engine(run.moduleId);let state=E.create(clone(run.config));
+ for(const action of run.actions){check(obj(action)&&JSON.stringify(action).length<=2000,'游戏操作记录无效。');state=E.step(state,clone(action));}
+ E.validate(state);check(eq(state,run.state),'游戏进度与实际操作记录不一致。');return state;
+}
+function validate(s){
+ check(obj(s),'存档结构无效。');if(s.schemaVersion!==SCHEMA){const e=Error('请先迁移旧版存档，未覆盖现有资料。');e.code='UNSUPPORTED_SCHEMA';throw e;}
+ L.validate(legacyProjection(s));
+ if(s.migrationArchive!==null){const a=s.migrationArchive;check(obj(a)&&[1,2,3].includes(a.schemaVersion)&&typeof a.payload==='string'&&a.payload.length<=MAX_PAYLOAD&&a.checksum===crc(a.payload),'升级前备份校验失败。');const old=JSON.parse(a.payload);check(old.schemaVersion===a.schemaVersion,'升级前备份版本不一致。');L.migrate(old);}
+ check(obj(s.modules)&&obj(s.modules.claims)&&Array.isArray(s.modules.results),'小游戏记录缺失。');
+ for(const [id,r] of Object.entries(s.modules.claims)){validateModuleResult(r);check(id===r.runId,'小游戏凭证编号不一致。');}
+ check(new Set(Object.values(s.modules.claims).map(r=>r.sessionToken)).size===Object.keys(s.modules.claims).length,'同一个小游戏会话不能有两份结算凭证。');
+ check(new Set(s.modules.results.map(r=>r.runId)).size===s.modules.results.length,'小游戏结果重复。');
+ for(const r of s.modules.results){validateModuleResult(r);check(eq(r,s.modules.claims[r.runId]),'小游戏结果与凭证不一致。');}
+ if(s.modules.pending){const run=s.modules.pending;replay(run);check(!s.modules.claims[run.id],'已结算游戏不能再作为未完成局。');const a=s.activeSession;check(a?.gameId==='module'&&a.moduleId===run.moduleId&&a.runId===run.id&&a.token===run.sessionToken,'未完成游戏与会话不一致。');}
+ if(s.activeSession?.gameId==='module'){
+  const a=s.activeSession;check(s.modules.pending&&ident(a.token)&&int(a.learnerSlot,0,2)&&a.runKey===null&&a.returnSnapshotHash===crc(JSON.stringify(a.returnSnapshot))&&eq(a.returnSnapshot,s.board)&&a.boardId===(s.board?.id||'')&&a.turnNo===(s.board?.turnNo||0),'小游戏返回位置或回合损坏。');
+ }
+ const e=s.economy;check(obj(e)&&e.version===1&&obj(e.inventory)&&Array.isArray(e.ledger)&&Array.isArray(e.riverCollection),'物资账本缺失。');
+ check(new Set(e.ledger.map(t=>t.id)).size===e.ledger.length,'物资交易重复。');let expected=stock();const collection=new Set();
+ for(const t of e.ledger){
+  check(obj(t)&&ident(t.id)&&int(t.at,0,1e15)&&['fish-production','fish-cooking','cargo-transfer','meal-consume'].includes(t.type)&&obj(t.delta),'物资交易格式无效。');
+  for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta[zone])&&int(t.delta[zone][item],-12,12),'物资变化数量无效。');expected[zone][item]+=t.delta[zone][item];check(int(expected[zone][item],0,1e8),'物资不足或账本超出限制。');}
+  const r=t.delta.Rawang,m=t.delta.Masai;
+  if(t.type==='meal-consume')check(r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1&&typeof t.boardId==='string'&&int(t.turnNo,1),'料理消费记录无效。');
+  else{
+   const claim=s.modules.claims[t.runId];check(claim?.mode==='inventory'&&claim.status==='won'&&t.id==='module:'+claim.runId&&t.actionHash===claim.actionHash,'物资没有对应的真实游戏结算。');
+   if(t.type==='fish-production'){check(claim.moduleId==='fishing'&&r.fish===claim.goods.fish&&r.fish>0&&r.meal===0&&m.fish===0&&m.meal===0,'钓鱼产出不守恒。');for(const id of claim.goods.collectibles)collection.add(id);}
+   if(t.type==='fish-cooking')check(claim.moduleId==='kitchen'&&r.fish===-claim.goods.meals&&r.meal===claim.goods.meals&&r.meal>0&&m.fish===0&&m.meal===0,'料理加工不守恒。');
+   if(t.type==='cargo-transfer'){const counts={fish:0,meal:0};for(const cargo of claim.goods.shipped)counts[cargo.itemId]++;check(claim.moduleId==='trunk'&&counts.fish+counts.meal>0&&r.fish===-counts.fish&&r.meal===-counts.meal&&m.fish===counts.fish&&m.meal===counts.meal,'运输必须等量转移真实物资。');}
+  }
+ }
+ for(const zone of REGIONS)for(const item of ITEMS)check(obj(e.inventory[zone])&&e.inventory[zone][item]===expected[zone][item],'库存与物资流水不一致。');
+ for(const r of Object.values(s.modules.claims))if(r.mode==='inventory'&&r.status==='won')check(e.ledger.some(t=>t.id==='module:'+r.runId&&t.runId===r.runId),'已发放的物资凭证缺少对应流水，不能覆盖原档。');
+ check(e.riverCollection.every(x=>OLD.includes(x))&&new Set(e.riverCollection).size===e.riverCollection.length&&eq([...collection].sort(),e.riverCollection.slice().sort()),'河里旧物收藏与来源不一致。');
+ checkRunInventory(s,s.modules.pending);
+ if(e.diceChoice){const c=e.diceChoice;check(obj(c)&&ident(c.id)&&e.ledger.some(t=>t.id===c.id&&t.type==='meal-consume')&&s.board?.phase==='roll'&&c.boardId===s.board.id&&c.turnNo===s.board.turnNo&&c.turn===s.board.turn&&Array.isArray(c.rolls)&&c.rolls.length===2&&c.rolls.every(x=>int(x,1,6)),'料理骰子选择记录无效。');}
+ return clone(s);
+}
+// A rejected action must leave the caller's live save untouched. Validate and
+// finish all work on a detached draft before publishing any claim or inventory.
+function atomic(s,operation){const draft=validate(s),result=operation(draft);validate(draft);Object.assign(s,draft);return result;}
+function migrate(input){
+ if(input?.schemaVersion===SCHEMA)return{state:validate(input),migrated:false,fromVersion:SCHEMA,toVersion:SCHEMA};
+ const old=L.migrate(input).state,payload=JSON.stringify(input);check(payload.length<=MAX_PAYLOAD,'升级前备份超过大小限制，原档保留。');
+ const state={...old,schemaVersion:SCHEMA,...extra(),migrationArchive:{schemaVersion:input.schemaVersion,payload,checksum:crc(payload)}};
+ state.migrations.push({from:input.schemaVersion,to:SCHEMA,at:Date.now(),note:'保留完整旧档；新物资账本从零开始，不补发历史奖励。'});
+ return{state:validate(state),migrated:true,fromVersion:input.schemaVersion,toVersion:SCHEMA};
+}
+function launchModuleDraft(s,id,options={}){
+ check(obj(options),'游戏模式配置无效。');
+ check(!s.activeSession&&!s.modules.pending,'请先继续或结束尚未完成的一局。');check(!s.economy.diceChoice,'请先选好本回合的骰子。');const E=engine(id);
+ const mode=options.mode??'practice',difficulty=options.difficulty??0;check(['practice','inventory'].includes(mode)&&int(difficulty,0,2),'游戏模式无效。');
+ const seed=parseInt(crc(uid()),16)>>>0,config={seed,mode,difficulty};
+ if(id==='kitchen'){const units=options.units??3;check(int(units,1,3),'每局请选择一至三份料理。');config.units=mode==='practice'?units:Math.min(units,s.economy.inventory.Rawang.fish);check(config.units>0,'Rawang 还没有鱼。可以先玩练习关，或去河边钓鱼。');}
+ if(id==='trunk'&&mode==='inventory'){
+  config.cargo=[];const amounts=options.cargo??s.economy.inventory.Rawang;check(obj(amounts),'装箱数量清单无效。');
+  for(const item of ['meal','fish']){check(int(amounts[item]??0,0,s.economy.inventory.Rawang[item]),'装箱数量超过 Rawang 库存。');const count=Math.min(amounts[item]??0,12-config.cargo.length);for(let n=0;n<count;n++)config.cargo.push({id:item+'-'+(n+1),itemId:item,qty:1});}
+  check(config.cargo.length>0,'Rawang 暂无可运物资。可以先玩装箱练习。');
+ }
+ const initial=E.create(clone(config));E.validate(initial);
+ const token=uid(),runId=uid(),slot=s.board?.players[s.board.turn].learnerSlot??0;
+ s.activeSession={gameId:'module',moduleId:id,runId,token,learnerSlot:slot,boardId:s.board?.id||'',turnNo:s.board?.turnNo||0,returnSnapshot:clone(s.board),returnSnapshotHash:crc(JSON.stringify(s.board)),runKey:null};
+ s.modules.pending={id:runId,sessionToken:token,moduleId:id,version:E.version,config,startedAt:Date.now(),actions:[],state:initial};
+ L.note(s,'进入'+E.title+(mode==='practice'?' · 练习关':' · 联动物资关'));return clone(s.activeSession);
+}
+function launchModule(s,id,options={}){return atomic(s,draft=>launchModuleDraft(draft,id,options));}
+function updateModule(s,token,actions,state){
+ const run=s.modules.pending;check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&run,'游戏会话已改变。');
+ check(eq(s.activeSession.returnSnapshot,s.board)&&s.activeSession.returnSnapshotHash===crc(JSON.stringify(s.board)),'棋盘位置或回合已改变，未覆盖本局进度。');
+ checkRunInventory(s,run);
+ check(Array.isArray(actions)&&actions.length>=run.actions.length&&eq(actions.slice(0,run.actions.length),run.actions),'游戏进度不能倒退或替换已保存操作。');
+ const next={...run,actions:clone(actions),state:clone(state)};replay(next);s.modules.pending=next;return{saved:true};
+}
+function transaction(s,t){
+ check(!s.economy.ledger.some(x=>x.id===t.id),'此物资交易已经结算。');
+ const nextInventory=clone(s.economy.inventory);
+ for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta?.[zone])&&int(t.delta[zone][item],-12,12),'物资交易数量无效。');const next=nextInventory[zone][item]+t.delta[zone][item];check(int(next,0,1e8),'物资不足，未扣除也未发放，请保留存档。');nextInventory[zone][item]=next;}
+ s.economy.inventory=nextInventory;s.economy.ledger.push(clone(t));
+}
+function settleModuleDraft(s,token){
+ const already=Object.values(s.modules.claims).find(r=>r.sessionToken===token);if(already)return{duplicate:true,result:clone(already)};
+ check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&s.modules.pending,'没有可结算的小游戏。');
+ const run=s.modules.pending,state=replay(run),outcome=engine(run.moduleId).result(state);
+ check(outcome&&['won','lost'].includes(outcome.status)&&int(outcome.score),'游戏尚未完成，不能结算。');
+ const goods={fish:0,meals:0,shipped:[],collectibles:[]};
+ if(run.config.mode==='inventory'&&outcome.status==='won'){
+  if(run.moduleId==='fishing'){check(int(outcome.fish,1,12)&&Array.isArray(outcome.collectibles)&&outcome.collectibles.every(id=>OLD.includes(id)),'钓鱼结果无效。');goods.fish=outcome.fish;goods.collectibles=clone(outcome.collectibles);}
+  if(run.moduleId==='kitchen'){check(int(outcome.meals,1,run.config.units),'料理数量无效。');goods.meals=outcome.meals;}
+  if(run.moduleId==='trunk'){check(Array.isArray(outcome.shipped)&&outcome.shipped.length>0&&new Set(outcome.shipped.map(x=>x.id)).size===outcome.shipped.length&&outcome.shipped.every(x=>run.config.cargo.some(c=>eq(c,x))),'运输清单不是开局时的真实物资。');goods.shipped=clone(outcome.shipped);}
+ }
+ const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:outcome.status,score:outcome.score,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods};
+ validateModuleResult(r);s.modules.claims[r.runId]=clone(r);s.modules.results.push(clone(r));
+ if(r.status==='won'&&r.mode==='inventory'){
+  const delta=stock(),type=run.moduleId==='fishing'?'fish-production':run.moduleId==='kitchen'?'fish-cooking':'cargo-transfer';
+  if(type==='fish-production'){delta.Rawang.fish=goods.fish;for(const id of goods.collectibles)if(!s.economy.riverCollection.includes(id))s.economy.riverCollection.push(id);}
+  if(type==='fish-cooking'){delta.Rawang.fish=-goods.meals;delta.Rawang.meal=goods.meals;}
+  if(type==='cargo-transfer')for(const c of goods.shipped){delta.Rawang[c.itemId]-=c.qty;delta.Masai[c.itemId]+=c.qty;}
+  transaction(s,{id:'module:'+r.runId,type,at:r.at,runId:r.runId,actionHash:r.actionHash,delta});
+ }
+ L.closeSession(s,token);s.modules.pending=null;L.note(s,engine(run.moduleId).title+'：'+(r.status==='won'?'通关':'本局结束')+'，'+r.score+'分。'+(r.mode==='practice'?'练习成绩已记录，不改变物资。':'物资与游戏结果已分别保存。'));
+ return{duplicate:false,result:clone(r)};
+}
+function settleModule(s,token){return atomic(s,draft=>settleModuleDraft(draft,token));}
+function closeSession(s,token){const module=s.activeSession?.gameId==='module';const result=L.closeSession(s,token);if(module)s.modules.pending=null;return result;}
+function prepareMealDiceDraft(s,a,b){
+ check(s.board?.phase==='roll'&&!s.activeSession&&!s.economy.diceChoice,'当前不能使用料理，请先完成本回合或游戏。');check(int(a,1,6)&&int(b,1,6),'骰子数值无效。');
+ const id='dice:'+uid(),delta=stock();delta.Masai.meal=-1;transaction(s,{id,type:'meal-consume',at:Date.now(),boardId:s.board.id,turnNo:s.board.turnNo,delta});
+ s.economy.diceChoice={id,boardId:s.board.id,turnNo:s.board.turnNo,turn:s.board.turn,rolls:[a,b]};L.note(s,'使用一份 Masai 料理，本回合可在两个骰子结果中选择一个。');return clone(s.economy.diceChoice);
+}
+function prepareMealDice(s,a,b){return atomic(s,draft=>prepareMealDiceDraft(draft,a,b));}
+function chooseMealDice(s,index){return atomic(s,draft=>{const c=draft.economy.diceChoice;check(c&&int(index,0,1)&&c.boardId===draft.board?.id&&c.turnNo===draft.board.turnNo&&c.turn===draft.board.turn,'骰子选择已失效。');L.roll(draft,c.rolls[index]);draft.economy.diceChoice=null;});}
+function roll(s,d){check(!s.economy.diceChoice,'请先选择已掷出的一个骰子。');return L.roll(s,d);}
+function startBoard(s,n,names){check(!s.economy.diceChoice,'请先完成料理骰子的选择。');return L.startBoard(s,n,names);}
+function prepareImport(current,incoming){
+ validate(current);const s=migrate(incoming).state;
+ if(current.universeId===s.universeId){
+  Object.assign(s.claims,current.claims);Object.assign(s.arcadeClaims,current.arcadeClaims);
+  for(const r of s.gameResults.arcade){const old=current.arcadeClaims[r.roundId];check(!old||eq(old,r),'导入街机结果与本机凭证冲突。');}
+  for(const [id,r] of Object.entries(current.modules.claims)){check(!s.modules.claims[id]||eq(s.modules.claims[id],r),'导入小游戏结果与本机凭证冲突。');s.modules.claims[id]=clone(r);}
+  const left=current.economy.ledger,right=s.economy.ledger,min=Math.min(left.length,right.length);check(eq(left.slice(0,min),right.slice(0,min)),'两台设备的物资账本已经分叉，不能相加或自动覆盖。请先保留两个备份。');
+  if(left.length>=right.length)s.economy=clone(current.economy);
+  // A pending choice already consumed a meal. Keep it from the selected
+  // authoritative ledger branch; dropping it would lose a paid advantage.
+  // An already chosen local turn keeps its null choice and cannot use it twice.
+  if(s.economy.diceChoice){const choice=s.economy.diceChoice;check(s.board?.phase==='roll'&&choice.boardId===s.board.id&&choice.turnNo===s.board.turnNo&&choice.turn===s.board.turn,'已使用料理的骰子选择还未完成，与备份棋盘回合不一致。请先在当前进度选好骰子，再导入；原存档和料理扣除记录均已保留。');}
+  if(s.modules.pending&&s.modules.claims[s.modules.pending.id]){L.closeSession(s,s.activeSession.token);s.modules.pending=null;}
+ }
+ for(const r of Object.values(s.settlements.runs))if(r.status==='started'){r.status='invalidated';r.sessionToken=null;}
+ if(s.activeSession)s.activeSession.runKey=null;return validate(s);
+}
+function pack(s){validate(s);const payload=JSON.stringify(s);check(payload.length<=MAX_PAYLOAD,'宇宙存档超过大小限制，请保留备份。');return{payload,checksum:crc(payload)};}
+function unpack(p){check(obj(p)&&typeof p.payload==='string'&&p.payload.length<=MAX_PAYLOAD&&p.checksum===crc(p.payload),'存档校验失败，原档未覆盖。');const originalState=JSON.parse(p.payload);return{...migrate(originalState),originalState};}
+function wrap(s,old){let previous=null;if(old){if(old.schemaVersion===4)previous=pack(old);else{L.migrate(old);const payload=JSON.stringify(old);check(payload.length<=MAX_PAYLOAD,'旧备份过大。');previous={payload,checksum:crc(payload)};}}return JSON.stringify({format:'LIANG_UNIVERSE',current:pack(s),previous});}
+function unwrap(raw){check(typeof raw==='string'&&raw.length<=MAX_PAYLOAD*2+1000,'存档文件过大。');const w=JSON.parse(raw);check(w?.format==='LIANG_UNIVERSE','这不是梁家宇宙存档。');try{return{...unpack(w.current),recovered:false};}catch(e){if(e.code==='UNSUPPORTED_SCHEMA')throw e;if(w.previous)return{...unpack(w.previous),recovered:true};throw e;}}
+function encode(s){const bytes=new TextEncoder().encode(JSON.stringify(pack(s)));let text='';for(let n=0;n<bytes.length;n+=8192)text+=String.fromCharCode(...bytes.subarray(n,n+8192));return'LU1.'+(typeof btoa==='function'?btoa(text):Buffer.from(text,'binary').toString('base64')).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))).state;}
+return{...L,SCHEMA,KEY,MAX_PAYLOAD,IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
+});
+
+})();

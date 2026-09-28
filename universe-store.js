@@ -78,7 +78,7 @@
       const envelope=JSON.parse(raw),packed=envelope?.current;
       if(envelope?.format!=='LIANG_UNIVERSE'||typeof packed?.payload!=='string'||packed.payload.length>core.MAX_PAYLOAD||packed.checksum!==checksum(packed.payload))return null;
       const state=JSON.parse(packed.payload);
-      if(state?.schemaVersion!==3||!identity(state.universeId)||!whole(state.revision,1e12)||!object(state.arcadeClaims)||!Array.isArray(state.gameResults?.arcade))return null;
+      if(state?.schemaVersion!==core.SCHEMA||!identity(state.universeId)||!whole(state.revision,1e12)||!object(state.arcadeClaims)||!Array.isArray(state.gameResults?.arcade))return null;
       if(core.SCHEMA!==state.schemaVersion)return null;
       core.validate(state);
       return state;
