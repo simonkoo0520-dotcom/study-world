@@ -1,5 +1,5 @@
-/* Generated from exact v0.6.4 board engines and unchanged core; UI art is not needed to validate saves. */
-(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.6.4_playability/src/core-v6.js');return;}
+/* Generated from exact v0.7 board engines and schema7 core; UI art is not needed to validate saves. */
+(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.7_longplay/src/core-v7.js');return;}
 (function(root,factory){'use strict';const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;root.LiangGames=root.LiangGames||{};root.LiangGames.fishing=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const ITEMS=['fish','slipper','ball','jar'],STAGES=['casting','waiting','bite','reeling','celebrate'];
@@ -1815,7 +1815,7 @@ return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,IDS,RESOURCE_IDS,ADVENTURE
 /* v0.6 extends frozen v0.5 with platform play; v5 verifies all prior migrations. */
 (function(root,factory){
  if(typeof module==='object'&&module.exports)module.exports=factory(require('./core-v5.js'),require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js'),dungeon:require('./games/dungeon.js'),kart:require('./games/kart.js'),platform:require('./games/platform.js')});
- else root.WQUniverseCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
+ else root.LiangCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
 })(typeof globalThis!=='undefined'?globalThis:this,function(V5,L,G){
 'use strict';
 const SCHEMA=6,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
@@ -2064,6 +2064,306 @@ function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&
 // public mutation from leaving half of a learning/arcade/board operation saved.
 const legacyMutations=Object.fromEntries(['note','nextTurn','launch','launchArcade','recordArcadeResult','storeLegacy','beginRun','recordSubmission','changeCharacter','invalidateRun','reward'].map(name=>[name,(s,...args)=>atomic(s,draft=>L[name](draft,...args))]));
 return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,IDS,RESOURCE_IDS,ADVENTURE_IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
+});
+
+
+
+;
+/* v0.7: immutable compressed tick records; frozen v6 verifies old save archives. */
+(function(root,factory){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./core-v6.js'),require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js'),dungeon:require('./games/dungeon.js'),kart:require('./games/kart.js'),platform:require('./games/platform.js')});
+ else root.WQUniverseCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
+})(typeof globalThis!=='undefined'?globalThis:this,function(V6,L,G){
+'use strict';
+const SCHEMA=7,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
+const RESOURCE_IDS=['fishing','kitchen','trunk'],ADVENTURE_IDS=['dungeon','kart','platform'],IDS=[...RESOURCE_IDS,...ADVENTURE_IDS],ITEMS=['fish','meal'],REGIONS=['Rawang','Masai'],OLD=['slipper','ball','jar'];
+const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),obj=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const int=(x,min=0,max=1e9)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
+const ident=x=>typeof x==='string'&&/^[A-Za-z0-9:_-]{1,140}$/.test(x);
+function check(value,message){if(!value)throw Error(message);}
+const stock=()=>({Rawang:{fish:0,meal:0},Masai:{fish:0,meal:0}});
+const extra=()=>({adventureMeals:{}});
+function engine(id){check(IDS.includes(id)&&G?.[id]?.version===1,'游戏组件未正确载入，请刷新后重试。');return G[id];}
+function fresh(){return {...V6.fresh(),schemaVersion:SCHEMA,...extra()};}
+function legacyProjection(s){const p=clone(s);p.schemaVersion=3;p.migrationArchive=null;if(p.activeSession?.gameId==='module')p.activeSession=null;return p;}
+function validateModuleResult(r){
+ check(obj(r)&&ident(r.runId)&&ident(r.sessionToken)&&IDS.includes(r.moduleId)&&r.version===1&&['practice','inventory'].includes(r.mode)&&['won','lost','abandoned'].includes(r.status)&&int(r.score)&&int(r.at,0,1e15)&&typeof r.actionHash==='string','游戏结算记录无效。');
+ check(obj(r.goods)&&int(r.goods.fish,0,12)&&int(r.goods.meals,0,12)&&Array.isArray(r.goods.shipped)&&r.goods.shipped.length<=12&&r.goods.shipped.every(x=>obj(x)&&ident(x.id)&&ITEMS.includes(x.itemId)&&x.qty===1)&&new Set(r.goods.shipped.map(x=>x.id)).size===r.goods.shipped.length,'游戏物资凭证无效。');
+ check(Array.isArray(r.goods.collectibles)&&r.goods.collectibles.length<=3&&r.goods.collectibles.every(x=>OLD.includes(x)),'河里旧物记录无效。');
+ if(ADVENTURE_IDS.includes(r.moduleId)){
+  check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'冒险与赛车只记录本局结果，不自动生产共享物资。');
+  check(int(r.mealsUsed,0,1)&&(r.mode!=='practice'||r.mealsUsed===0)&&(r.mealsUsed===0?r.mealProofHash===null:typeof r.mealProofHash==='string'),'料理使用凭证无效。');
+  if(r.discoveries!==undefined)check(r.moduleId==='dungeon'&&Array.isArray(r.discoveries)&&r.discoveries.length<=100&&r.discoveries.every(x=>typeof x==='string'&&x.length<=100),'本局发现记录无效。');
+ }
+ else if(r.mode==='practice'||r.status!=='won')check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'练习或未通关记录不能增加共享物资。');
+ else if(r.moduleId==='fishing')check(r.goods.fish>0&&r.goods.meals===0&&!r.goods.shipped.length,'钓鱼只能产出鱼和确认过的旧物。');
+ else if(r.moduleId==='kitchen')check(r.goods.fish===0&&int(r.goods.meals,1,3)&&!r.goods.shipped.length&&!r.goods.collectibles.length,'厨房只能加工料理，不能额外产生鱼或收藏。');
+ else check(r.goods.fish===0&&r.goods.meals===0&&r.goods.shipped.length>0&&!r.goods.collectibles.length,'运输只能转移装车清单中的物资。');
+}
+function checkRunInventory(s,run){
+ if(!run||run.config.mode!=='inventory')return;
+ const available=s.economy.inventory.Rawang;
+ if(run.moduleId==='kitchen')check(int(run.config.units,1,3)&&available.fish>=run.config.units,'这局厨房需要的鱼已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ if(run.moduleId==='trunk'){
+  const counts={fish:0,meal:0};for(const cargo of run.config.cargo)counts[cargo.itemId]+=cargo.qty;
+  check(ITEMS.every(item=>available[item]>=counts[item]),'这局运输清单中的物资已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ }
+ if(ADVENTURE_IDS.includes(run.moduleId)&&run.config.mealCharges===1&&run.state.mealsUsed===0)check(s.economy.inventory.Masai.meal>=1,'这局尚未使用的可选料理已被其他进度消费，不能恢复旧选择。请保留两个备份，在现有进度选择不带料理的新一局。');
+}
+// Capacity is checked before replay. No expanded transcript is allocated.
+const TRANSCRIPT_LIMITS=Object.freeze({maxRecords:20000,maxBytes:1800000,maxSteps:300000,maxTicksPerRun:100});
+function logLimit(ok){if(!ok){const e=Error('本局记录已接近容量上限。当前进度仍可保存和导出，请先返回棋盘。');e.code='MODULE_LOG_LIMIT';throw e;}}
+function canonicalTick(a){return obj(a)&&a.type==='tick'&&int(a.dt,1,250)&&JSON.stringify(a)===JSON.stringify({type:'tick',dt:a.dt});}
+function recordInfo(a){
+ check(obj(a)&&typeof a.type==='string'&&JSON.stringify(a).length<=2000,'游戏操作记录无效。');
+ if(a.type==='tick-run'){check(Object.keys(a).sort().join(',')==='count,dt,type'&&Object.hasOwn(a,'type')&&int(a.dt,1,250)&&int(a.count,2,TRANSCRIPT_LIMITS.maxTicksPerRun),'连续计时记录无效。');return{steps:a.count,atom:JSON.stringify({type:'tick',dt:a.dt}),tick:true};}
+ return{steps:1,atom:JSON.stringify(a),tick:canonicalTick(a)};
+}
+function actionStats(actions){
+ check(Array.isArray(actions),'游戏操作记录无效。');logLimit(actions.length<=TRANSCRIPT_LIMITS.maxRecords);
+ let steps=0,bytes=2;for(let i=0;i<actions.length;i++){const info=recordInfo(actions[i]);steps+=info.steps;bytes+=JSON.stringify(actions[i]).length+(i?1:0);logLimit(steps<=TRANSCRIPT_LIMITS.maxSteps&&bytes<=TRANSCRIPT_LIMITS.maxBytes);}
+ return{records:actions.length,steps,bytes};
+}
+function appendAction(actions,action,sealedLength=actions.length){
+ const stats=actionStats(actions);check(int(sealedLength,0,actions.length),'已封存的操作边界无效。');recordInfo(action);check(action.type!=='tick-run','输入必须是单步操作，连续计时由记录器生成。');
+ const next=actions.slice(),last=actions.at(-1);let replacement=null;
+ if(actions.length>sealedLength&&canonicalTick(action)&&last){if(canonicalTick(last)&&last.dt===action.dt)replacement={type:'tick-run',dt:action.dt,count:2};else if(last.type==='tick-run'&&last.dt===action.dt&&last.count<TRANSCRIPT_LIMITS.maxTicksPerRun)replacement={type:'tick-run',dt:action.dt,count:last.count+1};}
+ let records=stats.records,bytes=stats.bytes;
+ if(replacement){bytes+=JSON.stringify(replacement).length-JSON.stringify(last).length;next[next.length-1]=replacement;}
+ else{records++;bytes+=JSON.stringify(action).length+(actions.length?1:0);next.push(clone(action));}
+ logLimit(records<=TRANSCRIPT_LIMITS.maxRecords&&stats.steps+1<=TRANSCRIPT_LIMITS.maxSteps&&bytes<=TRANSCRIPT_LIMITS.maxBytes);return next;
+}
+function sameActionPrefix(prefix,actions){
+ actionStats(prefix);actionStats(actions);let i=0,j=0,a=null,b=null;
+ while(i<prefix.length){if(!a)a=recordInfo(prefix[i]);if(!b){if(j>=actions.length)return false;b=recordInfo(actions[j]);}if(a.atom!==b.atom)return false;const count=Math.min(a.steps,b.steps);a={...a,steps:a.steps-count};b={...b,steps:b.steps-count};if(!a.steps){i++;a=null;}if(!b.steps){j++;b=null;}}
+ return true;
+}
+function compactActions(actions){
+ actionStats(actions);const next=[];for(const a of actions){if(canonicalTick(a)){const last=next.at(-1);if(canonicalTick(last)&&last.dt===a.dt)next[next.length-1]={type:'tick-run',dt:a.dt,count:2};else if(last?.type==='tick-run'&&last.dt===a.dt&&last.count<TRANSCRIPT_LIMITS.maxTicksPerRun)next[next.length-1]={type:'tick-run',dt:a.dt,count:last.count+1};else next.push(clone(a));}else next.push(clone(a));}actionStats(next);return next;
+}
+// Caches contain only verified replay states. Exact record JSON, full run
+// identity/config and current engine function references gate every reuse.
+const MAX_CACHE_UNITS=4*1024*1024,MAX_CACHE_ENTRIES=12;
+const replayCache=new Map();let replayCacheUnits=0;
+function cacheRemove(key){const entry=replayCache.get(key);if(entry){replayCacheUnits-=entry.units;replayCache.delete(key);}}
+function rememberReplay(key,entry){cacheRemove(key);if(entry.units>MAX_CACHE_UNITS)return;while(replayCache.size>=MAX_CACHE_ENTRIES||replayCacheUnits+entry.units>MAX_CACHE_UNITS)cacheRemove(replayCache.keys().next().value);replayCache.set(key,entry);replayCacheUnits+=entry.units;}
+function replay(run,{onMealUse}={}){
+ check(obj(run)&&ident(run.id)&&IDS.includes(run.moduleId)&&run.version===1&&obj(run.config)&&['practice','inventory'].includes(run.config.mode)&&int(run.config.seed,0,0xffffffff)&&int(run.config.difficulty,0,2)&&int(run.startedAt,0,1e15),'游戏开局资料无效。');
+ actionStats(run.actions);const E=engine(run.moduleId),adventure=ADVENTURE_IDS.includes(run.moduleId),identity=JSON.stringify({id:run.id,sessionToken:run.sessionToken,moduleId:run.moduleId,version:run.version,config:run.config,startedAt:run.startedAt}),records=run.actions.map(a=>JSON.stringify(a));
+ let prior=null;for(const p of replayCache.values())if(p.identity===identity&&p.create===E.create&&p.step===E.step&&p.validate===E.validate&&p.records.length<=records.length&&(!prior||p.records.length>prior.records.length)&&p.records.every((a,i)=>a===records[i]))prior=p;
+ let state=prior?clone(prior.state):E.create(clone(run.config)),use=prior?.use?clone(prior.use):null,start=prior?.records.length||0;
+ if(adventure)check(int(run.config.mealCharges,0,1)&&(run.config.mode!=='practice'||run.config.mealCharges===0)&&(prior||state.mealsUsed===0),'新游戏料理配置无效。');
+ for(let index=start;index<run.actions.length;index++){const record=run.actions[index],info=recordInfo(record),action=record.type==='tick-run'?{type:'tick',dt:record.dt}:record;
+  for(let n=0;n<info.steps;n++){const before=state.mealsUsed;state=E.step(state,clone(action));if(adventure){check(int(state.mealsUsed,0,run.config.mealCharges)&&state.mealsUsed>=before&&(state.mealsUsed===before||action.type==='use-meal'&&before===0&&state.mealsUsed===1),'料理必须由真实生效的使用操作产生，不能回退或重复使用。');if(state.mealsUsed!==before)use={index,state:clone(state)};}}
+ }
+ E.validate(state);check(eq(state,run.state),'游戏进度与实际操作记录不一致。');
+ const units=identity.length+records.reduce((n,a)=>n+a.length+16,0)+JSON.stringify(state).length+(use?JSON.stringify(use).length:0);
+ rememberReplay(identity+'|'+records.length,{identity,records,state:clone(state),use:use?clone(use):null,create:E.create,step:E.step,validate:E.validate,units});
+ if(use)onMealUse?.(use.index,clone(use.state));return state;
+}
+function validateMealPrefix(run){let useIndex=-1;const state=replay(run,{onMealUse:index=>{useIndex=index;}});check(state.mealsUsed===1&&useIndex===run.actions.length-1,'料理消费缺少首次真实生效的操作前缀。');}
+// Exact old payload validation also needs a bounded cache: a migration archive
+// can contain a full old transcript. Never treat a checksum alone as identity.
+const archiveCache=new Map();let archiveUnits=0;
+function oldFunctionIdentity(){return[...Object.values(V6).filter(v=>typeof v==='function'),...Object.values(L).filter(v=>typeof v==='function'),...IDS.flatMap(id=>{const E=engine(id);return[E.create,E.step,E.validate];})];}
+function validateOldPayload(payload,checksum,schema){
+ check(typeof payload==='string'&&payload.length<=MAX_PAYLOAD&&int(schema,1,6),'升级前备份校验失败。');const refs=oldFunctionIdentity(),prior=archiveCache.get(payload);
+ if(prior&&prior.schema===schema&&prior.checksum===checksum&&prior.refs.length===refs.length&&prior.refs.every((f,i)=>f===refs[i]))return;
+ check(checksum===crc(payload),'升级前备份校验失败。');const old=JSON.parse(payload);check(old.schemaVersion===schema,'升级前备份版本不一致。');V6.migrate(old);
+ if(prior){archiveCache.delete(payload);archiveUnits-=payload.length;}
+ if(payload.length>MAX_CACHE_UNITS)return;while(archiveCache.size>=4||archiveUnits+payload.length>MAX_CACHE_UNITS){const key=archiveCache.keys().next().value;archiveCache.delete(key);archiveUnits-=key.length;}archiveCache.set(payload,{schema,checksum,refs});archiveUnits+=payload.length;
+}
+function validate(s){
+ check(obj(s),'存档结构无效。');if(s.schemaVersion!==SCHEMA){const e=Error('请先迁移旧版存档，未覆盖现有资料。');e.code='UNSUPPORTED_SCHEMA';throw e;}
+ L.validate(legacyProjection(s));
+ if(s.migrationArchive!==null){const a=s.migrationArchive;check(obj(a)&&[1,2,3,4,5,6].includes(a.schemaVersion),'升级前备份校验失败。');validateOldPayload(a.payload,a.checksum,a.schemaVersion);}
+ check(obj(s.modules)&&obj(s.modules.claims)&&Array.isArray(s.modules.results),'小游戏记录缺失。');
+ for(const [id,r] of Object.entries(s.modules.claims)){validateModuleResult(r);check(id===r.runId,'小游戏凭证编号不一致。');}
+ check(new Set(Object.values(s.modules.claims).map(r=>r.sessionToken)).size===Object.keys(s.modules.claims).length,'同一个小游戏会话不能有两份结算凭证。');
+ check(new Set(s.modules.results.map(r=>r.runId)).size===s.modules.results.length,'小游戏结果重复。');
+ for(const r of s.modules.results){validateModuleResult(r);check(eq(r,s.modules.claims[r.runId]),'小游戏结果与凭证不一致。');}
+ if(s.modules.pending){const run=s.modules.pending;replay(run);check(!s.modules.claims[run.id],'已结算游戏不能再作为未完成局。');const a=s.activeSession;check(a?.gameId==='module'&&a.moduleId===run.moduleId&&a.runId===run.id&&a.token===run.sessionToken,'未完成游戏与会话不一致。');}
+ if(s.activeSession?.gameId==='module'){
+  const a=s.activeSession;check(s.modules.pending&&ident(a.token)&&int(a.learnerSlot,0,2)&&a.runKey===null&&a.returnSnapshotHash===crc(JSON.stringify(a.returnSnapshot))&&eq(a.returnSnapshot,s.board)&&a.boardId===(s.board?.id||'')&&a.turnNo===(s.board?.turnNo||0),'小游戏返回位置或回合损坏。');
+ }
+ check(obj(s.adventureMeals),'冒险料理消费凭证缺失。');
+ for(const [id,proof] of Object.entries(s.adventureMeals)){
+  check(obj(proof)&&proof.run?.id===id&&ADVENTURE_IDS.includes(proof.run.moduleId)&&proof.run.config?.mode==='inventory'&&proof.run.config.mealCharges===1&&int(proof.at,0,1e15)&&proof.transactionId==='adventure-meal:'+id&&proof.actionHash===crc(JSON.stringify({config:proof.run.config,actions:proof.run.actions})),'冒险料理消费来源无效。');
+  validateMealPrefix(proof.run);
+  const pending=s.modules.pending?.id===id?s.modules.pending:null,claim=s.modules.claims[id];
+  check(pending||claim,'料理已经扣除，但找不到本局进度或结束凭证。');
+  if(pending)check(pending.sessionToken===proof.run.sessionToken&&pending.state.mealsUsed===1&&eq(pending.config,proof.run.config)&&sameActionPrefix(proof.run.actions,pending.actions),'导入的旧进度早于已经使用的料理。请保留原档，使用较新的完整备份继续。');
+  if(claim)check(claim.moduleId===proof.run.moduleId&&claim.sessionToken===proof.run.sessionToken&&claim.mealsUsed===1&&claim.mealProofHash===proof.actionHash,'已结束游戏与料理消费来源不一致。');
+ }
+ for(const r of Object.values(s.modules.claims))if(ADVENTURE_IDS.includes(r.moduleId))check(!!s.adventureMeals[r.runId]===(r.mealsUsed===1),'游戏料理结果与消费凭证不一致。');
+ if(s.modules.pending&&ADVENTURE_IDS.includes(s.modules.pending.moduleId))check(!!s.adventureMeals[s.modules.pending.id]===(s.modules.pending.state.mealsUsed===1),'游戏已使用料理，缺少原子消费凭证。');
+ const e=s.economy;check(obj(e)&&e.version===1&&obj(e.inventory)&&Array.isArray(e.ledger)&&Array.isArray(e.riverCollection),'物资账本缺失。');
+ check(new Set(e.ledger.map(t=>t.id)).size===e.ledger.length,'物资交易重复。');let expected=stock();const collection=new Set();
+ for(const t of e.ledger){
+  check(obj(t)&&ident(t.id)&&int(t.at,0,1e15)&&['fish-production','fish-cooking','cargo-transfer','meal-consume','adventure-meal-consume'].includes(t.type)&&obj(t.delta),'物资交易格式无效。');
+  for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta[zone])&&int(t.delta[zone][item],-12,12),'物资变化数量无效。');expected[zone][item]+=t.delta[zone][item];check(int(expected[zone][item],0,1e8),'物资不足或账本超出限制。');}
+  const r=t.delta.Rawang,m=t.delta.Masai;
+  if(t.type==='adventure-meal-consume'){
+   const proof=s.adventureMeals[t.runId];check(proof&&t.id===proof.transactionId&&t.sessionToken===proof.run.sessionToken&&t.moduleId===proof.run.moduleId&&t.actionHash===proof.actionHash&&t.at===proof.at&&r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1,'冒险料理消费流水与真实操作不一致。');
+  }
+  else if(t.type==='meal-consume')check(r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1&&typeof t.boardId==='string'&&int(t.turnNo,1),'料理消费记录无效。');
+  else{
+   const claim=s.modules.claims[t.runId];check(claim?.mode==='inventory'&&claim.status==='won'&&t.id==='module:'+claim.runId&&t.actionHash===claim.actionHash,'物资没有对应的真实游戏结算。');
+   if(t.type==='fish-production'){check(claim.moduleId==='fishing'&&r.fish===claim.goods.fish&&r.fish>0&&r.meal===0&&m.fish===0&&m.meal===0,'钓鱼产出不守恒。');for(const id of claim.goods.collectibles)collection.add(id);}
+   if(t.type==='fish-cooking')check(claim.moduleId==='kitchen'&&r.fish===-claim.goods.meals&&r.meal===claim.goods.meals&&r.meal>0&&m.fish===0&&m.meal===0,'料理加工不守恒。');
+   if(t.type==='cargo-transfer'){const counts={fish:0,meal:0};for(const cargo of claim.goods.shipped)counts[cargo.itemId]++;check(claim.moduleId==='trunk'&&counts.fish+counts.meal>0&&r.fish===-counts.fish&&r.meal===-counts.meal&&m.fish===counts.fish&&m.meal===counts.meal,'运输必须等量转移真实物资。');}
+  }
+ }
+ for(const zone of REGIONS)for(const item of ITEMS)check(obj(e.inventory[zone])&&e.inventory[zone][item]===expected[zone][item],'库存与物资流水不一致。');
+ for(const r of Object.values(s.modules.claims))if(RESOURCE_IDS.includes(r.moduleId)&&r.mode==='inventory'&&r.status==='won')check(e.ledger.some(t=>t.id==='module:'+r.runId&&t.runId===r.runId),'已发放的物资凭证缺少对应流水，不能覆盖原档。');
+ for(const proof of Object.values(s.adventureMeals))check(e.ledger.some(t=>t.id===proof.transactionId&&t.type==='adventure-meal-consume'),'已扣除料理的操作凭证缺少消费流水。');
+ check(e.riverCollection.every(x=>OLD.includes(x))&&new Set(e.riverCollection).size===e.riverCollection.length&&eq([...collection].sort(),e.riverCollection.slice().sort()),'河里旧物收藏与来源不一致。');
+ checkRunInventory(s,s.modules.pending);
+ if(e.diceChoice){const c=e.diceChoice;check(obj(c)&&ident(c.id)&&e.ledger.some(t=>t.id===c.id&&t.type==='meal-consume')&&s.board?.phase==='roll'&&c.boardId===s.board.id&&c.turnNo===s.board.turnNo&&c.turn===s.board.turn&&Array.isArray(c.rolls)&&c.rolls.length===2&&c.rolls.every(x=>int(x,1,6)),'料理骰子选择记录无效。');}
+ return clone(s);
+}
+// A rejected action must leave the caller's live save untouched. Validate and
+// finish all work on a detached draft before publishing any claim or inventory.
+function atomic(s,operation){const draft=validate(s),result=operation(draft);validate(draft);Object.assign(s,draft);return result;}
+function migrate(input){
+ if(input?.schemaVersion===SCHEMA)return{state:validate(input),migrated:false,fromVersion:SCHEMA,toVersion:SCHEMA};
+ if(!int(input?.schemaVersion,1,6)){const e=Error('不支持这个存档版本，原档保留。');e.code='UNSUPPORTED_SCHEMA';throw e;}const old=V6.migrate(input).state,payload=JSON.stringify(input);check(payload.length<=MAX_PAYLOAD,'升级前备份超过大小限制，原档保留。');
+ const state={...old,schemaVersion:SCHEMA,migrationArchive:{schemaVersion:input.schemaVersion,payload,checksum:crc(payload)}};
+ if(state.modules.pending)state.modules.pending.actions=compactActions(state.modules.pending.actions);
+ state.migrations.push({from:input.schemaVersion,to:SCHEMA,at:Date.now(),note:'保留完整旧档与料理凭证；仅压缩未完成局的等价计时记录，不补发奖励。'});
+ return{state:validate(state),migrated:true,fromVersion:input.schemaVersion,toVersion:SCHEMA};
+}
+function launchModuleDraft(s,id,options={}){
+ check(obj(options),'游戏模式配置无效。');
+ check(!s.activeSession&&!s.modules.pending,'请先继续或结束尚未完成的一局。');check(!s.economy.diceChoice,'请先选好本回合的骰子。');const E=engine(id);
+ const mode=options.mode??'practice',difficulty=options.difficulty??0;check(['practice','inventory'].includes(mode)&&int(difficulty,0,2),'游戏模式无效。');
+ const seed=parseInt(crc(uid()),16)>>>0,config={seed,mode,difficulty};
+ if(ADVENTURE_IDS.includes(id)){
+  const charges=options.mealCharges??0;check(int(charges,0,1)&&(mode!=='practice'||charges===0),'每局最多选择一份料理，练习关不使用仓库物资。');
+  check(charges===0||s.economy.inventory.Masai.meal>=1,'Masai 没有料理，可不带料理开始，或先从 Rawang 运一份过来。');config.mealCharges=charges;
+  if(id==='kart'&&options.trackId!==undefined){check(['masai-market','north-south'].includes(options.trackId),'赛道尚未接入。');config.trackId=options.trackId;}
+ }
+ if(id==='kitchen'){const units=options.units??3;check(int(units,1,3),'每局请选择一至三份料理。');config.units=mode==='practice'?units:Math.min(units,s.economy.inventory.Rawang.fish);check(config.units>0,'Rawang 还没有鱼。可以先玩练习关，或去河边钓鱼。');}
+ if(id==='trunk'&&mode==='inventory'){
+  config.cargo=[];const amounts=options.cargo??s.economy.inventory.Rawang;check(obj(amounts),'装箱数量清单无效。');
+  for(const item of ['meal','fish']){check(int(amounts[item]??0,0,s.economy.inventory.Rawang[item]),'装箱数量超过 Rawang 库存。');const count=Math.min(amounts[item]??0,12-config.cargo.length);for(let n=0;n<count;n++)config.cargo.push({id:item+'-'+(n+1),itemId:item,qty:1});}
+  check(config.cargo.length>0,'Rawang 暂无可运物资。可以先玩装箱练习。');
+ }
+ const initial=E.create(clone(config));E.validate(initial);
+ const token=uid(),runId=uid(),slot=s.board?.players[s.board.turn].learnerSlot??0;
+ s.activeSession={gameId:'module',moduleId:id,runId,token,learnerSlot:slot,boardId:s.board?.id||'',turnNo:s.board?.turnNo||0,returnSnapshot:clone(s.board),returnSnapshotHash:crc(JSON.stringify(s.board)),runKey:null};
+ s.modules.pending={id:runId,sessionToken:token,moduleId:id,version:E.version,config,startedAt:Date.now(),actions:[],state:initial};
+ L.note(s,'进入'+E.title+(mode==='practice'?' · 练习关':' · 联动物资关'));return clone(s.activeSession);
+}
+function launchModule(s,id,options={}){return atomic(s,draft=>launchModuleDraft(draft,id,options));}
+function updateModuleDraft(s,token,actions,state){
+ const run=s.modules.pending;check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&run,'游戏会话已改变。');
+ check(eq(s.activeSession.returnSnapshot,s.board)&&s.activeSession.returnSnapshotHash===crc(JSON.stringify(s.board)),'棋盘位置或回合已改变，未覆盖本局进度。');
+ checkRunInventory(s,run);
+ check(Array.isArray(actions)&&actions.length>=run.actions.length&&eq(actions.slice(0,run.actions.length),run.actions),'游戏进度不能倒退或替换已保存操作。');
+ const next={...run,actions:clone(actions),state:clone(state)};let use=null;replay(next,{onMealUse:(index,usedState)=>{use={index,state:usedState};}});s.modules.pending=next;
+ if(ADVENTURE_IDS.includes(run.moduleId)&&next.state.mealsUsed===1&&!s.adventureMeals[run.id]){
+  check(run.config.mode==='inventory'&&run.config.mealCharges===1&&use,'没有可用料理，未扣除任何库存。');
+  const proofRun={...clone(next),actions:clone(next.actions.slice(0,use.index+1)),state:use.state},at=Date.now(),actionHash=crc(JSON.stringify({config:proofRun.config,actions:proofRun.actions})),transactionId='adventure-meal:'+run.id,delta=stock();delta.Masai.meal=-1;
+  transaction(s,{id:transactionId,type:'adventure-meal-consume',at,runId:run.id,sessionToken:token,moduleId:run.moduleId,actionHash,delta});
+  s.adventureMeals[run.id]={run:proofRun,at,actionHash,transactionId};
+ }
+ return{saved:true,mealsUsed:next.state.mealsUsed??0};
+}
+function updateModule(s,token,actions,state){return atomic(s,draft=>updateModuleDraft(draft,token,actions,state));}
+function transaction(s,t){
+ check(!s.economy.ledger.some(x=>x.id===t.id),'此物资交易已经结算。');
+ const nextInventory=clone(s.economy.inventory);
+ for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta?.[zone])&&int(t.delta[zone][item],-12,12),'物资交易数量无效。');const next=nextInventory[zone][item]+t.delta[zone][item];check(int(next,0,1e8),'物资不足，未扣除也未发放，请保留存档。');nextInventory[zone][item]=next;}
+ s.economy.inventory=nextInventory;s.economy.ledger.push(clone(t));
+}
+function settleModuleDraft(s,token){
+ const already=Object.values(s.modules.claims).find(r=>r.sessionToken===token);if(already)return{duplicate:true,result:clone(already)};
+ check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&s.modules.pending,'没有可结算的小游戏。');
+ const run=s.modules.pending,state=replay(run),outcome=engine(run.moduleId).result(state);
+ check(outcome&&['won','lost'].includes(outcome.status)&&int(outcome.score),'游戏尚未完成，不能结算。');
+ const goods={fish:0,meals:0,shipped:[],collectibles:[]};
+ if(run.config.mode==='inventory'&&outcome.status==='won'){
+  if(run.moduleId==='fishing'){check(int(outcome.fish,1,12)&&Array.isArray(outcome.collectibles)&&outcome.collectibles.every(id=>OLD.includes(id)),'钓鱼结果无效。');goods.fish=outcome.fish;goods.collectibles=clone(outcome.collectibles);}
+  if(run.moduleId==='kitchen'){check(int(outcome.meals,1,run.config.units),'料理数量无效。');goods.meals=outcome.meals;}
+  if(run.moduleId==='trunk'){check(Array.isArray(outcome.shipped)&&outcome.shipped.length>0&&new Set(outcome.shipped.map(x=>x.id)).size===outcome.shipped.length&&outcome.shipped.every(x=>run.config.cargo.some(c=>eq(c,x))),'运输清单不是开局时的真实物资。');goods.shipped=clone(outcome.shipped);}
+ }
+ const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:outcome.status,score:outcome.score,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods};
+ if(ADVENTURE_IDS.includes(run.moduleId)){
+  check(int(outcome.mealsUsed,0,1)&&outcome.mealsUsed===state.mealsUsed,'本局料理使用结果无效。');r.mealsUsed=state.mealsUsed;r.mealProofHash=s.adventureMeals[run.id]?.actionHash??null;
+  if(run.moduleId==='dungeon'&&outcome.discoveries!==undefined)r.discoveries=clone(outcome.discoveries);
+ }
+ validateModuleResult(r);s.modules.claims[r.runId]=clone(r);s.modules.results.push(clone(r));
+ if(RESOURCE_IDS.includes(run.moduleId)&&r.status==='won'&&r.mode==='inventory'){
+  const delta=stock(),type=run.moduleId==='fishing'?'fish-production':run.moduleId==='kitchen'?'fish-cooking':'cargo-transfer';
+  if(type==='fish-production'){delta.Rawang.fish=goods.fish;for(const id of goods.collectibles)if(!s.economy.riverCollection.includes(id))s.economy.riverCollection.push(id);}
+  if(type==='fish-cooking'){delta.Rawang.fish=-goods.meals;delta.Rawang.meal=goods.meals;}
+  if(type==='cargo-transfer')for(const c of goods.shipped){delta.Rawang[c.itemId]-=c.qty;delta.Masai[c.itemId]+=c.qty;}
+  transaction(s,{id:'module:'+r.runId,type,at:r.at,runId:r.runId,actionHash:r.actionHash,delta});
+ }
+ L.closeSession(s,token);s.modules.pending=null;L.note(s,engine(run.moduleId).title+'：'+(r.status==='won'?'通关':'本局结束')+'，'+r.score+'分。'+(r.mode==='practice'?'练习成绩已记录，不改变物资。':'物资与游戏结果已分别保存。'));
+ return{duplicate:false,result:clone(r)};
+}
+function settleModule(s,token){return atomic(s,draft=>settleModuleDraft(draft,token));}
+function closeSession(s,token){return atomic(s,draft=>{
+ const isModule=draft.activeSession?.gameId==='module',run=isModule?draft.modules.pending:null;
+ if(run&&ADVENTURE_IDS.includes(run.moduleId)){
+  check(draft.activeSession.token===token,'过期游戏会话。');const state=replay(run),proof=draft.adventureMeals[run.id];
+  const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:'abandoned',score:0,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods:{fish:0,meals:0,shipped:[],collectibles:[]},mealsUsed:state.mealsUsed,mealProofHash:proof?.actionHash??null};
+  validateModuleResult(r);draft.modules.claims[run.id]=clone(r);draft.modules.results.push(clone(r));
+ }
+ const result=L.closeSession(draft,token);if(isModule)draft.modules.pending=null;return result;
+});}
+function prepareMealDiceDraft(s,a,b){
+ check(s.board?.phase==='roll'&&!s.activeSession&&!s.economy.diceChoice,'当前不能使用料理，请先完成本回合或游戏。');check(int(a,1,6)&&int(b,1,6),'骰子数值无效。');
+ const id='dice:'+uid(),delta=stock();delta.Masai.meal=-1;transaction(s,{id,type:'meal-consume',at:Date.now(),boardId:s.board.id,turnNo:s.board.turnNo,delta});
+ s.economy.diceChoice={id,boardId:s.board.id,turnNo:s.board.turnNo,turn:s.board.turn,rolls:[a,b]};L.note(s,'使用一份 Masai 料理，本回合可在两个骰子结果中选择一个。');return clone(s.economy.diceChoice);
+}
+function prepareMealDice(s,a,b){return atomic(s,draft=>prepareMealDiceDraft(draft,a,b));}
+function chooseMealDice(s,index){return atomic(s,draft=>{const c=draft.economy.diceChoice;check(c&&int(index,0,1)&&c.boardId===draft.board?.id&&c.turnNo===draft.board.turnNo&&c.turn===draft.board.turn,'骰子选择已失效。');L.roll(draft,c.rolls[index]);draft.economy.diceChoice=null;});}
+function roll(s,d){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先选择已掷出的一个骰子。');return L.roll(draft,d);});}
+function startBoard(s,n,names){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先完成料理骰子的选择。');return L.startBoard(draft,n,names);});}
+function prepareImport(current,incoming){
+ validate(current);const s=migrate(incoming).state;
+ if(current.universeId===s.universeId){
+  Object.assign(s.claims,current.claims);Object.assign(s.arcadeClaims,current.arcadeClaims);
+  for(const r of s.gameResults.arcade){const old=current.arcadeClaims[r.roundId];check(!old||eq(old,r),'导入街机结果与本机凭证冲突。');}
+  for(const [id,r] of Object.entries(current.modules.claims)){check(!s.modules.claims[id]||eq(s.modules.claims[id],r),'导入小游戏结果与本机凭证冲突。');s.modules.claims[id]=clone(r);}
+  for(const [id,proof] of Object.entries(current.adventureMeals)){
+   const incomingProof=s.adventureMeals[id];
+   if(incomingProof&&!eq(incomingProof,proof)){
+    // Canonicalize only an identical first-use proof represented by different
+    // tick-run boundaries or acknowledgement timestamps. Retain the persisted
+    // proof and ledger hash; additional fields or different states still fail.
+    check(sameActionPrefix(incomingProof.run.actions,proof.run.actions)&&sameActionPrefix(proof.run.actions,incomingProof.run.actions)&&eq({...incomingProof,at:proof.at,actionHash:proof.actionHash,run:{...incomingProof.run,actions:proof.run.actions}},proof),'导入的料理消费凭证与本机真实使用记录冲突。');
+    const localEntry=current.economy.ledger.find(t=>t.id===proof.transactionId),incomingEntry=s.economy.ledger.find(t=>t.id===proof.transactionId);
+    check(localEntry&&incomingEntry&&eq({...incomingEntry,at:localEntry.at,actionHash:localEntry.actionHash},localEntry),'导入的料理消费流水与本机真实使用记录冲突。');
+    const claim=s.modules.claims[id];if(claim&&!current.modules.claims[id]){check(claim.mealProofHash===incomingProof.actionHash,'已结束游戏与料理来源不一致。');claim.mealProofHash=proof.actionHash;const row=s.modules.results.find(r=>r.runId===id);if(row){check(row.mealProofHash===incomingProof.actionHash,'已结束游戏与料理来源不一致。');row.mealProofHash=proof.actionHash;}}
+    incomingEntry.at=localEntry.at;incomingEntry.actionHash=localEntry.actionHash;
+   }
+   s.adventureMeals[id]=clone(proof);
+  }
+  const left=current.economy.ledger,right=s.economy.ledger,min=Math.min(left.length,right.length);check(eq(left.slice(0,min),right.slice(0,min)),'两台设备的物资账本已经分叉，不能相加或自动覆盖。请先保留两个备份。');
+  if(left.length>=right.length)s.economy=clone(current.economy);
+  // A pending choice already consumed a meal. Keep it from the selected
+  // authoritative ledger branch; dropping it would lose a paid advantage.
+  // An already chosen local turn keeps its null choice and cannot use it twice.
+  if(s.economy.diceChoice){const choice=s.economy.diceChoice;check(s.board?.phase==='roll'&&choice.boardId===s.board.id&&choice.turnNo===s.board.turnNo&&choice.turn===s.board.turn,'已使用料理的骰子选择还未完成，与备份棋盘回合不一致。请先在当前进度选好骰子，再导入；原存档和料理扣除记录均已保留。');}
+  if(s.modules.pending&&s.modules.claims[s.modules.pending.id]){L.closeSession(s,s.activeSession.token);s.modules.pending=null;}
+ }
+ for(const r of Object.values(s.settlements.runs))if(r.status==='started'){r.status='invalidated';r.sessionToken=null;}
+ if(s.activeSession)s.activeSession.runKey=null;return validate(s);
+}
+function pack(s){validate(s);const payload=JSON.stringify(s);check(payload.length<=MAX_PAYLOAD,'宇宙存档超过大小限制，请保留备份。');return{payload,checksum:crc(payload)};}
+function unpack(p){check(obj(p)&&typeof p.payload==='string'&&p.payload.length<=MAX_PAYLOAD&&p.checksum===crc(p.payload),'存档校验失败，原档未覆盖。');const originalState=JSON.parse(p.payload);return{...migrate(originalState),originalState};}
+function wrap(s,old){let previous=null;if(old){if(old.schemaVersion===SCHEMA)previous=pack(old);else{V6.migrate(old);const payload=JSON.stringify(old);check(payload.length<=MAX_PAYLOAD,'旧备份过大。');previous={payload,checksum:crc(payload)};}}return JSON.stringify({format:'LIANG_UNIVERSE',current:pack(s),previous});}
+function unwrap(raw){check(typeof raw==='string'&&raw.length<=MAX_PAYLOAD*2+1000,'存档文件过大。');const w=JSON.parse(raw);check(w?.format==='LIANG_UNIVERSE','这不是梁家宇宙存档。');try{return{...unpack(w.current),recovered:false};}catch(e){if(e.code==='UNSUPPORTED_SCHEMA')throw e;if(w.previous)return{...unpack(w.previous),recovered:true};throw e;}}
+function encode(s){const bytes=new TextEncoder().encode(JSON.stringify(pack(s)));let text='';for(let n=0;n<bytes.length;n+=8192)text+=String.fromCharCode(...bytes.subarray(n,n+8192));return'LU1.'+(typeof btoa==='function'?btoa(text):Buffer.from(text,'binary').toString('base64')).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))).state;}
+// Preserve the verified legacy rules while preventing a late error in any
+// public mutation from leaving half of a learning/arcade/board operation saved.
+const legacyMutations=Object.fromEntries(['note','nextTurn','launch','launchArcade','recordArcadeResult','storeLegacy','beginRun','recordSubmission','changeCharacter','invalidateRun','reward'].map(name=>[name,(s,...args)=>atomic(s,draft=>L[name](draft,...args))]));
+return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,TRANSCRIPT_LIMITS,actionStats,appendAction,sameActionPrefix,IDS,RESOURCE_IDS,ADVENTURE_IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
 });
 
 
