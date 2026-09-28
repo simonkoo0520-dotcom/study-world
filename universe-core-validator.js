@@ -1,5 +1,5 @@
-/* Generated from the exact v0.5 board engines and core. */
-(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.5_adventure/src/core-v5.js');return;}
+/* Generated from the exact v0.6 board engines and core. */
+(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.6_platform/src/core-v6.js');return;}
 (function(root,factory){'use strict';const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;root.LiangGames=root.LiangGames||{};root.LiangGames.fishing=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const ITEMS=['fish','slipper','ball','jar'],STAGES=['casting','waiting','bite','reeling','celebrate'];
@@ -717,7 +717,9 @@ return{id,version,title,create,step,validate,result,mount};
     if (!container?.appendChild || !options || typeof options.onAction !== 'function') throw new Error('迷宫需要可用的容器和操作回调。');
     validate(options.state);
     const doc = container.ownerDocument;
-    let state = copy(options.state), paused = false, disposed = false;
+    const directionText = { up: '上', right: '右', down: '下', left: '左' };
+    const directionArrow = { up: '↑', right: '→', down: '↓', left: '←' };
+    let state = copy(options.state), paused = false, disposed = false, recentDamage = null;
     const el = doc.createElement('section'); el.className = 'lg-dungeon'; el.tabIndex = 0; el.dataset.testid = 'dungeon-game'; el.setAttribute('aria-label', '杂物房迷宫');
     el.innerHTML = `<style>
       .lg-dungeon{--d-ink:#eef3ed;--d-soft:#a9c4c8;--d-gold:#f0d295;--d-floor:#244855;box-sizing:border-box;font:16px/1.5 system-ui,-apple-system,"Microsoft YaHei",sans-serif;color:var(--d-ink);background:linear-gradient(135deg,#142f40,#122c35);border:1px solid #426574;border-radius:22px;padding:18px;max-width:1100px;margin:auto;outline-offset:4px;color-scheme:dark}.lg-dungeon *{box-sizing:border-box}.lg-dungeon p{margin:5px 0;color:inherit;font:inherit}.lg-dungeon h2,.lg-dungeon h3{margin:0;color:inherit;line-height:1.35}.lg-dungeon h2{font-size:25px}.lg-dungeon h3{font-size:17px}.lg-dungeon header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:0 0 14px}.lg-dungeon .d-subtitle{font-size:13px;color:var(--d-soft)}.lg-dungeon button{font:inherit;font-weight:700;min-height:46px;border:1px solid #638a91;border-radius:12px;background:#244b57;color:#eef6ef;padding:10px 14px;cursor:pointer;touch-action:manipulation}.lg-dungeon button:hover:not(:disabled){background:#376774}.lg-dungeon button:disabled{opacity:.45;cursor:default}.lg-dungeon button:focus-visible{outline:3px solid #ffd986;outline-offset:2px}.lg-dungeon .d-floor-badge{white-space:nowrap;border:1px solid #709190;border-radius:13px;padding:9px 12px;background:#213f48;color:#f5dbac;font-weight:800}.lg-dungeon .d-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}.lg-dungeon .d-stat{padding:9px 12px;border:1px solid #446773;border-radius:13px;background:#102b38}.lg-dungeon .d-stat-label{display:flex;justify-content:space-between;font-size:13px;gap:8px}.lg-dungeon .d-meter{height:8px;background:#315260;border-radius:8px;overflow:hidden;margin-top:7px}.lg-dungeon .d-meter span{display:block;height:100%;background:#81c8a7;width:100%}.lg-dungeon .d-meter.food span{background:#e8bd72}.lg-dungeon .d-main{display:grid;grid-template-columns:minmax(290px,1.15fr) minmax(260px,.85fr);gap:16px}.lg-dungeon .d-map-wrap{min-width:0;border-radius:17px;overflow:hidden;background:#071923;border:1px solid #4a6673;padding:8px}.lg-dungeon .d-map{display:block;width:100%;max-height:510px;aspect-ratio:1;user-select:none}.lg-dungeon .d-map text{font-family:inherit}.lg-dungeon .d-map-caption{font-size:12px;color:#a8c2c7;padding:6px 5px 2px}.lg-dungeon .d-panel{min-width:0;padding:14px;border:1px solid #496976;border-radius:17px;background:#173541}.lg-dungeon .d-goal{color:#f6daa1;font-size:15px;min-height:45px;margin:7px 0 12px}.lg-dungeon .d-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:255px;margin:12px auto}.lg-dungeon .d-pad button{min-height:52px;font-size:22px;padding:8px}.lg-dungeon .d-pad .d-up{grid-column:2}.lg-dungeon .d-pad .d-left{grid-column:1}.lg-dungeon .d-pad .d-down{grid-column:2}.lg-dungeon .d-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.lg-dungeon .d-leave{grid-column:1/-1;background:#dfc489;color:#193843;border-color:#efdcae}.lg-dungeon .d-leave:hover:not(:disabled){background:#f4ddb0}.lg-dungeon .d-meal{margin-top:10px;width:100%;font-size:14px}.lg-dungeon .d-hint{font-size:12px;color:#b5cace;margin-top:7px}.lg-dungeon .d-sight{margin-top:12px;padding:10px;border-radius:10px;background:#244653;min-height:58px;font-size:13px}.lg-dungeon .d-notice{margin:14px 0 10px;padding:12px 14px;min-height:48px;border:1px solid #65817d;background:#263e41;border-radius:13px;color:#edf4e8;font-size:14px}.lg-dungeon .d-notice[data-kind=won]{background:#245242;border-color:#83b594}.lg-dungeon .d-notice[data-kind=lost]{background:#62443a;border-color:#bb9987}.lg-dungeon .d-found{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.lg-dungeon .d-found span{padding:7px 11px;border-radius:10px;background:#223f4a;border:1px solid #426371;color:#9bb7bd;font-size:13px}.lg-dungeon .d-found span[data-found=true]{background:#4a4936;border-color:#b4a270;color:#fae4b0}.lg-dungeon .d-pause{display:none;color:#ffe0a0;font-weight:800}.lg-dungeon.d-paused .d-pause{display:block}.lg-dungeon .d-keys{font-size:12px;color:#a8c1c7;margin-top:11px}.lg-dungeon .d-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:#bed1d3;margin:7px 0 0}.lg-dungeon .d-discovery-flash{box-shadow:0 0 0 2px #d9bf87}.lg-dungeon [hidden]{display:none!important}
@@ -726,6 +728,8 @@ return{id,version,title,create,step,validate,result,mount};
     <div class="d-stats"><div class="d-stat"><div class="d-stat-label"><span>体力</span><strong data-testid="dungeon-health"></strong></div><div class="d-meter"><span data-health-meter></span></div></div><div class="d-stat"><div class="d-stat-label"><span>局内行动值</span><strong data-testid="dungeon-satiety"></strong></div><div class="d-meter food"><span data-food-meter></span></div></div></div>
     <div class="d-main"><div class="d-map-wrap"><svg class="d-map" data-testid="dungeon-map" viewBox="0 0 450 450" role="img" aria-label="带迷雾的杂物房格子地图"></svg><p class="d-map-caption" data-testid="dungeon-map-caption"></p><div class="d-legend"><span>● 你</span><span>▤ 柜子</span><span>▱ 楼梯</span><span>◇ 旧物</span></div></div><section class="d-panel"><h3>这一层怎么走</h3><p class="d-goal" data-testid="dungeon-goal"></p><div class="d-pad" aria-label="移动方向"><button class="d-up" type="button" data-game-action="move" data-direction="up" data-testid="dungeon-up" aria-label="向上走">↑</button><button class="d-left" type="button" data-game-action="move" data-direction="left" data-testid="dungeon-left" aria-label="向左走">←</button><button type="button" data-game-action="wait" data-testid="dungeon-wait" aria-label="等一回合">等</button><button type="button" data-game-action="move" data-direction="right" data-testid="dungeon-right" aria-label="向右走">→</button><button class="d-down" type="button" data-game-action="move" data-direction="down" data-testid="dungeon-down" aria-label="向下走">↓</button></div><div class="d-actions"><button type="button" data-game-action="attack" data-testid="dungeon-attack">挥拖鞋</button><button type="button" data-game-action="wait" data-testid="dungeon-observe">等一回合</button><button class="d-leave" type="button" data-game-action="descend" data-testid="dungeon-descend">走下楼梯</button></div><button class="d-meal" type="button" data-game-action="use-meal" data-testid="dungeon-meal">使用可选料理</button><p class="d-hint" data-testid="dungeon-meal-hint"></p><div class="d-sight" data-testid="dungeon-enemies"></div></section></div>
     <div class="d-notice" role="status" aria-live="polite" data-testid="dungeon-notice"></div><section aria-label="这次探索的发现"><h3>这次找到的旧物</h3><div class="d-found">${ITEMS.map(item => `<span data-discovery="${item.id}" data-testid="dungeon-discovery-${item.id}">${item.mark} · ${item.name}</span>`).join('')}</div><p class="d-hint">只记录本局发现；不会变成鱼、料理或学习成绩。</p></section><p class="d-keys">方向键 / WASD 移动；朝敌人走会挥拖鞋；空格等待；E 下楼梯；F 朝面前挥拖鞋；M 使用可选料理。敌人只在你行动后移动。</p>`;
+    const mealFeedback = doc.createElement('p'); mealFeedback.className = 'd-hint'; mealFeedback.dataset.testid = 'dungeon-meal-feedback'; mealFeedback.setAttribute('role', 'status'); mealFeedback.hidden = true;
+    el.querySelector('[data-testid="dungeon-meal"]').before(mealFeedback);
     container.appendChild(el);
     const $ = selector => el.querySelector(selector);
     function tileSVG(s) {
@@ -763,10 +767,17 @@ return{id,version,title,create,step,validate,result,mount};
       const leave = $('[data-testid="dungeon-descend"]'); leave.textContent = state.floor === 2 ? '带着发现离开' : '走下楼梯'; leave.disabled = stopped || !same(state.player, f.exit);
       const meal = $('[data-testid="dungeon-meal"]'); meal.disabled = stopped || state.mealsUsed >= state.config.mealCharges || state.satiety === state.satietyMax;
       meal.textContent = state.mealsUsed ? '料理已使用' : state.config.mealCharges ? '使用 1 份料理 · 行动值 +' + Math.min(40, state.satietyMax - state.satiety) : '本局未携带料理';
+      mealFeedback.hidden = state.mealsUsed === 0;
+      mealFeedback.textContent = state.mealsUsed ? '料理已恢复 ' + state.mealRestored + ' 点行动值。' : '';
       $('[data-testid="dungeon-meal-hint"]').textContent = state.config.mealCharges ? '自愿使用，最多恢复 40 点，不超过开局上限。仅实际使用才消费。' : '基础路线不用料理也能完成。饱食是这局行动值，不是共享零食。';
       const near = alive(f).filter(e => visible(state, e.x, e.y));
-      $('[data-testid="dungeon-enemies"]').textContent = near.length ? '看见：' + near.map(e => ENEMIES[e.kind].name + (Math.abs(e.x - state.player.x) + Math.abs(e.y - state.player.y) === 1 ? '（就在旁边）' : '')).join('、') + '。你不行动，它们也会等着。' : '附近暂时没有敌人。可以慢慢观察，不用抢时间。';
-      const notice = $('[data-testid="dungeon-notice"]'); if (notice.textContent !== state.notice) notice.textContent = state.notice; notice.dataset.kind = state.phase;
+      const adjacentDirection = e => ORDER.find(name => { const [dx, dy] = DIRS[name]; return e.x === state.player.x + dx && e.y === state.player.y + dy; });
+      $('[data-testid="dungeon-attack"]').textContent = '向' + directionText[state.player.facing] + '挥拖鞋';
+      $('[data-testid="dungeon-enemies"]').textContent = near.length ? '看见：' + near.map(e => { const d = adjacentDirection(e); return ENEMIES[e.kind].name + (d ? '（就在' + directionText[d] + '边，按 ' + directionArrow[d] + ' 可攻击）' : ''); }).join('、') + '。你不行动，它们也会等着。' : '附近暂时没有敌人。可以慢慢观察，不用抢时间。';
+      const adjacent = near.find(e => adjacentDirection(e));
+      let noticeText = state.notice.startsWith('这个方向没有相邻敌人。') ? '当前朝' + directionText[state.player.facing] + '，这个方向没有相邻敌人。' + (adjacent ? '按 ' + directionArrow[adjacentDirection(adjacent)] + '，就能攻击' + directionText[adjacentDirection(adjacent)] + '边的敌人。' : '可先观察位置，再按敌人所在的方向。') : state.notice;
+      if (state.notice.includes('体力 −1。')) noticeText = '受到附近敌人的攻击。' + (recentDamage > 0 ? '本回合体力 −' + recentDamage + '。' : '') + '目前体力 ' + state.health + ' / ' + state.healthMax + '。按相邻敌人的方向键可攻击，也可以找机会绕开。';
+      const notice = $('[data-testid="dungeon-notice"]'); if (notice.textContent !== noticeText) notice.textContent = noticeText; notice.dataset.kind = state.phase;
       for (const item of ITEMS) { const card = $('[data-discovery="' + item.id + '"]'); card.dataset.found = String(state.discoveries.includes(item.id)); card.classList.toggle('d-discovery-flash', state.latestDiscovery === item.id); card.textContent = (state.discoveries.includes(item.id) ? '✓ ' : '◇ ') + item.name; }
     }
     function emit(action) { if (!disposed && !paused && state.phase === 'playing') options.onAction(action); }
@@ -777,13 +788,16 @@ return{id,version,title,create,step,validate,result,mount};
     }
     function keydown(event) {
       if (disposed || paused || state.phase !== 'playing' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+      // Keep native keyboard activation for a focused button. Space only waits
+      // when focus is on the game surface, never instead of its labelled action.
+      if (event.target.closest('button') && (event.code === 'Space' || event.key === ' ' || event.key === 'Enter')) return;
       const direction = { ArrowUp: 'up', ArrowRight: 'right', ArrowDown: 'down', ArrowLeft: 'left', w: 'up', W: 'up', a: 'left', A: 'left', s: 'down', S: 'down', d: 'right', D: 'right' }[event.key];
       let action = direction ? { type: 'move', direction } : event.code === 'Space' || event.key === ' ' ? { type: 'wait' } : event.key.toLowerCase() === 'e' ? { type: 'descend' } : event.key.toLowerCase() === 'f' ? { type: 'attack', direction: state.player.facing } : event.key.toLowerCase() === 'm' ? { type: 'use-meal' } : null;
       if (action) { event.preventDefault(); emit(action); }
     }
     el.addEventListener('click', click); el.addEventListener('keydown', keydown); render();
     return {
-      update(next) { if (disposed) return; validate(next); state = copy(next); render(); },
+      update(next) { if (disposed) return; validate(next); if (next.health < state.health) recentDamage = state.health - next.health; else if (next.notice !== state.notice) recentDamage = null; state = copy(next); render(); },
       setPaused(value) { if (disposed) return; paused = Boolean(value); render(); },
       dispose() { if (disposed) return; disposed = true; el.removeEventListener('click', click); el.removeEventListener('keydown', keydown); el.remove(); }
     };
@@ -886,7 +900,7 @@ function step(state,action){
  return s;
 }
 function result(s){validate(s);if(s.phase==='playing')return null;return{status:s.phase,score:s.phase==='won'?Math.max(1,2500+(3-rank(s))*800+Math.floor((limit(s.config)-s.elapsedMs)/50)-s.collisions*25):Math.floor(s.distance/8),mealsUsed:s.mealsUsed,trackId:s.config.trackId,rank:rank(s),lapsCompleted:Math.floor(s.checkpoints/4),lapTimes:s.lapTimes.slice(),elapsedMs:s.elapsedMs,collisions:s.collisions,finished:s.checkpoints===8};}
-const CSS=`.kart-game{position:relative;box-sizing:border-box;background:#eaf3ee;border:1px solid #c1d5ce;border-radius:20px;padding:16px;color:#173e4b;font:15px/1.5 system-ui,sans-serif}.kart-game *{box-sizing:border-box}.kart-game h2,.kart-game p{margin:0}.kart-game .kr-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.kart-game h2{font-size:25px}.kart-game .kr-kicker{font-size:11px;letter-spacing:.12em;color:#658378;font-weight:800}.kart-game .kr-track{font-size:13px;color:#526e70}.kart-game .kr-pill{background:#fff5d7;border:1px solid #ddca94;padding:7px 11px;border-radius:9px;white-space:nowrap;font-weight:750}.kart-game .kr-screen{position:relative;border-radius:14px;overflow:hidden;border:4px solid #314d57;background:#9fcacb;aspect-ratio:16/10}.kart-game canvas{display:block;width:100%;height:100%}.kart-game .kr-hud{position:absolute;left:10px;right:10px;top:10px;display:flex;gap:6px;justify-content:space-between;pointer-events:none}.kart-game .kr-hud span{background:#16323ddd;color:#fff;border:1px solid #ffffff30;border-radius:8px;padding:6px 9px;font-weight:750;font-size:13px;font-variant-numeric:tabular-nums}.kart-game .kr-turn{position:absolute;bottom:10px;left:10px;background:#16323ddb;color:#fff;border-radius:8px;padding:5px 10px;font-size:12px}.kart-game .kr-overlay{position:absolute;inset:0;background:#163645c9;display:grid;place-items:center;padding:20px}.kart-game .kr-card{background:#fcfbf0;border:1px solid #d9d6ba;border-radius:15px;padding:18px;width:min(420px,100%);text-align:center;box-shadow:0 12px 38px #071d3155}.kart-game .kr-card strong{font-size:21px}.kart-game .kr-card p{margin:8px 0;font-size:13px}.kart-game button{font:inherit;min-width:48px;min-height:48px;border-radius:10px;padding:9px 12px;border:1px solid #b3ccbf;background:#fff;color:#173e4b;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}.kart-game button:focus-visible{outline:3px solid #d69036;outline-offset:2px}.kart-game button:disabled{opacity:.55;cursor:default}.kart-game .kr-primary{background:#087d70;border-color:#087d70;color:white;font-weight:800}.kart-game .kr-controls{display:grid;grid-template-columns:1fr 1fr 1.5fr 1fr;gap:8px;margin-top:12px}.kart-game .kr-controls button[aria-pressed=true]{background:#d1eadb;border-color:#338a69;box-shadow:inset 0 0 0 2px #72b79d}.kart-game .kr-controls .kr-primary[aria-pressed=true]{background:#087d70;color:#fff}.kart-game .kr-tools{display:flex;gap:10px;align-items:center;margin-top:10px}.kart-game .kr-tools button{font-size:13px;flex:none}.kart-game .kr-tools p{font-size:12px;color:#51726e}.kart-game .kr-notice{padding:10px 12px;margin-top:10px;border-left:4px solid #318d78;background:#fff;border-radius:6px;font-size:13px;min-height:42px}.kart-game .kr-help{font-size:12px;color:#5f7976;margin-top:8px}.kart-game .kr-progress{height:7px;background:#c9ddd0;margin-top:12px;border-radius:8px;overflow:hidden}.kart-game .kr-progress i{display:block;height:100%;background:#1b8772}.kart-game .kr-result{background:#fff7d7;border:1px solid #dfce8f;padding:13px;border-radius:10px;margin-top:12px}.kart-game .kr-result strong{font-size:18px}.kart-game .kr-result p{font-size:13px}.kart-game .kr-statusline{display:flex;justify-content:space-between;font-size:12px;color:#52726e;margin-top:5px}.kart-game [hidden]{display:none!important}@media(max-width:600px){.kart-game{padding:9px;border-radius:13px}.kart-game h2{font-size:21px}.kart-game .kr-head{gap:6px}.kart-game .kr-pill{padding:5px 8px;font-size:12px}.kart-game .kr-screen{aspect-ratio:4/3}.kart-game .kr-hud{left:5px;right:5px;top:5px;gap:4px}.kart-game .kr-hud span{font-size:11px;padding:5px}.kart-game .kr-controls{gap:5px;grid-template-columns:1fr 1fr 1.35fr 1fr}.kart-game button{padding:8px 5px;font-size:14px}.kart-game .kr-tools{align-items:start}.kart-game .kr-card{padding:12px}.kart-game .kr-card p{font-size:12px}.kart-game .kr-help{line-height:1.7}}@media(prefers-reduced-motion:reduce){.kart-game *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}`;
+const CSS=`.kart-game{position:relative;box-sizing:border-box;background:#eaf3ee;border:1px solid #c1d5ce;border-radius:20px;padding:16px;color:#173e4b;font:15px/1.5 system-ui,sans-serif}.kart-game *{box-sizing:border-box}.kart-game h2,.kart-game p{margin:0}.kart-game .kr-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.kart-game h2{font-size:25px}.kart-game .kr-kicker{font-size:11px;letter-spacing:.12em;color:#658378;font-weight:800}.kart-game .kr-track{font-size:13px;color:#526e70}.kart-game .kr-pill{background:#fff5d7;border:1px solid #ddca94;padding:7px 11px;border-radius:9px;white-space:nowrap;font-weight:750}.kart-game .kr-screen{position:relative;border-radius:14px;overflow:hidden;border:4px solid #314d57;background:#9fcacb;aspect-ratio:16/10}.kart-game canvas{display:block;width:100%;height:100%}.kart-game .kr-hud{position:absolute;left:10px;right:10px;top:10px;display:flex;gap:6px;justify-content:space-between;pointer-events:none}.kart-game .kr-hud span{background:#16323ddd;color:#fff;border:1px solid #ffffff30;border-radius:8px;padding:6px 9px;font-weight:750;font-size:13px;font-variant-numeric:tabular-nums}.kart-game .kr-turn{position:absolute;bottom:10px;left:10px;background:#16323ddb;color:#fff;border-radius:8px;padding:5px 10px;font-size:12px}.kart-game .kr-overlay{position:absolute;inset:0;background:#163645c9;display:grid;place-items:center;padding:20px}.kart-game .kr-card{background:#fcfbf0;border:1px solid #d9d6ba;border-radius:15px;padding:18px;width:min(420px,100%);text-align:center;box-shadow:0 12px 38px #071d3155}.kart-game .kr-card strong{font-size:21px}.kart-game .kr-card p{margin:8px 0;font-size:13px}.kart-game button{font:inherit;min-width:48px;min-height:48px;border-radius:10px;padding:9px 12px;border:1px solid #b3ccbf;background:#fff;color:#173e4b;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}.kart-game button:focus-visible{outline:3px solid #d69036;outline-offset:2px}.kart-game button:disabled{opacity:.55;cursor:default}.kart-game .kr-primary{background:#087d70;border-color:#087d70;color:white;font-weight:800}.kart-game .kr-controls{display:grid;grid-template-columns:1fr 1fr 1.5fr 1fr;gap:8px;margin-top:12px}.kart-game .kr-controls button[aria-pressed=true]{background:#d1eadb;border-color:#338a69;box-shadow:inset 0 0 0 2px #72b79d}.kart-game .kr-controls .kr-primary[aria-pressed=true]{background:#087d70;color:#fff}.kart-game .kr-tools{display:flex;gap:10px;align-items:center;margin-top:10px}.kart-game .kr-tools button{font-size:13px;flex:none}.kart-game .kr-tools p{font-size:12px;color:#51726e}.kart-game .kr-notice{padding:10px 12px;margin-top:10px;border-left:4px solid #318d78;background:#fff;border-radius:6px;font-size:13px;min-height:42px}.kart-game .kr-help{font-size:12px;color:#5f7976;margin-top:8px}.kart-game .kr-progress{height:7px;background:#c9ddd0;margin-top:12px;border-radius:8px;overflow:hidden}.kart-game .kr-progress i{display:block;height:100%;background:#1b8772}.kart-game .kr-result{background:#fff7d7;border:1px solid #dfce8f;padding:13px;border-radius:10px;margin-top:12px}.kart-game .kr-result strong{font-size:18px}.kart-game .kr-result p{font-size:13px}.kart-game .kr-card p,.kart-game .kr-notice,.kart-game .kr-result p{color:#173e4b}.kart-game .kr-statusline{display:flex;justify-content:space-between;font-size:12px;color:#52726e;margin-top:5px}.kart-game [hidden]{display:none!important}@media(min-width:601px){.kart-game .kr-screen{width:100%;height:clamp(180px,calc(100dvh - 450px),420px);aspect-ratio:auto}}@media(max-width:600px){.kart-game{padding:9px;border-radius:13px}.kart-game h2{font-size:21px}.kart-game .kr-head{gap:6px}.kart-game .kr-pill{padding:5px 8px;font-size:12px}.kart-game .kr-screen{aspect-ratio:4/3}.kart-game .kr-hud{left:5px;right:5px;top:5px;gap:4px}.kart-game .kr-hud span{font-size:11px;padding:5px}.kart-game .kr-controls{gap:5px;grid-template-columns:1fr 1fr 1.35fr 1fr}.kart-game button{padding:8px 5px;font-size:14px}.kart-game .kr-tools{align-items:start}.kart-game .kr-card{padding:12px}.kart-game .kr-card p{font-size:12px}.kart-game .kr-help{line-height:1.7}}@media(prefers-reduced-motion:reduce){.kart-game *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}`;
 function mount(container,{state,onAction}){
  validate(state);assert(container&&typeof onAction==='function','赛车画面缺少宿主。');const doc=container.ownerDocument,win=doc.defaultView,root=doc.createElement('section');root.className='kart-game';root.dataset.testid='kart-game';root.tabIndex=0;root.setAttribute('aria-label',title);container.replaceChildren(root);
  let current=clone(state),previous=clone(state),visualAt=win.performance.now(),paused=false,disposed=false,neutralizing=false,interval=null,frame=null,gas=false,lastNotice='',keys=new Set(),holds=new Map();const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
@@ -911,7 +925,7 @@ function mount(container,{state,onAction}){
   for(const sprite of sprites){const p=projection(sprite.z),sx=p.center+sprite.x*p.half,sy=p.y,size=Math.max(7,p.p*width*.115);if(sprite.kind==='car')car(sx,sy,size,['#f4bc70','#94c3dc'][sprite.i],'AI '+(sprite.i+1));else if(sprite.kind==='crate'){ctx.fillStyle='#bf9365';ctx.fillRect(sx-size*.35,sy-size*.55,size*.7,size*.6);ctx.strokeStyle='#795f44';ctx.strokeRect(sx-size*.35,sy-size*.55,size*.7,size*.6);}else{quad([[sx,sy-size*.6],[sx-size*.3,sy],[sx+size*.3,sy]],'#ed9860');ctx.fillStyle='#fff1cd';ctx.fillRect(sx-size*.16,sy-size*.25,size*.32,size*.09);}}
   const nextGate=(current.checkpoints+1)*t.length/4,z=nextGate-distance;if(current.checkpoints<8&&z>0&&z<440){const p=projection(z);ctx.strokeStyle='#f8ebae';ctx.lineWidth=Math.max(2,p.p*5);ctx.beginPath();ctx.moveTo(p.center-p.half,p.y);ctx.lineTo(p.center-p.half,p.y-p.p*height*.2);ctx.lineTo(p.center+p.half,p.y-p.p*height*.2);ctx.lineTo(p.center+p.half,p.y);ctx.stroke();}
   if(current.config.trackId==='masai-market')for(let i=0;i<4;i++){const z=((i*160+620-distance%160)%620)+35,p=projection(z),side=i%2?-1:1,sx=p.center+side*p.half*1.52,size=width*.17*p.p;ctx.fillStyle='#d8cdb2';ctx.fillRect(sx-size/2,p.y-size*.65,size,size*.7);quad([[sx-size*.6,p.y-size*.65],[sx+size*.6,p.y-size*.65],[sx+size*.44,p.y-size*.95],[sx-size*.44,p.y-size*.95]],i%2?'#db9c78':'#79b2a4');}
-  const playerX=width/2+x*width*.36;car(playerX,height*.82,width*.13,current.collisionMs?'#d2916c':'#46b6ad','YOU');if(current.boostMs){ctx.fillStyle='#f6ca68';ctx.fillRect(playerX-width*.025,height*.92,width*.015,height*.035);ctx.fillRect(playerX+width*.01,height*.92,width*.015,height*.035);}ctx.fillStyle='#17364170';ctx.fillRect(0,height-8,width,8);
+  const playerX=width/2+x*width*.36;car(playerX,height*.82,Math.min(width*.13,height*.32),current.collisionMs?'#d2916c':'#46b6ad','YOU');if(current.boostMs){ctx.fillStyle='#f6ca68';ctx.fillRect(playerX-width*.025,height*.92,width*.015,height*.035);ctx.fillRect(playerX+width*.01,height*.92,width*.015,height*.035);}ctx.fillStyle='#17364170';ctx.fillRect(0,height-8,width,8);
  }
  function ui(){
   const t=TRACKS[current.config.trackId],playing=current.phase==='playing',remaining=Math.max(0,Math.ceil((limit(current.config)-current.elapsedMs)/1000));find('kart-track').textContent=t.name+' · 示意赛道 · '+['轻松','标准','挑战'][current.config.difficulty];find('kart-lap').textContent='圈 '+Math.min(2,Math.floor(current.checkpoints/4)+1)+'/2';find('kart-rank').textContent='第 '+rank(current)+' / 3';find('kart-speed').textContent='速度 '+Math.round(current.speed);find('kart-clock').textContent=Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0');
@@ -919,7 +933,7 @@ function mount(container,{state,onAction}){
   if(current.notice!==lastNotice){find('kart-notice').textContent=current.notice;lastNotice=current.notice;}find('kart-meal-status').textContent=current.boostMs?'加速剩余 '+Math.ceil(current.boostMs/1000)+' 秒':current.mealsUsed?'本局已使用 1 份料理':current.config.mealCharges?'可选：开动车辆后使用 1 份 Masai 料理':'未带料理：不影响基础通关';
   for(const button of root.querySelectorAll('[data-game-action]')){const action=button.dataset.gameAction;button.disabled=paused||!playing||action!=='start'&&!current.started||action==='use-meal'&&(current.mealsUsed>=current.config.mealCharges||current.speed<8||current.distance<=0);if(action==='throttle'){button.textContent=current.input.throttle?'油门：开':'油门：关';button.setAttribute('aria-pressed',String(!!current.input.throttle));}if(action==='left'||action==='right'||action==='brake')button.setAttribute('aria-pressed',String(action==='brake'?!!current.input.brake:current.input.steer===(action==='left'?-1:1)));}
   find('kart-overlay').hidden=!(paused||!current.started);find('kart-ready-title').textContent=paused?'比赛已暂停':'两圈小比赛';find('kart-ready-copy').textContent=paused?'时间与输入已停止。恢复后重新踩油门。':'按油门起步，过弯调整方向。完成两圈，领先至少一辆电脑车。';root.querySelector('[data-game-action=start]').hidden=paused;
-  const out=result(current),box=find('kart-result');box.hidden=!out;if(out)box.innerHTML='<strong>'+(out.status==='won'?'完赛成功！':'再挑战一次')+'</strong><p>第 '+out.rank+' 名 · '+out.lapsCompleted+' 圈 · '+out.score+' 分。'+(out.mealsUsed?'本局实际使用了 1 份料理。':'本局没有消耗料理。')+'</p><p>请使用宿主的返回按钮保存本局结果。</p>';
+  const out=result(current),box=find('kart-result');box.hidden=!out;if(out)box.innerHTML='<strong>'+(out.status==='won'?'完赛成功！':'再挑战一次')+'</strong><p>第 '+out.rank+' 名 · '+out.lapsCompleted+' 圈 · '+out.score+' 分。'+(out.mealsUsed?'本局实际使用了 1 份料理。':'本局没有消耗料理。')+'</p><p>点击上方“结算并返回棋盘”，保存本局成绩。</p>';
  }
  function animation(){if(disposed||paused)return;draw();if(!reduced.matches)frame=win.requestAnimationFrame(animation);}
  function scheduling(){win.clearInterval(interval);win.cancelAnimationFrame(frame);interval=null;frame=null;if(live()){interval=win.setInterval(()=>{if(current.started){syncInput();emit({type:'tick',dt:100});}},100);if(!reduced.matches)frame=win.requestAnimationFrame(animation);}draw();}
@@ -932,6 +946,123 @@ function mount(container,{state,onAction}){
  function release(){keys.clear();holds.clear();gas=false;syncInput();}
  const visibility=()=>{if(doc.hidden)release();},resize=()=>draw(),motion=()=>scheduling();root.addEventListener('click',click);root.addEventListener('pointerdown',down);doc.addEventListener('pointerup',up);doc.addEventListener('pointercancel',up);root.addEventListener('keydown',keydown);doc.addEventListener('keyup',keyup);win.addEventListener('blur',release);doc.addEventListener('visibilitychange',visibility);win.addEventListener('resize',resize);reduced.addEventListener?.('change',motion);
  ui();scheduling();return{update,setPaused(value){if(disposed)return;paused=!!value;keys.clear();holds.clear();gas=false;try{if(paused)notifyNeutral();else syncInput();}finally{ui();scheduling();}},dispose(){if(disposed)return;disposed=true;try{notifyNeutral();}finally{win.clearInterval(interval);win.cancelAnimationFrame(frame);keys.clear();holds.clear();gas=false;root.removeEventListener('click',click);root.removeEventListener('pointerdown',down);doc.removeEventListener('pointerup',up);doc.removeEventListener('pointercancel',up);root.removeEventListener('keydown',keydown);doc.removeEventListener('keyup',keyup);win.removeEventListener('blur',release);doc.removeEventListener('visibilitychange',visibility);win.removeEventListener('resize',resize);reduced.removeEventListener?.('change',motion);root.remove();}}};
+}
+return{id,version,title,create,step,validate,result,mount};
+});
+
+
+;
+/* G03 basic chapter: labelled geometric actors; illustrative stages, no inventory writes. */
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else(root.LiangGames||(root.LiangGames={})).platform=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const id='platform',version=1,title='梁家三小瓜';
+const PEOPLE={sister:{name:'梁姐姐',short:'姐姐',height:46,speed:235,jump:640,color:'#277f8c',skill:'高跳到机关'},brother:{name:'梁弟弟',short:'弟弟',height:44,speed:290,jump:500,color:'#c38336',skill:'冲刺撞开障碍'},little:{name:'梁妹妹',short:'妹妹',height:26,speed:220,jump:490,color:'#966099',skill:'钻过低矮通道'}};
+const STAGES=[
+ {name:'家',goal:'开饭前洗手',width:2060,ground:[[0,750],[870,1330],[1460,2060]],platform:{x:250,y:285,w:180,h:18},lever:{x:355,y:285},gate:{x:530,y:0,w:26,h:400},barrier:{x:1020,y:200,w:42,h:200},tunnel:{x:1580,y:0,w:230,h:368},checks:[60,920,1840],exit:1980,order:['lever','barrier','crawl'],sky:'#dcece8',floor:'#809889'},
+ {name:'新廊华小',goal:'赶交作业',width:2250,ground:[[0,650],[760,1560],[1690,2250]],platform:{x:1240,y:282,w:190,h:18},lever:{x:1330,y:282},gate:{x:1470,y:0,w:26,h:400},barrier:{x:920,y:200,w:44,h:200},tunnel:{x:230,y:0,w:200,h:368},checks:[60,520,1800],exit:2160,order:['crawl','barrier','lever'],sky:'#dcebf3',floor:'#8a9eaf'},
+ {name:'出门前战争',goal:'赶上车',width:2200,ground:[[0,770],[895,1400],[1520,2200]],platform:{x:260,y:280,w:185,h:18},lever:{x:355,y:280},gate:{x:535,y:0,w:26,h:400},barrier:{x:1080,y:205,w:44,h:195},tunnel:{x:1650,y:0,w:210,h:368},checks:[60,950,1960],exit:2100,order:['lever','barrier','crawl'],sky:'#f2e6cd',floor:'#a19a80'}
+];
+const clone=x=>JSON.parse(JSON.stringify(x)),check=(ok,message)=>{if(!ok)throw Error(message);},int=(n,a,b)=>Number.isSafeInteger(n)&&n>=a&&n<=b,num=(n,a,b)=>typeof n==='number'&&Number.isFinite(n)&&n>=a&&n<=b,clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),round=n=>Math.round(n*100000)/100000||0;
+const maxHealth=config=>[5,4,3][config.difficulty],timeLimit=config=>[45000,36000,30000][config.difficulty];
+function config(input={}){const c={seed:input.seed??1,difficulty:input.difficulty??0,mode:input.mode??'practice',mealCharges:input.mealCharges??0};check(int(c.seed,0,4294967295)&&int(c.difficulty,0,2)&&['practice','inventory'].includes(c.mode)&&int(c.mealCharges,0,1)&&!(c.mode==='practice'&&c.mealCharges),'横版配置无效；练习关不带共享料理。');return c;}
+function create(input){const c=config(input);return{version,config:c,phase:'playing',started:false,level:0,levelStatus:'active',elapsedMs:0,levelElapsedMs:0,character:'sister',x:60,y:400,vy:0,grounded:true,direction:0,facing:1,dashMs:0,dashCooldownMs:0,idleMs:0,restlessMs:0,health:maxHealth(c),mealsUsed:0,mealRestored:0,checkpoint:0,flags:{lever:false,barrier:false,crawl:false},crawlEntered:false,completed:[],deaths:0,retries:0,jumps:0,switches:0,reading:false,notice:'先试试移动和跳跃。三个人的能力都用得到。',lastEvent:'ready'};}
+const solids=s=>{const m=STAGES[s.level];return[...m.ground.map(([a,b])=>({x:a,y:400,w:b-a,h:110})),m.platform,m.tunnel,...(s.flags.lever?[]:[m.gate]),...(s.flags.barrier?[]:[m.barrier])];};
+function overlaps(x,y,height,r){return x+12>r.x+.001&&x-12<r.x+r.w-.001&&y>r.y+.001&&y-height<r.y+r.h-.001;}
+function validate(s){
+ check(s&&s.version===1,'横版进度版本无效。');const c=config(s.config);check(JSON.stringify(c)===JSON.stringify(s.config),'横版配置不完整。');check(['playing','won','lost'].includes(s.phase)&&typeof s.started==='boolean'&&int(s.level,0,2)&&['active','retry'].includes(s.levelStatus),'横版阶段无效。');
+ check(int(s.elapsedMs,0,1e9)&&int(s.levelElapsedMs,0,s.elapsedMs)&&Object.hasOwn(PEOPLE,s.character)&&num(s.x,12,STAGES[s.level].width-12)&&num(s.y,-200,600)&&num(s.vy,-700,1500)&&typeof s.grounded==='boolean','横版位置或计时无效。');
+ check(int(s.direction,-1,1)&&[-1,1].includes(s.facing)&&int(s.dashMs,0,340)&&int(s.dashCooldownMs,0,1100)&&int(s.idleMs,0,3500)&&int(s.restlessMs,0,600),'横版操控无效。');
+ check(int(s.health,0,maxHealth(c))&&int(s.mealsUsed,0,c.mealCharges)&&int(s.mealRestored,0,2)&&((s.mealsUsed===0&&s.mealRestored===0)||(s.mealsUsed===1&&s.mealRestored>=1)),'料理或体力记录无效。');
+ check(int(s.checkpoint,0,2)&&s.flags&&['lever','barrier','crawl'].every(k=>typeof s.flags[k]==='boolean')&&typeof s.crawlEntered==='boolean'&&typeof s.reading==='boolean','机关记录无效。');
+ check(Array.isArray(s.completed)&&s.completed.length===(s.phase==='won'?3:s.level)&&s.completed.every((r,i)=>r.level===i&&int(r.elapsedMs,1,s.elapsedMs)&&r.flags&&['lever','barrier','crawl'].every(k=>r.flags[k]===true)),'关卡必须依次实际完成。');
+ check(['deaths','retries','jumps','switches'].every(k=>int(s[k],0,100000))&&typeof s.notice==='string'&&s.notice.length<=220&&typeof s.lastEvent==='string','横版操作记录无效。');
+ if(!s.started)check(s.phase==='playing'&&s.level===0&&s.elapsedMs===0&&s.x===60&&s.health===maxHealth(c)&&s.mealsUsed===0&&!s.flags.lever&&!s.flags.barrier&&!s.flags.crawl,'尚未开始，不能提前完成。');
+ if(s.phase==='won')check(s.started&&s.level===2&&s.grounded&&Math.abs(s.x-STAGES[2].exit)<=60&&s.flags.lever&&s.flags.barrier&&s.flags.crawl&&s.jumps>=3&&s.switches>=2&&s.health>0,'没有完成三关路线，不能获胜。');
+ if(s.phase==='lost')check(s.started&&s.health===0,'体力尚有剩余，不能直接结束为失败。');
+ if(s.phase==='playing')check(s.health>0,'体力耗尽的游戏不能继续。');return true;
+}
+function hurt(s,reason){s.health--;s.deaths++;s.x=STAGES[s.level].checks[s.checkpoint];s.y=400;s.vy=0;s.grounded=true;s.direction=0;s.dashMs=0;s.restlessMs=0;s.idleMs=0;s.reading=false;s.levelStatus='retry';s.lastEvent=reason;s.notice=reason==='timeout'?'没赶上这次车。可以从检查点再试，机关进度会保留。':'掉下去了。检查点和已完成机关都保留，准备好后再试。';if(!s.health){s.phase='lost';s.notice='本局体力用完了。返回后可以重新挑战，基础通关不需要料理。';}}
+function step(state,action){
+ validate(state);check(action&&typeof action.type==='string','横版动作无效。');const s=clone(state);if(s.phase!=='playing')return s;
+ if(action.type==='move'){check(int(action.direction,-1,1),'方向必须是左、停或右。');if(action.direction===0){s.direction=0;return s;}if(s.started&&!s.reading&&s.levelStatus==='active'){s.direction=action.direction;s.facing=action.direction;s.idleMs=0;s.restlessMs=0;}return s;}
+ if(action.type==='start'){if(!s.started){s.started=true;s.notice='姐姐跳到高台上，站稳后按“互动”打开机关。';s.lastEvent='started';}return s;}
+ if(action.type==='hint'){check(typeof action.open==='boolean','提示状态无效。');if(s.started&&s.levelStatus==='active'){s.reading=action.open;s.direction=0;s.lastEvent=action.open?'reading':'reading-closed';}return s;}
+ if(action.type==='retry'){if(s.levelStatus==='retry'){s.levelStatus='active';s.levelElapsedMs=0;s.retries++;s.notice='从检查点继续。已完成的机关不用重做。';s.lastEvent='retried';}return s;}
+ if(!s.started||s.reading||s.levelStatus!=='active'){check(['jump','dash','switch','interact','use-meal','tick'].includes(action.type),'横版动作无效。');if(action.type==='tick')check(int(action.dt,1,250),'横版计时无效。');return s;}
+ if(action.type==='switch'){check(Object.hasOwn(PEOPLE,action.character),'未确认的角色。');if(s.character===action.character)return s;const h=PEOPLE[action.character].height;if(solids(s).some(r=>overlaps(s.x,s.y,h,r))){s.notice='这里太矮了，先让妹妹走出通道再换人。';return s;}s.character=action.character;s.switches++;s.dashMs=0;s.idleMs=0;s.restlessMs=0;s.notice=PEOPLE[s.character].name+'：'+PEOPLE[s.character].skill+'。';s.lastEvent='switched';return s;}
+ if(action.type==='jump'){if(s.grounded){s.vy=-PEOPLE[s.character].jump;s.grounded=false;s.jumps++;s.idleMs=0;s.restlessMs=0;s.lastEvent='jump';}return s;}
+ if(action.type==='dash'){if(s.character==='brother'&&s.grounded&&s.dashCooldownMs===0){s.dashMs=340;s.dashCooldownMs=1100;s.idleMs=0;s.restlessMs=0;s.lastEvent='dash';s.notice='冲刺！碰到标记的障碍就能撞开。';}else s.notice='让弟弟站稳后冲刺；使用后需要短暂恢复。';return s;}
+ if(action.type==='use-meal'){if(s.config.mealCharges>s.mealsUsed&&s.health<maxHealth(s.config)){const amount=Math.min(2,maxHealth(s.config)-s.health);s.health+=amount;s.mealsUsed=1;s.mealRestored=amount;s.notice='料理恢复了 '+amount+' 点体力。路线仍要自己完成。';s.lastEvent='meal';}else s.notice=s.health===maxHealth(s.config)?'体力是满的，不需要使用料理。':'本局没有可用料理，基础路线仍可通关。';return s;}
+ if(action.type==='interact'){
+  const m=STAGES[s.level];if(Math.abs(s.x-m.lever.x)<=55&&Math.abs(s.y-m.lever.y)<=5&&s.grounded){if(s.character==='sister'){s.flags.lever=true;s.notice='机关开了！可以继续前进。';s.lastEvent='lever';}else s.notice='换成姐姐来操作这个高台机关。';return s;}
+  if(Math.abs(s.x-m.exit)<=55&&s.grounded){if(!Object.values(s.flags).every(Boolean)){s.notice='还有能力路线没完成。看看下方的三个进度标记。';return s;}s.completed.push({level:s.level,elapsedMs:s.levelElapsedMs,flags:clone(s.flags)});s.direction=0;s.dashMs=0;s.restlessMs=0;s.idleMs=0;if(s.level===2){s.phase='won';s.notice='赶上车了！三关完成，返回棋盘保存本局成绩。';s.lastEvent='won';}else{s.level++;s.levelElapsedMs=0;s.x=60;s.y=400;s.vy=0;s.grounded=true;s.character='sister';s.checkpoint=0;s.flags={lever:false,barrier:false,crawl:false};s.crawlEntered=false;s.dashCooldownMs=0;s.notice=s.level===1?'来到新廊华小。先换妹妹钻过前面的矮通道。':'最后一关：赶上车！注意右上角的本关时间。';s.lastEvent='next-level';}return s;}
+  s.notice='站到高台机关或关底目标旁，再按互动。';return s;
+ }
+ check(action.type==='tick'&&int(action.dt,1,250),'横版计时或动作无效。');
+ let remaining=action.dt;while(remaining>0&&s.phase==='playing'&&s.levelStatus==='active'){
+  const dt=Math.min(20,remaining),seconds=dt/1000,m=STAGES[s.level],p=PEOPLE[s.character];remaining-=dt;s.elapsedMs+=dt;s.levelElapsedMs+=dt;s.dashCooldownMs=Math.max(0,s.dashCooldownMs-dt);
+  if(s.character==='brother'&&!s.direction&&s.grounded&&!s.dashMs&&!s.restlessMs){s.idleMs=Math.min(3500,s.idleMs+dt);if(s.idleMs===3500){s.restlessMs=600;s.idleMs=0;s.notice='弟弟有点坐不住了！按方向或换人就能控制。';}}
+  else if(s.direction||s.character!=='brother')s.idleMs=0;
+  const moving=s.dashMs?s.facing:s.direction||(s.restlessMs?s.facing:0),speed=s.dashMs?520:p.speed;
+  let nextX=clamp(s.x+moving*speed*seconds,12,m.width-12);
+  if(s.dashMs&&s.character==='brother'&&!s.flags.barrier&&overlaps(nextX,s.y,p.height,m.barrier)){s.flags.barrier=true;s.notice='障碍撞开了！';s.lastEvent='barrier';}
+  for(const r of solids(s))if(overlaps(nextX,s.y,p.height,r)){if(moving>0)nextX=Math.min(nextX,r.x-12);else if(moving<0)nextX=Math.max(nextX,r.x+r.w+12);}
+  s.x=round(nextX);const oldY=s.y,oldTop=oldY-p.height;s.vy=round(Math.min(1500,s.vy+1350*seconds));let nextY=round(oldY+s.vy*seconds);s.grounded=false;
+  for(const r of solids(s))if(s.x+12>r.x+.001&&s.x-12<r.x+r.w-.001){if(s.vy>=0&&oldY<=r.y+.001&&nextY>=r.y){nextY=Math.min(nextY,r.y);s.vy=0;s.grounded=true;}else if(s.vy<0&&oldTop>=r.y+r.h-.001&&nextY-p.height<r.y+r.h){nextY=r.y+r.h+p.height;s.vy=0;}}
+  s.y=nextY;s.dashMs=Math.max(0,s.dashMs-dt);s.restlessMs=Math.max(0,s.restlessMs-dt);
+  if(s.character==='little'&&s.grounded&&s.x>m.tunnel.x+20&&s.x<m.tunnel.x+m.tunnel.w)s.crawlEntered=true;
+  if(s.character==='little'&&s.crawlEntered&&s.x>m.tunnel.x+m.tunnel.w+12&&s.grounded){s.flags.crawl=true;s.lastEvent='crawl';}
+  if(s.grounded)for(let i=s.checkpoint+1;i<m.checks.length;i++)if(s.x>=m.checks[i]){s.checkpoint=i;s.notice='检查点已保存。跌落后可以从这里再试。';s.lastEvent='checkpoint';}
+  if(s.y>560)hurt(s,'fall');else if(s.level===2&&s.levelElapsedMs>=timeLimit(s.config))hurt(s,'timeout');
+ }
+ return s;
+}
+function result(s){validate(s);if(s.phase==='playing')return null;return{status:s.phase,score:s.phase==='won'?Math.max(1,3000+s.health*200-s.deaths*80-Math.floor(s.elapsedMs/1000)):s.completed.length*600,mealsUsed:s.mealsUsed,mealRestored:s.mealRestored,levelsCompleted:s.completed.length,stageTimes:s.completed.map(r=>r.elapsedMs),deaths:s.deaths,retries:s.retries,elapsedMs:s.elapsedMs};}
+function hint(s){const m=STAGES[s.level],next=m.order.find(k=>!s.flags[k]);if(s.levelStatus==='retry')return'准备好后点“从检查点再试”；已完成的机关保留。';if(next==='lever')return'姐姐跳得高：跳上带开关的高台，站稳后按“互动”。';if(next==='barrier')return'换弟弟：走近标记的障碍，朝它冲刺。地板缺口要跳过去。';if(next==='crawl')return'换妹妹：她能钻过低矮通道。离开通道后可再换人。';return'三个能力路线都完成了！前往“'+m.goal+'”标记，按互动。';}
+const CSS=`.platform-game{box-sizing:border-box;background:#edf2e8;border:1px solid #bccbbe;border-radius:18px;color:#223e42;font:14px/1.5 system-ui,sans-serif;padding:14px}.platform-game *{box-sizing:border-box}.platform-game h2,.platform-game p{margin:0;color:#223e42}.platform-game button:hover:not(:disabled){background:#e1eddf;color:#223e42}.platform-game .pf-primary:hover:not(:disabled){background:#185e57;color:#fff}.platform-game h2{font-size:24px}.platform-game .pf-head{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:10px}.platform-game .pf-kicker{font-size:10px;font-weight:800;letter-spacing:.12em;color:#63816b}.platform-game .pf-label{font-size:12px;color:#52706a}.platform-game .pf-hud{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.platform-game .pf-hud span{background:#fff;border:1px solid #c8d4c5;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700}.platform-game .pf-screen{position:relative;overflow:hidden;border:3px solid #395b59;border-radius:12px;width:100%;height:min(420px,calc(100dvh - 450px));aspect-ratio:auto;min-height:180px;background:#dcece8}.platform-game canvas{display:block;width:100%;height:100%}.platform-game .pf-overlay{position:absolute;inset:0;background:#213e49ce;display:grid;place-items:center;padding:14px}.platform-game .pf-card{background:#fffcee;border-radius:14px;border:1px solid #d0d2b7;padding:16px;text-align:center;max-width:420px;max-height:100%;overflow:auto}.platform-game .pf-card strong{font-size:20px}.platform-game .pf-card p{font-size:13px;margin:8px 0}.platform-game button{font:inherit;min-width:48px;min-height:48px;touch-action:none;user-select:none;-webkit-user-select:none;border:1px solid #bac9b8;border-radius:10px;padding:8px 12px;background:#fff;color:#233f40;cursor:pointer}.platform-game button:focus-visible{outline:3px solid #d9994a;outline-offset:2px}.platform-game button:disabled{opacity:.45;cursor:default}.platform-game .pf-primary{background:#21766d;border-color:#21766d;color:white;font-weight:750}.platform-game button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #419785;background:#d5e9d9}.platform-game .pf-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}.platform-game .pf-people{display:grid;grid-template-columns:repeat(3,1fr) 1.4fr;gap:7px;margin-top:9px}.platform-game .pf-people button{font-size:13px;padding:7px}.platform-game .pf-tools{display:flex;gap:8px;align-items:center;margin-top:8px}.platform-game .pf-tools button{font-size:12px}.platform-game .pf-meter{font-size:11px;color:#826027;flex:1}.platform-game .pf-progress{display:flex;justify-content:space-between;gap:6px;font-size:12px;margin-top:9px}.platform-game .pf-progress span{background:#dde8d8;border-radius:5px;padding:4px 7px}.platform-game .pf-hint{background:#fff;border-left:4px solid #5c9980;padding:9px 10px;margin-top:8px;font-size:13px;border-radius:5px}.platform-game .pf-notice{font-size:12px;color:#536e65;margin-top:7px;min-height:20px}.platform-game .pf-help{font-size:11px;color:#627c70;margin-top:7px}.platform-game .pf-result{padding:12px;background:#fff2cf;border:1px solid #dcc68b;border-radius:10px;margin-top:10px}.platform-game [hidden]{display:none!important}@media(max-width:600px){.platform-game{padding:8px}.platform-game h2{font-size:20px}.platform-game .pf-screen{height:auto;max-height:none;aspect-ratio:4/3}.platform-game button{padding:6px 5px}.platform-game .pf-people,.platform-game .pf-controls{gap:4px}.platform-game .pf-people{grid-template-columns:repeat(3,1fr) 1.2fr}.platform-game .pf-hud{gap:4px}.platform-game .pf-hud span{padding:4px 6px;font-size:11px}.platform-game .pf-progress{font-size:11px}.platform-game .pf-progress span{padding:4px}.platform-game .pf-card{padding:11px}.platform-game .pf-card strong{font-size:17px}.platform-game .pf-card p{font-size:12px}}@media(prefers-reduced-motion:reduce){.platform-game *{animation:none!important;transition:none!important}}`;
+function mount(container,{state,onAction}){
+ validate(state);check(container&&typeof onAction==='function','横版画面缺少宿主。');const doc=container.ownerDocument,win=doc.defaultView,root=doc.createElement('section');root.className='platform-game';root.dataset.testid='platform-game';root.tabIndex=0;root.setAttribute('aria-label',title);container.replaceChildren(root);
+ let current=clone(state),previous=clone(state),updatedAt=win.performance.now(),paused=false,disposed=false,neutralizing=false,interval=null,frame=null,lastNotice='',keys=new Set(),holds=new Map();const reduced=win.matchMedia('(prefers-reduced-motion: reduce)');
+ root.innerHTML=`<style>${CSS}</style><header class="pf-head"><div><div class="pf-kicker">LIANG · THREE LITTLE ADVENTURERS</div><h2>${title}</h2><p class="pf-label">三关基础篇 · 场景与人物均为几何示意</p></div><span data-testid="platform-level"></span></header><div class="pf-hud"><span data-testid="platform-health"></span><span data-testid="platform-person"></span><span data-testid="platform-checkpoint"></span><span data-testid="platform-clock"></span></div><div class="pf-screen"><canvas data-testid="platform-canvas" aria-label="横版关卡示意画面"></canvas><div class="pf-overlay" data-testid="platform-overlay"><div class="pf-card"><strong data-testid="platform-overlay-title"></strong><p data-testid="platform-overlay-copy"></p><button class="pf-primary" data-game-action="start">开始冒险</button><button class="pf-primary" data-game-action="retry" hidden>从检查点再试</button><button data-game-action="hint-close" hidden>读好了，继续</button></div></div></div><div class="pf-progress"><span data-testid="platform-lever"></span><span data-testid="platform-barrier"></span><span data-testid="platform-crawl"></span></div><div class="pf-controls"><button data-game-action="left" aria-label="向左移动">◀ 左移</button><button data-game-action="right" aria-label="向右移动">右移 ▶</button><button class="pf-primary" data-game-action="jump">跳跃 ↑</button><button data-game-action="dash">弟弟冲刺</button></div><div class="pf-people"><button data-game-action="sister">姐姐 · 高跳</button><button data-game-action="brother">弟弟 · 冲刺</button><button data-game-action="little">妹妹 · 钻缝</button><button class="pf-primary" data-game-action="interact">互动 E</button></div><div class="pf-tools"><button data-game-action="use-meal">料理回血</button><button data-game-action="hint">阅读提示</button><span class="pf-meter" data-testid="platform-restless"></span></div><p class="pf-hint" data-testid="platform-hint"></p><p class="pf-notice" data-testid="platform-notice" role="status" aria-live="polite"></p><p class="pf-help">←/→ 或 A/D 移动 · 空格跳跃 · X冲刺 · 1/2/3换人 · E互动 · H提示。触屏按住方向，点其他按钮。</p><section class="pf-result" data-testid="platform-result" hidden></section>`;
+ const find=test=>root.querySelector('[data-testid="'+test+'"]'),canvas=find('platform-canvas'),ctx=canvas.getContext('2d'),live=()=>!disposed&&!paused&&current.phase==='playing',active=()=>live()&&current.started&&!current.reading&&current.levelStatus==='active';
+ function emit(action){if(live())onAction(action);}
+ function controls(){const values=[...holds.values()],left=keys.has('ArrowLeft')||keys.has('KeyA')||values.includes(-1),right=keys.has('ArrowRight')||keys.has('KeyD')||values.includes(1);return left===right?0:left?-1:1;}
+ function sync(){if(active()){const direction=controls();if(direction!==current.direction)emit({type:'move',direction});}}
+ function neutral(){if(!neutralizing&&current.phase==='playing'&&current.direction){neutralizing=true;try{onAction({type:'move',direction:0});}finally{neutralizing=false;}}}
+ function clear(){keys.clear();holds.clear();}
+ function draw(){
+  if(disposed||!ctx)return;const w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(2,win.devicePixelRatio||1);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const m=STAGES[current.level],p=PEOPLE[current.character],scale=h/480,view=w/scale,mix=reduced.matches||previous.level!==current.level?1:clamp((win.performance.now()-updatedAt)/50,0,1),x=previous.x+(current.x-previous.x)*mix,y=previous.y+(current.y-previous.y)*mix,cam=clamp(x-view*.35,0,m.width-view);ctx.save();ctx.scale(scale,scale);ctx.fillStyle=m.sky;ctx.fillRect(0,0,view,480);
+  // Neutral room/corridor silhouettes, not an assertion about the real home or school.
+  for(let i=0;i<10;i++){const bx=i*240-(cam*.25%240);ctx.fillStyle=current.level===1?'#c3d9e5':'#c7ded3';ctx.fillRect(bx,85,150,215);ctx.fillStyle='#f4f6df';ctx.fillRect(bx+18,110,114,75);}
+  ctx.translate(-cam,0);for(const[a,b]of m.ground){ctx.fillStyle=m.floor;ctx.fillRect(a,400,b-a,80);ctx.fillStyle='#d9d7b1';ctx.fillRect(a,400,b-a,9);for(let n=a+14;n<b;n+=50){ctx.fillStyle='#ffffff18';ctx.fillRect(n,424,24,4);}}
+  ctx.fillStyle='#668c82';ctx.fillRect(m.platform.x,m.platform.y,m.platform.w,m.platform.h);ctx.fillStyle='#aec2a8';ctx.fillRect(m.platform.x+20,m.platform.y+18,10,400-m.platform.y-18);ctx.fillRect(m.platform.x+m.platform.w-30,m.platform.y+18,10,400-m.platform.y-18);
+  if(!current.flags.lever){ctx.fillStyle='#a5b5a0';ctx.fillRect(m.gate.x,0,m.gate.w,400);ctx.fillStyle='#48745e';for(let gy=230;gy<400;gy+=25)ctx.fillRect(m.gate.x,gy,m.gate.w,7);}
+  ctx.fillStyle=current.flags.lever?'#4c9e71':'#e4a742';ctx.fillRect(m.lever.x-15,m.lever.y-28,30,28);ctx.fillStyle='#1f544a';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.fillText(current.flags.lever?'已打开':'姐姐 · 互动',m.lever.x,m.lever.y-40);
+  if(!current.flags.barrier){ctx.fillStyle='#c28c55';ctx.fillRect(m.barrier.x,m.barrier.y,m.barrier.w,m.barrier.h);ctx.strokeStyle='#e5bc83';ctx.lineWidth=3;for(let by=m.barrier.y+12;by<400;by+=30){ctx.strokeRect(m.barrier.x+3,by,m.barrier.w-6,22);}ctx.fillStyle='#654728';ctx.fillText('弟弟冲刺',m.barrier.x+22,m.barrier.y-16);}else{ctx.fillStyle='#b48962';ctx.fillRect(m.barrier.x,394,m.barrier.w,6);}
+  ctx.fillStyle='#9aa89c';ctx.fillRect(m.tunnel.x,0,m.tunnel.w,m.tunnel.h);ctx.fillStyle='#d7e0c9';ctx.fillRect(m.tunnel.x,340,m.tunnel.w,28);ctx.fillStyle='#384f4d';ctx.fillText('妹妹 · 钻缝',m.tunnel.x+m.tunnel.w/2,330);ctx.fillStyle='#344f4c';ctx.fillRect(m.tunnel.x,368,m.tunnel.w,32);
+  for(let i=1;i<m.checks.length;i++){ctx.strokeStyle='#517264';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(m.checks[i],400);ctx.lineTo(m.checks[i],325);ctx.stroke();ctx.fillStyle=i<=current.checkpoint?'#338568':'#b6cabb';ctx.beginPath();ctx.moveTo(m.checks[i],325);ctx.lineTo(m.checks[i]+30,337);ctx.lineTo(m.checks[i],349);ctx.fill();}
+  ctx.fillStyle='#f4edcf';ctx.fillRect(m.exit-42,335,84,65);ctx.strokeStyle='#6c8980';ctx.strokeRect(m.exit-42,335,84,65);ctx.fillStyle='#345c59';ctx.font='bold 18px system-ui';ctx.fillText(m.goal,m.exit,317);ctx.font='15px system-ui';ctx.fillText('按互动',m.exit,377);
+  if(current.level===2){ctx.fillStyle='#518b8d';ctx.fillRect(m.exit-48,344,96,45);ctx.fillStyle='#cee7df';ctx.fillRect(m.exit-29,351,50,15);ctx.fillStyle='#344f4c';ctx.beginPath();ctx.arc(m.exit-26,391,10,0,Math.PI*2);ctx.arc(m.exit+29,391,10,0,Math.PI*2);ctx.fill();}
+  ctx.fillStyle=current.dashMs?'#e4c16a':p.color;ctx.beginPath();ctx.roundRect(x-12,y-p.height,24,p.height,6);ctx.fill();ctx.fillStyle='#ffffff';ctx.font='bold 13px system-ui';ctx.fillText(p.short[0],x,y-p.height/2+4);ctx.fillStyle='#253e40';ctx.font='bold 15px system-ui';ctx.fillText(p.name,x,y-p.height-10);ctx.restore();
+ }
+ function ui(){
+  const m=STAGES[current.level],p=PEOPLE[current.character];find('platform-level').textContent=(current.level+1)+'/3 · '+m.name;find('platform-health').textContent='体力 '+current.health+'/'+maxHealth(current.config);find('platform-person').textContent=p.name;find('platform-checkpoint').textContent='检查点 '+current.checkpoint+'/2';find('platform-clock').textContent=current.level===2?'赶上车 '+Math.max(0,Math.ceil((timeLimit(current.config)-current.levelElapsedMs)/1000))+'秒':'探索 · 不限关卡时间';
+  for(const k of ['lever','barrier','crawl'])find('platform-'+k).textContent=(current.flags[k]?'✓ ':'○ ')+({lever:'姐姐机关',barrier:'弟弟破障',crawl:'妹妹钻缝'}[k]);find('platform-hint').textContent=hint(current);find('platform-restless').textContent=current.character==='brother'?'坐不住 '+Math.round(current.idleMs/3500*100)+'%':current.mealsUsed?'本局已用料理':'料理可选，不是必需';
+  if(lastNotice!==current.notice){find('platform-notice').textContent=current.notice;lastNotice=current.notice;}const overlay=find('platform-overlay');overlay.hidden=!(paused||!current.started||current.reading||current.levelStatus==='retry'&&current.phase==='playing');find('platform-overlay-title').textContent=paused?'游戏已暂停':!current.started?'三个人，一起过三关':current.reading?'观察一下再出发':'从检查点继续';find('platform-overlay-copy').textContent=paused?'计时与输入已停止，恢复后重新按方向。':!current.started?'姐姐高跳开机关，弟弟冲刺破障，妹妹钻缝。每关看提示找路线，掉下去可从检查点再试。':current.reading?hint(current)+' 阅读时弟弟的坐不住计量和关卡挑战计时暂停。':current.notice;
+  for(const button of root.querySelectorAll('[data-game-action]')){const a=button.dataset.gameAction;if(['start','retry','hint-close'].includes(a)){button.hidden=a==='start'?current.started||paused:a==='retry'?current.levelStatus!=='retry'||paused:!current.reading||paused;button.disabled=!live();continue;}button.disabled=!active()||(a==='dash'&&(current.character!=='brother'||!current.grounded||current.dashCooldownMs>0))||(a==='use-meal'&&(current.mealsUsed>=current.config.mealCharges||current.health===maxHealth(current.config)));if(Object.hasOwn(PEOPLE,a))button.setAttribute('aria-pressed',String(a===current.character));if(a==='left'||a==='right')button.setAttribute('aria-pressed',String(current.direction===(a==='left'?-1:1)));}
+  const out=result(current),box=find('platform-result');box.hidden=!out;if(out)box.innerHTML='<strong>'+(out.status==='won'?'三关完成！':'本局结束，可以再挑战')+'</strong><p>完成 '+out.levelsCompleted+'/3 关 · '+out.score+' 分 · 跌落或超时 '+out.deaths+' 次。</p><p>'+(out.mealsUsed?'本局实际使用了1份料理。':'本局没有消耗料理。')+' 点击上方“结算并返回棋盘”，保存本局成绩。</p>';
+ }
+ function animation(){if(disposed||paused)return;draw();if(!reduced.matches)frame=win.requestAnimationFrame(animation);}
+ function schedule(){win.clearInterval(interval);win.cancelAnimationFrame(frame);interval=null;frame=null;if(live()){interval=win.setInterval(()=>{if(active()){sync();emit({type:'tick',dt:50});}},50);if(!reduced.matches)frame=win.requestAnimationFrame(animation);}draw();}
+ function update(next){if(disposed)return;validate(next);const ended=current.phase!==next.phase,changed=current.level!==next.level||current.reading!==next.reading||current.levelStatus!==next.levelStatus;previous=current;current=clone(next);updatedAt=win.performance.now();if(ended||changed)clear();ui();if(ended)schedule();else if(reduced.matches)draw();}
+ function click(event){if(!live())return;const button=event.target.closest('[data-game-action]');if(!button||button.disabled)return;const a=button.dataset.gameAction;if(Object.hasOwn(PEOPLE,a))emit({type:'switch',character:a});else if(a==='hint'||a==='hint-close'){clear();emit({type:'hint',open:a==='hint'});}else if(['start','jump','dash','interact','retry','use-meal'].includes(a))emit({type:a});if(a==='start'||a==='retry'||a==='hint-close')root.focus({preventScroll:true});}
+ function down(event){if(!active())return;const button=event.target.closest('[data-game-action]'),a=button?.dataset.gameAction;if(!['left','right'].includes(a)||button.disabled)return;event.preventDefault();holds.set(event.pointerId,a==='left'?-1:1);button.setPointerCapture?.(event.pointerId);sync();}
+ function up(event){if(holds.delete(event.pointerId))sync();}
+ function keydown(event){if(!live())return;if((event.code==='Space'||event.code==='Enter')&&event.target.closest('button'))return;if(event.code==='KeyH'&&current.started){event.preventDefault();if(!event.repeat){clear();emit({type:'hint',open:!current.reading});}return;}if(!current.started&&event.code==='Enter'){event.preventDefault();emit({type:'start'});return;}if(!active())return;const code=event.code;if(['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(code)){event.preventDefault();keys.add(code);sync();return;}const actions={Space:{type:'jump'},ArrowUp:{type:'jump'},KeyW:{type:'jump'},KeyX:{type:'dash'},KeyE:{type:'interact'},Digit1:{type:'switch',character:'sister'},Digit2:{type:'switch',character:'brother'},Digit3:{type:'switch',character:'little'},KeyF:{type:'use-meal'}};if(actions[code]){event.preventDefault();if(!event.repeat)emit(actions[code]);}}
+ function keyup(event){if(keys.delete(event.code)){event.preventDefault();sync();}}
+ function release(){clear();sync();}const visibility=()=>{if(doc.hidden)release();},resize=()=>draw(),motion=()=>schedule();root.addEventListener('click',click);root.addEventListener('pointerdown',down);doc.addEventListener('pointerup',up);doc.addEventListener('pointercancel',up);root.addEventListener('keydown',keydown);doc.addEventListener('keyup',keyup);win.addEventListener('blur',release);doc.addEventListener('visibilitychange',visibility);win.addEventListener('resize',resize);reduced.addEventListener?.('change',motion);ui();schedule();
+ return{update,setPaused(value){if(disposed)return;paused=!!value;clear();try{if(paused)neutral();else sync();}finally{ui();schedule();}},dispose(){if(disposed)return;disposed=true;try{neutral();}finally{win.clearInterval(interval);win.cancelAnimationFrame(frame);clear();root.removeEventListener('click',click);root.removeEventListener('pointerdown',down);doc.removeEventListener('pointerup',up);doc.removeEventListener('pointercancel',up);root.removeEventListener('keydown',keydown);doc.removeEventListener('keyup',keyup);win.removeEventListener('blur',release);doc.removeEventListener('visibilitychange',visibility);win.removeEventListener('resize',resize);reduced.removeEventListener?.('change',motion);root.remove();}}};
 }
 return{id,version,title,create,step,validate,result,mount};
 });
@@ -1302,7 +1433,7 @@ return{...L,SCHEMA,KEY,MAX_PAYLOAD,IDS,fresh,validate,migrate,launchModule,updat
 /* v0.5 extends the verified v0.4 resource rules; frozen v4 verifies migrations. */
 (function(root,factory){
  if(typeof module==='object'&&module.exports)module.exports=factory(require('./core-v4.js'),require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js'),dungeon:require('./games/dungeon.js'),kart:require('./games/kart.js')});
- else root.WQUniverseCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
+ else root.LiangCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
 })(typeof globalThis!=='undefined'?globalThis:this,function(V4,L,G){
 'use strict';
 const SCHEMA=5,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
@@ -1539,6 +1670,250 @@ function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&
 const legacyMutations=Object.fromEntries(['note','nextTurn','launch','launchArcade','recordArcadeResult','storeLegacy','beginRun','recordSubmission','changeCharacter','invalidateRun','reward'].map(name=>[name,(s,...args)=>atomic(s,draft=>L[name](draft,...args))]));
 return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,IDS,RESOURCE_IDS,ADVENTURE_IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
 });
+
+
+;
+/* v0.6 extends frozen v0.5 with platform play; v5 verifies all prior migrations. */
+(function(root,factory){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./core-v5.js'),require('./legacy-core.js'),{fishing:require('./games/fishing.js'),kitchen:require('./games/kitchen.js'),trunk:require('./games/trunk.js'),dungeon:require('./games/dungeon.js'),kart:require('./games/kart.js'),platform:require('./games/platform.js')});
+ else root.WQUniverseCore=factory(root.LiangCore,root.LiangLegacyCore,root.LiangGames);
+})(typeof globalThis!=='undefined'?globalThis:this,function(V5,L,G){
+'use strict';
+const SCHEMA=6,MAX_PAYLOAD=L.MAX_PAYLOAD,KEY=L.KEY,clone=L.clone,crc=L.crc,uid=L.uid;
+const RESOURCE_IDS=['fishing','kitchen','trunk'],ADVENTURE_IDS=['dungeon','kart','platform'],IDS=[...RESOURCE_IDS,...ADVENTURE_IDS],ITEMS=['fish','meal'],REGIONS=['Rawang','Masai'],OLD=['slipper','ball','jar'];
+const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),obj=x=>!!x&&typeof x==='object'&&!Array.isArray(x);
+const int=(x,min=0,max=1e9)=>Number.isSafeInteger(x)&&x>=min&&x<=max;
+const ident=x=>typeof x==='string'&&/^[A-Za-z0-9:_-]{1,140}$/.test(x);
+function check(value,message){if(!value)throw Error(message);}
+const stock=()=>({Rawang:{fish:0,meal:0},Masai:{fish:0,meal:0}});
+const extra=()=>({adventureMeals:{}});
+function engine(id){check(IDS.includes(id)&&G?.[id]?.version===1,'游戏组件未正确载入，请刷新后重试。');return G[id];}
+function fresh(){return {...V5.fresh(),schemaVersion:SCHEMA,...extra()};}
+function legacyProjection(s){const p=clone(s);p.schemaVersion=3;p.migrationArchive=null;if(p.activeSession?.gameId==='module')p.activeSession=null;return p;}
+function validateModuleResult(r){
+ check(obj(r)&&ident(r.runId)&&ident(r.sessionToken)&&IDS.includes(r.moduleId)&&r.version===1&&['practice','inventory'].includes(r.mode)&&['won','lost','abandoned'].includes(r.status)&&int(r.score)&&int(r.at,0,1e15)&&typeof r.actionHash==='string','游戏结算记录无效。');
+ check(obj(r.goods)&&int(r.goods.fish,0,12)&&int(r.goods.meals,0,12)&&Array.isArray(r.goods.shipped)&&r.goods.shipped.length<=12&&r.goods.shipped.every(x=>obj(x)&&ident(x.id)&&ITEMS.includes(x.itemId)&&x.qty===1)&&new Set(r.goods.shipped.map(x=>x.id)).size===r.goods.shipped.length,'游戏物资凭证无效。');
+ check(Array.isArray(r.goods.collectibles)&&r.goods.collectibles.length<=3&&r.goods.collectibles.every(x=>OLD.includes(x)),'河里旧物记录无效。');
+ if(ADVENTURE_IDS.includes(r.moduleId)){
+  check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'冒险与赛车只记录本局结果，不自动生产共享物资。');
+  check(int(r.mealsUsed,0,1)&&(r.mode!=='practice'||r.mealsUsed===0)&&(r.mealsUsed===0?r.mealProofHash===null:typeof r.mealProofHash==='string'),'料理使用凭证无效。');
+  if(r.discoveries!==undefined)check(r.moduleId==='dungeon'&&Array.isArray(r.discoveries)&&r.discoveries.length<=100&&r.discoveries.every(x=>typeof x==='string'&&x.length<=100),'本局发现记录无效。');
+ }
+ else if(r.mode==='practice'||r.status!=='won')check(r.goods.fish===0&&r.goods.meals===0&&!r.goods.shipped.length&&!r.goods.collectibles.length,'练习或未通关记录不能增加共享物资。');
+ else if(r.moduleId==='fishing')check(r.goods.fish>0&&r.goods.meals===0&&!r.goods.shipped.length,'钓鱼只能产出鱼和确认过的旧物。');
+ else if(r.moduleId==='kitchen')check(r.goods.fish===0&&int(r.goods.meals,1,3)&&!r.goods.shipped.length&&!r.goods.collectibles.length,'厨房只能加工料理，不能额外产生鱼或收藏。');
+ else check(r.goods.fish===0&&r.goods.meals===0&&r.goods.shipped.length>0&&!r.goods.collectibles.length,'运输只能转移装车清单中的物资。');
+}
+function checkRunInventory(s,run){
+ if(!run||run.config.mode!=='inventory')return;
+ const available=s.economy.inventory.Rawang;
+ if(run.moduleId==='kitchen')check(int(run.config.units,1,3)&&available.fish>=run.config.units,'这局厨房需要的鱼已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ if(run.moduleId==='trunk'){
+  const counts={fish:0,meal:0};for(const cargo of run.config.cargo)counts[cargo.itemId]+=cargo.qty;
+  check(ITEMS.every(item=>available[item]>=counts[item]),'这局运输清单中的物资已被其他进度使用，不能恢复。请保留两个备份，并返回现有进度。');
+ }
+ if(ADVENTURE_IDS.includes(run.moduleId)&&run.config.mealCharges===1&&run.state.mealsUsed===0)check(s.economy.inventory.Masai.meal>=1,'这局尚未使用的可选料理已被其他进度消费，不能恢复旧选择。请保留两个备份，在现有进度选择不带料理的新一局。');
+}
+function replay(run,{onMealUse}={}){
+ check(obj(run)&&ident(run.id)&&IDS.includes(run.moduleId)&&run.version===1&&obj(run.config)&&['practice','inventory'].includes(run.config.mode)&&int(run.config.seed,0,0xffffffff)&&int(run.config.difficulty,0,2)&&int(run.startedAt,0,1e15),'游戏开局资料无效。');
+ check(Array.isArray(run.actions)&&run.actions.length<=20000&&JSON.stringify(run.actions).length<=1800000,'本局操作记录过大或损坏，请先导出备份。');
+ const E=engine(run.moduleId),adventure=ADVENTURE_IDS.includes(run.moduleId);let state=E.create(clone(run.config));
+ if(adventure)check(int(run.config.mealCharges,0,1)&&(run.config.mode!=='practice'||run.config.mealCharges===0)&&state.mealsUsed===0,'新游戏料理配置无效。');
+ for(let index=0;index<run.actions.length;index++){const action=run.actions[index];check(obj(action)&&JSON.stringify(action).length<=2000,'游戏操作记录无效。');const before=state.mealsUsed;state=E.step(state,clone(action));if(adventure){check(int(state.mealsUsed,0,run.config.mealCharges)&&state.mealsUsed>=before&&(state.mealsUsed===before||action.type==='use-meal'&&before===0&&state.mealsUsed===1),'料理必须由真实生效的使用操作产生，不能回退或重复使用。');if(state.mealsUsed!==before)onMealUse?.(index,clone(state));}}
+ E.validate(state);check(eq(state,run.state),'游戏进度与实际操作记录不一致。');return state;
+}
+// Old consumption prefixes never change. Retain only exact, fully verified
+// serialized prefixes, bounded by one maximum save payload. New/edited bytes
+// and changed engine functions must replay again; no balances or claims cache.
+const MAX_REPLAY_CACHE_UNITS=MAX_PAYLOAD,mealReplayCache=new Map();let mealReplayUnits=0;
+function validateMealPrefix(run){
+ const serialized=JSON.stringify(run),E=engine(run.moduleId),prior=mealReplayCache.get(serialized);
+ if(prior&&prior.create===E.create&&prior.step===E.step&&prior.validate===E.validate){mealReplayCache.delete(serialized);mealReplayCache.set(serialized,prior);return;}
+ let useIndex=-1;const state=replay(run,{onMealUse:index=>{useIndex=index;}});check(state.mealsUsed===1&&useIndex===run.actions.length-1,'料理消费缺少首次真实生效的操作前缀。');
+ if(prior){mealReplayCache.delete(serialized);mealReplayUnits-=serialized.length;}
+ if(serialized.length>MAX_REPLAY_CACHE_UNITS)return;
+ while(mealReplayUnits+serialized.length>MAX_REPLAY_CACHE_UNITS){const oldest=mealReplayCache.keys().next().value;mealReplayCache.delete(oldest);mealReplayUnits-=oldest.length;}
+ mealReplayCache.set(serialized,{create:E.create,step:E.step,validate:E.validate});mealReplayUnits+=serialized.length;
+}
+function validate(s){
+ check(obj(s),'存档结构无效。');if(s.schemaVersion!==SCHEMA){const e=Error('请先迁移旧版存档，未覆盖现有资料。');e.code='UNSUPPORTED_SCHEMA';throw e;}
+ L.validate(legacyProjection(s));
+ if(s.migrationArchive!==null){const a=s.migrationArchive;check(obj(a)&&[1,2,3,4,5].includes(a.schemaVersion)&&typeof a.payload==='string'&&a.payload.length<=MAX_PAYLOAD&&a.checksum===crc(a.payload),'升级前备份校验失败。');const old=JSON.parse(a.payload);check(old.schemaVersion===a.schemaVersion,'升级前备份版本不一致。');V5.migrate(old);}
+ check(obj(s.modules)&&obj(s.modules.claims)&&Array.isArray(s.modules.results),'小游戏记录缺失。');
+ for(const [id,r] of Object.entries(s.modules.claims)){validateModuleResult(r);check(id===r.runId,'小游戏凭证编号不一致。');}
+ check(new Set(Object.values(s.modules.claims).map(r=>r.sessionToken)).size===Object.keys(s.modules.claims).length,'同一个小游戏会话不能有两份结算凭证。');
+ check(new Set(s.modules.results.map(r=>r.runId)).size===s.modules.results.length,'小游戏结果重复。');
+ for(const r of s.modules.results){validateModuleResult(r);check(eq(r,s.modules.claims[r.runId]),'小游戏结果与凭证不一致。');}
+ if(s.modules.pending){const run=s.modules.pending;replay(run);check(!s.modules.claims[run.id],'已结算游戏不能再作为未完成局。');const a=s.activeSession;check(a?.gameId==='module'&&a.moduleId===run.moduleId&&a.runId===run.id&&a.token===run.sessionToken,'未完成游戏与会话不一致。');}
+ if(s.activeSession?.gameId==='module'){
+  const a=s.activeSession;check(s.modules.pending&&ident(a.token)&&int(a.learnerSlot,0,2)&&a.runKey===null&&a.returnSnapshotHash===crc(JSON.stringify(a.returnSnapshot))&&eq(a.returnSnapshot,s.board)&&a.boardId===(s.board?.id||'')&&a.turnNo===(s.board?.turnNo||0),'小游戏返回位置或回合损坏。');
+ }
+ check(obj(s.adventureMeals),'冒险料理消费凭证缺失。');
+ for(const [id,proof] of Object.entries(s.adventureMeals)){
+  check(obj(proof)&&proof.run?.id===id&&ADVENTURE_IDS.includes(proof.run.moduleId)&&proof.run.config?.mode==='inventory'&&proof.run.config.mealCharges===1&&int(proof.at,0,1e15)&&proof.transactionId==='adventure-meal:'+id&&proof.actionHash===crc(JSON.stringify({config:proof.run.config,actions:proof.run.actions})),'冒险料理消费来源无效。');
+  validateMealPrefix(proof.run);
+  const pending=s.modules.pending?.id===id?s.modules.pending:null,claim=s.modules.claims[id];
+  check(pending||claim,'料理已经扣除，但找不到本局进度或结束凭证。');
+  if(pending)check(pending.sessionToken===proof.run.sessionToken&&pending.state.mealsUsed===1&&eq(pending.config,proof.run.config)&&eq(pending.actions.slice(0,proof.run.actions.length),proof.run.actions),'导入的旧进度早于已经使用的料理。请保留原档，使用较新的完整备份继续。');
+  if(claim)check(claim.moduleId===proof.run.moduleId&&claim.sessionToken===proof.run.sessionToken&&claim.mealsUsed===1&&claim.mealProofHash===proof.actionHash,'已结束游戏与料理消费来源不一致。');
+ }
+ for(const r of Object.values(s.modules.claims))if(ADVENTURE_IDS.includes(r.moduleId))check(!!s.adventureMeals[r.runId]===(r.mealsUsed===1),'游戏料理结果与消费凭证不一致。');
+ if(s.modules.pending&&ADVENTURE_IDS.includes(s.modules.pending.moduleId))check(!!s.adventureMeals[s.modules.pending.id]===(s.modules.pending.state.mealsUsed===1),'游戏已使用料理，缺少原子消费凭证。');
+ const e=s.economy;check(obj(e)&&e.version===1&&obj(e.inventory)&&Array.isArray(e.ledger)&&Array.isArray(e.riverCollection),'物资账本缺失。');
+ check(new Set(e.ledger.map(t=>t.id)).size===e.ledger.length,'物资交易重复。');let expected=stock();const collection=new Set();
+ for(const t of e.ledger){
+  check(obj(t)&&ident(t.id)&&int(t.at,0,1e15)&&['fish-production','fish-cooking','cargo-transfer','meal-consume','adventure-meal-consume'].includes(t.type)&&obj(t.delta),'物资交易格式无效。');
+  for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta[zone])&&int(t.delta[zone][item],-12,12),'物资变化数量无效。');expected[zone][item]+=t.delta[zone][item];check(int(expected[zone][item],0,1e8),'物资不足或账本超出限制。');}
+  const r=t.delta.Rawang,m=t.delta.Masai;
+  if(t.type==='adventure-meal-consume'){
+   const proof=s.adventureMeals[t.runId];check(proof&&t.id===proof.transactionId&&t.sessionToken===proof.run.sessionToken&&t.moduleId===proof.run.moduleId&&t.actionHash===proof.actionHash&&t.at===proof.at&&r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1,'冒险料理消费流水与真实操作不一致。');
+  }
+  else if(t.type==='meal-consume')check(r.fish===0&&r.meal===0&&m.fish===0&&m.meal===-1&&typeof t.boardId==='string'&&int(t.turnNo,1),'料理消费记录无效。');
+  else{
+   const claim=s.modules.claims[t.runId];check(claim?.mode==='inventory'&&claim.status==='won'&&t.id==='module:'+claim.runId&&t.actionHash===claim.actionHash,'物资没有对应的真实游戏结算。');
+   if(t.type==='fish-production'){check(claim.moduleId==='fishing'&&r.fish===claim.goods.fish&&r.fish>0&&r.meal===0&&m.fish===0&&m.meal===0,'钓鱼产出不守恒。');for(const id of claim.goods.collectibles)collection.add(id);}
+   if(t.type==='fish-cooking')check(claim.moduleId==='kitchen'&&r.fish===-claim.goods.meals&&r.meal===claim.goods.meals&&r.meal>0&&m.fish===0&&m.meal===0,'料理加工不守恒。');
+   if(t.type==='cargo-transfer'){const counts={fish:0,meal:0};for(const cargo of claim.goods.shipped)counts[cargo.itemId]++;check(claim.moduleId==='trunk'&&counts.fish+counts.meal>0&&r.fish===-counts.fish&&r.meal===-counts.meal&&m.fish===counts.fish&&m.meal===counts.meal,'运输必须等量转移真实物资。');}
+  }
+ }
+ for(const zone of REGIONS)for(const item of ITEMS)check(obj(e.inventory[zone])&&e.inventory[zone][item]===expected[zone][item],'库存与物资流水不一致。');
+ for(const r of Object.values(s.modules.claims))if(RESOURCE_IDS.includes(r.moduleId)&&r.mode==='inventory'&&r.status==='won')check(e.ledger.some(t=>t.id==='module:'+r.runId&&t.runId===r.runId),'已发放的物资凭证缺少对应流水，不能覆盖原档。');
+ for(const proof of Object.values(s.adventureMeals))check(e.ledger.some(t=>t.id===proof.transactionId&&t.type==='adventure-meal-consume'),'已扣除料理的操作凭证缺少消费流水。');
+ check(e.riverCollection.every(x=>OLD.includes(x))&&new Set(e.riverCollection).size===e.riverCollection.length&&eq([...collection].sort(),e.riverCollection.slice().sort()),'河里旧物收藏与来源不一致。');
+ checkRunInventory(s,s.modules.pending);
+ if(e.diceChoice){const c=e.diceChoice;check(obj(c)&&ident(c.id)&&e.ledger.some(t=>t.id===c.id&&t.type==='meal-consume')&&s.board?.phase==='roll'&&c.boardId===s.board.id&&c.turnNo===s.board.turnNo&&c.turn===s.board.turn&&Array.isArray(c.rolls)&&c.rolls.length===2&&c.rolls.every(x=>int(x,1,6)),'料理骰子选择记录无效。');}
+ return clone(s);
+}
+// A rejected action must leave the caller's live save untouched. Validate and
+// finish all work on a detached draft before publishing any claim or inventory.
+function atomic(s,operation){const draft=validate(s),result=operation(draft);validate(draft);Object.assign(s,draft);return result;}
+function migrate(input){
+ if(input?.schemaVersion===SCHEMA)return{state:validate(input),migrated:false,fromVersion:SCHEMA,toVersion:SCHEMA};
+ const old=V5.migrate(input).state,payload=JSON.stringify(input);check(payload.length<=MAX_PAYLOAD,'升级前备份超过大小限制，原档保留。');
+ const state={...old,schemaVersion:SCHEMA,migrationArchive:{schemaVersion:input.schemaVersion,payload,checksum:crc(payload)}};
+ state.migrations.push({from:input.schemaVersion,to:SCHEMA,at:Date.now(),note:'保留完整旧档、未完成游戏与全部资源流水；保留既有料理凭证，接入三小瓜基础篇，不补发历史奖励。'});
+ return{state:validate(state),migrated:true,fromVersion:input.schemaVersion,toVersion:SCHEMA};
+}
+function launchModuleDraft(s,id,options={}){
+ check(obj(options),'游戏模式配置无效。');
+ check(!s.activeSession&&!s.modules.pending,'请先继续或结束尚未完成的一局。');check(!s.economy.diceChoice,'请先选好本回合的骰子。');const E=engine(id);
+ const mode=options.mode??'practice',difficulty=options.difficulty??0;check(['practice','inventory'].includes(mode)&&int(difficulty,0,2),'游戏模式无效。');
+ const seed=parseInt(crc(uid()),16)>>>0,config={seed,mode,difficulty};
+ if(ADVENTURE_IDS.includes(id)){
+  const charges=options.mealCharges??0;check(int(charges,0,1)&&(mode!=='practice'||charges===0),'每局最多选择一份料理，练习关不使用仓库物资。');
+  check(charges===0||s.economy.inventory.Masai.meal>=1,'Masai 没有料理，可不带料理开始，或先从 Rawang 运一份过来。');config.mealCharges=charges;
+  if(id==='kart'&&options.trackId!==undefined){check(['masai-market','north-south'].includes(options.trackId),'赛道尚未接入。');config.trackId=options.trackId;}
+ }
+ if(id==='kitchen'){const units=options.units??3;check(int(units,1,3),'每局请选择一至三份料理。');config.units=mode==='practice'?units:Math.min(units,s.economy.inventory.Rawang.fish);check(config.units>0,'Rawang 还没有鱼。可以先玩练习关，或去河边钓鱼。');}
+ if(id==='trunk'&&mode==='inventory'){
+  config.cargo=[];const amounts=options.cargo??s.economy.inventory.Rawang;check(obj(amounts),'装箱数量清单无效。');
+  for(const item of ['meal','fish']){check(int(amounts[item]??0,0,s.economy.inventory.Rawang[item]),'装箱数量超过 Rawang 库存。');const count=Math.min(amounts[item]??0,12-config.cargo.length);for(let n=0;n<count;n++)config.cargo.push({id:item+'-'+(n+1),itemId:item,qty:1});}
+  check(config.cargo.length>0,'Rawang 暂无可运物资。可以先玩装箱练习。');
+ }
+ const initial=E.create(clone(config));E.validate(initial);
+ const token=uid(),runId=uid(),slot=s.board?.players[s.board.turn].learnerSlot??0;
+ s.activeSession={gameId:'module',moduleId:id,runId,token,learnerSlot:slot,boardId:s.board?.id||'',turnNo:s.board?.turnNo||0,returnSnapshot:clone(s.board),returnSnapshotHash:crc(JSON.stringify(s.board)),runKey:null};
+ s.modules.pending={id:runId,sessionToken:token,moduleId:id,version:E.version,config,startedAt:Date.now(),actions:[],state:initial};
+ L.note(s,'进入'+E.title+(mode==='practice'?' · 练习关':' · 联动物资关'));return clone(s.activeSession);
+}
+function launchModule(s,id,options={}){return atomic(s,draft=>launchModuleDraft(draft,id,options));}
+function updateModuleDraft(s,token,actions,state){
+ const run=s.modules.pending;check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&run,'游戏会话已改变。');
+ check(eq(s.activeSession.returnSnapshot,s.board)&&s.activeSession.returnSnapshotHash===crc(JSON.stringify(s.board)),'棋盘位置或回合已改变，未覆盖本局进度。');
+ checkRunInventory(s,run);
+ check(Array.isArray(actions)&&actions.length>=run.actions.length&&eq(actions.slice(0,run.actions.length),run.actions),'游戏进度不能倒退或替换已保存操作。');
+ const next={...run,actions:clone(actions),state:clone(state)};let use=null;replay(next,{onMealUse:(index,usedState)=>{use={index,state:usedState};}});s.modules.pending=next;
+ if(ADVENTURE_IDS.includes(run.moduleId)&&next.state.mealsUsed===1&&!s.adventureMeals[run.id]){
+  check(run.config.mode==='inventory'&&run.config.mealCharges===1&&use,'没有可用料理，未扣除任何库存。');
+  const proofRun={...clone(next),actions:clone(next.actions.slice(0,use.index+1)),state:use.state},at=Date.now(),actionHash=crc(JSON.stringify({config:proofRun.config,actions:proofRun.actions})),transactionId='adventure-meal:'+run.id,delta=stock();delta.Masai.meal=-1;
+  transaction(s,{id:transactionId,type:'adventure-meal-consume',at,runId:run.id,sessionToken:token,moduleId:run.moduleId,actionHash,delta});
+  s.adventureMeals[run.id]={run:proofRun,at,actionHash,transactionId};
+ }
+ return{saved:true,mealsUsed:next.state.mealsUsed??0};
+}
+function updateModule(s,token,actions,state){return atomic(s,draft=>updateModuleDraft(draft,token,actions,state));}
+function transaction(s,t){
+ check(!s.economy.ledger.some(x=>x.id===t.id),'此物资交易已经结算。');
+ const nextInventory=clone(s.economy.inventory);
+ for(const zone of REGIONS)for(const item of ITEMS){check(obj(t.delta?.[zone])&&int(t.delta[zone][item],-12,12),'物资交易数量无效。');const next=nextInventory[zone][item]+t.delta[zone][item];check(int(next,0,1e8),'物资不足，未扣除也未发放，请保留存档。');nextInventory[zone][item]=next;}
+ s.economy.inventory=nextInventory;s.economy.ledger.push(clone(t));
+}
+function settleModuleDraft(s,token){
+ const already=Object.values(s.modules.claims).find(r=>r.sessionToken===token);if(already)return{duplicate:true,result:clone(already)};
+ check(s.activeSession?.token===token&&s.activeSession.gameId==='module'&&s.modules.pending,'没有可结算的小游戏。');
+ const run=s.modules.pending,state=replay(run),outcome=engine(run.moduleId).result(state);
+ check(outcome&&['won','lost'].includes(outcome.status)&&int(outcome.score),'游戏尚未完成，不能结算。');
+ const goods={fish:0,meals:0,shipped:[],collectibles:[]};
+ if(run.config.mode==='inventory'&&outcome.status==='won'){
+  if(run.moduleId==='fishing'){check(int(outcome.fish,1,12)&&Array.isArray(outcome.collectibles)&&outcome.collectibles.every(id=>OLD.includes(id)),'钓鱼结果无效。');goods.fish=outcome.fish;goods.collectibles=clone(outcome.collectibles);}
+  if(run.moduleId==='kitchen'){check(int(outcome.meals,1,run.config.units),'料理数量无效。');goods.meals=outcome.meals;}
+  if(run.moduleId==='trunk'){check(Array.isArray(outcome.shipped)&&outcome.shipped.length>0&&new Set(outcome.shipped.map(x=>x.id)).size===outcome.shipped.length&&outcome.shipped.every(x=>run.config.cargo.some(c=>eq(c,x))),'运输清单不是开局时的真实物资。');goods.shipped=clone(outcome.shipped);}
+ }
+ const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:outcome.status,score:outcome.score,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods};
+ if(ADVENTURE_IDS.includes(run.moduleId)){
+  check(int(outcome.mealsUsed,0,1)&&outcome.mealsUsed===state.mealsUsed,'本局料理使用结果无效。');r.mealsUsed=state.mealsUsed;r.mealProofHash=s.adventureMeals[run.id]?.actionHash??null;
+  if(run.moduleId==='dungeon'&&outcome.discoveries!==undefined)r.discoveries=clone(outcome.discoveries);
+ }
+ validateModuleResult(r);s.modules.claims[r.runId]=clone(r);s.modules.results.push(clone(r));
+ if(RESOURCE_IDS.includes(run.moduleId)&&r.status==='won'&&r.mode==='inventory'){
+  const delta=stock(),type=run.moduleId==='fishing'?'fish-production':run.moduleId==='kitchen'?'fish-cooking':'cargo-transfer';
+  if(type==='fish-production'){delta.Rawang.fish=goods.fish;for(const id of goods.collectibles)if(!s.economy.riverCollection.includes(id))s.economy.riverCollection.push(id);}
+  if(type==='fish-cooking'){delta.Rawang.fish=-goods.meals;delta.Rawang.meal=goods.meals;}
+  if(type==='cargo-transfer')for(const c of goods.shipped){delta.Rawang[c.itemId]-=c.qty;delta.Masai[c.itemId]+=c.qty;}
+  transaction(s,{id:'module:'+r.runId,type,at:r.at,runId:r.runId,actionHash:r.actionHash,delta});
+ }
+ L.closeSession(s,token);s.modules.pending=null;L.note(s,engine(run.moduleId).title+'：'+(r.status==='won'?'通关':'本局结束')+'，'+r.score+'分。'+(r.mode==='practice'?'练习成绩已记录，不改变物资。':'物资与游戏结果已分别保存。'));
+ return{duplicate:false,result:clone(r)};
+}
+function settleModule(s,token){return atomic(s,draft=>settleModuleDraft(draft,token));}
+function closeSession(s,token){return atomic(s,draft=>{
+ const isModule=draft.activeSession?.gameId==='module',run=isModule?draft.modules.pending:null;
+ if(run&&ADVENTURE_IDS.includes(run.moduleId)){
+  check(draft.activeSession.token===token,'过期游戏会话。');const state=replay(run),proof=draft.adventureMeals[run.id];
+  const r={runId:run.id,sessionToken:token,moduleId:run.moduleId,version:1,mode:run.config.mode,status:'abandoned',score:0,at:Date.now(),actionHash:crc(JSON.stringify({config:run.config,actions:run.actions})),goods:{fish:0,meals:0,shipped:[],collectibles:[]},mealsUsed:state.mealsUsed,mealProofHash:proof?.actionHash??null};
+  validateModuleResult(r);draft.modules.claims[run.id]=clone(r);draft.modules.results.push(clone(r));
+ }
+ const result=L.closeSession(draft,token);if(isModule)draft.modules.pending=null;return result;
+});}
+function prepareMealDiceDraft(s,a,b){
+ check(s.board?.phase==='roll'&&!s.activeSession&&!s.economy.diceChoice,'当前不能使用料理，请先完成本回合或游戏。');check(int(a,1,6)&&int(b,1,6),'骰子数值无效。');
+ const id='dice:'+uid(),delta=stock();delta.Masai.meal=-1;transaction(s,{id,type:'meal-consume',at:Date.now(),boardId:s.board.id,turnNo:s.board.turnNo,delta});
+ s.economy.diceChoice={id,boardId:s.board.id,turnNo:s.board.turnNo,turn:s.board.turn,rolls:[a,b]};L.note(s,'使用一份 Masai 料理，本回合可在两个骰子结果中选择一个。');return clone(s.economy.diceChoice);
+}
+function prepareMealDice(s,a,b){return atomic(s,draft=>prepareMealDiceDraft(draft,a,b));}
+function chooseMealDice(s,index){return atomic(s,draft=>{const c=draft.economy.diceChoice;check(c&&int(index,0,1)&&c.boardId===draft.board?.id&&c.turnNo===draft.board.turnNo&&c.turn===draft.board.turn,'骰子选择已失效。');L.roll(draft,c.rolls[index]);draft.economy.diceChoice=null;});}
+function roll(s,d){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先选择已掷出的一个骰子。');return L.roll(draft,d);});}
+function startBoard(s,n,names){return atomic(s,draft=>{check(!draft.economy.diceChoice,'请先完成料理骰子的选择。');return L.startBoard(draft,n,names);});}
+function prepareImport(current,incoming){
+ validate(current);const s=migrate(incoming).state;
+ if(current.universeId===s.universeId){
+  Object.assign(s.claims,current.claims);Object.assign(s.arcadeClaims,current.arcadeClaims);
+  for(const r of s.gameResults.arcade){const old=current.arcadeClaims[r.roundId];check(!old||eq(old,r),'导入街机结果与本机凭证冲突。');}
+  for(const [id,r] of Object.entries(current.modules.claims)){check(!s.modules.claims[id]||eq(s.modules.claims[id],r),'导入小游戏结果与本机凭证冲突。');s.modules.claims[id]=clone(r);}
+  for(const [id,proof] of Object.entries(current.adventureMeals)){check(!s.adventureMeals[id]||eq(s.adventureMeals[id],proof),'导入的料理消费凭证与本机真实使用记录冲突。');s.adventureMeals[id]=clone(proof);}
+  const left=current.economy.ledger,right=s.economy.ledger,min=Math.min(left.length,right.length);check(eq(left.slice(0,min),right.slice(0,min)),'两台设备的物资账本已经分叉，不能相加或自动覆盖。请先保留两个备份。');
+  if(left.length>=right.length)s.economy=clone(current.economy);
+  // A pending choice already consumed a meal. Keep it from the selected
+  // authoritative ledger branch; dropping it would lose a paid advantage.
+  // An already chosen local turn keeps its null choice and cannot use it twice.
+  if(s.economy.diceChoice){const choice=s.economy.diceChoice;check(s.board?.phase==='roll'&&choice.boardId===s.board.id&&choice.turnNo===s.board.turnNo&&choice.turn===s.board.turn,'已使用料理的骰子选择还未完成，与备份棋盘回合不一致。请先在当前进度选好骰子，再导入；原存档和料理扣除记录均已保留。');}
+  if(s.modules.pending&&s.modules.claims[s.modules.pending.id]){L.closeSession(s,s.activeSession.token);s.modules.pending=null;}
+ }
+ for(const r of Object.values(s.settlements.runs))if(r.status==='started'){r.status='invalidated';r.sessionToken=null;}
+ if(s.activeSession)s.activeSession.runKey=null;return validate(s);
+}
+function pack(s){validate(s);const payload=JSON.stringify(s);check(payload.length<=MAX_PAYLOAD,'宇宙存档超过大小限制，请保留备份。');return{payload,checksum:crc(payload)};}
+function unpack(p){check(obj(p)&&typeof p.payload==='string'&&p.payload.length<=MAX_PAYLOAD&&p.checksum===crc(p.payload),'存档校验失败，原档未覆盖。');const originalState=JSON.parse(p.payload);return{...migrate(originalState),originalState};}
+function wrap(s,old){let previous=null;if(old){if(old.schemaVersion===SCHEMA)previous=pack(old);else{V5.migrate(old);const payload=JSON.stringify(old);check(payload.length<=MAX_PAYLOAD,'旧备份过大。');previous={payload,checksum:crc(payload)};}}return JSON.stringify({format:'LIANG_UNIVERSE',current:pack(s),previous});}
+function unwrap(raw){check(typeof raw==='string'&&raw.length<=MAX_PAYLOAD*2+1000,'存档文件过大。');const w=JSON.parse(raw);check(w?.format==='LIANG_UNIVERSE','这不是梁家宇宙存档。');try{return{...unpack(w.current),recovered:false};}catch(e){if(e.code==='UNSUPPORTED_SCHEMA')throw e;if(w.previous)return{...unpack(w.previous),recovered:true};throw e;}}
+function encode(s){const bytes=new TextEncoder().encode(JSON.stringify(pack(s)));let text='';for(let n=0;n<bytes.length;n+=8192)text+=String.fromCharCode(...bytes.subarray(n,n+8192));return'LU1.'+(typeof btoa==='function'?btoa(text):Buffer.from(text,'binary').toString('base64')).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function decode(code){check(typeof code==='string'&&code.length<=MAX_PAYLOAD*6&&/^LU1\.[A-Za-z0-9_-]+$/.test(code),'迁移代码格式无效或过大。');let b=code.slice(4).replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);const bin=typeof atob==='function'?atob(b):Buffer.from(b,'base64').toString('binary');return unpack(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(bin,c=>c.charCodeAt(0))))).state;}
+// Preserve the verified legacy rules while preventing a late error in any
+// public mutation from leaving half of a learning/arcade/board operation saved.
+const legacyMutations=Object.fromEntries(['note','nextTurn','launch','launchArcade','recordArcadeResult','storeLegacy','beginRun','recordSubmission','changeCharacter','invalidateRun','reward'].map(name=>[name,(s,...args)=>atomic(s,draft=>L[name](draft,...args))]));
+return{...L,...legacyMutations,SCHEMA,KEY,MAX_PAYLOAD,IDS,RESOURCE_IDS,ADVENTURE_IDS,fresh,validate,migrate,launchModule,updateModule,settleModule,prepareMealDice,chooseMealDice,roll,startBoard,closeSession,prepareImport,pack,wrap,unwrap,encode,decode};
+});
+
 
 
 })();
