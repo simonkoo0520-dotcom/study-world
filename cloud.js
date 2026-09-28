@@ -1,4 +1,4 @@
-import { CloudSync } from './sync.js';
+import { CloudSync } from './sync.js?v=c4e761886d0847b8';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -54,7 +54,7 @@ function errorMessage(error) {
   if (error?.code === 'weak_password') return '密码强度不足，请使用更长的密码，并按提示加入大小写字母、数字或符号。';
   if (error?.code === 'same_password') return '新密码不能与当前密码相同，请换一个。';
   if (['reauthentication_needed','reauthentication_not_valid','session_not_found'].includes(error?.code)) return '请退出后重新用邮箱链接登录，再设置密码。';
-  if (error?.code === '40001') return '另一台设备已保存更新。请下载这里的未同步备份，再读取最新云端记录。';
+  if (['PT409', '40001'].includes(error?.code)) return '另一台设备已保存更新。请下载这里的未同步备份，再读取最新云端记录。';
   if (/expired|invalid.*token|otp_expired/i.test(error?.message || '')) return '验证链接或邀请码已失效，请申请一个新的。';
   if (/rate|too many/i.test(error?.message || '')) return '发送次数暂时达到限制，请稍后重试。';
   if (/not authorized|email_address_not_authorized/i.test(error?.message || '')) return '网站的邮件发送服务尚未开放，请联系老师完成设置。';

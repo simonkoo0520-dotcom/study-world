@@ -36,7 +36,7 @@ export class CloudSync {
         if (this.stopped) return;
         this.pending = this.pending || state;
         this.onDraft({revision:this.revision,state:this.pending});
-        this.conflict = error?.code === '40001';
+        this.conflict = ['PT409', '40001'].includes(error?.code);
         this.onStatus(this.conflict ? 'conflict' : 'error', error);
         throw error;
       } finally { this.saving = null; }
