@@ -196,7 +196,7 @@ async function startGameBreak(destination = 'arcade') {
   let prepared;
   if(destination==='universe'){
     if(!window.WQUniverse){notice('棋盘组件未载入，请刷新页面。');return;}
-    try {prepared=await window.WQUniverse.prepare({accountId,buildURL:'./universe-board.html?v=554e6c03b6172893',isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});}
+    try {prepared=await window.WQUniverse.prepare({accountId,buildURL:'./universe-board.html?v=b5cb90b19273034c',isCurrent:()=>ticket===viewToken&&accountId===user?.id&&role==='student'});}
     catch(error){if(ticket===viewToken&&accountId===user?.id)notice(error.message);return;}
   }
   if(ticket!==viewToken||accountId!==user?.id){prepared?.store.close();return;}

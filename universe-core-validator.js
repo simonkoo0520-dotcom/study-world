@@ -1,5 +1,5 @@
-/* Generated from exact v0.7 board engines and schema7 core; UI art is not needed to validate saves. */
-(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.7_longplay/src/core-v7.js');return;}
+/* Generated from exact v0.7.1 board engines and unchanged schema7 core; UI art is not needed to validate saves. */
+(function(){if(typeof module==='object'&&module.exports){module.exports=require('../Liang_Universe_Board_v0.7.1_dungeon_art/src/core-v7.js');return;}
 (function(root,factory){'use strict';const game=factory();if(typeof module==='object'&&module.exports)module.exports=game;root.LiangGames=root.LiangGames||{};root.LiangGames.fishing=game;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const ITEMS=['fish','slipper','ball','jar'],STAGES=['casting','waiting','bite','reeling','celebrate'];
@@ -729,7 +729,14 @@ return{id,version,title,create,step,validate,result,mount};
   function mount(container, options) {
     if (!container?.appendChild || !options || typeof options.onAction !== 'function') throw new Error('迷宫需要可用的容器和操作回调。');
     validate(options.state);
-    const doc = container.ownerDocument;
+    const doc = container.ownerDocument, win = doc.defaultView;
+    const characterNames = { sister: '梁姐姐', brother: '梁弟弟', little: '梁妹妹' };
+    const characterId = typeof options.displayCharacterId === 'string' && Object.hasOwn(characterNames, options.displayCharacterId) ? options.displayCharacterId : null;
+    const characterName = characterId ? characterNames[characterId] : '你';
+    const characterAsset = characterId ? win.LiangCharacterArt?.characters?.[characterId] : null;
+    const assetAvailable = !!characterAsset && characterAsset.name === characterName && typeof characterAsset.src === 'string' && characterAsset.src.startsWith('data:image/png;base64,');
+    let characterImage = null, artworkState = characterId ? (assetAvailable ? 'loading' : 'missing') : 'unknown';
+    const escapeAttr = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const directionText = { up: '上', right: '右', down: '下', left: '左' };
     const directionArrow = { up: '↑', right: '→', down: '↓', left: '←' };
     let state = copy(options.state), paused = false, disposed = false, recentDamage = null;
@@ -743,15 +750,46 @@ return{id,version,title,create,step,validate,result,mount};
       .lg-dungeon .d-feedback{display:none;border:1px solid #789787;border-radius:8px;background:#294a46;color:#f4f6e5;font-size:12px;line-height:16px;padding:5px 8px;min-height:42px}
       @media(orientation:portrait) and (max-width:690px){.lg-dungeon{padding:6px}.lg-dungeon header{align-items:center;gap:4px;margin:0 0 4px}.lg-dungeon h2{font-size:18px}.lg-dungeon .d-subtitle{display:none}.lg-dungeon .d-floor-badge{font-size:12px;padding:3px 7px}.lg-dungeon .d-stats{gap:5px;margin-bottom:5px}.lg-dungeon .d-stat{padding:3px 7px}.lg-dungeon .d-stat-label{font-size:12px}.lg-dungeon .d-meter{height:4px;margin-top:3px}.lg-dungeon .d-feedback{display:block;margin:0 0 5px}.lg-dungeon .d-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.lg-dungeon .d-map-wrap{grid-column:1/-1;grid-row:1;padding:3px}.lg-dungeon .d-map{width:clamp(180px,calc(100dvh - 450px),270px);height:clamp(180px,calc(100dvh - 450px),270px);max-height:none;margin:auto}.lg-dungeon .d-map-caption,.lg-dungeon .d-legend{display:none}.lg-dungeon .d-panel,.lg-dungeon .d-actions{display:contents}.lg-dungeon .d-panel>h3,.lg-dungeon .d-goal{display:none}.lg-dungeon .d-pad{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:0;max-width:none}.lg-dungeon .d-pad button,.lg-dungeon .d-actions button,.lg-dungeon .d-meal{height:44px;min-height:44px;min-width:44px;padding:3px;font-size:13px}.lg-dungeon .d-pad button{font-size:22px}.lg-dungeon [data-testid=dungeon-attack]{grid-column:1;grid-row:3}.lg-dungeon [data-testid=dungeon-observe]{grid-column:2;grid-row:3}.lg-dungeon .d-leave{grid-column:1;grid-row:4}.lg-dungeon .d-meal{grid-column:2;grid-row:4;margin:0}.lg-dungeon .d-hint,.lg-dungeon .d-sight{grid-column:1/-1}.lg-dungeon .d-map text{font-size:22px}}
       @media(orientation:landscape) and (max-height:500px) and (min-width:600px){.lg-dungeon{grid-template-rows:28px repeat(3,44px) 40px}.lg-dungeon header{display:none}.lg-dungeon .d-stats{grid-row:1}.lg-dungeon .d-map-wrap{grid-row:1/6}.lg-dungeon .d-pad{grid-row:2/5}.lg-dungeon .d-actions{display:contents}.lg-dungeon [data-testid=dungeon-attack]{grid-column:3;grid-row:2}.lg-dungeon [data-testid=dungeon-observe]{display:none}.lg-dungeon .d-meal{grid-column:3;grid-row:3;min-height:44px;height:44px;font-size:12px;padding:4px}.lg-dungeon .d-leave{grid-column:3;grid-row:4}.lg-dungeon .d-goal{display:none}.lg-dungeon .d-feedback{display:block;grid-column:2/4;grid-row:5;padding:3px 6px;min-height:40px;margin:0}.lg-dungeon .d-actions button{min-width:44px;min-height:44px;height:44px;font-size:12px;padding:4px}}
-    </style><header><div><h2>杂物房迷宫</h2><p class="d-subtitle">走一步，看清一片。找楼梯，向更旧的物件出发。</p><p class="d-pause">已暂停，敌人与行动值都停在原处。</p></div><div class="d-floor-badge" data-testid="dungeon-floor"></div></header>
-    <div class="d-stats"><div class="d-stat"><div class="d-stat-label"><span>体力</span><strong data-testid="dungeon-health"></strong></div><div class="d-meter"><span data-health-meter></span></div></div><div class="d-stat"><div class="d-stat-label"><span>局内行动值</span><strong data-testid="dungeon-satiety"></strong></div><div class="d-meter food"><span data-food-meter></span></div></div></div>
+
+      .lg-dungeon .d-identity{display:flex;align-items:center;gap:10px;min-width:0}.lg-dungeon .d-character-portrait{width:42px;height:64px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 3px #07192380)}.lg-dungeon .d-character-name{font-size:13px;font-weight:700;color:#f3d694;margin:2px 0}.lg-dungeon .d-art-note{font-size:12px;line-height:1.4;color:#f3d694;margin:3px 0}.lg-dungeon .d-player-ground{pointer-events:none}.lg-dungeon .d-player-image{pointer-events:none}
+      @media(max-width:690px){.lg-dungeon .d-identity{gap:7px}.lg-dungeon .d-character-portrait{width:32px;height:48px}.lg-dungeon .d-character-name{font-size:12px;margin:1px 0}.lg-dungeon .d-art-note{font-size:11px}}
+      /* Short portrait frames keep the full map beside identity and meters. */
+      @media(orientation:portrait) and (max-width:690px) and (max-height:600px){.lg-dungeon{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.lg-dungeon header{grid-column:5/7;grid-row:1;display:block;margin:0;align-self:start}.lg-dungeon h2{display:none}.lg-dungeon .d-identity{gap:4px}.lg-dungeon .d-character-name{font-size:11px}.lg-dungeon .d-floor-badge{display:inline-block;font-size:11px;line-height:14px;padding:2px 4px;margin-top:3px}.lg-dungeon .d-stats{grid-column:5/7;grid-row:2;grid-template-columns:1fr;gap:4px;margin:0;align-self:end}.lg-dungeon .d-stat{padding:2px 4px}.lg-dungeon .d-stat-label{display:block;font-size:11px;line-height:14px}.lg-dungeon .d-stat-label strong{display:block}.lg-dungeon .d-meter{height:3px;margin-top:2px}.lg-dungeon .d-feedback{grid-column:1/-1;grid-row:3;margin:0}.lg-dungeon .d-main,.lg-dungeon .d-panel,.lg-dungeon .d-actions{display:contents}.lg-dungeon .d-map-wrap{grid-column:1/5;grid-row:1/3;min-width:0;height:188px;padding:3px;align-self:start}.lg-dungeon .d-map{width:180px;height:180px}.lg-dungeon .d-pad{grid-column:1/-1;grid-row:4;margin:0}.lg-dungeon [data-testid=dungeon-attack]{grid-column:1/4;grid-row:5}.lg-dungeon [data-testid=dungeon-observe]{grid-column:4/7;grid-row:5}.lg-dungeon .d-leave{grid-column:1/4;grid-row:6}.lg-dungeon .d-meal{grid-column:4/7;grid-row:6}.lg-dungeon .d-hint,.lg-dungeon .d-sight,.lg-dungeon .d-notice,.lg-dungeon>section,.lg-dungeon .d-keys{grid-column:1/-1}}
+    </style><header><div class="d-identity"><img class="d-character-portrait" data-testid="dungeon-character-portrait" alt="" draggable="false" hidden><div><h2>杂物房迷宫</h2><p class="d-character-name" data-testid="dungeon-character-name"></p><p class="d-art-note" data-testid="dungeon-character-art" role="status" hidden></p><p class="d-subtitle">走一步，看清一片。找楼梯，向更旧的物件出发。</p><p class="d-pause">已暂停，敌人与行动值都停在原处。</p></div></div><div class="d-floor-badge" data-testid="dungeon-floor"></div></header>
+    <div class="d-stats"><div class="d-stat"><div class="d-stat-label"><span data-testid="dungeon-character-health-label">体力</span><strong data-testid="dungeon-health"></strong></div><div class="d-meter"><span data-health-meter></span></div></div><div class="d-stat"><div class="d-stat-label"><span>局内行动值</span><strong data-testid="dungeon-satiety"></strong></div><div class="d-meter food"><span data-food-meter></span></div></div></div>
     <p class="d-feedback" data-testid="dungeon-feedback" aria-hidden="true"></p>
-    <div class="d-main"><div class="d-map-wrap"><svg class="d-map" data-testid="dungeon-map" viewBox="0 0 450 450" role="img" aria-label="带迷雾的杂物房格子地图"></svg><p class="d-map-caption" data-testid="dungeon-map-caption"></p><div class="d-legend"><span>● 你</span><span>▤ 柜子</span><span>▱ 楼梯</span><span>◇ 旧物</span></div></div><section class="d-panel"><h3>这一层怎么走</h3><p class="d-goal" data-testid="dungeon-goal"></p><div class="d-pad" aria-label="移动方向"><button class="d-up" type="button" data-game-action="move" data-direction="up" data-testid="dungeon-up" aria-label="向上走">↑</button><button class="d-left" type="button" data-game-action="move" data-direction="left" data-testid="dungeon-left" aria-label="向左走">←</button><button type="button" data-game-action="wait" data-testid="dungeon-wait" aria-label="等一回合">等</button><button type="button" data-game-action="move" data-direction="right" data-testid="dungeon-right" aria-label="向右走">→</button><button class="d-down" type="button" data-game-action="move" data-direction="down" data-testid="dungeon-down" aria-label="向下走">↓</button></div><div class="d-actions"><button type="button" data-game-action="attack" data-testid="dungeon-attack">挥拖鞋</button><button type="button" data-game-action="wait" data-testid="dungeon-observe">等一回合</button><button class="d-leave" type="button" data-game-action="descend" data-testid="dungeon-descend">走下楼梯</button></div><button class="d-meal" type="button" data-game-action="use-meal" data-testid="dungeon-meal">使用可选料理</button><p class="d-hint" data-testid="dungeon-meal-hint"></p><div class="d-sight" data-testid="dungeon-enemies"></div></section></div>
+    <div class="d-main"><div class="d-map-wrap"><svg class="d-map" data-testid="dungeon-map" viewBox="0 0 450 450" role="img" aria-label="带迷雾的杂物房格子地图"></svg><p class="d-map-caption" data-testid="dungeon-map-caption"></p><div class="d-legend"><span data-testid="dungeon-legend-player">● 你</span><span>▤ 柜子</span><span>▱ 楼梯</span><span>◇ 旧物</span></div></div><section class="d-panel"><h3>这一层怎么走</h3><p class="d-goal" data-testid="dungeon-goal"></p><div class="d-pad" aria-label="移动方向"><button class="d-up" type="button" data-game-action="move" data-direction="up" data-testid="dungeon-up" aria-label="向上走">↑</button><button class="d-left" type="button" data-game-action="move" data-direction="left" data-testid="dungeon-left" aria-label="向左走">←</button><button type="button" data-game-action="wait" data-testid="dungeon-wait" aria-label="等一回合">等</button><button type="button" data-game-action="move" data-direction="right" data-testid="dungeon-right" aria-label="向右走">→</button><button class="d-down" type="button" data-game-action="move" data-direction="down" data-testid="dungeon-down" aria-label="向下走">↓</button></div><div class="d-actions"><button type="button" data-game-action="attack" data-testid="dungeon-attack">挥拖鞋</button><button type="button" data-game-action="wait" data-testid="dungeon-observe">等一回合</button><button class="d-leave" type="button" data-game-action="descend" data-testid="dungeon-descend">走下楼梯</button></div><button class="d-meal" type="button" data-game-action="use-meal" data-testid="dungeon-meal">使用可选料理</button><p class="d-hint" data-testid="dungeon-meal-hint"></p><div class="d-sight" data-testid="dungeon-enemies"></div></section></div>
     <div class="d-notice" role="status" aria-live="polite" data-testid="dungeon-notice"></div><section aria-label="这次探索的发现"><h3>这次找到的旧物</h3><div class="d-found">${ITEMS.map(item => `<span data-discovery="${item.id}" data-testid="dungeon-discovery-${item.id}">${item.mark} · ${item.name}</span>`).join('')}</div><p class="d-hint">只记录本局发现；不会变成鱼、料理或学习成绩。</p></section><p class="d-keys">方向键 / WASD 移动；朝敌人走会挥拖鞋；空格等待；E 下楼梯；F 朝面前挥拖鞋；M 使用可选料理。敌人只在你行动后移动。</p>`;
     const mealFeedback = doc.createElement('p'); mealFeedback.className = 'd-hint'; mealFeedback.dataset.testid = 'dungeon-meal-feedback'; mealFeedback.setAttribute('role', 'status'); mealFeedback.hidden = true;
     el.querySelector('[data-testid="dungeon-meal"]').before(mealFeedback);
     container.appendChild(el);
     const $ = selector => el.querySelector(selector);
+    // Decode the selected original PNG once per mount. No artwork data is
+    // written into the deterministic game state or its action transcript.
+    const portrait = $('[data-testid="dungeon-character-portrait"]');
+    function artNote() {
+      return artworkState === 'unknown' ? '未确认棋盘人物，暂用“你”标记。' : ['missing', 'error'].includes(artworkState) ? characterName + '的图片未显示，暂用“你”标记。' : '';
+    }
+    function artStatus() {
+      el.dataset.character = characterId || ''; el.dataset.artworkState = artworkState;
+      $('[data-testid="dungeon-character-name"]').textContent = characterId ? characterName + ' · 你正在探索' : '你正在探索';
+      $('[data-testid="dungeon-character-health-label"]').textContent = characterName + ' · 体力';
+      $('[data-testid="dungeon-legend-player"]').textContent = artworkState === 'ready' ? characterName + '（你）' : '● 你';
+      const note = $('[data-testid="dungeon-character-art"]'); note.textContent = artNote(); note.hidden = !note.textContent;
+      portrait.hidden = artworkState !== 'ready';
+    }
+    function artworkFailed() { if (disposed) return; artworkState = 'error'; portrait.hidden = true; render(); }
+    function loadArtwork() {
+      if (!assetAvailable) return;
+      characterImage = new win.Image();
+      characterImage.onload = () => {
+        if (disposed) return;
+        if (!characterImage.naturalWidth || !characterImage.naturalHeight) { artworkFailed(); return; }
+        artworkState = 'ready'; portrait.alt = characterName; portrait.src = characterAsset.src; render();
+      };
+      characterImage.onerror = artworkFailed; portrait.onerror = artworkFailed;
+      characterImage.src = characterAsset.src;
+    }
     function tileSVG(s) {
       const floor = s.floors[s.floor], parts = [];
       const colours = [['#254654', '#49646a'], ['#51463d', '#796754'], ['#3c3b55', '#69607a']][s.floor];
@@ -769,11 +807,17 @@ return{id,version,title,create,step,validate,result,mount};
         parts.push(`<g data-enemy-id="${e.id}">${e.kind === 'dust' ? `<path d="M${cx - 17} ${cy + 8}q-10-13 0-20q1-12 12-8q9-12 17 0q13 0 9 14q9 10-4 16z" fill="${p.colour}"/>` : e.kind === 'robot' ? `<ellipse cx="${cx}" cy="${cy}" rx="20" ry="17" fill="${p.colour}" stroke="#173d4a" stroke-width="3"/><path d="M${cx - 11} ${cy - 5}h22" stroke="#406c78" stroke-width="5"/>` : `<rect x="${cx - 17}" y="${cy - 18}" width="34" height="34" rx="7" fill="${p.colour}"/><circle cx="${cx - 12}" cy="${cy + 16}" r="6" fill="#67514c"/><circle cx="${cx + 12}" cy="${cy + 16}" r="6" fill="#67514c"/>`}<text x="${cx}" y="${cy + 7}" text-anchor="middle" fill="#213840" font-size="17" font-weight="800">${p.glyph}</text></g>`);
       }
       const px = s.player.x * 50 + 25, py = s.player.y * 50 + 25;
-      parts.push(`<g data-testid="dungeon-player"><circle cx="${px}" cy="${py}" r="19" fill="#f0d08d" stroke="#fff0ca" stroke-width="3"/><text x="${px}" y="${py + 6}" text-anchor="middle" fill="#173c45" font-size="17" font-weight="800">你</text></g>`);
+      const playerLabel = artworkState === 'ready' ? characterName + '（你）' : characterId ? characterName + '，暂用你标记' : '你，未确认棋盘人物';
+      const spriteHeight = 44, spriteWidth = artworkState === 'ready' ? Math.min(44, spriteHeight * characterImage.naturalWidth / characterImage.naturalHeight) : 0;
+      // Keep the complete picture inside its 50-unit cell. The ground ring
+      // anchors position without hiding adjacent enemies, stairs or items.
+      const playerArt = artworkState === 'ready' ? `<ellipse class="d-player-ground" cx="${px}" cy="${py + 19}" rx="18" ry="5" fill="#071923" stroke="#f3d38d" stroke-width="2"/><image class="d-player-image" data-testid="dungeon-player-art" data-character="${characterId}" href="${escapeAttr(characterAsset.src)}" x="${px - spriteWidth / 2}" y="${py - 23}" width="${spriteWidth}" height="${spriteHeight}" preserveAspectRatio="xMidYMax meet"/>` : `<circle cx="${px}" cy="${py}" r="19" fill="#f0d08d" stroke="#fff0ca" stroke-width="3"/><text x="${px}" y="${py + 6}" text-anchor="middle" fill="#173c45" font-size="17" font-weight="800">你</text>`;
+      parts.push(`<g data-testid="dungeon-player" data-character="${characterId || ''}" data-artwork-state="${artworkState}" role="img" aria-label="${escapeAttr(playerLabel)}">${playerArt}</g>`);
       return parts.join('');
     }
     function render() {
       const f = state.floors[state.floor], stopped = paused || state.phase !== 'playing';
+      artStatus();
       el.dataset.phase = state.phase; el.classList.toggle('d-paused', paused && state.phase === 'playing');
       $('[data-testid="dungeon-floor"]').textContent = '第 ' + (state.floor + 1) + ' / 3 层';
       $('[data-testid="dungeon-health"]').textContent = state.health + ' / ' + state.healthMax;
@@ -781,6 +825,7 @@ return{id,version,title,create,step,validate,result,mount};
       $('[data-health-meter]').style.width = state.health / state.healthMax * 100 + '%';
       $('[data-food-meter]').style.width = state.satiety / state.satietyMax * 100 + '%';
       $('[data-testid="dungeon-map"]').innerHTML = tileSVG(state);
+      const playerImage = $('[data-testid="dungeon-player-art"]'); if (playerImage) playerImage.onerror = artworkFailed;
       $('[data-testid="dungeon-map-caption"]').textContent = f.title + ' · 已走 ' + state.turns + ' 回合 · 位置 ' + state.player.x + ',' + state.player.y;
       $('[data-testid="dungeon-goal"]').textContent = same(state.player, f.exit) ? (state.floor === 2 ? '就在最后出口！带着你的发现离开。' : '你已到楼梯口，可以走进下一层。') : '探索暗处，找到楼梯。朝相邻敌人走会挥拖鞋；也可以绕开它。';
       for (const b of el.querySelectorAll('button')) b.disabled = stopped;
@@ -805,6 +850,7 @@ return{id,version,title,create,step,validate,result,mount};
       else if (state.notice.startsWith('走了一格')) brief = '走了一格。探索暗处，找到楼梯；朝相邻敌人走可攻击。';
       else if (state.notice.startsWith('用了 1 份可选料理')) brief = '料理已恢复 ' + state.mealRestored + ' 点行动值；本局料理已使用。';
       else if (state.notice.startsWith('原地等一回合')) brief = '等了一回合，行动值 −1。敌人可能移动或攻击。';
+      const noteText = artNote(); if (noteText) brief = noteText + ' ' + brief;
       const feedback = $('[data-testid="dungeon-feedback"]'); if (feedback.textContent !== brief) feedback.textContent = brief;
       const notice = $('[data-testid="dungeon-notice"]'); if (notice.textContent !== noticeText) notice.textContent = noticeText; notice.dataset.kind = state.phase;
       for (const item of ITEMS) { const card = $('[data-discovery="' + item.id + '"]'); card.dataset.found = String(state.discoveries.includes(item.id)); card.classList.toggle('d-discovery-flash', state.latestDiscovery === item.id); card.textContent = (state.discoveries.includes(item.id) ? '✓ ' : '◇ ') + item.name; }
@@ -814,6 +860,8 @@ return{id,version,title,create,step,validate,result,mount};
       const b = event.target.closest('[data-game-action]'); if (!b || !el.contains(b) || b.disabled) return;
       const type = b.dataset.gameAction;
       emit(type === 'move' ? { type, direction: b.dataset.direction } : type === 'attack' ? { type, direction: state.player.facing } : { type });
+      // A used stair or meal button becomes disabled; keep keyboard play in the game.
+      if (!disposed && !paused && state.phase === 'playing' && b.disabled) el.focus({ preventScroll: true });
     }
     function keydown(event) {
       if (disposed || paused || state.phase !== 'playing' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
@@ -824,11 +872,11 @@ return{id,version,title,create,step,validate,result,mount};
       let action = direction ? { type: 'move', direction } : event.code === 'Space' || event.key === ' ' ? { type: 'wait' } : event.key.toLowerCase() === 'e' ? { type: 'descend' } : event.key.toLowerCase() === 'f' ? { type: 'attack', direction: state.player.facing } : event.key.toLowerCase() === 'm' ? { type: 'use-meal' } : null;
       if (action) { event.preventDefault(); emit(action); }
     }
-    el.addEventListener('click', click); el.addEventListener('keydown', keydown); render();
+    el.addEventListener('click', click); el.addEventListener('keydown', keydown); render(); loadArtwork();
     return {
       update(next) { if (disposed) return; validate(next); if (next.health < state.health) recentDamage = state.health - next.health; else if (next.notice !== state.notice) recentDamage = null; state = copy(next); render(); },
       setPaused(value) { if (disposed) return; paused = Boolean(value); render(); },
-      dispose() { if (disposed) return; disposed = true; el.removeEventListener('click', click); el.removeEventListener('keydown', keydown); el.remove(); }
+      dispose() { if (disposed) return; disposed = true; if (characterImage) { characterImage.onload = null; characterImage.onerror = null; } portrait.onerror = null; const playerImage = $('[data-testid="dungeon-player-art"]'); if (playerImage) playerImage.onerror = null; el.removeEventListener('click', click); el.removeEventListener('keydown', keydown); el.remove(); }
     };
   }
   return { id: 'dungeon', version: 1, title: '杂物房迷宫', create, step, validate, result, mount };
