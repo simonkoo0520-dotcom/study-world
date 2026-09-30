@@ -1,19 +1,19 @@
 {
   "schemaVersion": 3,
-  "date": "2026-09-30",
-  "generatedAt": "2026-09-30T11:51:05.043887+00:00",
+  "date": "2026-10-01",
+  "generatedAt": "2026-09-30T19:23:09.284717+00:00",
   "status": "quality-cleanup-verified-coverage-requires-review",
-  "contentRevision": "edef4779bd23908e",
+  "contentRevision": "7c3e9228da8bbb40",
   "baseline": "7ac1d3ae3d3a739f",
   "counts": {
     "stored": 105207,
-    "active": 39038,
-    "gradeScope": 38599,
+    "active": 39023,
+    "gradeScope": 38584,
     "prerequisite": 439,
     "topics": 680,
     "tasks": 509,
     "coursesAtLeast900": 12,
-    "questionShortfall": 51424,
+    "questionShortfall": 51439,
     "represented": 0,
     "partial": 551,
     "missing": 5,
@@ -28,7 +28,7 @@
   },
   "fullSyllabusCertified": false,
   "goalAchieved": false,
-  "method": "Read-only comparison of the published cleanup packs against the immutable prior snapshot; recount current question and task references. No questions, answers, curriculum definitions, student data or game code changed.",
+  "method": "Read-only comparison of the published cleanup packs against the immutable prior snapshot; recount current question and task references. No questions, answers, curriculum definitions, student data or game code changed. Follow-up 2026-10-01: counts, topic question lists and evidence were updated for the round-2 revision (15 questions retired; text-only corrections do not change IDs, answers or topic mapping).",
   "changes": {
     "retired": 30586,
     "corrected": 495,
@@ -61,13 +61,13 @@
     "contentRevisionDigest": "pass",
     "manifestCounts": "pass",
     "answerPositions": {
-      "2": 9788,
-      "0": 9655,
-      "1": 9862,
-      "3": 9733
+      "2": 9785,
+      "0": 9650,
+      "1": 9858,
+      "3": 9730
     },
     "retiredHaveExclusionReason": "pass",
-    "browser": "Not rerun in this follow-up. The cleanup author recorded 198 successful practice/test runs.",
+    "browser": "Round-2 follow-up (2026-10-01): 99 courses × practice/test = 198 browser runs completed with 0 page errors.",
     "semanticAndCurriculumAudit": "Not complete; structural validity is not a factual answer or curriculum certification."
   },
   "limits": [
@@ -98432,7 +98432,6 @@
             "v2-qa29-art-craft"
           ],
           "questionIds": [
-            "P6-art-qa29-25bf20b1fbd6e11e4ece",
             "P6-art-qa29-dea7363abffa68239bf1",
             "P6-art-qa29-ec616352018ee27ca83b"
           ],
@@ -98440,11 +98439,10 @@
           "sourceIds": [
             "cfh-art-p4"
           ],
-          "questionCount": 3,
-          "independentCount": 3,
+          "questionCount": 2,
+          "independentCount": 2,
           "guidedCount": 0,
           "evidenceIds": [
-            "P6-art-qa29-25bf20b1fbd6e11e4ece",
             "P6-art-qa29-dea7363abffa68239bf1",
             "P6-art-qa29-ec616352018ee27ca83b"
           ],
@@ -98745,13 +98743,13 @@
       "fullSyllabusCertified": false,
       "level": "P6",
       "subject": "art",
-      "activeQuestions": 21,
-      "gradeScopeCount": 21,
+      "activeQuestions": 20,
+      "gradeScopeCount": 20,
       "prerequisiteCount": 0,
-      "coreCount": 21,
+      "coreCount": 20,
       "extraCount": 0,
-      "retiredQuestions": 900,
-      "shortfall": 879,
+      "retiredQuestions": 901,
+      "shortfall": 880,
       "fixedComprehensiveReviews": 0
     },
     {
@@ -99241,13 +99239,13 @@
       "fullSyllabusCertified": false,
       "level": "P6",
       "subject": "music",
-      "activeQuestions": 84,
-      "gradeScopeCount": 84,
+      "activeQuestions": 83,
+      "gradeScopeCount": 83,
       "prerequisiteCount": 0,
       "coreCount": 67,
-      "extraCount": 17,
-      "retiredQuestions": 831,
-      "shortfall": 816,
+      "extraCount": 16,
+      "retiredQuestions": 832,
+      "shortfall": 817,
       "fixedComprehensiveReviews": 0
     },
     {
@@ -99369,19 +99367,9 @@
             "v2-history-corroborate",
             "v2-history-limited-support",
             "v2-history-missing-evidence",
-            "v2-qa29-history-symbols",
-            "verified-museum-fact"
+            "v2-qa29-history-symbols"
           ],
           "questionIds": [
-            "H6X-verified-museum-fact-FACT01",
-            "H6X-verified-museum-fact-FACT02",
-            "H6X-verified-museum-fact-FACT03",
-            "H6X-verified-museum-fact-FACT04",
-            "H6X-verified-museum-fact-FACT05",
-            "H6X-verified-museum-fact-FACT06",
-            "H6X-verified-museum-fact-FACT07",
-            "H6X-verified-museum-fact-FACT08",
-            "H6X-verified-museum-fact-FACT09",
             "P6-history-v2-d12dcf30350aaf8c8440",
             "P6-history-v2-af3ecacb13d341d444df",
             "P6-history-v2-8bb303b5c53e3e2d8073",
@@ -99393,16 +99381,16 @@
           "sourceIds": [
             "cfh-history-p6"
           ],
-          "questionCount": 15,
-          "independentCount": 15,
+          "questionCount": 6,
+          "independentCount": 6,
           "guidedCount": 0,
           "evidenceIds": [
-            "H6X-verified-museum-fact-FACT01",
-            "H6X-verified-museum-fact-FACT02",
-            "H6X-verified-museum-fact-FACT03",
-            "H6X-verified-museum-fact-FACT04",
-            "H6X-verified-museum-fact-FACT05",
-            "H6X-verified-museum-fact-FACT06"
+            "P6-history-v2-d12dcf30350aaf8c8440",
+            "P6-history-v2-af3ecacb13d341d444df",
+            "P6-history-v2-8bb303b5c53e3e2d8073",
+            "P6-history-v2-4bf7742fc13a12fc9f78",
+            "P6-history-qa29-ce77a30ed96c838ccdf8",
+            "P6-history-qa29-e21f5a6ac6fb6b4c1bce"
           ],
           "declaredStatus": "partial",
           "prerequisiteQuestionIds": [],
@@ -99672,13 +99660,13 @@
       "fullSyllabusCertified": false,
       "level": "P6",
       "subject": "history",
-      "activeQuestions": 145,
-      "gradeScopeCount": 145,
+      "activeQuestions": 136,
+      "gradeScopeCount": 136,
       "prerequisiteCount": 0,
-      "coreCount": 142,
+      "coreCount": 133,
       "extraCount": 3,
-      "retiredQuestions": 773,
-      "shortfall": 755,
+      "retiredQuestions": 782,
+      "shortfall": 764,
       "fixedComprehensiveReviews": 0
     },
     {
@@ -108083,10 +108071,6 @@
             "sh-F1-geography-map-direction-1",
             "sh-F1-geography-map-direction-19",
             "sh-F1-geography-map-direction-37",
-            "sh-F1-geography-map-direction-55",
-            "sh-F1-geography-map-direction-73",
-            "sh-F1-geography-map-direction-91",
-            "sh-F1-geography-map-direction-110",
             "sh-F1-geography-map-direction-128",
             "sh-F1-geography-map-direction-146",
             "sh-F1-geography-map-direction-164",
@@ -108097,16 +108081,16 @@
             "cf-stem-geography-f1"
           ],
           "note": "仅统计当前可用的本年级题与已列任务。主题对应和完整 SK/SP 覆盖仍待内容复核。",
-          "questionCount": 12,
-          "independentCount": 12,
+          "questionCount": 8,
+          "independentCount": 8,
           "guidedCount": 0,
           "evidenceIds": [
             "sh-F1-geography-map-direction-1",
             "sh-F1-geography-map-direction-19",
             "sh-F1-geography-map-direction-37",
-            "sh-F1-geography-map-direction-55",
-            "sh-F1-geography-map-direction-73",
-            "sh-F1-geography-map-direction-91"
+            "sh-F1-geography-map-direction-128",
+            "sh-F1-geography-map-direction-146",
+            "sh-F1-geography-map-direction-164"
           ],
           "declaredStatus": "partial",
           "prerequisiteQuestionIds": [],
@@ -108680,13 +108664,13 @@
       "fullSyllabusCertified": false,
       "level": "F1",
       "subject": "geography",
-      "activeQuestions": 167,
-      "gradeScopeCount": 167,
+      "activeQuestions": 163,
+      "gradeScopeCount": 163,
       "prerequisiteCount": 0,
-      "coreCount": 118,
-      "extraCount": 49,
-      "retiredQuestions": 935,
-      "shortfall": 733,
+      "coreCount": 115,
+      "extraCount": 48,
+      "retiredQuestions": 939,
+      "shortfall": 737,
       "fixedComprehensiveReviews": 0
     },
     {
@@ -130939,5 +130923,38 @@
       "shortfall": 270,
       "fixedComprehensiveReviews": 0
     }
-  ]
+  ],
+  "followUpReview": {
+    "date": "2026-10-01",
+    "previousRevision": "edef4779bd23908e",
+    "contentRevision": "7c3e9228da8bbb40",
+    "correctedText": 2050,
+    "retired": 15,
+    "retiredIds": [
+      "sh-F1-geography-map-direction-55",
+      "sh-F1-geography-map-direction-73",
+      "sh-F1-geography-map-direction-91",
+      "sh-F1-geography-map-direction-110",
+      "P6-art-qa29-25bf20b1fbd6e11e4ece",
+      "H6X-verified-museum-fact-FACT01",
+      "H6X-verified-museum-fact-FACT02",
+      "H6X-verified-museum-fact-FACT03",
+      "H6X-verified-museum-fact-FACT04",
+      "H6X-verified-museum-fact-FACT05",
+      "H6X-verified-museum-fact-FACT06",
+      "H6X-verified-museum-fact-FACT07",
+      "H6X-verified-museum-fact-FACT08",
+      "H6X-verified-museum-fact-FACT09",
+      "P6-music-v2-4814e688df43f547bdcd"
+    ],
+    "retirementReasons": {
+      "review-round2: keyed direction differs from the true 8-point direction": 4,
+      "review-round2: low_quality": 1,
+      "review-round2: trivia outside the syllabus with joke distractors": 9,
+      "review-round2: below-grade-level (P1 rehearsal template in P6)": 1
+    },
+    "answerIndexChanges": 0,
+    "allOldIdsRetained": true,
+    "scope": "Rule-based checks of all active questions (templated maths, music and code answers recomputed; language, translation and distractor rules) plus reviewer reading by question family. Not a teacher-by-teacher certification of every question."
+  }
 }
