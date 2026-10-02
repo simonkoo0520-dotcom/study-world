@@ -2,7 +2,7 @@
 (function (root) {
   'use strict';
   const VERSION = 9;
-  const LEVELS = ['P1','P2','P3','P4','P5','P6','F1','F2','F3'];
+  const LEVELS = ['P1','P2','P3','P4','P5','P6','F1','F2','F3','F4','F5'];
   const PETS = ['owl','fox','turtle'];
   const own = (o,k) => Object.prototype.hasOwnProperty.call(o || {}, k);
   const num = (x,lo,hi,fallback=lo) => Number.isFinite(Number(x)) ? Math.max(lo,Math.min(hi,Math.floor(Number(x)))) : fallback;
