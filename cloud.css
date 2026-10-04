@@ -10,3 +10,41 @@
 @media(max-width:700px){.cloud-page{padding:22px 16px 40px}.cloud-login{margin-top:10px}.cloud-card{padding:24px 20px}.cloud-grid{grid-template-columns:1fr}.cloud-roles{grid-template-columns:1fr}.cloud-account{gap:8px;padding:10px 16px}.cloud-account .account-email{flex-basis:100%}.cloud-account .btn{padding:8px 12px}.cloud-heading h1{font-size:26px}.cloud-parent-report .reportgrid{grid-template-columns:1fr 1fr}.cloud-sync-warning{margin:10px}.cloud-brand{margin-bottom:22px}}
 /* The wrapped account bar must not cover game controls on narrow screens. */
 @media(max-width:700px){.cloud-account{position:static}}
+/* simplified-ui 2026-10 */
+/* One header bar replaces the account strip + practice top bar. */
+.cloud-account.cloud-nav{background:#102a33;color:#e8f1ee;border-bottom:0;gap:6px;padding:9px max(20px,calc((100vw - 1200px)/2));flex-wrap:nowrap;box-shadow:0 2px 14px #0b1f2626}
+.cloud-nav .nav-brand{display:flex;align-items:center;font-weight:850;font-size:17px;color:#fff;margin-right:14px;white-space:nowrap;letter-spacing:.02em}
+.cloud-nav .nav-links{display:flex;gap:2px;min-width:0}
+.cloud-nav .nav-links button,.cloud-nav .nav-links a{background:transparent;color:#cfe1db;border:0;border-radius:10px;padding:8px 13px;min-height:40px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+.cloud-nav .nav-links button:hover,.cloud-nav .nav-links a:hover{background:#21414a;color:#fff}
+.cloud-nav .nav-links .active{background:#2a4b54;color:#fff}
+body:has(#exercise-shell[hidden]) .cloud-nav .nav-links .active{background:transparent;color:#cfe1db}
+.cloud-nav .nav-spacer{flex:1}
+.cloud-nav .cloud-status{color:#9cc9b8;font-size:13px;white-space:nowrap;margin-right:6px}
+.cloud-nav .cloud-status[data-state=saved]{color:#8fd4b5}
+.cloud-nav .cloud-status[data-state=error],.cloud-nav .cloud-status[data-state=conflict]{color:#ffb7a8;font-weight:700}
+.cloud-nav .arcade-nav{background:#f5c765;color:#17343d;border-color:#f5c765;box-shadow:none;white-space:nowrap}
+.cloud-nav .arcade-nav:hover{background:#ffd98a;filter:none}
+.account-menu{position:relative;margin:0}
+.account-menu>summary{list-style:none;display:inline-flex;align-items:center;min-height:40px;padding:8px 12px;border-radius:12px;border:1px solid #3c5a62;color:#e8f1ee;font-size:14px;font-weight:700;white-space:nowrap;user-select:none}
+.account-menu>summary::-webkit-details-marker{display:none}
+.account-menu>summary>span{margin-left:4px}
+.account-menu>summary:hover,.account-menu[open]>summary{background:#21414a}
+.account-menu>summary:focus-visible{outline:3px solid #f5c765;outline-offset:2px}
+.account-menu .menu-panel{position:absolute;right:0;top:calc(100% + 8px);min-width:230px;max-width:calc(100vw - 24px);background:#fffef9;color:#17343d;border:1px solid #dadfd7;border-radius:14px;box-shadow:0 14px 34px #0b1f2633;padding:8px;z-index:60;display:grid;gap:2px}
+.account-menu .menu-email{font-size:12px;color:#63767b;padding:6px 10px 9px;border-bottom:1px solid #e6e9e1;margin-bottom:4px;overflow-wrap:anywhere}
+.account-menu .menu-panel button{background:transparent;border:0;text-align:left;padding:10px;border-radius:9px;font-size:14px;min-height:42px;color:#17343d;font-weight:600}
+.account-menu .menu-panel button:hover,.account-menu .menu-panel button.active{background:#eef3ec}
+.account-menu .menu-panel .menu-logout{color:#a43f37}
+#account-bar.cloud-nav:not([hidden])~#exercise-shell>.topbar{display:none}
+#account-bar.cloud-nav:not([hidden])~#portal-root .cloud-brand{display:none}
+@media (max-width:760px){
+  .cloud-account.cloud-nav{flex-wrap:wrap;padding:8px 12px;gap:6px 6px}
+  .cloud-nav .nav-links{order:5;flex-basis:100%;gap:4px}
+  .cloud-nav .nav-links>*{flex:1;padding:8px 6px;font-size:14px}
+  .cloud-nav .nav-brand{margin-right:4px}
+}
+@media (max-width:480px){
+  .cloud-nav .nav-brand-text{display:none}
+  .cloud-nav .arcade-nav{padding:8px 10px}
+}

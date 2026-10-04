@@ -8,3 +8,30 @@
 #answer-explanation{scroll-margin-top:24px;line-height:1.85}#answer-explanation:focus{outline:2px solid #4d8067;outline-offset:5px}.answer-key{padding-bottom:12px;border-bottom:1px solid #cbdccc}
 @media(max-width:1000px){.learning-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.learning-steps{grid-template-columns:1fr}.learning-plan .sectionhead{display:block}.learning-plan select{margin-top:6px;width:100%}.learning-step{padding:15px}}
+/* simplified-ui 2026-10 */
+/* Daily plan folded into one row */
+details.learning-plan{margin:0 0 6px;padding:0;background:var(--white,#fffef9)}
+details.learning-plan>summary{display:flex;align-items:center;gap:6px 14px;flex-wrap:wrap;padding:15px 20px;list-style:none;border-radius:var(--radius,22px)}
+details.learning-plan>summary::-webkit-details-marker{display:none}
+details.learning-plan>summary:before{content:"▸";color:#276347;font-size:.9rem;transition:transform .15s}
+details.learning-plan[open]>summary:before{transform:rotate(90deg)}
+details.learning-plan>summary:hover{background:#f4f8f2}
+.plan-title{font-weight:800}
+.plan-meta{color:var(--muted,#63767b);font-size:.88rem;font-weight:600}
+details.learning-plan>:not(summary){margin-left:20px;margin-right:20px}
+.plan-goal{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding-top:4px;border-top:1px solid #e3e8df}
+.plan-goal label{font-size:.88rem;font-weight:700;padding-top:10px}
+.plan-goal select{margin-left:6px;border:1px solid #c9d1c8;border-radius:9px;padding:6px 8px;background:#fff;font:inherit}
+.plan-goal p{flex:1;min-width:220px;margin:10px 0 0}
+details.learning-plan .learning-steps{margin:16px 20px 6px}
+details.learning-plan .learning-step{padding:15px;gap:8px}
+details.learning-plan .learning-step p{font-size:.86rem}
+.step-actions{display:flex;flex-wrap:wrap;gap:6px}
+details.learning-plan .learning-reflection{margin-top:0;padding:8px 0 16px}
+@media (max-width:600px){
+  details.learning-plan>summary{padding:13px 16px}
+  details.learning-plan>:not(summary){margin-left:16px;margin-right:16px}
+  details.learning-plan .learning-steps{margin:14px 16px 6px}
+  .plan-goal select{margin:6px 0 0;width:100%}
+  .plan-goal label{width:100%}
+}

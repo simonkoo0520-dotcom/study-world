@@ -5,3 +5,100 @@
 @media(max-width:700px){.layout{padding:20px 14px 55px}.topbar{gap:10px;padding:12px 15px}.topbar nav{order:3;flex-basis:100%;justify-content:center;margin:0}.topbar nav button{flex:1}.topbar select{margin-left:auto;font-size:.83rem;max-width:130px}.hero{padding:24px 22px 0;grid-template-columns:minmax(0,1fr) 116px;min-height:240px;border-radius:22px}.hero .eyebrow{font-size:.61rem;letter-spacing:.06em}.hero h1{font-size:1.68rem}.hero p{font-size:.83rem;margin-bottom:12px}.herofig{height:210px;width:132px;left:-8px}.herofig img{height:203px}.herofig:before{width:150px;height:150px}.hero .stats{gap:18px;margin:15px 0 25px}.stat strong{font-size:1.18rem}.stat span{font-size:.7rem}.hero .stats .stat:last-child{display:none}.levelchip{font-size:.8rem;bottom:14px;right:0}.subjectgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.subjectcard{padding:17px;min-height:180px}.subjectcard h3{font-size:1.03rem}.subjectcard .count{font-size:.77rem}.gradebar{gap:6px}.gradebar button{padding:9px 12px;font-size:.9rem}.sectionhead{align-items:start;flex-direction:column;gap:5px}.missions{grid-template-columns:1fr}.mission{display:grid;grid-template-columns:1fr auto;gap:4px 14px}.mission p{font-size:.83rem;margin:5px 0}.mission .btn{grid-column:2;grid-row:1/3;width:auto;min-width:95px;align-self:center;padding:10px 13px}.quizlayout{display:flex;flex-direction:column}.sidekick{position:static;text-align:left;display:grid;grid-template-columns:50px 1fr;gap:0 14px;padding:14px;order:-1}.sidekick img{grid-column:1;grid-row:1/4;height:78px;width:50px;margin:0}.sidekick blockquote{font-size:.8rem;margin:3px 0}.sidekick .xp{margin:3px 0}.sidekick .side-title{grid-column:2;font-size:.86rem}.sidekick .aside-tip{display:none}.question{padding:21px 17px;border-radius:19px}.stem{font-size:1.03rem}.option{padding:13px 11px;font-size:.96rem}.questionfoot .btn{flex:1}.passage{padding:14px;font-size:.94rem}.settingsgrid{grid-template-columns:1fr}.reportgrid{grid-template-columns:repeat(2,1fr)}.panel{padding:20px 17px}.coursehead .symbol{width:50px;height:50px;font-size:1.5rem}.coursehead h1{font-size:1.7rem}.filters{gap:10px}.filters label{flex:1;min-width:120px}.person{width:calc((100% - 24px)/3);padding:10px 5px;font-size:.85rem}.person img{height:110px}.resulthead .score{font-size:3rem}td,th{padding:11px 12px}.brand{font-size:1rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{.topbar,.btnrow,.gradebar,.audio,.back,.toast,.sidekick{display:none!important}.layout{max-width:100%;padding:0}.panel,.question{break-inside:avoid}.tx-alt{color:#333}body{background:white}}
+/* simplified-ui 2026-10 */
+/* Home: compact greeting */
+.hero.hero-compact{grid-template-columns:minmax(0,1fr) 128px;min-height:0;padding:24px 32px 0;margin-bottom:16px;border-radius:24px;align-items:end}
+.hero-compact h1{font-size:clamp(1.45rem,3.2vw,2.05rem);margin:0 0 12px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:24px}
+.hero-stats span{background:#ffffff12;border:1px solid #ffffff24;border-radius:999px;padding:5px 12px;font-size:.88rem;color:#d5e7df;white-space:nowrap}
+.hero-stats b{color:#f2cf7d}
+.herofig.hero-mini{height:132px;width:auto;left:auto}
+.herofig.hero-mini img{height:130px}
+.herofig.hero-mini:before{width:120px;height:120px;bottom:-30px}
+.resume-notice{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section-label{font-size:1.1rem;margin:24px 0 10px}
+.section-label+.gradebar{margin-top:0}
+.gradebar{gap:6px;margin:10px 0 16px}
+.gradebar button{padding:8px 14px;min-height:42px}
+.spm-hint{display:flex;justify-content:space-between;align-items:center;gap:6px 14px;flex-wrap:wrap;padding:12px 16px;margin:0 0 14px;border-radius:14px;background:#fff3d7;border:1px solid #e2c27a;color:var(--ink);text-decoration:none;font-size:.92rem}
+.spm-hint:hover{border-color:#c9a14d}
+.spm-hint span{color:#6b5a2c}
+/* Home: subject cards */
+.subjectgrid{gap:12px}
+.subjectcard{min-height:0;padding:16px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 12px;align-items:center}
+.subjectcard .symbol{grid-row:1/3;width:44px;height:44px;margin:0;font-size:1.3rem}
+.subjectcard .sc-name{font-weight:800;font-size:1.06rem;line-height:1.3}
+.subjectcard .subname{min-height:0;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.subjectcard .count{grid-column:1/-1;margin-top:10px;font-weight:600;font-size:.8rem;color:var(--muted);display:block}
+.subjectcard .progress{grid-column:1/-1;margin-top:8px}
+details.footnote{margin-top:22px}
+details.footnote>summary{font-weight:600;color:var(--muted);font-size:.85rem}
+details.footnote p{margin:10px 0}
+/* Course page */
+.course-panel .coursehead{justify-content:flex-start;align-items:center;gap:16px}
+.course-panel .coursehead .symbol{width:56px;height:56px;font-size:1.6rem;background:var(--tint,#dfebe0);border-radius:15px}
+.course-panel .coursehead h1{margin:0 0 2px;font-size:clamp(1.5rem,3vw,2rem)}
+.subname-inline{font-size:.5em;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:4px}
+.course-panel .filters{margin:20px 0 18px}
+.course-panel .mission{padding:18px}
+.course-panel .mission p{margin:4px 0 14px}
+.course-sub{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;margin-top:16px}
+.journey-line{flex:1;min-width:240px;display:grid;grid-template-columns:auto minmax(60px,1fr) auto;gap:10px;align-items:center;font-size:.85rem}
+.course-more{margin:20px 0 0;border-top:1px solid var(--line);padding-top:16px}
+.course-more>summary{color:var(--muted)}
+.course-more h3{margin:22px 0 6px}
+.course-more .curriculum-coverage{margin-top:6px}
+/* Quiz */
+.quizwrap{max-width:880px;margin:0 auto}
+.quizwrap .quiztop{flex-wrap:wrap}
+.quizwrap .quiztop h1{font-size:1.5rem;margin:2px 0 0}
+.quiztools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lang-compact select{border:1px solid #c9d1c8;background:#fff;border-radius:10px;padding:7px 8px;min-height:40px;color:var(--ink);font-size:.85rem;max-width:180px}
+.quizwrap .question{margin-top:16px}
+.questionfoot>.btn:last-child{margin-left:auto}
+.buddy{display:flex;align-items:center;gap:12px;margin-top:14px;padding:10px 16px;border:1px solid #d3ddcc;background:#eef3ea;border-radius:16px;font-size:.85rem}
+.buddy img{height:48px;width:40px;object-fit:contain;flex-shrink:0}
+.buddy-text{flex:1;min-width:0}
+.buddy-text .progress{margin-top:6px;max-width:320px}
+.buddy-xp{white-space:nowrap}
+/* Results */
+.correction-cta{display:flex;justify-content:space-between;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:16px 18px;margin:0 0 8px;border:1px solid #e2c8a5;background:#fff8ec;border-radius:16px}
+.correction-cta p{margin:3px 0 0}
+.correction-done{text-align:center}
+details.transfer-task>summary{font-size:1rem}
+details.transfer-task>summary~*{margin-top:10px}
+/* Report & settings */
+.learning-line{margin:14px 2px 4px}
+.settings-sub{margin:22px 0 10px}
+@media (max-width:700px){
+  .hero.hero-compact{grid-template-columns:minmax(0,1fr) 84px;padding:20px 18px 0;border-radius:20px}
+  .hero-compact h1{font-size:1.4rem}
+  .hero-stats{gap:6px;padding-bottom:20px}
+  .hero-stats span{font-size:.78rem;padding:4px 9px}
+  .herofig.hero-mini{height:104px;width:84px;left:0}
+  .herofig.hero-mini img{height:102px}
+  .herofig.hero-mini:before{width:90px;height:90px}
+  .gradebar button{padding:7px 10px;min-height:40px;font-size:.9rem}
+  .subjectcard{padding:13px;grid-template-columns:38px minmax(0,1fr);gap:0 10px;min-height:0}
+  .subjectcard .symbol{width:38px;height:38px;font-size:1.1rem;border-radius:11px}
+  .subjectcard .sc-name{font-size:.98rem}
+  .subjectcard .subname{font-size:.7rem}
+  .subjectcard .count{font-size:.74rem;margin-top:8px}
+  .course-panel .coursehead .symbol{width:46px;height:46px;font-size:1.3rem}
+  .course-panel .mission{padding:14px 15px}
+  .course-panel .mission p{margin:2px 0}
+  .journey-line{min-width:0;flex-basis:100%}
+  .quiztools{width:100%}
+  .quiztools .lang-compact{flex:1}
+  .lang-compact select{max-width:none;width:100%}
+  .buddy{padding:9px 12px}
+  .buddy-text .muted{display:none}
+  .correction-cta .btn{width:100%}
+}
+/* Polish */
+#app h1[tabindex="-1"]{outline:none}
+@media (min-width:701px){#answer-explanation{scroll-margin-top:80px}}
+@media (max-width:700px){
+  #app .tablewrap th,#app .tablewrap td{padding:10px 8px;word-break:keep-all}
+  #app .tablewrap .btn{white-space:nowrap;padding:6px 10px;min-height:36px}
+}

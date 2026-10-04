@@ -111,9 +111,12 @@ async function leavePasswordSettings() {
   else await parentDashboard();
 }
 function accountBar() {
-  bar.hidden=false;bar.className='cloud-account';
-  bar.innerHTML=`<span class="account-email">${role==='student'?'学生':'家长'} · ${esc(user.email)}</span><span id="sync-status" class="cloud-status" role="status"></span>${role==='student'?'<button class="btn small light" data-cloud="student-home">继续练习</button><button class="btn small secondary" data-cloud="manage-links">家长绑定</button><button class="btn small arcade-nav" data-cloud="game-lobby">🎮 游戏大厅 · 周榜</button>':''}<button class="btn small light" data-cloud="password-settings">设置密码</button><button class="btn small light" data-cloud="logout">退出登录</button>`;
+  bar.hidden=false;bar.className='cloud-account cloud-nav';
+  const student=role==='student';
+  bar.innerHTML=`<span class="nav-brand"><span class="logo">学</span><span class="nav-brand-text">学科冒险</span></span>${student?'<nav class="nav-links" aria-label="学习导航"><button type="button" data-cloud="student-nav" data-page="home">学科地图</button><button type="button" data-cloud="student-nav" data-page="report">学习记录</button><a href="./spm.html">SPM 学习室</a></nav>':''}<span class="nav-spacer"></span><span id="sync-status" class="cloud-status" role="status"></span>${student?'<button class="btn small arcade-nav" data-cloud="game-lobby">🎮 游戏大厅</button>':''}<details class="account-menu"><summary>${student?'我的':'账号'}<span aria-hidden="true"> ▾</span></summary><div class="menu-panel"><div class="menu-email">${student?'学生':'家长'} · ${esc(user.email)}</div>${student?'<button type="button" data-cloud="student-nav" data-page="settings">角色与设置</button><button type="button" data-cloud="manage-links">家长绑定</button>':''}<button type="button" data-cloud="password-settings">设置密码</button><button type="button" class="menu-logout" data-cloud="logout">退出登录</button></div></details>`;
 }
+document.addEventListener('click',event=>{for(const menu of document.querySelectorAll('.account-menu[open]'))if(!menu.contains(event.target))menu.removeAttribute('open');});
+document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;for(const menu of document.querySelectorAll('.account-menu[open]')){menu.removeAttribute('open');menu.querySelector('summary')?.focus();}});
 function status(state, detail) {
   const el=$('sync-status'); if(!el) return;
   const labels={pending:'有进度等待同步',saving:'正在同步…',saved:'已同步',error:'未同步，请重试',conflict:'另一台设备有新记录'};
@@ -395,10 +398,10 @@ document.addEventListener('submit',async event=>{
 });
 document.addEventListener('click',async event=>{
   const button=event.target.closest('[data-cloud]');if(!button||button.disabled)return;
-  const action=button.dataset.cloud;button.disabled=true;
+  const action=button.dataset.cloud;button.disabled=true;button.closest('.account-menu')?.removeAttribute('open');
   const generation=authGeneration;
   try{
-    if(['student-home','game-lobby','manage-links','password-settings','logout'].includes(action)){
+    if(['student-home','student-nav','game-lobby','manage-links','password-settings','logout'].includes(action)){
       if(window.WQUniverse&&!await window.WQUniverse.prepareLeave())return;
       if(generation!==authGeneration)return;
     }
@@ -411,14 +414,14 @@ document.addEventListener('click',async event=>{
     }
     if(action==='password-settings'){passwordSettings();return;}
     if(action==='password-cancel'||action==='password-done'){if(user)await leavePasswordSettings();return;}
-    if(['student-home','manage-links','game-lobby','game-start','universe-start','arcade-board','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
+    if(['student-home','student-nav','manage-links','game-lobby','game-start','universe-start','arcade-board','revoke-parent','retry-save','draft-download','restore-draft','use-cloud','reload-cloud'].includes(action)&&role!=='student')return;
     if(['refresh-parent','select-child','refresh-game-grade'].includes(action)&&role!=='parent')return;
     if(action==='register'){if(!user||role)return;await rpc('register_account',{p_role:button.dataset.role});if(generation!==authGeneration)return;await boot();}
     else if(action==='logout'){
       if(sync?.dirty){try{if(!await sync.flush())return;}catch{if(generation===authGeneration)status(sync?.conflict?'conflict':'error');return;}}
       if(generation!==authGeneration)return;
       const {error}=await db.auth.signOut({scope:'local'});if(generation!==authGeneration)return;if(error)throw error;recoveryAccount(null);reset();login();
-    }else if(action==='student-home'){if(recovering)return;window.WQUniverse?.stop();window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;}
+    }else if(action==='student-home'){if(recovering)return;window.WQUniverse?.stop();window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;}else if(action==='student-nav'){if(recovering)return;window.WQUniverse?.stop();window.WQGameBreak?.stop();passwordView=false;++viewToken;root.hidden=true;shell.hidden=false;window.WQApp?.go(button.dataset.page);}
     else if(action==='manage-links'){if(recovering)return;passwordView=false;await studentLinks();}
     else if(action==='game-lobby')await gameLobby();
     else if(action==='arcade-board')await refreshArcadeBoard(button.dataset.game);
