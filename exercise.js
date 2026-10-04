@@ -56,7 +56,8 @@
     const choices=list.filter(c=>preferred.includes(c.subject));
     return (step==='connect'?choices.find(c=>c.key!==recent):choices.find(c=>!p.runs.some(r=>r.course===c.key&&new Date(r.at).toDateString()===new Date().toDateString())))?.key||choices[0]?.key||list[0]?.key;
   }
-  function reviewCount(key){const retired=new Set((key?M.courses.filter(c=>c.key===key):M.courses).flatMap(c=>c.retiredIds||[]));return Object.entries(P().records).filter(([id,r])=>!retired.has(id)&&(!key||r.course===key)&&(r.wrong||L.due(r))).length;}
+  let retiredSet=null;const retiredHash=new Map();function isRetired(id){if(!retiredSet){retiredSet=new Set();const A='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_',s=M.retiredHashes||'';let v=0,acc=0,mul=1;for(let i=0;i<s.length;i++){const x=A.indexOf(s[i]);acc+=(x&31)*mul;mul*=32;if(!(x&32)){v+=acc;retiredSet.add(v);acc=0;mul=1;}}}let h=retiredHash.get(id);if(h===undefined){h=M.retiredHashSeed>>>0;const b=new TextEncoder().encode(id);for(let i=0;i<b.length;i++){h^=b[i];h=Math.imul(h,16777619)>>>0;}retiredHash.set(id,h);}return retiredSet.has(h);}
+  function reviewCount(key){return Object.entries(P().records).filter(([id,r])=>!isRetired(id)&&(!key||r.course===key)&&(r.wrong||L.due(r))).length;}
   function dailyPlan(){
     const p=P(),day=L.day(p),goal=p.learning.goal,steps=goal===15?[PLAN_STEPS[1]]:goal===30?PLAN_STEPS.slice(0,2):PLAN_STEPS;
     const done=steps.filter(s=>day.missions.includes(s[0])).length;
@@ -84,10 +85,10 @@
   }
 
   function coverageText(value){return typeof value==='string'?esc(value):tx(value||{});}
-  function curriculumCoverage(m){
-    const c=m.curriculumCoverage;if(!c)return '';
+  function curriculumCoverage(m,data){
+    const c=data?.curriculumCoverage||m.curriculumCoverage;if(!c?.summary)return '';
     const labels={represented:'已有对应练习',partial:'部分覆盖',missing:'待补充',performance:'需课堂实作'};
-    return `<div class="curriculum-coverage"><h3>本年级课程检查</h3><p>按课程主题组核对：${c.summary.represented} 组已有对应练习，${c.summary.partial} 组部分覆盖，${c.summary.missing} 组待补充，${c.summary.performance} 组需课堂实作。已有练习表示有对应材料，不代表该组全部学习标准已覆盖。</p><details><summary>查看课程单元与缺口</summary><ul>${c.topics.map(t=>`<li><strong>${coverageText(t.title)}</strong> · ${labels[t.status]}${t.questionCount?` · ${t.questionCount} 题`:''}${t.note?`<p class="small muted">${coverageText(t.note)}</p>`:''}</li>`).join('')}</ul>${(c.limits||[]).map(t=>`<p class="small muted">${coverageText(t)}</p>`).join('')}</details>${(c.performanceTasks||[]).length?`<h3>动手、表达与探究</h3><p class="small muted">完成后把作品、过程记录或演示交给老师核对；这些任务不自动评分或计入选择题成绩。</p>${c.performanceTasks.map(task=>`<details><summary>${coverageText(task.title)}</summary><ol>${task.instructions.map(step=>`<li>${coverageText(step)}</li>`).join('')}</ol><p><strong>检查自己的成果</strong></p><ul>${task.successCriteria.map(item=>`<li>${coverageText(item)}</li>`).join('')}</ul></details>`).join('')}`:''}<p><a href="./curriculum-audit.html#${encodeURIComponent(m.key)}" target="_blank" rel="noopener">查看来源与本轮修正 ↗</a></p></div>`;
+    return `<div class="curriculum-coverage"><h3>本年级课程检查</h3><p>按课程主题组核对：${c.summary.represented} 组已有对应练习，${c.summary.partial} 组部分覆盖，${c.summary.missing} 组待补充，${c.summary.performance} 组需课堂实作。已有练习表示有对应材料，不代表该组全部学习标准已覆盖。</p><details><summary>查看课程单元与缺口</summary><ul>${(c.topics||[]).map(t=>`<li><strong>${coverageText(t.title)}</strong> · ${labels[t.status]}${t.questionCount?` · ${t.questionCount} 题`:''}${t.note?`<p class="small muted">${coverageText(t.note)}</p>`:''}</li>`).join('')}</ul>${(c.limits||[]).map(t=>`<p class="small muted">${coverageText(t)}</p>`).join('')}</details>${(c.performanceTasks||[]).length?`<h3>动手、表达与探究</h3><p class="small muted">完成后把作品、过程记录或演示交给老师核对；这些任务不自动评分或计入选择题成绩。</p>${c.performanceTasks.map(task=>`<details><summary>${coverageText(task.title)}</summary><ol>${task.instructions.map(step=>`<li>${coverageText(step)}</li>`).join('')}</ol><p><strong>检查自己的成果</strong></p><ul>${task.successCriteria.map(item=>`<li>${coverageText(item)}</li>`).join('')}</ul></details>`).join('')}`:''}<p><a href="./curriculum-audit.html#${encodeURIComponent(m.key)}" target="_blank" rel="noopener">查看来源与本轮修正 ↗</a></p></div>`;
   }
 
   function home(){page='home';course=null;courseKey='';renderToken++;const p=P(),grade=p.grade, list=M.courses.filter(c=>c.level===grade),st=E.summary(p),lv=E.level(p.xp);
@@ -137,7 +138,7 @@
     <p class="small muted">本课有 ${m.coreCount} 道日常精选，其余合格题供分主题加练。题量包含变式，不等于独立考点数。练习、小测、复习和加练都限制同一题型每轮最多两题，同一材料最多一次。当前主题可用题型较少时，会安排较短的一轮。</p>
     ${m.guidedCount?`<p class="learning-tip">本课有 ${m.guidedCount} 道基础讨论题，适合带读或讨论，配合解释理解；独立小测不会抽取。请用自己的话说明理由。</p>`:''}
     <h3>这门课的探索足迹</h3><p class="small muted">累计已答对 ${st.earned} 题（含加练与旧题）</p><div class="journey">${marks.map(([n,t])=>`<span class="journeystep ${st.earned>=n?'done':''}">${st.earned>=n?'✓':'◇'} ${t} · ${n}</span>`).join('')}</div>
-    ${curriculumCoverage(m)}
+    ${curriculumCoverage(m,course)}
     <h3>本课覆盖、题量和依据</h3><p class="small">${esc(m.coverage)}</p><p class="small muted">${m.models} 类题目模型 · ${m.cases} 个情境／参数实例。题量不等于概念数量；重复换序不增加题量。</p>${sourceList(m.sourceIds)}</details></div>`);
   }
   function sourceList(ids){return `<ul class="list small">${[...new Set(ids||[])].map(id=>{const x=M.sources.find(x=>x.id===id);return x?`<li>${x.url&&/^https?:\/\//.test(x.url)?`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.title)}</a>`:esc(x.title)}${x.year?' · '+esc(x.year):''}<div class="muted">${esc(x.note||'')}</div></li>`:`<li>${esc(id)} · 来源信息未齐</li>`;}).join('')}</ul>`;}
@@ -237,11 +238,11 @@ function handleCorrectionClick(button) {
   function audit(){
     page='audit';course=null;renderToken++;
     view(`<button class="back" data-nav="home">← 返回学科地图</button><h1>练习内容与来源</h1><p class="muted">日常练习重视不同考点。需要熟练操作时，再主动选择同类加练。</p>
-    <div class="reportgrid">${[[M.courses.length,'年级 × 学科'],[M.availableTotal,'可用练习（含巩固变式）'],[M.practiceTotal,'日常精选'],[M.retiredTotal,'暂不进入新练习的旧题']].map(([n,label])=>`<div class="metric"><strong>${Number(n).toLocaleString()}</strong><span>${label}</span></div>`).join('')}</div>
+    <div class="reportgrid">${[[M.courses.length,'年级 × 学科'],[M.availableTotal,'可用练习（含巩固变式）'],[M.practiceTotal,'日常精选'],[M.retiredTotal,'已撤下的旧题（成绩记录保留）']].map(([n,label])=>`<div class="metric"><strong>${Number(n).toLocaleString()}</strong><span>${label}</span></div>`).join('')}</div>
     <section class="panel"><h2>SJKC 与 SMK 的课程练习</h2><p>小学按 SJKC、中一至中五按 SMK 的课程主题组逐科核对。每门课显示已有材料、部分覆盖、待补充和需课堂实作的单元。题量不作为完整覆盖课程的证据。</p><p><a href="./curriculum-audit.html" target="_blank" rel="noopener">查看本轮课程审计与全部缺口 ↗</a>。听说、作文、实验、创作和动作技能，须配合各课的具体实作任务和老师反馈。</p></section>
-    <section class="panel"><h2>怎样减少重复？</h2><p>相同题面与答案、只换选项的题合并；确认是同一词义或同一历史事实的正反问法也合并。大量只换数字或图形参数的题保留少量日常练习，其余放进“同类加练”。同一轮优先安排不同考点和材料。</p><p>原来的题号和学习记录保留。继续旧挑战、回看旧成绩或复习旧错题时，仍可看到原题。</p><p>这些分类不是全库语义去重的证明；不同年级仍会复习相同基础内容。<a href="./quality.html" target="_blank" rel="noopener">查看修订记录与检查范围 ↗</a></p></section>
+    <section class="panel"><h2>怎样减少重复？</h2><p>相同题面与答案、只换选项的题合并；确认是同一词义或同一历史事实的正反问法也合并。大量只换数字或图形参数的题保留少量日常练习，其余放进“同类加练”。同一轮优先安排不同考点和材料。</p><p>原来的题号和学习记录保留。已撤下的旧题不再进入练习、小测和复习，题库下载也不再包含这些题；旧成绩按原记录显示。</p><p>这些分类不是全库语义去重的证明；不同年级仍会复习相同基础内容。<a href="./quality.html" target="_blank" rel="noopener">查看修订记录与检查范围 ↗</a></p></section>
     <section class="panel"><h2>答案讲解</h2><p>练习提交后显示正确答案、理由或计算步骤；小测交卷后可逐题回看，包括未作答的题。看懂后，试着盖住解释，再用自己的话说明。</p></section>
-    <div class="tablewrap"><table><thead><tr><th>年级</th><th>学科</th><th>可用题</th><th>主题组核对</th><th>学习范围</th></tr></thead><tbody>${M.courses.map(c=>`<tr><td>${GRADES[c.level]}</td><td><button class="btn small light" data-course="${c.key}">${subName(c.subject)}</button></td><td>${c.availableCount}</td><td>${c.curriculumCoverage.summary.represented} 已有材料 · ${c.curriculumCoverage.summary.partial} 部分 · ${c.curriculumCoverage.summary.missing} 待补 · ${c.curriculumCoverage.summary.performance} 实作</td><td><a href="./curriculum-audit.html#${encodeURIComponent(c.key)}" target="_blank" rel="noopener">查看单元与来源</a>${c.retiredCount?`<br><small>${c.retiredCount} 道旧题暂不抽取；成绩记录保留。</small>`:''}</td></tr>`).join('')}</tbody></table></div>
+    <div class="tablewrap"><table><thead><tr><th>年级</th><th>学科</th><th>可用题</th><th>主题组核对</th><th>学习范围</th></tr></thead><tbody>${M.courses.map(c=>`<tr><td>${GRADES[c.level]}</td><td><button class="btn small light" data-course="${c.key}">${subName(c.subject)}</button></td><td>${c.availableCount}</td><td>${c.curriculumCoverage.summary.represented} 已有材料 · ${c.curriculumCoverage.summary.partial} 部分 · ${c.curriculumCoverage.summary.missing} 待补 · ${c.curriculumCoverage.summary.performance} 实作</td><td><a href="./curriculum-audit.html#${encodeURIComponent(c.key)}" target="_blank" rel="noopener">查看单元与来源</a>${c.retiredCount?`<br><small>${c.retiredCount} 道旧题已撤下；成绩记录保留。</small>`:''}</td></tr>`).join('')}</tbody></table></div>
     <details class="panel"><summary>来源与核对范围</summary><p>本网站为原创练习，不是官方试卷或全课纲认证。选择题无法替代作文、口语、实验或体育艺术实操。来源与逐项核验范围如下。</p>${sourceList(M.sources.map(s=>s.id))}</details>`);
   }
 
