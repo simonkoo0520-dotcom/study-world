@@ -3,17 +3,17 @@
   "date": "2026-10-02",
   "generatedAt": "2026-10-10T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "cd74edb38f34cc6e",
+  "contentRevision": "2c21dbf6a4da0957",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 114695,
-    "active": 48511,
-    "gradeScope": 48072,
+    "stored": 115243,
+    "active": 49059,
+    "gradeScope": 48620,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 15,
-    "questionShortfall": 70407,
+    "questionShortfall": 69859,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -48543,21 +48543,23 @@
       "level": "P4",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 67,
-      "stored": 921,
+      "active": 296,
+      "stored": 1150,
       "retired": 854,
       "sourceIds": [
         "am-music-p-foundation",
         "curriculum-v2-music",
         "cfh-music-primary",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P4-music",
         "framework": "KSSR Semakan 2017 — major-field audit",
         "sourceIds": [
           "cfh-music-primary",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -48572,7 +48574,8 @@
             "models": [
               "staff-read",
               "v2-qa29-music-dynamics",
-              "v2-qa29-music-notation"
+              "v2-qa29-music-notation",
+              "v2-qx10-music-elements"
             ],
             "questionIds": [
               "music-P4-staff-read-000",
@@ -48630,14 +48633,77 @@
               "P4-music-qa29-67deb641bc13e913e530",
               "P4-music-qa29-14a2df1d546c389975f4",
               "P4-music-qa29-52e4aeba861033ddab5f",
-              "P4-music-qa29-c074e8900d382794ed3c"
+              "P4-music-qa29-c074e8900d382794ed3c",
+              "P4-music-qx10-bfe5c9bfde42ddf6ee5c",
+              "P4-music-qx10-eb78058ff4a17080ddd4",
+              "P4-music-qx10-f81cb3a929b4e7adef7f",
+              "P4-music-qx10-1037a10fe900ae92da96",
+              "P4-music-qx10-f369dfa04c3b728a1457",
+              "P4-music-qx10-cb9673687fa0e71a15d5",
+              "P4-music-qx10-c6a809483810d00c01bc",
+              "P4-music-qx10-ce559e1457e7be65cc0b",
+              "P4-music-qx10-81a8f7a857c048bec5f0",
+              "P4-music-qx10-17f26d049fc912f8119c",
+              "P4-music-qx10-df28d1a9d993446b57d0",
+              "P4-music-qx10-20e748bb1962f0de58f1",
+              "P4-music-qx10-86d997101464d46a61e0",
+              "P4-music-qx10-34c0ef9aa852006318fe",
+              "P4-music-qx10-a9694245ee94e9b29844",
+              "P4-music-qx10-ff28d37b04a230455ba1",
+              "P4-music-qx10-edbcefc5b7aa6b2fa03d",
+              "P4-music-qx10-4c39de99b955b2ff0606",
+              "P4-music-qx10-3d900873e708ea97a1fd",
+              "P4-music-qx10-677b65c5127f3dd2ce18",
+              "P4-music-qx10-a6170312467badd1f292",
+              "P4-music-qx10-0b13778e1c2108d4239b",
+              "P4-music-qx10-c05ecb660ef272a94736",
+              "P4-music-qx10-1e4f31775271da42bfc0",
+              "P4-music-qx10-364f36cbcfafd1fbbbae",
+              "P4-music-qx10-2592aa0b1bab84bc0031",
+              "P4-music-qx10-0b6455ad597cae23c45d",
+              "P4-music-qx10-8348dd47db1ce276fc7b",
+              "P4-music-qx10-f432857cf2932fd5d189",
+              "P4-music-qx10-bb10eb75a0844d4ed8d9",
+              "P4-music-qx10-8e3446b667a9be54fda6",
+              "P4-music-qx10-8032afaa1263384b9468",
+              "P4-music-qx10-76a96f67c2ca809d5e28",
+              "P4-music-qx10-858833efc57350fce980",
+              "P4-music-qx10-8a08b2fdef0fc65f7fe6",
+              "P4-music-qx10-82e7ac7312c2c9d5e5cd",
+              "P4-music-qx10-114306872ecd555817a5",
+              "P4-music-qx10-9b811caf38d4aa64b0ff",
+              "P4-music-qx10-1223f7184e95e941e776",
+              "P4-music-qx10-b388609211f227bcea1f",
+              "P4-music-qx10-32fb55c39d136dab6de8",
+              "P4-music-qx10-a21ba5b480556f6c5af3",
+              "P4-music-qx10-b22fd356ca5c312747cc",
+              "P4-music-qx10-4cff5e7a2b860b31207d",
+              "P4-music-qx10-fdaf12e0a429b2b414e9",
+              "P4-music-qx10-7f01ed8405de854f7c78",
+              "P4-music-qx10-19cc105cb569787eecb8",
+              "P4-music-qx10-8a3034df3325c186e5a7",
+              "P4-music-qx10-0bc59eb8794b65dadfce",
+              "P4-music-qx10-121dc2177d7d9e2156cc",
+              "P4-music-qx10-fe68a7cb42745d6b604b",
+              "P4-music-qx10-124ad61339558fbebb40",
+              "P4-music-qx10-ce24c5430824a61b89de",
+              "P4-music-qx10-29d11ecc14e3a4c9b309",
+              "P4-music-qx10-277c5ce7ef2020703963",
+              "P4-music-qx10-b4213ea8e10984c1f6ff",
+              "P4-music-qx10-a5093ef7bb1a7587cc24",
+              "P4-music-qx10-7f3b8b911347e755c55c",
+              "P4-music-qx10-68b905e771d80b5e7f1c",
+              "P4-music-qx10-37a2d7652ed86e94c761",
+              "P4-music-qx10-81e98537cf053bd9fad2",
+              "P4-music-qx10-3ed53bc049894c6a785f",
+              "P4-music-qx10-9f7816a669f9c369f001"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 56,
-            "independentCount": 56,
+            "questionCount": 119,
+            "independentCount": 119,
             "guidedCount": 0,
             "evidenceIds": [
               "music-P4-staff-read-000",
@@ -48658,24 +48724,62 @@
             "status": "partial",
             "models": [
               "cfh-music-phrase-breath",
-              "v2-qa29-music-singing"
+              "v2-qa29-music-singing",
+              "v2-qx10-music-singing"
             ],
             "questionIds": [
               "cfh-P4-music-phrase-breath",
               "P4-music-qa29-03b3c710a2ba028df84f",
-              "P4-music-qa29-5960472335712fd6cd3f"
+              "P4-music-qa29-5960472335712fd6cd3f",
+              "P4-music-qx10-85bf886372d704dfb493",
+              "P4-music-qx10-5aaeaaba0e2672cfb51a",
+              "P4-music-qx10-df80e8a9a1272fbe90b3",
+              "P4-music-qx10-a8b5c1397536fdab18f4",
+              "P4-music-qx10-af41e13d9bcde016e312",
+              "P4-music-qx10-df30e8c5a8a0feca16d7",
+              "P4-music-qx10-89c50a4cc6017672828d",
+              "P4-music-qx10-34f9d3655ae8eadbdc9c",
+              "P4-music-qx10-e4e53d5ebfe82ab20b02",
+              "P4-music-qx10-a5e35ddcf5e34e555e13",
+              "P4-music-qx10-140a58ac2f81713ecc42",
+              "P4-music-qx10-669d42efa10209602e59",
+              "P4-music-qx10-4f5fae559c23b377aac8",
+              "P4-music-qx10-9a677c3d4c1e2604b2bd",
+              "P4-music-qx10-40bc437a25b5da74ca5a",
+              "P4-music-qx10-40ab8de604fd91e966ad",
+              "P4-music-qx10-70f8da12fa623f31cf66",
+              "P4-music-qx10-7e2bcc4c719bbf0c9bc6",
+              "P4-music-qx10-03c1974498e4a26a5cd7",
+              "P4-music-qx10-49c35d26841edd07dc53",
+              "P4-music-qx10-4088292fa59ebb9de8fe",
+              "P4-music-qx10-5d6482c21e4b30147792",
+              "P4-music-qx10-a2f7f361fcf06832be26",
+              "P4-music-qx10-1ac37b3f730dc52a2e2a",
+              "P4-music-qx10-098ba5a32904b4622268",
+              "P4-music-qx10-2e17cb95bb4c0e05ab5a",
+              "P4-music-qx10-812acd42e254c9107abc",
+              "P4-music-qx10-bbcba2780c1a29fc7a08",
+              "P4-music-qx10-157c4b5d7a3786e169e1",
+              "P4-music-qx10-5026ec3ea5bff671d2f3",
+              "P4-music-qx10-2a63db911a44143daad0",
+              "P4-music-qx10-c149de8e36e6bd21f46b",
+              "P4-music-qx10-8036435be7e5d43f5c6f",
+              "P4-music-qx10-45576229a466c3ba8dbe"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 37,
+            "independentCount": 37,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P4-music-phrase-breath",
               "P4-music-qa29-03b3c710a2ba028df84f",
-              "P4-music-qa29-5960472335712fd6cd3f"
+              "P4-music-qa29-5960472335712fd6cd3f",
+              "P4-music-qx10-85bf886372d704dfb493",
+              "P4-music-qx10-5aaeaaba0e2672cfb51a",
+              "P4-music-qx10-df80e8a9a1272fbe90b3"
             ]
           },
           {
@@ -48688,26 +48792,79 @@
             "status": "partial",
             "models": [
               "cfh-music-phrase-breath",
-              "v2-qa29-music-instrument"
+              "v2-qa29-music-instrument",
+              "v2-qx10-music-skills"
             ],
             "questionIds": [
               "cfh-P4-music-phrase-breath",
               "P4-music-qa29-b2f54f257e9ea89d6554",
               "P4-music-qa29-87498a48bb5882607a00",
-              "P4-music-qa29-e00e82c4c81edb25b7df"
+              "P4-music-qa29-e00e82c4c81edb25b7df",
+              "P4-music-qx10-cc167d00732273acf893",
+              "P4-music-qx10-5de1f7941fd403185def",
+              "P4-music-qx10-1b52cccaf2ff8e123305",
+              "P4-music-qx10-105053cbad7ad37b5d56",
+              "P4-music-qx10-3667e6e5776d51106c43",
+              "P4-music-qx10-52b6bd507c1b06468297",
+              "P4-music-qx10-a3db1dd8c6d7cd6cc766",
+              "P4-music-qx10-0850f90190ce94b2859c",
+              "P4-music-qx10-11225db6febb6c699a6a",
+              "P4-music-qx10-31812e8258127d2df889",
+              "P4-music-qx10-02e221d62b3183457835",
+              "P4-music-qx10-111cbecee6e42def350d",
+              "P4-music-qx10-6f564428d600a863cc62",
+              "P4-music-qx10-a4300a68b6ca9fd45cff",
+              "P4-music-qx10-e78d67feef4bb90cfd7b",
+              "P4-music-qx10-bc59461230c36c7d8493",
+              "P4-music-qx10-a861118957ad48647c99",
+              "P4-music-qx10-991fc41e56dc8317cb5e",
+              "P4-music-qx10-1f483c1db31d9f68fc04",
+              "P4-music-qx10-4b97cf636fce9d85bdf6",
+              "P4-music-qx10-2f2b32c5f6377732b156",
+              "P4-music-qx10-9385816822d964082a09",
+              "P4-music-qx10-7496a6ab1983b9c108b2",
+              "P4-music-qx10-23b65f3cb85cabc24c75",
+              "P4-music-qx10-1800b8351bceae408e10",
+              "P4-music-qx10-833f680d9f3f272326ff",
+              "P4-music-qx10-694f49b86139ba2210a9",
+              "P4-music-qx10-291b0403842d4584d572",
+              "P4-music-qx10-462e679d17c260cc3ad9",
+              "P4-music-qx10-8298935c82b34d5d2852",
+              "P4-music-qx10-578d42dd147795739ceb",
+              "P4-music-qx10-43501936c9f6aff7109c",
+              "P4-music-qx10-a238900cd49511df8611",
+              "P4-music-qx10-f5d1fc441e6c59776d63",
+              "P4-music-qx10-188b5ab5e90b0c465360",
+              "P4-music-qx10-13e7a1fe37b2fd441e36",
+              "P4-music-qx10-11124842067892daaae7",
+              "P4-music-qx10-3e1b6e60ab9c484f753b",
+              "P4-music-qx10-e97cdb1a8bf63bb776d7",
+              "P4-music-qx10-36d0656c647188c9b463",
+              "P4-music-qx10-e7fdabd571d285652d65",
+              "P4-music-qx10-89a61de7bbc0ea0c6f4f",
+              "P4-music-qx10-935fad531c8f7fba4c96",
+              "P4-music-qx10-85e26a4f4dd51721a560",
+              "P4-music-qx10-8565ec7037d05505cb54",
+              "P4-music-qx10-4bcbe5343de83b945a4c",
+              "P4-music-qx10-b57ef8e360a4f5b5f017",
+              "P4-music-qx10-51d6b5cecfa2e65e33b9",
+              "P4-music-qx10-c03cebf5a81683b77936",
+              "P4-music-qx10-2b9d9d64148bfb451b04"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 54,
+            "independentCount": 54,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P4-music-phrase-breath",
               "P4-music-qa29-b2f54f257e9ea89d6554",
               "P4-music-qa29-87498a48bb5882607a00",
-              "P4-music-qa29-e00e82c4c81edb25b7df"
+              "P4-music-qa29-e00e82c4c81edb25b7df",
+              "P4-music-qx10-cc167d00732273acf893",
+              "P4-music-qx10-5de1f7941fd403185def"
             ]
           },
           {
@@ -48719,22 +48876,58 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-form"
+              "v2-qa29-music-form",
+              "v2-qx10-music-creation"
             ],
             "questionIds": [
               "P4-music-qa29-6d692e3b5109ccf30812",
-              "P4-music-qa29-3c04093375db009d8db9"
+              "P4-music-qa29-3c04093375db009d8db9",
+              "P4-music-qx10-7632999ab32bc7153c83",
+              "P4-music-qx10-0c83e7f18da20b847116",
+              "P4-music-qx10-402f0f9b57c1d2c43bee",
+              "P4-music-qx10-d7abd72475cb42eaf77f",
+              "P4-music-qx10-ff088d720ab34337ffaa",
+              "P4-music-qx10-9da89d851b3d21d66f44",
+              "P4-music-qx10-5fa0b78ce0a49727eb8f",
+              "P4-music-qx10-82315d4a7557d1664a0d",
+              "P4-music-qx10-a15a70180e65c3c49070",
+              "P4-music-qx10-38f7169f75b4281124c3",
+              "P4-music-qx10-b599fc657778ce4a462f",
+              "P4-music-qx10-74ed084476ee0d5e3189",
+              "P4-music-qx10-3c3f9129646fd7369472",
+              "P4-music-qx10-c11fe7a9d03468f0464b",
+              "P4-music-qx10-28b439d995b64c839af9",
+              "P4-music-qx10-249c9da01ca4905e580b",
+              "P4-music-qx10-e57bc10657ac68e8331d",
+              "P4-music-qx10-4f4c9320289ea3c0b06b",
+              "P4-music-qx10-aec3e662fb52a2acfc79",
+              "P4-music-qx10-36babc18bdf7ffe3a0fa",
+              "P4-music-qx10-0bc484e4ae783512459d",
+              "P4-music-qx10-a4c800de4d7d0a031a27",
+              "P4-music-qx10-48d3e801f48021559e66",
+              "P4-music-qx10-39dee0162406877717e2",
+              "P4-music-qx10-9261d3ed8d45edbafdd4",
+              "P4-music-qx10-e01e61d40a02f7c29080",
+              "P4-music-qx10-2f369ffd007ffd0fff3c",
+              "P4-music-qx10-3ccbeac30f0a39781393",
+              "P4-music-qx10-0b8d2919b8edefbd75fd",
+              "P4-music-qx10-1bc0726995ee821119c6",
+              "P4-music-qx10-440bbf459b55ba57c0a0"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 2,
-            "independentCount": 2,
+            "questionCount": 33,
+            "independentCount": 33,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-music-qa29-6d692e3b5109ccf30812",
-              "P4-music-qa29-3c04093375db009d8db9"
+              "P4-music-qa29-3c04093375db009d8db9",
+              "P4-music-qx10-7632999ab32bc7153c83",
+              "P4-music-qx10-0c83e7f18da20b847116",
+              "P4-music-qx10-402f0f9b57c1d2c43bee",
+              "P4-music-qx10-d7abd72475cb42eaf77f"
             ]
           },
           {
@@ -48746,22 +48939,55 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-traditional"
+              "v2-qa29-music-traditional",
+              "v2-qx10-music-appreciation"
             ],
             "questionIds": [
               "P4-music-qa29-fa8d6ed80299afccf01d",
-              "P4-music-qa29-fcef7a7e552ce1a1e5f5"
+              "P4-music-qa29-fcef7a7e552ce1a1e5f5",
+              "P4-music-qx10-995195fd392e0ddf176c",
+              "P4-music-qx10-aa775b7553bb419f1126",
+              "P4-music-qx10-4c7b74fd3b008a0c8b09",
+              "P4-music-qx10-856d55109d8037c59b2f",
+              "P4-music-qx10-461fe5cc74cbf056ae70",
+              "P4-music-qx10-af95fcb9a9ba7ab37abf",
+              "P4-music-qx10-bd0ea34ea1985d8fc217",
+              "P4-music-qx10-43aa02856d630b98efd9",
+              "P4-music-qx10-8ad463627ff660bb694a",
+              "P4-music-qx10-d75d4f78b8a6e213ef50",
+              "P4-music-qx10-b5ba83f79d4acdffa3bf",
+              "P4-music-qx10-f86769f9afc24f7b0cf1",
+              "P4-music-qx10-cc8eb7e9c695a1cd6910",
+              "P4-music-qx10-ab1ba6123dd501cc898a",
+              "P4-music-qx10-78ac1a54f846711949d0",
+              "P4-music-qx10-ea6e7d324a1d982699a2",
+              "P4-music-qx10-1a6d9b3066e369214a2a",
+              "P4-music-qx10-e3063c58733ecddbf360",
+              "P4-music-qx10-5da392b8568958edb721",
+              "P4-music-qx10-3709289326c3cab93a5a",
+              "P4-music-qx10-42edcefab1bb8cda30a7",
+              "P4-music-qx10-18e40a6e66e6f4e57524",
+              "P4-music-qx10-a9ccbba5bace6cfd78bd",
+              "P4-music-qx10-0c9d40dd071b37fcfeaa",
+              "P4-music-qx10-b76362340db216e5b9a7",
+              "P4-music-qx10-f3a5124ac5f3bff93383",
+              "P4-music-qx10-864136652225bcc30e36",
+              "P4-music-qx10-e81524ead1a2e26a2da1"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 2,
-            "independentCount": 2,
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-music-qa29-fa8d6ed80299afccf01d",
-              "P4-music-qa29-fcef7a7e552ce1a1e5f5"
+              "P4-music-qa29-fcef7a7e552ce1a1e5f5",
+              "P4-music-qx10-995195fd392e0ddf176c",
+              "P4-music-qx10-aa775b7553bb419f1126",
+              "P4-music-qx10-4c7b74fd3b008a0c8b09",
+              "P4-music-qx10-856d55109d8037c59b2f"
             ]
           },
           {
@@ -48773,20 +48999,49 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-ensemble"
+              "v2-qa29-music-ensemble",
+              "v2-qx10-music-project"
             ],
             "questionIds": [
-              "P4-music-qa29-0985dd29742a1017cc00"
+              "P4-music-qa29-0985dd29742a1017cc00",
+              "P4-music-qx10-ca1ee78b468cefa9b45a",
+              "P4-music-qx10-1e8db4430f4c945e4f97",
+              "P4-music-qx10-39d8efe006721bb58115",
+              "P4-music-qx10-b30db56db6231166c76b",
+              "P4-music-qx10-fb237f5a8247648802ae",
+              "P4-music-qx10-c8b625881e1ee6a2f246",
+              "P4-music-qx10-1ca02bfa5ceacefa2a5d",
+              "P4-music-qx10-470639b91fb461c8c7b3",
+              "P4-music-qx10-61897824f77bd5a444ce",
+              "P4-music-qx10-07614d16755b86525b22",
+              "P4-music-qx10-2d9c7fddb60d05f475c5",
+              "P4-music-qx10-4abb318b81fe109a7198",
+              "P4-music-qx10-97df4691d71c87f8e795",
+              "P4-music-qx10-d1bb341a4993f872c10c",
+              "P4-music-qx10-21308defdbf0b5b3443b",
+              "P4-music-qx10-3ec1eacf6562c241e920",
+              "P4-music-qx10-e4a8244a4e99e5996c15",
+              "P4-music-qx10-84454fbf21f44126cf0c",
+              "P4-music-qx10-78cc011af4d5b5f35749",
+              "P4-music-qx10-f33b8f81a4b1889f6648",
+              "P4-music-qx10-1bd50ed38aa38e81a0ab",
+              "P4-music-qx10-92aff1e51b9597452d09",
+              "P4-music-qx10-84fe94fc5fb100fed9f1"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
             "evidenceIds": [
-              "P4-music-qa29-0985dd29742a1017cc00"
+              "P4-music-qa29-0985dd29742a1017cc00",
+              "P4-music-qx10-ca1ee78b468cefa9b45a",
+              "P4-music-qx10-1e8db4430f4c945e4f97",
+              "P4-music-qx10-39d8efe006721bb58115",
+              "P4-music-qx10-b30db56db6231166c76b",
+              "P4-music-qx10-fb237f5a8247648802ae"
             ]
           }
         ],
@@ -62342,21 +62597,23 @@
       "level": "P5",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 77,
-      "stored": 917,
+      "active": 247,
+      "stored": 1087,
       "retired": 840,
       "sourceIds": [
         "am-music-p5",
         "curriculum-v2-music",
         "cfh-music-primary",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P5-music",
         "framework": "KSSR Semakan 2017 — major-field audit",
         "sourceIds": [
           "cfh-music-primary",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -62371,7 +62628,8 @@
             "models": [
               "staff-read",
               "v2-qa29-music-dynamics",
-              "v2-qa29-music-notation"
+              "v2-qa29-music-notation",
+              "v2-qx10-music-elements"
             ],
             "questionIds": [
               "music-P5-staff-read-000",
@@ -62441,14 +62699,68 @@
               "P5-music-qa29-c325140622d6ea99652c",
               "P5-music-qa29-0454596572b3162b5bac",
               "P5-music-qa29-143418c983098edb0b62",
-              "P5-music-qa29-0ca94bf22b8fa32c9a1f"
+              "P5-music-qa29-0ca94bf22b8fa32c9a1f",
+              "P5-music-qx10-f31bd8e6d71610f73e5b",
+              "P5-music-qx10-aa11ed0468ed2e738318",
+              "P5-music-qx10-2b19e90967b564d55c51",
+              "P5-music-qx10-c0a906cf799c96d1e022",
+              "P5-music-qx10-c1f02e69081f52f034c0",
+              "P5-music-qx10-970ade552cb1d712d871",
+              "P5-music-qx10-24a0758622ac8f4bed22",
+              "P5-music-qx10-d51bbff722a4d8ab3bf4",
+              "P5-music-qx10-8973eb4e30a60eee38ed",
+              "P5-music-qx10-a84acdc143b8316276ca",
+              "P5-music-qx10-9dfe573e3efecbaa319c",
+              "P5-music-qx10-82410370c16e37744374",
+              "P5-music-qx10-24fe640a0d68b58c2a86",
+              "P5-music-qx10-be1c37321323703ee9c3",
+              "P5-music-qx10-74c6998ac8fd36992f2e",
+              "P5-music-qx10-dd755a7a453eb4f2a1d6",
+              "P5-music-qx10-967ab54b4be640617414",
+              "P5-music-qx10-d4a9088780dc8e0e0443",
+              "P5-music-qx10-993857d661046bb19748",
+              "P5-music-qx10-f46b7763616870fa0722",
+              "P5-music-qx10-f2750baaf02ef12db090",
+              "P5-music-qx10-1d61f08838e668ab91b2",
+              "P5-music-qx10-9b6d78cd8ac5c20a497c",
+              "P5-music-qx10-0dd1898e60687aae4f8e",
+              "P5-music-qx10-f437b8df42243a90c03b",
+              "P5-music-qx10-4689939c29294055f61b",
+              "P5-music-qx10-52f80cbc7a9bef2e6ef6",
+              "P5-music-qx10-f6c26cf7a1aa6bba6787",
+              "P5-music-qx10-46b4c470b30113eef90c",
+              "P5-music-qx10-57ea15b4d92db2c6f789",
+              "P5-music-qx10-8064e4ac72379ab81f72",
+              "P5-music-qx10-f58c6a4130725d026d48",
+              "P5-music-qx10-f7008a0ac670977d1741",
+              "P5-music-qx10-7d1410fe1bb693114d90",
+              "P5-music-qx10-1a7a5a3c4b301e37a675",
+              "P5-music-qx10-1171570d63e03436f93f",
+              "P5-music-qx10-8019b39eb2ea2080d7f3",
+              "P5-music-qx10-fb567e4a9124a1c7de81",
+              "P5-music-qx10-0f609be64462ac1ce83d",
+              "P5-music-qx10-fe99f5dda99f0c48e533",
+              "P5-music-qx10-565bf6e2375c34902f55",
+              "P5-music-qx10-89916b0e0be703edd36e",
+              "P5-music-qx10-a1d644dc4d33518d3b79",
+              "P5-music-qx10-4bd2f1ca10053b942db3",
+              "P5-music-qx10-224db9b23257042460e3",
+              "P5-music-qx10-6c5cf86a42d8fdfbc338",
+              "P5-music-qx10-712512832f9ebcf0abcb",
+              "P5-music-qx10-509aeb255294b22f00f4",
+              "P5-music-qx10-43f19e11828fe5a557fe",
+              "P5-music-qx10-423826f223b2c45b8722",
+              "P5-music-qx10-376c4238dd947a25028e",
+              "P5-music-qx10-5f2908bfb1891f7a3ca8",
+              "P5-music-qx10-1cd0c06a702d20084b9f",
+              "P5-music-qx10-3e43fe0b5de869c21368"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 68,
-            "independentCount": 68,
+            "questionCount": 122,
+            "independentCount": 122,
             "guidedCount": 0,
             "evidenceIds": [
               "music-P5-staff-read-000",
@@ -62468,20 +62780,52 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-singing"
+              "v2-qa29-music-singing",
+              "v2-qx10-music-singing"
             ],
             "questionIds": [
-              "P5-music-qa29-453212a34ad879382ec5"
+              "P5-music-qa29-453212a34ad879382ec5",
+              "P5-music-qx10-7bbdb34f298077cb819e",
+              "P5-music-qx10-201ec8ffaf4386006493",
+              "P5-music-qx10-4eca484c1d3599acb133",
+              "P5-music-qx10-0434f864d6a416a45d7c",
+              "P5-music-qx10-cb4e807bc85832b7a771",
+              "P5-music-qx10-b3d068614a0453d83bd0",
+              "P5-music-qx10-a5426c326b163ce98b5d",
+              "P5-music-qx10-04701a2d5ec24c2ddad3",
+              "P5-music-qx10-c124cc1c72b6698ff314",
+              "P5-music-qx10-49639e1c209da746c89c",
+              "P5-music-qx10-ffc86f62d8ff851c29d2",
+              "P5-music-qx10-d9ee0cb7f43b3be91445",
+              "P5-music-qx10-6a3478d3a84515330577",
+              "P5-music-qx10-02944213e02a9a0f30b2",
+              "P5-music-qx10-8e2cd876c8cc22f7510f",
+              "P5-music-qx10-92fd7c0099a7393ecddb",
+              "P5-music-qx10-fac00397b29dbf0ae458",
+              "P5-music-qx10-2f54b2613db94ed407fc",
+              "P5-music-qx10-ccfcdbf6219cbaf88eef",
+              "P5-music-qx10-df8631aed926e0f6864c",
+              "P5-music-qx10-d49a5e2ed1417bebe8dd",
+              "P5-music-qx10-893bd0737d729cdfaef6",
+              "P5-music-qx10-d8f9c24cf632971c77c2",
+              "P5-music-qx10-e35764ad3974b6907b89",
+              "P5-music-qx10-70b5c8ef24fe8180d3d5",
+              "P5-music-qx10-128aa9ebd16b638bd84f"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 27,
+            "independentCount": 27,
             "guidedCount": 0,
             "evidenceIds": [
-              "P5-music-qa29-453212a34ad879382ec5"
+              "P5-music-qa29-453212a34ad879382ec5",
+              "P5-music-qx10-7bbdb34f298077cb819e",
+              "P5-music-qx10-201ec8ffaf4386006493",
+              "P5-music-qx10-4eca484c1d3599acb133",
+              "P5-music-qx10-0434f864d6a416a45d7c",
+              "P5-music-qx10-cb4e807bc85832b7a771"
             ]
           },
           {
@@ -62491,17 +62835,62 @@
               "bm": "Kemahiran dan ensembel",
               "en": "Instrumental and ensemble skills"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-skills"
+            ],
+            "questionIds": [
+              "P5-music-qx10-090da51eba47d34dd16a",
+              "P5-music-qx10-50c8e45a08e25c492fe0",
+              "P5-music-qx10-9a9e0e99ed9fdec14efa",
+              "P5-music-qx10-cec147bfb1650e6d7427",
+              "P5-music-qx10-f15ed8f1a413cabc5aac",
+              "P5-music-qx10-7bfaf67326e7aeb1ee20",
+              "P5-music-qx10-57dc956216d8685ef27b",
+              "P5-music-qx10-8436f854008c5a1d76e2",
+              "P5-music-qx10-96f02c37482e283d0698",
+              "P5-music-qx10-b1b1365f7d2f1c7410f7",
+              "P5-music-qx10-7305b46e265ef4d56bff",
+              "P5-music-qx10-83f6184e445a086ca6a6",
+              "P5-music-qx10-2046031b92649e0e7d6e",
+              "P5-music-qx10-0dc69e117348186e4649",
+              "P5-music-qx10-aa58ee3217e108730892",
+              "P5-music-qx10-2925db96f8b8d1144c08",
+              "P5-music-qx10-cab141466416edd38b50",
+              "P5-music-qx10-0ed6dbab536c946e406a",
+              "P5-music-qx10-56dc2b7fad9bc0579ce6",
+              "P5-music-qx10-80f36f998332ecb0910a",
+              "P5-music-qx10-6166816168ac92345255",
+              "P5-music-qx10-d81865322effa8f319a9",
+              "P5-music-qx10-c43a0da38d45748d2281",
+              "P5-music-qx10-7b330c5b7283c1c16cd1",
+              "P5-music-qx10-1e4fc3ca74c4a4ac0f9a",
+              "P5-music-qx10-a74a99c4f7529dfce90f",
+              "P5-music-qx10-22ea9b0faabeeda0a604",
+              "P5-music-qx10-06c50a887cf9e9e9cac2",
+              "P5-music-qx10-5897d30270e0c32fcbfa",
+              "P5-music-qx10-72632d5e84c12402ba40",
+              "P5-music-qx10-e80878387481147db091",
+              "P5-music-qx10-fa2013c9acd29b7ffadf",
+              "P5-music-qx10-1a26b6f01582c7338ab2",
+              "P5-music-qx10-2ec482bd47a22f2a5f30",
+              "P5-music-qx10-47643fd4e22f32e5bd49"
+            ],
+            "note": "35 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 35,
+            "independentCount": 35,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P5-music-qx10-090da51eba47d34dd16a",
+              "P5-music-qx10-50c8e45a08e25c492fe0",
+              "P5-music-qx10-9a9e0e99ed9fdec14efa",
+              "P5-music-qx10-cec147bfb1650e6d7427",
+              "P5-music-qx10-f15ed8f1a413cabc5aac",
+              "P5-music-qx10-7bfaf67326e7aeb1ee20"
+            ]
           },
           {
             "id": "creation",
@@ -62513,24 +62902,46 @@
             "status": "partial",
             "models": [
               "cfh-music-ostinato-role",
-              "v2-qa29-music-form"
+              "v2-qa29-music-form",
+              "v2-qx10-music-creation"
             ],
             "questionIds": [
               "cfh-P5-music-ostinato-role",
               "P5-music-qa29-f47a105f9a8a327843bb",
-              "P5-music-qa29-b1741f59dea56a9ee988"
+              "P5-music-qa29-b1741f59dea56a9ee988",
+              "P5-music-qx10-3c37dbef50aeb04d011a",
+              "P5-music-qx10-45f2c3701d3d3b1f878b",
+              "P5-music-qx10-e5d79ffd7b75d49c325a",
+              "P5-music-qx10-8ea5bbb3afac88231f3d",
+              "P5-music-qx10-6ac81c81afcd2e136c51",
+              "P5-music-qx10-ef82f62eacf8697f1637",
+              "P5-music-qx10-3bce75cadeb6003fa58b",
+              "P5-music-qx10-5abe60aecbe728e2cb4e",
+              "P5-music-qx10-bf9531f69cac279a8414",
+              "P5-music-qx10-ea6b9167f59e6ac86931",
+              "P5-music-qx10-1ad0491f324015b87333",
+              "P5-music-qx10-190b90c547965c1e97f5",
+              "P5-music-qx10-b3c9944731ef7c79a312",
+              "P5-music-qx10-5970a102dd26abc35c12",
+              "P5-music-qx10-82ddc08815260ee98559",
+              "P5-music-qx10-1638f0b3f843090c6e95",
+              "P5-music-qx10-9c4aa097230035e8acd3",
+              "P5-music-qx10-ff8a39e07c6ab5c7a134"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 21,
+            "independentCount": 21,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P5-music-ostinato-role",
               "P5-music-qa29-f47a105f9a8a327843bb",
-              "P5-music-qa29-b1741f59dea56a9ee988"
+              "P5-music-qa29-b1741f59dea56a9ee988",
+              "P5-music-qx10-3c37dbef50aeb04d011a",
+              "P5-music-qx10-45f2c3701d3d3b1f878b",
+              "P5-music-qx10-e5d79ffd7b75d49c325a"
             ]
           },
           {
@@ -62542,26 +62953,48 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-traditional"
+              "v2-qa29-music-traditional",
+              "v2-qx10-music-appreciation"
             ],
             "questionIds": [
               "P5-music-qa29-f2bc5fab66ef23c66042",
               "P5-music-qa29-e0d5a44d21798e5e7930",
               "P5-music-qa29-81fa0f4c9ceb8627a1e6",
-              "P5-music-qa29-300ba61408cc946154c5"
+              "P5-music-qa29-300ba61408cc946154c5",
+              "P5-music-qx10-2c8bf956a10adb435260",
+              "P5-music-qx10-9dd64a0ead5eb85aafd8",
+              "P5-music-qx10-95e786f495d38b359c0e",
+              "P5-music-qx10-82851ac073675c9a4cbc",
+              "P5-music-qx10-ea72394baa82e4bc3e91",
+              "P5-music-qx10-900a5e321c45f44fedb1",
+              "P5-music-qx10-dd9399276461d3d1b45f",
+              "P5-music-qx10-a3f3176dfaa4f0ba1077",
+              "P5-music-qx10-35f9dde17b5efb21bbde",
+              "P5-music-qx10-e3815c6624f69f9d9206",
+              "P5-music-qx10-f45fb1f4575ac6b9da9e",
+              "P5-music-qx10-72b45148ac11554b441d",
+              "P5-music-qx10-798c461d1e718723b05b",
+              "P5-music-qx10-3b785d2831b12b48d87e",
+              "P5-music-qx10-1fbc0e1dc53f883a19df",
+              "P5-music-qx10-36c5061e6289bbfcd784",
+              "P5-music-qx10-509f4a66ddbca25d1ac3",
+              "P5-music-qx10-916e06b357d90023e7c6",
+              "P5-music-qx10-ccbf7d64552d9311d78f"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-music-qa29-f2bc5fab66ef23c66042",
               "P5-music-qa29-e0d5a44d21798e5e7930",
               "P5-music-qa29-81fa0f4c9ceb8627a1e6",
-              "P5-music-qa29-300ba61408cc946154c5"
+              "P5-music-qa29-300ba61408cc946154c5",
+              "P5-music-qx10-2c8bf956a10adb435260",
+              "P5-music-qx10-9dd64a0ead5eb85aafd8"
             ]
           },
           {
@@ -62573,20 +63006,44 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-ensemble"
+              "v2-qa29-music-ensemble",
+              "v2-qx10-music-project"
             ],
             "questionIds": [
-              "P5-music-qa29-d18b42ef4c0bf3c88286"
+              "P5-music-qa29-d18b42ef4c0bf3c88286",
+              "P5-music-qx10-cfdcdc1e947d0a360c90",
+              "P5-music-qx10-32d5cad8517eb18a377d",
+              "P5-music-qx10-72a648a8e8d1264fa9ae",
+              "P5-music-qx10-64f4ad4f001c1d003cb4",
+              "P5-music-qx10-0aadec568f547687210e",
+              "P5-music-qx10-6771feb6935762874922",
+              "P5-music-qx10-f8d9087769ff8c6ede9b",
+              "P5-music-qx10-49378a6296a3f98d9650",
+              "P5-music-qx10-ae10e9f799a6bbcbdf42",
+              "P5-music-qx10-668d2a749fb69169afdc",
+              "P5-music-qx10-d2d019cdf6b75d28336a",
+              "P5-music-qx10-8a93bbd4d43510101d82",
+              "P5-music-qx10-06aaed6c8fe581e1f793",
+              "P5-music-qx10-1f23b0c61b64edae9c51",
+              "P5-music-qx10-6c2577314d1cded74260",
+              "P5-music-qx10-43a003fa7190d4371f61",
+              "P5-music-qx10-ba581489e6be316d06c0",
+              "P5-music-qx10-77dbc155edc25debd5c0"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 19,
+            "independentCount": 19,
             "guidedCount": 0,
             "evidenceIds": [
-              "P5-music-qa29-d18b42ef4c0bf3c88286"
+              "P5-music-qa29-d18b42ef4c0bf3c88286",
+              "P5-music-qx10-cfdcdc1e947d0a360c90",
+              "P5-music-qx10-32d5cad8517eb18a377d",
+              "P5-music-qx10-72a648a8e8d1264fa9ae",
+              "P5-music-qx10-64f4ad4f001c1d003cb4",
+              "P5-music-qx10-0aadec568f547687210e"
             ]
           }
         ],
@@ -62789,9 +63246,9 @@
         ],
         "summary": {
           "represented": 0,
-          "partial": 5,
+          "partial": 6,
           "missing": 0,
-          "performance": 1
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -80875,21 +81332,23 @@
       "level": "P6",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 83,
-      "stored": 915,
+      "active": 232,
+      "stored": 1064,
       "retired": 832,
       "sourceIds": [
         "am-music-p5",
         "curriculum-v2-music",
         "cfh-music-primary",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P6-music",
         "framework": "KSSR Semakan 2017 — major-field audit",
         "sourceIds": [
           "cfh-music-primary",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -80904,7 +81363,8 @@
             "models": [
               "staff-read",
               "v2-qa29-music-dynamics",
-              "v2-qa29-music-notation"
+              "v2-qa29-music-notation",
+              "v2-qx10-music-elements"
             ],
             "questionIds": [
               "music-P6-staff-read-000",
@@ -80972,14 +81432,70 @@
               "P6-music-qa29-a5b269fc241f315e5537",
               "P6-music-qa29-fcc880a672b289e530ad",
               "P6-music-qa29-7ce44939bd8968792712",
-              "P6-music-qa29-682ba17867a6ba18cfcd"
+              "P6-music-qa29-682ba17867a6ba18cfcd",
+              "P6-music-qx10-bee5498346bee2384f40",
+              "P6-music-qx10-b1b0acf06477ef51554a",
+              "P6-music-qx10-3e9033f863aa4d5855c6",
+              "P6-music-qx10-1ad40ce882ba49f0970b",
+              "P6-music-qx10-4f6e523ffa963f1f70a2",
+              "P6-music-qx10-f08c1450668ebabce8cf",
+              "P6-music-qx10-040781516f3c11e5351d",
+              "P6-music-qx10-3c2121a477166faf02c2",
+              "P6-music-qx10-c21f0e93a870a8b1d4ef",
+              "P6-music-qx10-63a6c2a5bed271dadc90",
+              "P6-music-qx10-755636b94ce6f4248aaf",
+              "P6-music-qx10-2151c639c1c89a2998f8",
+              "P6-music-qx10-2b4ceb2ba318eed07373",
+              "P6-music-qx10-0e5cfcc87b3c7ea7fc39",
+              "P6-music-qx10-eebc6ecbb76e4b6e7d1d",
+              "P6-music-qx10-f3313d665ba5b30e1393",
+              "P6-music-qx10-d9fa17eab223974f059a",
+              "P6-music-qx10-ff467422be7bfc3f9e7c",
+              "P6-music-qx10-d652f90cfa62d42949fd",
+              "P6-music-qx10-4e7bf6831328349ee714",
+              "P6-music-qx10-6fca3aea12e4ed49d2f9",
+              "P6-music-qx10-67c3af37b7e757bd5af0",
+              "P6-music-qx10-dc473c0f1438cbd4126e",
+              "P6-music-qx10-84701e447011f9b76156",
+              "P6-music-qx10-7108629d52aabd4fd8ab",
+              "P6-music-qx10-f647be69bdef8ce5b9bb",
+              "P6-music-qx10-760e578839447c184ca8",
+              "P6-music-qx10-6b5120c715d00e8c0a1d",
+              "P6-music-qx10-b768fe7b48dc6f109e79",
+              "P6-music-qx10-cd3534bb8520c80ec9e2",
+              "P6-music-qx10-92a4acf133c852d0675b",
+              "P6-music-qx10-05e9b3ce332bc2687ad5",
+              "P6-music-qx10-f8ff5419ba799c96c975",
+              "P6-music-qx10-4cdab6358700aade4ed4",
+              "P6-music-qx10-98120d976ae25499da3a",
+              "P6-music-qx10-2cbbe41b45354787bcf1",
+              "P6-music-qx10-dd333f83f44081a4bfbe",
+              "P6-music-qx10-4dbf28ca90f90a7e4111",
+              "P6-music-qx10-2a3dd64daea34ecb5af6",
+              "P6-music-qx10-a8ee782f89a10a0f5ba4",
+              "P6-music-qx10-9ac6cbe9262e389fabc6",
+              "P6-music-qx10-1a2060d9ad0ec8dbbfe8",
+              "P6-music-qx10-46648eec67912132025b",
+              "P6-music-qx10-76de3651190df918c5c4",
+              "P6-music-qx10-bdc48201515b3f4c4521",
+              "P6-music-qx10-10962d5818bb33b098b5",
+              "P6-music-qx10-2e92f84d4e9a25adea42",
+              "P6-music-qx10-2c75e2607f95483e8e0a",
+              "P6-music-qx10-e02386139d43b40f3831",
+              "P6-music-qx10-f5fa85d59bf36006821a",
+              "P6-music-qx10-c65080b7e54df8ee0ca9",
+              "P6-music-qx10-fc59ce4dcadbc1383e70",
+              "P6-music-qx10-a55e9b5ef6067694000b",
+              "P6-music-qx10-43ec8b3881ef2e7dd7a5",
+              "P6-music-qx10-e35a6683de658b43fc2f",
+              "P6-music-qx10-4bee32ea9834b8301bbe"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 66,
-            "independentCount": 66,
+            "questionCount": 122,
+            "independentCount": 122,
             "guidedCount": 0,
             "evidenceIds": [
               "music-P6-staff-read-000",
@@ -80999,20 +81515,48 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-singing"
+              "v2-qa29-music-singing",
+              "v2-qx10-music-singing"
             ],
             "questionIds": [
-              "P6-music-qa29-bffde5e1a1503a1a8332"
+              "P6-music-qa29-bffde5e1a1503a1a8332",
+              "P6-music-qx10-c12615d97e418b6fc78d",
+              "P6-music-qx10-aade70db679c68a48de2",
+              "P6-music-qx10-29480c9e4ffa48687082",
+              "P6-music-qx10-daf2f4dd7a37bc6b6e78",
+              "P6-music-qx10-af043bba98c7aaa79636",
+              "P6-music-qx10-7a6b4400849663ea8325",
+              "P6-music-qx10-6f3256e22b719d1122dd",
+              "P6-music-qx10-53486f52eb26e362b0e0",
+              "P6-music-qx10-fe65af1f7d496152e08b",
+              "P6-music-qx10-f3d7eee3f62914fc285d",
+              "P6-music-qx10-273dcc811066e1c036f1",
+              "P6-music-qx10-0acb0efa3b9dc0195f7f",
+              "P6-music-qx10-194fc27e30b06e59c49a",
+              "P6-music-qx10-5941da265ce8cf47c89e",
+              "P6-music-qx10-04ab8b1c9cda55a7db19",
+              "P6-music-qx10-8bebf9063c56751431bd",
+              "P6-music-qx10-3af30463ceb9192128b8",
+              "P6-music-qx10-6fa270c3ba6d5ce74fbd",
+              "P6-music-qx10-22d991a378873a69b275",
+              "P6-music-qx10-6591ec6710bc322ba7f9",
+              "P6-music-qx10-4acf9eb23c2881ba5d9a",
+              "P6-music-qx10-db48e95e0b324e575882"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
-              "P6-music-qa29-bffde5e1a1503a1a8332"
+              "P6-music-qa29-bffde5e1a1503a1a8332",
+              "P6-music-qx10-c12615d97e418b6fc78d",
+              "P6-music-qx10-aade70db679c68a48de2",
+              "P6-music-qx10-29480c9e4ffa48687082",
+              "P6-music-qx10-daf2f4dd7a37bc6b6e78",
+              "P6-music-qx10-af043bba98c7aaa79636"
             ]
           },
           {
@@ -81024,22 +81568,47 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-instrument"
+              "v2-qa29-music-instrument",
+              "v2-qx10-music-skills"
             ],
             "questionIds": [
               "P6-music-qa29-d9ccd8a12dd3225640f6",
-              "P6-music-qa29-6263fd0d6871c092251d"
+              "P6-music-qa29-6263fd0d6871c092251d",
+              "P6-music-qx10-429c02703433965ecdf3",
+              "P6-music-qx10-258d81759da1e2b45493",
+              "P6-music-qx10-207d9d6a6c66bb9ed481",
+              "P6-music-qx10-9447da1ad20fa177fe05",
+              "P6-music-qx10-8f18d06f560eac9946dd",
+              "P6-music-qx10-8d5ca104ffe6a2f64bb8",
+              "P6-music-qx10-596d42d98ca7c1403e27",
+              "P6-music-qx10-7208b1dd68d216d365d1",
+              "P6-music-qx10-d455b737620c9a911e2c",
+              "P6-music-qx10-4d97db35c04463afe6c3",
+              "P6-music-qx10-e42aa6037a65a885c025",
+              "P6-music-qx10-4349e17265651a520a23",
+              "P6-music-qx10-7c6f4ea19d61e245c3de",
+              "P6-music-qx10-625f4b7d964361ea7c60",
+              "P6-music-qx10-0a843d33f9bbd99982bf",
+              "P6-music-qx10-e84605ea523b181abda5",
+              "P6-music-qx10-c4e3b01a02cc5c6a39ab",
+              "P6-music-qx10-0908f854bb5368cf409b",
+              "P6-music-qx10-0be4890cff22278f39aa",
+              "P6-music-qx10-314056491b9647fe07de"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 2,
-            "independentCount": 2,
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "P6-music-qa29-d9ccd8a12dd3225640f6",
-              "P6-music-qa29-6263fd0d6871c092251d"
+              "P6-music-qa29-6263fd0d6871c092251d",
+              "P6-music-qx10-429c02703433965ecdf3",
+              "P6-music-qx10-258d81759da1e2b45493",
+              "P6-music-qx10-207d9d6a6c66bb9ed481",
+              "P6-music-qx10-9447da1ad20fa177fe05"
             ]
           },
           {
@@ -81051,20 +81620,39 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-form"
+              "v2-qa29-music-form",
+              "v2-qx10-music-creation"
             ],
             "questionIds": [
-              "P6-music-qa29-293518f3a47c01a65ca7"
+              "P6-music-qa29-293518f3a47c01a65ca7",
+              "P6-music-qx10-02e0ce7f4573c0791f2a",
+              "P6-music-qx10-9c8076660d06c7a1e3b0",
+              "P6-music-qx10-23656a78c4e0feae152b",
+              "P6-music-qx10-1b1483aa588800ff228b",
+              "P6-music-qx10-96bb945b5bd7ffdaaea8",
+              "P6-music-qx10-97f3a62d1421209bc214",
+              "P6-music-qx10-dc42e721473f38dcd8a3",
+              "P6-music-qx10-ee03ea1239d72a0910c5",
+              "P6-music-qx10-684da8e6b32e683b0473",
+              "P6-music-qx10-9460173c87e4764da5f7",
+              "P6-music-qx10-0fc52c8bf6d1531d0abd",
+              "P6-music-qx10-6260ffb8e3cb0f636700",
+              "P6-music-qx10-3c93968ebaa33f57f361"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 14,
+            "independentCount": 14,
             "guidedCount": 0,
             "evidenceIds": [
-              "P6-music-qa29-293518f3a47c01a65ca7"
+              "P6-music-qa29-293518f3a47c01a65ca7",
+              "P6-music-qx10-02e0ce7f4573c0791f2a",
+              "P6-music-qx10-9c8076660d06c7a1e3b0",
+              "P6-music-qx10-23656a78c4e0feae152b",
+              "P6-music-qx10-1b1483aa588800ff228b",
+              "P6-music-qx10-96bb945b5bd7ffdaaea8"
             ]
           },
           {
@@ -81077,26 +81665,48 @@
             "status": "partial",
             "models": [
               "cfh-music-rehearsal-evidence",
-              "v2-qa29-music-traditional"
+              "v2-qa29-music-traditional",
+              "v2-qx10-music-appreciation"
             ],
             "questionIds": [
               "cfh-P6-music-rehearsal-evidence",
               "P6-music-qa29-0d64a75e8c1bf2ebd3e7",
               "P6-music-qa29-e0b273815d650dc295a7",
-              "P6-music-qa29-900abf6a0c028c646bcc"
+              "P6-music-qa29-900abf6a0c028c646bcc",
+              "P6-music-qx10-908df3014c28b2fd076e",
+              "P6-music-qx10-6f7dc16444f51ecb2f32",
+              "P6-music-qx10-ca5d8442646cb8aeba9a",
+              "P6-music-qx10-0f7dd6bc085eb0a08eb9",
+              "P6-music-qx10-242e08c075a40953e977",
+              "P6-music-qx10-2cdc1a2e52979ee1fe3f",
+              "P6-music-qx10-af3e45f5f43758e256a4",
+              "P6-music-qx10-d3d370693617d5a66316",
+              "P6-music-qx10-b70d9a4ce8a72d1dedbd",
+              "P6-music-qx10-2d886cdb3f60ac04b54c",
+              "P6-music-qx10-0d700e6a76feae3674fe",
+              "P6-music-qx10-746a56d1008ea9a5f833",
+              "P6-music-qx10-824b7b8b894bbbfc6b26",
+              "P6-music-qx10-439e5c43094cef12618d",
+              "P6-music-qx10-e2dae0769f7d109bd6dc",
+              "P6-music-qx10-6620e20497d96a24c875",
+              "P6-music-qx10-00ea46f09c31731a7e25",
+              "P6-music-qx10-1d4f977ad7df4b3af42e",
+              "P6-music-qx10-9515c91bfb5243db0c47"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P6-music-rehearsal-evidence",
               "P6-music-qa29-0d64a75e8c1bf2ebd3e7",
               "P6-music-qa29-e0b273815d650dc295a7",
-              "P6-music-qa29-900abf6a0c028c646bcc"
+              "P6-music-qa29-900abf6a0c028c646bcc",
+              "P6-music-qx10-908df3014c28b2fd076e",
+              "P6-music-qx10-6f7dc16444f51ecb2f32"
             ]
           },
           {
@@ -81108,20 +81718,45 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-music-ensemble"
+              "v2-qa29-music-ensemble",
+              "v2-qx10-music-project"
             ],
             "questionIds": [
-              "P6-music-qa29-7fdabfaa30405abf9c51"
+              "P6-music-qa29-7fdabfaa30405abf9c51",
+              "P6-music-qx10-b08897f51f2e647435e9",
+              "P6-music-qx10-db79d54536821afbe6e7",
+              "P6-music-qx10-8ee06f43f21ff2017d03",
+              "P6-music-qx10-1a17917964bad0678b9f",
+              "P6-music-qx10-eea311791be2ed1d8ed9",
+              "P6-music-qx10-adff28873489771b64d1",
+              "P6-music-qx10-4eb799af161dc002935d",
+              "P6-music-qx10-5efd18d90ece9ff6ab26",
+              "P6-music-qx10-e30aea7beeef76b5eabd",
+              "P6-music-qx10-481acbfd3ccb1fea265b",
+              "P6-music-qx10-13a313ffee65726e695a",
+              "P6-music-qx10-8380a75eefe62ba07db1",
+              "P6-music-qx10-f0bb14711275406db283",
+              "P6-music-qx10-896e057b38194c440290",
+              "P6-music-qx10-7175d340ef28bf49dd07",
+              "P6-music-qx10-7a63db015761b4c392bf",
+              "P6-music-qx10-bf2f2880f45606539671",
+              "P6-music-qx10-1f4ef41865ceaa8a862c",
+              "P6-music-qx10-bdfa71ab2367836bca71"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-music-primary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 20,
+            "independentCount": 20,
             "guidedCount": 0,
             "evidenceIds": [
-              "P6-music-qa29-7fdabfaa30405abf9c51"
+              "P6-music-qa29-7fdabfaa30405abf9c51",
+              "P6-music-qx10-b08897f51f2e647435e9",
+              "P6-music-qx10-db79d54536821afbe6e7",
+              "P6-music-qx10-8ee06f43f21ff2017d03",
+              "P6-music-qx10-1a17917964bad0678b9f",
+              "P6-music-qx10-eea311791be2ed1d8ed9"
             ]
           }
         ],
@@ -130290,10 +130925,21 @@
           "P5-science"
         ],
         "added": 637
+      },
+      {
+        "date": "2026-10-10",
+        "contentRevision": "2c21dbf6a4da0957",
+        "previousRevision": "cd74edb38f34cc6e",
+        "courses": [
+          "P4-music",
+          "P5-music",
+          "P6-music"
+        ],
+        "added": 548
       }
     ],
-    "addedTotal": 8702,
-    "tierShortfallP1toF3": 18560,
+    "addedTotal": 9250,
+    "tierShortfallP1toF3": 18012,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
