@@ -3,17 +3,17 @@
   "date": "2026-10-02",
   "generatedAt": "2026-10-10T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "2c21dbf6a4da0957",
+  "contentRevision": "861080c8fa247d85",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 115243,
-    "active": 49059,
-    "gradeScope": 48620,
+    "stored": 115734,
+    "active": 49550,
+    "gradeScope": 49111,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 15,
-    "questionShortfall": 69859,
+    "questionShortfall": 69368,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -90788,19 +90788,21 @@
       "level": "F1",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 121,
-      "stored": 901,
+      "active": 299,
+      "stored": 1079,
       "retired": 780,
       "sourceIds": [
         "am-music-f2",
         "curriculum-v2-music",
-        "cfh-music-secondary"
+        "cfh-music-secondary",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F1-music",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-music-secondary"
+          "cfh-music-secondary",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -90815,7 +90817,8 @@
             "models": [
               "bar-complete",
               "cfh-music-notation-transfer",
-              "staff-read"
+              "staff-read",
+              "v2-qx10-music-notation"
             ],
             "questionIds": [
               "music-F1-bar-complete-000",
@@ -90938,14 +90941,56 @@
               "music-F1-staff-read-057",
               "music-F1-staff-read-058",
               "music-F1-staff-read-059",
-              "cfh-F1-music-notation-transfer"
+              "cfh-F1-music-notation-transfer",
+              "F1-music-qx10-e372f77076511e88dd60",
+              "F1-music-qx10-542f45f67f5b9621a07c",
+              "F1-music-qx10-57b17504de558671a5ce",
+              "F1-music-qx10-18b85fd46d5051ec9443",
+              "F1-music-qx10-d92337de8d2c59fa6463",
+              "F1-music-qx10-c8db398d9591e02b477b",
+              "F1-music-qx10-2ce95a8b9ac74d59cd97",
+              "F1-music-qx10-9fa231c2ee9d26241839",
+              "F1-music-qx10-ceca8a7bc4401d66beb9",
+              "F1-music-qx10-c4ce19c075f14fea339a",
+              "F1-music-qx10-1ca6d5ab50726a6721d6",
+              "F1-music-qx10-88970c2750810942dd15",
+              "F1-music-qx10-ca1a38442cc075cbd173",
+              "F1-music-qx10-edb63e5e89e51139bd35",
+              "F1-music-qx10-6566f52c290f82983fd9",
+              "F1-music-qx10-c83d27823a47e251e940",
+              "F1-music-qx10-2dc7f70304a5dc87b1bd",
+              "F1-music-qx10-305e863ef0083c3a849e",
+              "F1-music-qx10-9634876733955b49c96c",
+              "F1-music-qx10-36ec2476b4d6eb03a05e",
+              "F1-music-qx10-738398b9d9b9508bb82e",
+              "F1-music-qx10-2877c01dc11065a79b04",
+              "F1-music-qx10-ac0080523a686360fc38",
+              "F1-music-qx10-b82e2fa41c3d3b3585c5",
+              "F1-music-qx10-36a067a5d05201fba051",
+              "F1-music-qx10-57a3e78bac79d21c2ccb",
+              "F1-music-qx10-3bff0db4ae798f4837d8",
+              "F1-music-qx10-c3d4a9b22286294197f0",
+              "F1-music-qx10-61d7d59707ae9496e1ad",
+              "F1-music-qx10-c50fef43c28c475fc849",
+              "F1-music-qx10-17dfb7a953abe595957f",
+              "F1-music-qx10-bf4d3d5924520e10f55a",
+              "F1-music-qx10-9923eb4d0781fc113f85",
+              "F1-music-qx10-688af31a954f63ea15da",
+              "F1-music-qx10-5ba0a34ec50f7f3a5ad3",
+              "F1-music-qx10-095bc2211bc4bc4fd68c",
+              "F1-music-qx10-695ca052ce6f6a04dc36",
+              "F1-music-qx10-d292851dc2311a969ba0",
+              "F1-music-qx10-7a56add044c7b202d592",
+              "F1-music-qx10-8ac78d6c9310a1aca6ee",
+              "F1-music-qx10-9cd9a1220d0d13901133",
+              "F1-music-qx10-993119013fa303a62b58"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 121,
-            "independentCount": 121,
+            "questionCount": 163,
+            "independentCount": 163,
             "guidedCount": 0,
             "evidenceIds": [
               "music-F1-bar-complete-000",
@@ -90963,17 +91008,60 @@
               "bm": "Nyanyian",
               "en": "Singing"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-singing"
+            ],
+            "questionIds": [
+              "F1-music-qx10-30d24db89a3005c3a338",
+              "F1-music-qx10-7bab571d38520f6b0125",
+              "F1-music-qx10-ca29fda3172002bd37f6",
+              "F1-music-qx10-a7f4345144b05a801221",
+              "F1-music-qx10-33ff0ff9f9d07afa71bb",
+              "F1-music-qx10-d37c359c896b82ae6fb2",
+              "F1-music-qx10-5321e2ca31e09182aab9",
+              "F1-music-qx10-8c6cc5e10629ed40dfb1",
+              "F1-music-qx10-a019fd90a1d64f8c4f9e",
+              "F1-music-qx10-33601db40ccb351176be",
+              "F1-music-qx10-83cb05b915e63ac3622a",
+              "F1-music-qx10-facdedabc5a22854e498",
+              "F1-music-qx10-c0d5b32654bf79459806",
+              "F1-music-qx10-7c99e0add71088059985",
+              "F1-music-qx10-a2faa24749598df2d020",
+              "F1-music-qx10-ddc79e570047a1d12ec1",
+              "F1-music-qx10-58990e5005b4086d0e89",
+              "F1-music-qx10-14c627f4f5c9fade3e99",
+              "F1-music-qx10-9e79cc10e19139d08dc9",
+              "F1-music-qx10-ce275c5a273ff524376f",
+              "F1-music-qx10-d590309bb28b65325c34",
+              "F1-music-qx10-c95625eac4bf302f37b3",
+              "F1-music-qx10-3149626e3f2b1b2d1421",
+              "F1-music-qx10-7955e60d3ee8bc96fddb",
+              "F1-music-qx10-be98e1207576fcef15b1",
+              "F1-music-qx10-bd7015998478d0980a85",
+              "F1-music-qx10-dd50bdd9073cc817d7c9",
+              "F1-music-qx10-72b04b50fc594220df9f",
+              "F1-music-qx10-563c858d23c9900a1849",
+              "F1-music-qx10-16bb3de4ffae70ce0233",
+              "F1-music-qx10-b1d3d049df9cf5434153",
+              "F1-music-qx10-06cb904736c7e775f850",
+              "F1-music-qx10-e02dc7c76de91f09b259"
+            ],
+            "note": "33 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 33,
+            "independentCount": 33,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-music-qx10-30d24db89a3005c3a338",
+              "F1-music-qx10-7bab571d38520f6b0125",
+              "F1-music-qx10-ca29fda3172002bd37f6",
+              "F1-music-qx10-a7f4345144b05a801221",
+              "F1-music-qx10-33ff0ff9f9d07afa71bb",
+              "F1-music-qx10-d37c359c896b82ae6fb2"
+            ]
           },
           {
             "id": "skills",
@@ -90982,17 +91070,53 @@
               "bm": "Kemahiran dan ensembel",
               "en": "Instrumental and ensemble skills"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-skills"
+            ],
+            "questionIds": [
+              "F1-music-qx10-84e968588a01d8a20331",
+              "F1-music-qx10-8d7be63882f3dacd200e",
+              "F1-music-qx10-e6cc6f7a5f570f387ea8",
+              "F1-music-qx10-3cdbf26a7ab3c2b378d6",
+              "F1-music-qx10-2cdeb5b8591dd3911b83",
+              "F1-music-qx10-1dd51ced54b00413f297",
+              "F1-music-qx10-6a7c7203aadce9432e37",
+              "F1-music-qx10-f1e04114f2b75a05a650",
+              "F1-music-qx10-cbe08b05c51f0f8791fa",
+              "F1-music-qx10-9578bc8bee276f8485c8",
+              "F1-music-qx10-a17778b62b04b4455153",
+              "F1-music-qx10-442cd4db32fa25f80de7",
+              "F1-music-qx10-bfedd7c65eecb57254cd",
+              "F1-music-qx10-9e809eeac1cfb3d3a379",
+              "F1-music-qx10-3d2666e9805c1ef1c0f6",
+              "F1-music-qx10-80225b9e081b86adee4f",
+              "F1-music-qx10-694e3dca2fe86c9c63a7",
+              "F1-music-qx10-1422801403a17422f5d3",
+              "F1-music-qx10-cda389a3c83228aadbec",
+              "F1-music-qx10-2d34eba448c382f3d144",
+              "F1-music-qx10-0dff60acdfac3e6a06c6",
+              "F1-music-qx10-132e6bd128e9805b3d94",
+              "F1-music-qx10-aa4ec95cc818ee3878b8",
+              "F1-music-qx10-17d38930889dc915d924",
+              "F1-music-qx10-3a0ccb9227b31cb97bc0",
+              "F1-music-qx10-eb0440aa227302ab60c8"
+            ],
+            "note": "26 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 26,
+            "independentCount": 26,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-music-qx10-84e968588a01d8a20331",
+              "F1-music-qx10-8d7be63882f3dacd200e",
+              "F1-music-qx10-e6cc6f7a5f570f387ea8",
+              "F1-music-qx10-3cdbf26a7ab3c2b378d6",
+              "F1-music-qx10-2cdeb5b8591dd3911b83",
+              "F1-music-qx10-1dd51ced54b00413f297"
+            ]
           },
           {
             "id": "creation",
@@ -91001,17 +91125,49 @@
               "bm": "Penghasilan muzik",
               "en": "Music creation"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-creation"
+            ],
+            "questionIds": [
+              "F1-music-qx10-015056a1a9554d48963e",
+              "F1-music-qx10-59e10048b7129eb289b6",
+              "F1-music-qx10-c072c5424b8c4c46606d",
+              "F1-music-qx10-d1c92931ce8135204c1f",
+              "F1-music-qx10-96f95f39e358415d3390",
+              "F1-music-qx10-68adb586ac214e151bef",
+              "F1-music-qx10-77dcb7eff16e16972b22",
+              "F1-music-qx10-1ecf86d3215be8d01a3f",
+              "F1-music-qx10-36910a3c9b04ab34b0d3",
+              "F1-music-qx10-60c016819939d3d06bbc",
+              "F1-music-qx10-5fb3dc17476edc6874e2",
+              "F1-music-qx10-eb68ae674930ca5dbff0",
+              "F1-music-qx10-94aae12c71f266e6075d",
+              "F1-music-qx10-9bb9132039968bd8b8e6",
+              "F1-music-qx10-8f13df61a15a1d4e2e9e",
+              "F1-music-qx10-93c83a372af52b75c068",
+              "F1-music-qx10-f9fbacfe6627e3b23c7b",
+              "F1-music-qx10-5c05f39d712dd2e378be",
+              "F1-music-qx10-eb5f6489cde42791a248",
+              "F1-music-qx10-38c2eec63cc47e4d032d",
+              "F1-music-qx10-69a92d186427c8ffae97",
+              "F1-music-qx10-ae0b63be2755a26e3d5a"
+            ],
+            "note": "22 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-music-qx10-015056a1a9554d48963e",
+              "F1-music-qx10-59e10048b7129eb289b6",
+              "F1-music-qx10-c072c5424b8c4c46606d",
+              "F1-music-qx10-d1c92931ce8135204c1f",
+              "F1-music-qx10-96f95f39e358415d3390",
+              "F1-music-qx10-68adb586ac214e151bef"
+            ]
           },
           {
             "id": "appreciation",
@@ -91020,17 +91176,62 @@
               "bm": "Apresiasi muzik",
               "en": "Listening and cultural appreciation"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-appreciation"
+            ],
+            "questionIds": [
+              "F1-music-qx10-d6cc9aba1a34c81744cd",
+              "F1-music-qx10-954581f51d0986fa1628",
+              "F1-music-qx10-4a3559e1dece5df23068",
+              "F1-music-qx10-a54b5281c6101fc7ab86",
+              "F1-music-qx10-b9082b0ff5e568e88f3b",
+              "F1-music-qx10-eb5a41ef47db67d5aa44",
+              "F1-music-qx10-d01f81e20112884bcffe",
+              "F1-music-qx10-0d0fa9cc432353d2830a",
+              "F1-music-qx10-8609dfae44d61f17c9d7",
+              "F1-music-qx10-8808515277f90ed7802c",
+              "F1-music-qx10-275be727ca6992d1d943",
+              "F1-music-qx10-39b229c02a6dac350a33",
+              "F1-music-qx10-ce5532c6cfd6c07d05f2",
+              "F1-music-qx10-8982298379ba559e200e",
+              "F1-music-qx10-22447353fb0d007d23cf",
+              "F1-music-qx10-a41bb5970b7228459489",
+              "F1-music-qx10-29f72142b4f12d74332e",
+              "F1-music-qx10-b424b4dae3585e7564d1",
+              "F1-music-qx10-415c9e6a747d81c0a4d6",
+              "F1-music-qx10-7fb3f6d918a4de2c57ab",
+              "F1-music-qx10-6e91f2cf6fa0acf4713e",
+              "F1-music-qx10-cfe5e25e5120ddf7d876",
+              "F1-music-qx10-0b14bf1d6da074438648",
+              "F1-music-qx10-4affdaf9476ee96f3751",
+              "F1-music-qx10-bede0e2abdf81935cb8f",
+              "F1-music-qx10-203d44a5cc2c9781ea81",
+              "F1-music-qx10-d1321ae2edfa813dc5f2",
+              "F1-music-qx10-8c9bedcce6a4e93d3811",
+              "F1-music-qx10-380958b3f997fbb2978f",
+              "F1-music-qx10-847efa5cf01863ffdc4d",
+              "F1-music-qx10-2a1837cd63e2e3078d7c",
+              "F1-music-qx10-d97d0cffcc682fe0f4ee",
+              "F1-music-qx10-2198d92d0e6f8b4a250e",
+              "F1-music-qx10-cff82ae7ebdcb268dfdd",
+              "F1-music-qx10-5a6be3c8da5085ca48bb"
+            ],
+            "note": "35 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 35,
+            "independentCount": 35,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-music-qx10-d6cc9aba1a34c81744cd",
+              "F1-music-qx10-954581f51d0986fa1628",
+              "F1-music-qx10-4a3559e1dece5df23068",
+              "F1-music-qx10-a54b5281c6101fc7ab86",
+              "F1-music-qx10-b9082b0ff5e568e88f3b",
+              "F1-music-qx10-eb5a41ef47db67d5aa44"
+            ]
           },
           {
             "id": "project",
@@ -91039,17 +91240,47 @@
               "bm": "Perancangan dan persembahan",
               "en": "Performance planning and practice"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-project"
+            ],
+            "questionIds": [
+              "F1-music-qx10-297e405ad3241d8738bd",
+              "F1-music-qx10-da8c6d5a8dd490830143",
+              "F1-music-qx10-318376ddee290043df57",
+              "F1-music-qx10-d8feaf4d02965b1f5ec1",
+              "F1-music-qx10-37bf1cc668bf1f569e26",
+              "F1-music-qx10-aa04365899da9f52c35e",
+              "F1-music-qx10-03a90a7f265f82f52401",
+              "F1-music-qx10-a33e33ed08356c5eb634",
+              "F1-music-qx10-7ffd25c765f19e18dabd",
+              "F1-music-qx10-8c4b2bd5e9101c939228",
+              "F1-music-qx10-eee7372dc9a55e12fa77",
+              "F1-music-qx10-980290f762356b99d59e",
+              "F1-music-qx10-28667eefbbc0321ed6b5",
+              "F1-music-qx10-1e178a873fbe9ae9592f",
+              "F1-music-qx10-8166a85884ca567ec560",
+              "F1-music-qx10-f54f4b432c885071aea2",
+              "F1-music-qx10-2050f6cf072f58215c38",
+              "F1-music-qx10-e51b9129e712b4b23942",
+              "F1-music-qx10-ef67767fcc799e668fcb",
+              "F1-music-qx10-b0432d002ea90a5bdbc1"
+            ],
+            "note": "20 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 20,
+            "independentCount": 20,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-music-qx10-297e405ad3241d8738bd",
+              "F1-music-qx10-da8c6d5a8dd490830143",
+              "F1-music-qx10-318376ddee290043df57",
+              "F1-music-qx10-d8feaf4d02965b1f5ec1",
+              "F1-music-qx10-37bf1cc668bf1f569e26",
+              "F1-music-qx10-aa04365899da9f52c35e"
+            ]
           }
         ],
         "performanceTasks": [
@@ -91251,9 +91482,9 @@
         ],
         "summary": {
           "represented": 0,
-          "partial": 1,
+          "partial": 6,
           "missing": 0,
-          "performance": 5
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -102355,19 +102586,21 @@
       "level": "F2",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 175,
-      "stored": 901,
+      "active": 324,
+      "stored": 1050,
       "retired": 726,
       "sourceIds": [
         "am-music-f2",
         "curriculum-v2-music",
-        "cfh-music-secondary"
+        "cfh-music-secondary",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F2-music",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-music-secondary"
+          "cfh-music-secondary",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -102382,7 +102615,8 @@
             "models": [
               "bar-complete",
               "key-error",
-              "staff-read"
+              "staff-read",
+              "v2-qx10-music-notation"
             ],
             "questionIds": [
               "music-F2-bar-complete-001",
@@ -102558,14 +102792,62 @@
               "music-F2-staff-read-056",
               "music-F2-staff-read-057",
               "music-F2-staff-read-058",
-              "music-F2-staff-read-059"
+              "music-F2-staff-read-059",
+              "F2-music-qx10-46504f00b7f06d3bccc7",
+              "F2-music-qx10-7aebaa7c6a08adae5768",
+              "F2-music-qx10-c2439fe45c0401001a8e",
+              "F2-music-qx10-724c13d1283cc45cf0c5",
+              "F2-music-qx10-58fbcdbeb4f3de240788",
+              "F2-music-qx10-2f70a0a966e32e1457bb",
+              "F2-music-qx10-bc0adb3abba3909b3dc4",
+              "F2-music-qx10-4da4cac5b6661b022895",
+              "F2-music-qx10-ba27e6ceb9a82f3cd698",
+              "F2-music-qx10-e7747e6872bbafaebde3",
+              "F2-music-qx10-e2136118ace562a8b69e",
+              "F2-music-qx10-d34105bcf3848ee77f97",
+              "F2-music-qx10-68870f958b7e519f706c",
+              "F2-music-qx10-f78c781ea215f3c902be",
+              "F2-music-qx10-c0237b0470643698bc3a",
+              "F2-music-qx10-c3c1ca3ce8d4dbb0d524",
+              "F2-music-qx10-c298924ba66ac7c19d81",
+              "F2-music-qx10-8f7b9d3f67f49722f6f2",
+              "F2-music-qx10-3eebaf34460b0f40d23b",
+              "F2-music-qx10-805eee3a05c03d234898",
+              "F2-music-qx10-105f8e693cf067d0186f",
+              "F2-music-qx10-5bc6dd7765dc8d367396",
+              "F2-music-qx10-8382b09a24c627c355bc",
+              "F2-music-qx10-8de0ebbe694899c224f2",
+              "F2-music-qx10-23826db5dcef53436bfb",
+              "F2-music-qx10-1c65e191cb894e6707e1",
+              "F2-music-qx10-37c4d322d115f8bfd619",
+              "F2-music-qx10-7837e3dd211c3456977f",
+              "F2-music-qx10-ff1c70dae80b2a6dcf26",
+              "F2-music-qx10-450fa209f8eedb11c282",
+              "F2-music-qx10-26ad17372c04dcb91618",
+              "F2-music-qx10-151a507c6a718bfef43b",
+              "F2-music-qx10-4d40d754786780d5c5c6",
+              "F2-music-qx10-08e386c34131e2538432",
+              "F2-music-qx10-9ad29bc564586b3ba90a",
+              "F2-music-qx10-434396c31840777577b3",
+              "F2-music-qx10-973ee2f307ca07e6298a",
+              "F2-music-qx10-496534916cf51e684c9c",
+              "F2-music-qx10-fc10715b854a443cbd10",
+              "F2-music-qx10-d2c8786016afa96b3719",
+              "F2-music-qx10-4c6a41bb2e76b2bdb717",
+              "F2-music-qx10-3c435d8416efdeb81b55",
+              "F2-music-qx10-4b5c8f5cf895eac0510b",
+              "F2-music-qx10-666403ac4e9bbeb71fd6",
+              "F2-music-qx10-954f4a89ff7af13a47f2",
+              "F2-music-qx10-9caa3f7ce5f7a773405a",
+              "F2-music-qx10-8ddad220668e4d691596",
+              "F2-music-qx10-1fe7354122714b3f77d4"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 174,
-            "independentCount": 174,
+            "questionCount": 222,
+            "independentCount": 222,
             "guidedCount": 0,
             "evidenceIds": [
               "music-F2-bar-complete-001",
@@ -102583,17 +102865,55 @@
               "bm": "Nyanyian",
               "en": "Singing"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-singing"
+            ],
+            "questionIds": [
+              "F2-music-qx10-08f08eb9f2d242340786",
+              "F2-music-qx10-7746a8fc56d96b43c570",
+              "F2-music-qx10-713aae91ea2cceaf1d81",
+              "F2-music-qx10-2878cbe0e13364005636",
+              "F2-music-qx10-cfec13631df7edb9b44f",
+              "F2-music-qx10-55dd6874057d1fdf6fd7",
+              "F2-music-qx10-03eb57dbac8a5b674304",
+              "F2-music-qx10-af691c1976d70a9a3718",
+              "F2-music-qx10-b42f63e9b99bb506159a",
+              "F2-music-qx10-597c7be0b62caa515315",
+              "F2-music-qx10-fd86c8d9133d31785119",
+              "F2-music-qx10-d34f13fbb44795d0223c",
+              "F2-music-qx10-e417a075f53db9b3dc54",
+              "F2-music-qx10-8e3ec7d60c80cb2d729d",
+              "F2-music-qx10-3a3bd26ce16106ea7e6d",
+              "F2-music-qx10-30aa148d107a367c100c",
+              "F2-music-qx10-b3519712b6edf0e8f7a1",
+              "F2-music-qx10-56ab33ff04a321c9f9e9",
+              "F2-music-qx10-390cf8cc8eea526767d0",
+              "F2-music-qx10-3466e384beea8ffca645",
+              "F2-music-qx10-599f648c685274b74809",
+              "F2-music-qx10-ffb98b9f0af429571813",
+              "F2-music-qx10-e35577eec95e60fe30e4",
+              "F2-music-qx10-152d2f308c72ec0b3d60",
+              "F2-music-qx10-13c5962024836e5a0f80",
+              "F2-music-qx10-3991b8c30cab692b32c9",
+              "F2-music-qx10-6e93bf65a24888f66089",
+              "F2-music-qx10-b8147ae1bf5c7e118252"
+            ],
+            "note": "28 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-music-qx10-08f08eb9f2d242340786",
+              "F2-music-qx10-7746a8fc56d96b43c570",
+              "F2-music-qx10-713aae91ea2cceaf1d81",
+              "F2-music-qx10-2878cbe0e13364005636",
+              "F2-music-qx10-cfec13631df7edb9b44f",
+              "F2-music-qx10-55dd6874057d1fdf6fd7"
+            ]
           },
           {
             "id": "skills",
@@ -102602,17 +102922,48 @@
               "bm": "Kemahiran dan ensembel",
               "en": "Instrumental and ensemble skills"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-skills"
+            ],
+            "questionIds": [
+              "F2-music-qx10-72c1228ae7e42b98834d",
+              "F2-music-qx10-1d7c931813def4a201f0",
+              "F2-music-qx10-a4350244238a048ed957",
+              "F2-music-qx10-5e43d65f88758d199949",
+              "F2-music-qx10-7c527e64bc9f7aece959",
+              "F2-music-qx10-572e28392cbd0b1d1562",
+              "F2-music-qx10-cd2784d96e54f84c85c5",
+              "F2-music-qx10-f4c7f5e143edd7c27163",
+              "F2-music-qx10-635927f0d22d2636bd0f",
+              "F2-music-qx10-f2a8210dc2415c3cf966",
+              "F2-music-qx10-58601ca156fe3f463952",
+              "F2-music-qx10-14dddd7ab02864bc3c0c",
+              "F2-music-qx10-a67299bebb7d78214112",
+              "F2-music-qx10-7fa2e3af6aa18a083150",
+              "F2-music-qx10-ecef9c5b0f614076c040",
+              "F2-music-qx10-d32eb50a6dacdd066026",
+              "F2-music-qx10-e2f4a6e98b918c1d5b83",
+              "F2-music-qx10-5eaf50b3f0897bcef3db",
+              "F2-music-qx10-6136e0c1d993eb825283",
+              "F2-music-qx10-73fd0fe80132f34d27fa",
+              "F2-music-qx10-5a5f503834e50706a080"
+            ],
+            "note": "21 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 21,
+            "independentCount": 21,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-music-qx10-72c1228ae7e42b98834d",
+              "F2-music-qx10-1d7c931813def4a201f0",
+              "F2-music-qx10-a4350244238a048ed957",
+              "F2-music-qx10-5e43d65f88758d199949",
+              "F2-music-qx10-7c527e64bc9f7aece959",
+              "F2-music-qx10-572e28392cbd0b1d1562"
+            ]
           },
           {
             "id": "creation",
@@ -102623,20 +102974,37 @@
             },
             "status": "partial",
             "models": [
-              "cfh-music-creative-contrast"
+              "cfh-music-creative-contrast",
+              "v2-qx10-music-creation"
             ],
             "questionIds": [
-              "cfh-F2-music-creative-contrast"
+              "cfh-F2-music-creative-contrast",
+              "F2-music-qx10-824e9f92030601178502",
+              "F2-music-qx10-af048a84472c4b663d4f",
+              "F2-music-qx10-f857e5f5a1e32aa4331e",
+              "F2-music-qx10-adc2d276f0ef8eb30950",
+              "F2-music-qx10-3ecd7a57c3aa31c62443",
+              "F2-music-qx10-3be1b21d7746be6ee8dd",
+              "F2-music-qx10-d139294eac54935b984e",
+              "F2-music-qx10-496d8609315071605df2",
+              "F2-music-qx10-7b3dbfb07fd68ea2efae",
+              "F2-music-qx10-8218ebfada2ee2203c1f",
+              "F2-music-qx10-d331c021690736645367"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 12,
+            "independentCount": 12,
             "guidedCount": 0,
             "evidenceIds": [
-              "cfh-F2-music-creative-contrast"
+              "cfh-F2-music-creative-contrast",
+              "F2-music-qx10-824e9f92030601178502",
+              "F2-music-qx10-af048a84472c4b663d4f",
+              "F2-music-qx10-f857e5f5a1e32aa4331e",
+              "F2-music-qx10-adc2d276f0ef8eb30950",
+              "F2-music-qx10-3ecd7a57c3aa31c62443"
             ]
           },
           {
@@ -102646,17 +103014,51 @@
               "bm": "Apresiasi muzik",
               "en": "Listening and cultural appreciation"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-appreciation"
+            ],
+            "questionIds": [
+              "F2-music-qx10-6fae722673e9f5ed0cd4",
+              "F2-music-qx10-329b4da6c049acbc38a5",
+              "F2-music-qx10-2e6eb93b3497bc4e72cb",
+              "F2-music-qx10-3c585fef58cf1946d8ca",
+              "F2-music-qx10-ead019908f51d0164e92",
+              "F2-music-qx10-a0b450a956467ddd6389",
+              "F2-music-qx10-beb214a4800fa333183e",
+              "F2-music-qx10-a51fbd4a45061b39c94a",
+              "F2-music-qx10-c8a830dd69802109eaa5",
+              "F2-music-qx10-80acc656bb88b6e89c34",
+              "F2-music-qx10-9d9bcfe10907dcd18799",
+              "F2-music-qx10-529d621382af6fa54c0d",
+              "F2-music-qx10-f653bd1a656ba01729c6",
+              "F2-music-qx10-67e4a5cc9439fedce871",
+              "F2-music-qx10-bb548199e985a5de4303",
+              "F2-music-qx10-224b0fde6d41f357470a",
+              "F2-music-qx10-e494373765bcc3484b89",
+              "F2-music-qx10-ba9ce57c37c4d6505ff3",
+              "F2-music-qx10-ad5d7316e5632cae0a44",
+              "F2-music-qx10-7e4d6d19d5b42edbbaa6",
+              "F2-music-qx10-3916aa9cc776a2c79d9c",
+              "F2-music-qx10-ebe0f1cd025e7fe17094",
+              "F2-music-qx10-52b7fa226ded2259a927",
+              "F2-music-qx10-928f1abe2be4a69e7769"
+            ],
+            "note": "24 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-music-qx10-6fae722673e9f5ed0cd4",
+              "F2-music-qx10-329b4da6c049acbc38a5",
+              "F2-music-qx10-2e6eb93b3497bc4e72cb",
+              "F2-music-qx10-3c585fef58cf1946d8ca",
+              "F2-music-qx10-ead019908f51d0164e92",
+              "F2-music-qx10-a0b450a956467ddd6389"
+            ]
           },
           {
             "id": "project",
@@ -102665,17 +103067,44 @@
               "bm": "Perancangan dan persembahan",
               "en": "Performance planning and practice"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-project"
+            ],
+            "questionIds": [
+              "F2-music-qx10-1bfe23d480fa19a4550f",
+              "F2-music-qx10-7ecb8d54683a5217945f",
+              "F2-music-qx10-f6b06ef7f3a0c1930692",
+              "F2-music-qx10-34af38e52488f26a4dfa",
+              "F2-music-qx10-62f9140c4dfc5ac959eb",
+              "F2-music-qx10-70362c2617a0bdbcbfa1",
+              "F2-music-qx10-4a7bd7945435e5e20457",
+              "F2-music-qx10-e33f7fea8788b52084e7",
+              "F2-music-qx10-e47d708576cbd1498c18",
+              "F2-music-qx10-c2edad04c4cb2e4c1a4f",
+              "F2-music-qx10-e1165e6ab207b2d5a51a",
+              "F2-music-qx10-3b9954d4b55f82cedf11",
+              "F2-music-qx10-4a5022368de5833f8d44",
+              "F2-music-qx10-2e30b6d54d825c4bc011",
+              "F2-music-qx10-e48e00ccdc4e9650d2b0",
+              "F2-music-qx10-8af0001423a4079ff189",
+              "F2-music-qx10-519a2d8ae548f7fc550e"
+            ],
+            "note": "17 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-music-qx10-1bfe23d480fa19a4550f",
+              "F2-music-qx10-7ecb8d54683a5217945f",
+              "F2-music-qx10-f6b06ef7f3a0c1930692",
+              "F2-music-qx10-34af38e52488f26a4dfa",
+              "F2-music-qx10-62f9140c4dfc5ac959eb",
+              "F2-music-qx10-70362c2617a0bdbcbfa1"
+            ]
           }
         ],
         "performanceTasks": [
@@ -102877,9 +103306,9 @@
         ],
         "summary": {
           "represented": 0,
-          "partial": 2,
+          "partial": 6,
           "missing": 0,
-          "performance": 4
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -113492,19 +113921,21 @@
       "level": "F3",
       "subject": "music",
       "title": "音乐 · 听辨与读谱",
-      "active": 175,
-      "stored": 901,
+      "active": 339,
+      "stored": 1065,
       "retired": 726,
       "sourceIds": [
         "am-music-f3",
         "curriculum-v2-music",
-        "cfh-music-secondary"
+        "cfh-music-secondary",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F3-music",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-music-secondary"
+          "cfh-music-secondary",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -113520,7 +113951,8 @@
               "bar-complete",
               "cfh-music-three-eight",
               "key-error",
-              "staff-read"
+              "staff-read",
+              "v2-qx10-music-notation"
             ],
             "questionIds": [
               "music-F3-bar-complete-000",
@@ -113697,14 +114129,65 @@
               "music-F3-staff-read-057",
               "music-F3-staff-read-058",
               "music-F3-staff-read-059",
-              "cfh-F3-music-three-eight"
+              "cfh-F3-music-three-eight",
+              "F3-music-qx10-69db83afad4d859bc3ad",
+              "F3-music-qx10-c0cfb89d84d4387c3298",
+              "F3-music-qx10-b53d0a92c307b197223e",
+              "F3-music-qx10-ecb0ab052b20423dfc8e",
+              "F3-music-qx10-5f97355d0eb7c3abd5b6",
+              "F3-music-qx10-7ac57b474cb64ea970dc",
+              "F3-music-qx10-5758a4ecd0cc08a849c0",
+              "F3-music-qx10-1108bc9c5749d5d587b8",
+              "F3-music-qx10-612498f96d526b50bd76",
+              "F3-music-qx10-8618a5f9d0ef1a19ae03",
+              "F3-music-qx10-4f3c1a3ebc11607187bc",
+              "F3-music-qx10-94289b21a3af51251a92",
+              "F3-music-qx10-abaf66036b70d1d41a26",
+              "F3-music-qx10-b99deb8d5f64c27faac2",
+              "F3-music-qx10-2befccf362c821778406",
+              "F3-music-qx10-5d27326a057e6d7d0893",
+              "F3-music-qx10-cf24e1d0c458879372ec",
+              "F3-music-qx10-b1b5601fabf20c2ede15",
+              "F3-music-qx10-32730f58181770086bc0",
+              "F3-music-qx10-97ccefe6c27d9ac89985",
+              "F3-music-qx10-58629cc9257e86232706",
+              "F3-music-qx10-0dec0209591054f3ebf1",
+              "F3-music-qx10-a98c161a7edb5d2d55d7",
+              "F3-music-qx10-b7021f3a5ad1e1bf2291",
+              "F3-music-qx10-e0029477ef1ffe30b32f",
+              "F3-music-qx10-6ab81eb095bda1626eab",
+              "F3-music-qx10-f9b4f01d3a16bed65bb6",
+              "F3-music-qx10-b6f79d89ff422a3af6b7",
+              "F3-music-qx10-ed221bdef04762c65ba2",
+              "F3-music-qx10-37e16f3a6759f5032c01",
+              "F3-music-qx10-d741314351c1ce641d70",
+              "F3-music-qx10-505b69e11ff29b88f8bc",
+              "F3-music-qx10-58069156b3786c186011",
+              "F3-music-qx10-b61f0e580912161e2f9c",
+              "F3-music-qx10-61487366986b8a13e04c",
+              "F3-music-qx10-e57cff1f48cc4734ddfc",
+              "F3-music-qx10-6508f7a1771fa551208a",
+              "F3-music-qx10-059b6fb4010708698395",
+              "F3-music-qx10-ac08ec5947290e1c5134",
+              "F3-music-qx10-59877d223aaced957338",
+              "F3-music-qx10-6c340469159c4944acda",
+              "F3-music-qx10-87124adf1279ccac6440",
+              "F3-music-qx10-bc3a70d24ce00d2624bf",
+              "F3-music-qx10-94fca186d5496b2a7233",
+              "F3-music-qx10-9e107341b4a4ef6ffe2f",
+              "F3-music-qx10-6cf02436e7c3e980e859",
+              "F3-music-qx10-af36bb51f2bde68ce637",
+              "F3-music-qx10-d86cde001a1483dd3c96",
+              "F3-music-qx10-d5213ca7475879c37414",
+              "F3-music-qx10-b7955a760c2f1b761ea4",
+              "F3-music-qx10-bf5165a94b82dfeff052"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 175,
-            "independentCount": 175,
+            "questionCount": 226,
+            "independentCount": 226,
             "guidedCount": 0,
             "evidenceIds": [
               "music-F3-bar-complete-000",
@@ -113722,17 +114205,59 @@
               "bm": "Nyanyian",
               "en": "Singing"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-singing"
+            ],
+            "questionIds": [
+              "F3-music-qx10-6be10331b4d4af6425ec",
+              "F3-music-qx10-99b06114d364fde73bce",
+              "F3-music-qx10-ae241897ae9ee047ae1d",
+              "F3-music-qx10-9b45eb16a821faecd61b",
+              "F3-music-qx10-86ea9e3dac2b56712c45",
+              "F3-music-qx10-c53e218087cd5a7d00ee",
+              "F3-music-qx10-cfd0a4ab4b1682805adc",
+              "F3-music-qx10-d4a6598ba3d5d11b412c",
+              "F3-music-qx10-cc6fd53d002271e324ba",
+              "F3-music-qx10-7e15f1df682252709540",
+              "F3-music-qx10-7834142bd1bac8cdef2d",
+              "F3-music-qx10-0677638d421368c83a36",
+              "F3-music-qx10-57e69de8eb338c1e244d",
+              "F3-music-qx10-b16af08244df6a12b939",
+              "F3-music-qx10-5f4e7e5c750a27c02b4b",
+              "F3-music-qx10-16998574c2e87c84b876",
+              "F3-music-qx10-74a92a2980fcb7074918",
+              "F3-music-qx10-d085fb91e2aca2f3e957",
+              "F3-music-qx10-ea6154e6d08d96f87461",
+              "F3-music-qx10-9fab1e8256afeb868e90",
+              "F3-music-qx10-7cef6e57a258c959293b",
+              "F3-music-qx10-daebe92ac95e82ee1df3",
+              "F3-music-qx10-aa672521b8a88f3b8882",
+              "F3-music-qx10-07ef5b7af06d8411df17",
+              "F3-music-qx10-3d83b104667e7e32082e",
+              "F3-music-qx10-c11c1346e14208dfda28",
+              "F3-music-qx10-3892f3023f25f6fae864",
+              "F3-music-qx10-11c01377e4c6a41f25c7",
+              "F3-music-qx10-143778ed957b63b622d9",
+              "F3-music-qx10-f195afa07abccb8745f6",
+              "F3-music-qx10-6c28800b38cfa78a95dd",
+              "F3-music-qx10-b2dabcbc0f994e02be0d"
+            ],
+            "note": "32 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 32,
+            "independentCount": 32,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F3-music-qx10-6be10331b4d4af6425ec",
+              "F3-music-qx10-99b06114d364fde73bce",
+              "F3-music-qx10-ae241897ae9ee047ae1d",
+              "F3-music-qx10-9b45eb16a821faecd61b",
+              "F3-music-qx10-86ea9e3dac2b56712c45",
+              "F3-music-qx10-c53e218087cd5a7d00ee"
+            ]
           },
           {
             "id": "skills",
@@ -113741,17 +114266,55 @@
               "bm": "Kemahiran dan ensembel",
               "en": "Instrumental and ensemble skills"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-skills"
+            ],
+            "questionIds": [
+              "F3-music-qx10-70468e777376f2932f8f",
+              "F3-music-qx10-ae8aa1a4a7374f8383df",
+              "F3-music-qx10-5a453d3e310e90361b1e",
+              "F3-music-qx10-516604e591255e90f6d1",
+              "F3-music-qx10-05bb0aa096ca2f887203",
+              "F3-music-qx10-3a15d15e325650316e0f",
+              "F3-music-qx10-88629e41a0cb0a767c26",
+              "F3-music-qx10-4f4bbc1c3c80abe42b3f",
+              "F3-music-qx10-6c3090a858a14225a4cf",
+              "F3-music-qx10-c241e0a866be5f5fab81",
+              "F3-music-qx10-3b8f423150eabc561d97",
+              "F3-music-qx10-f1dd73319a14571190cb",
+              "F3-music-qx10-8ee9a6b8691474781126",
+              "F3-music-qx10-31979aa6f9d276b077db",
+              "F3-music-qx10-910e26172030c75069b9",
+              "F3-music-qx10-b3d5b90d13a69c150929",
+              "F3-music-qx10-f0fa5eeaba31d8892f62",
+              "F3-music-qx10-beb7f1b98334bf9abd2f",
+              "F3-music-qx10-8810d0808b4328f7badf",
+              "F3-music-qx10-548f894d44ec2e3820e6",
+              "F3-music-qx10-e99ba5992912f5c6f4ca",
+              "F3-music-qx10-447d85b7340127ba65d9",
+              "F3-music-qx10-eb8ee491157bfe6295b8",
+              "F3-music-qx10-a8700356f98ff1bfc390",
+              "F3-music-qx10-7f5c1b065c3d68b838fd",
+              "F3-music-qx10-8e73ecaba22c72932857",
+              "F3-music-qx10-6de34f5f8c2747fa2dd0",
+              "F3-music-qx10-63e7701230fc8f926a61"
+            ],
+            "note": "28 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F3-music-qx10-70468e777376f2932f8f",
+              "F3-music-qx10-ae8aa1a4a7374f8383df",
+              "F3-music-qx10-5a453d3e310e90361b1e",
+              "F3-music-qx10-516604e591255e90f6d1",
+              "F3-music-qx10-05bb0aa096ca2f887203",
+              "F3-music-qx10-3a15d15e325650316e0f"
+            ]
           },
           {
             "id": "creation",
@@ -113760,17 +114323,44 @@
               "bm": "Penghasilan muzik",
               "en": "Music creation"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-creation"
+            ],
+            "questionIds": [
+              "F3-music-qx10-8cdb43e749d2244ad7f7",
+              "F3-music-qx10-7715b24c3dcc960e01df",
+              "F3-music-qx10-69bf8d20353d65bf665c",
+              "F3-music-qx10-a9300c9ea003c8d10615",
+              "F3-music-qx10-1ef2048724f089670cc1",
+              "F3-music-qx10-d257e2b5b1dd7e8fafbe",
+              "F3-music-qx10-85af76c349daf5c1ef01",
+              "F3-music-qx10-547e011199139f110e66",
+              "F3-music-qx10-4a7da93732f5f9b4f66c",
+              "F3-music-qx10-8629b2800a00f20469ad",
+              "F3-music-qx10-95af9509c6263afddc8b",
+              "F3-music-qx10-250cfa5f8571c9e05431",
+              "F3-music-qx10-a743b3c828fe0f2bd0f7",
+              "F3-music-qx10-eac7840f38930c6447ba",
+              "F3-music-qx10-7ed46d4c266a5507b889",
+              "F3-music-qx10-4401b8d42552df50f039",
+              "F3-music-qx10-075de84bfcd7567783f8"
+            ],
+            "note": "17 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F3-music-qx10-8cdb43e749d2244ad7f7",
+              "F3-music-qx10-7715b24c3dcc960e01df",
+              "F3-music-qx10-69bf8d20353d65bf665c",
+              "F3-music-qx10-a9300c9ea003c8d10615",
+              "F3-music-qx10-1ef2048724f089670cc1",
+              "F3-music-qx10-d257e2b5b1dd7e8fafbe"
+            ]
           },
           {
             "id": "appreciation",
@@ -113779,17 +114369,55 @@
               "bm": "Apresiasi muzik",
               "en": "Listening and cultural appreciation"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-appreciation"
+            ],
+            "questionIds": [
+              "F3-music-qx10-0295661cc74b6d16d7a0",
+              "F3-music-qx10-ebf5c39b6aeabf0224b9",
+              "F3-music-qx10-b2a2c8a2e700c2b1ae58",
+              "F3-music-qx10-ddc74e6e1a4f0d5a35b5",
+              "F3-music-qx10-ac998b16cd6734d76c8a",
+              "F3-music-qx10-b61cd6c5d93f411d085d",
+              "F3-music-qx10-1338bffd259bf25d3c28",
+              "F3-music-qx10-5cc75a660e30ea7231a0",
+              "F3-music-qx10-4efac934da91ccf4f91a",
+              "F3-music-qx10-f10bbc7b3636660102fd",
+              "F3-music-qx10-d9418a941f20c2ce3306",
+              "F3-music-qx10-38a331ebbd1b7c30ffeb",
+              "F3-music-qx10-1c02e9c4d40c886f7ef2",
+              "F3-music-qx10-ed3f0f266dc21d0830ed",
+              "F3-music-qx10-81cab5436405487d31a7",
+              "F3-music-qx10-9c6bcf0f94121ee4d5ea",
+              "F3-music-qx10-c4e1ec71601303389922",
+              "F3-music-qx10-77dcc2873244ae537925",
+              "F3-music-qx10-a4901ba75bef5ad51c21",
+              "F3-music-qx10-0ba37cfb209f37c9313f",
+              "F3-music-qx10-6af38b77b8559b97ffa8",
+              "F3-music-qx10-a27c53d505370d12a341",
+              "F3-music-qx10-9ca6030dd80df2a1347e",
+              "F3-music-qx10-d51e15d7a23fd78b6d56",
+              "F3-music-qx10-13138bff59bc9e693615",
+              "F3-music-qx10-485753aded56744e9e2a",
+              "F3-music-qx10-d6822b0a3c1366109bbd",
+              "F3-music-qx10-28ee4cc4f1c88be859ce"
+            ],
+            "note": "28 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F3-music-qx10-0295661cc74b6d16d7a0",
+              "F3-music-qx10-ebf5c39b6aeabf0224b9",
+              "F3-music-qx10-b2a2c8a2e700c2b1ae58",
+              "F3-music-qx10-ddc74e6e1a4f0d5a35b5",
+              "F3-music-qx10-ac998b16cd6734d76c8a",
+              "F3-music-qx10-b61cd6c5d93f411d085d"
+            ]
           },
           {
             "id": "project",
@@ -113798,17 +114426,35 @@
               "bm": "Perancangan dan persembahan",
               "en": "Performance planning and practice"
             },
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
+            "status": "partial",
+            "models": [
+              "v2-qx10-music-project"
+            ],
+            "questionIds": [
+              "F3-music-qx10-84bb84ae1fa49814f8d4",
+              "F3-music-qx10-094c54ebc5a6c1a899a8",
+              "F3-music-qx10-8ba0335111608dc501bc",
+              "F3-music-qx10-54bc745876919f72287d",
+              "F3-music-qx10-b4dcab7abd71a9568f48",
+              "F3-music-qx10-95aa98a4de041976ebeb",
+              "F3-music-qx10-5ea8534bc31371ccae2d",
+              "F3-music-qx10-2421bc6fbe96bda5286a"
+            ],
+            "note": "8 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-music-secondary"
             ],
-            "questionCount": 0,
-            "independentCount": 0,
+            "questionCount": 8,
+            "independentCount": 8,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F3-music-qx10-84bb84ae1fa49814f8d4",
+              "F3-music-qx10-094c54ebc5a6c1a899a8",
+              "F3-music-qx10-8ba0335111608dc501bc",
+              "F3-music-qx10-54bc745876919f72287d",
+              "F3-music-qx10-b4dcab7abd71a9568f48",
+              "F3-music-qx10-95aa98a4de041976ebeb"
+            ]
           }
         ],
         "performanceTasks": [
@@ -114010,9 +114656,9 @@
         ],
         "summary": {
           "represented": 0,
-          "partial": 1,
+          "partial": 6,
           "missing": 0,
-          "performance": 5
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -130936,10 +131582,21 @@
           "P6-music"
         ],
         "added": 548
+      },
+      {
+        "date": "2026-10-10",
+        "contentRevision": "861080c8fa247d85",
+        "previousRevision": "2c21dbf6a4da0957",
+        "courses": [
+          "F1-music",
+          "F2-music",
+          "F3-music"
+        ],
+        "added": 491
       }
     ],
-    "addedTotal": 9250,
-    "tierShortfallP1toF3": 18012,
+    "addedTotal": 9741,
+    "tierShortfallP1toF3": 17584,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
