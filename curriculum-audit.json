@@ -3,17 +3,17 @@
   "date": "2026-10-02",
   "generatedAt": "2026-10-10T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "b77275f626ed8af4",
+  "contentRevision": "df767c716b5811b8",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 116922,
-    "active": 50738,
-    "gradeScope": 50299,
+    "stored": 117393,
+    "active": 51209,
+    "gradeScope": 50770,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 15,
-    "questionShortfall": 68180,
+    "questionShortfall": 67709,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -49256,8 +49256,8 @@
       "level": "P4",
       "subject": "history",
       "title": "Sejarah / History",
-      "active": 592,
-      "stored": 1167,
+      "active": 602,
+      "stored": 1177,
       "retired": 575,
       "sourceIds": [
         "sh-lenggong",
@@ -49622,14 +49622,17 @@
               "P4-history-qx10-dd6c15d04169a0c28bf2",
               "P4-history-qx10-be99396771b38e590687",
               "P4-history-qx10-39e0e738a3d5f9413dcf",
-              "P4-history-qx10-2ecb22b40734a745b144"
+              "P4-history-qx10-2ecb22b40734a745b144",
+              "P4-history-qx10-64b9a4ffea432986e118",
+              "P4-history-qx10-f8e9ca80723bed3ad300",
+              "P4-history-qx10-46e39c93bcb5b3cd5532"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-p4"
             ],
-            "questionCount": 47,
-            "independentCount": 47,
+            "questionCount": 50,
+            "independentCount": 50,
             "guidedCount": 0,
             "evidenceIds": [
               "HP4-review-sh-F1-history-term-definition-legacy-fact-f1-sj-02-0",
@@ -49881,14 +49884,16 @@
               "P4-history-qx10-2382896f1999477b00bc",
               "P4-history-qx10-3049cf13b561a05b7a42",
               "P4-history-qx10-eabc95252c172197c03a",
-              "P4-history-qx10-791f4fc8e92764a8cc89"
+              "P4-history-qx10-791f4fc8e92764a8cc89",
+              "P4-history-qx10-8d1e1692140e449261b1",
+              "P4-history-qx10-30cd871c30b46d973c10"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-p4"
             ],
-            "questionCount": 68,
-            "independentCount": 68,
+            "questionCount": 70,
+            "independentCount": 70,
             "guidedCount": 0,
             "evidenceIds": [
               "HP4-review-sh-F2-history-term-definition-legacy-fact-f2-sj-01-0",
@@ -49978,14 +49983,19 @@
               "P4-history-qx10-eaf3afd6017334dbf1ae",
               "P4-history-qx10-d9ae0a99ba974dd0c80d",
               "P4-history-qx10-1369b26310b4fe1eea25",
-              "P4-history-qx10-5ea3b094513d0c01dd63"
+              "P4-history-qx10-5ea3b094513d0c01dd63",
+              "P4-history-qx10-4681a1d0339634456b52",
+              "P4-history-qx10-8dc66c642bccfa148f8d",
+              "P4-history-qx10-f26e7e8cf683eed3d7b0",
+              "P4-history-qx10-e3c892b32c449c01444d",
+              "P4-history-qx10-bbe3c8a95eb20f8e936b"
             ],
-            "note": "68 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "note": "73 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "sourceIds": [
               "cfh-history-p4"
             ],
-            "questionCount": 68,
-            "independentCount": 68,
+            "questionCount": 73,
+            "independentCount": 73,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-history-qx10-efb934f49f7bfebad34d",
@@ -63541,8 +63551,8 @@
       "level": "P5",
       "subject": "history",
       "title": "Sejarah / History",
-      "active": 559,
-      "stored": 1320,
+      "active": 564,
+      "stored": 1325,
       "retired": 761,
       "sourceIds": [
         "sh-merdeka",
@@ -63941,14 +63951,16 @@
               "P5-history-qx10-1e26db50be310b607645",
               "P5-history-qx10-12a51507af3764276288",
               "P5-history-qx10-ed0a82ff88e3b15c83c0",
-              "P5-history-qx10-bac57abd3b85207c642d"
+              "P5-history-qx10-bac57abd3b85207c642d",
+              "P5-history-qx10-74841aea22fa472fd232",
+              "P5-history-qx10-7d38c07eb3e143e1140d"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-p5"
             ],
-            "questionCount": 165,
-            "independentCount": 165,
+            "questionCount": 167,
+            "independentCount": 167,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P5-history-concept-merdeka-date-merdeka-date",
@@ -64023,14 +64035,17 @@
               "P5-history-qx10-ab84aaac08c22ea11eb7",
               "P5-history-qx10-019fff1ffe32c8cd7a0c",
               "P5-history-qx10-b2237e0db01cbb284f6d",
-              "P5-history-qx10-335c286525cd5947fb89"
+              "P5-history-qx10-335c286525cd5947fb89",
+              "P5-history-qx10-adcd587a4f897f8390bf",
+              "P5-history-qx10-a98412b15fbfdf9e81e2",
+              "P5-history-qx10-09329707a6d5e93a7b38"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-p5"
             ],
-            "questionCount": 52,
-            "independentCount": 52,
+            "questionCount": 55,
+            "independentCount": 55,
             "guidedCount": 0,
             "evidenceIds": [
               "p5h-head-state",
@@ -92709,8 +92724,8 @@
       "level": "F1",
       "subject": "history",
       "title": "Sejarah / History",
-      "active": 301,
-      "stored": 1188,
+      "active": 331,
+      "stored": 1218,
       "retired": 599,
       "sourceIds": [
         "sh-lenggong",
@@ -92731,13 +92746,15 @@
         "sh-unesco-438",
         "sh-unesco-441",
         "sh-dskp-f1",
-        "curriculum-v2-history"
+        "curriculum-v2-history",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F1-history",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-history-f1"
+          "cfh-history-f1",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -92750,7 +92767,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-enquiry"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-01-0",
@@ -92774,14 +92792,19 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-01-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-01-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-01-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-01-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-01-21",
+              "F1-history-qx10-645af8a30231f6ff8723",
+              "F1-history-qx10-194e1a1a94fb727b8c50",
+              "F1-history-qx10-ac559e2b8f77df688fe9",
+              "F1-history-qx10-4f27d06b8e0897dcb034",
+              "F1-history-qx10-e4f9aa77c0f5ddd22278"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 27,
+            "independentCount": 27,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-01-0",
@@ -92801,7 +92824,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-ice-age"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-02-0",
@@ -92825,14 +92849,19 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-02-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-02-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-02-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-02-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-02-21",
+              "F1-history-qx10-c09028e090836c25009e",
+              "F1-history-qx10-e1ee9f0862c5a7ce3801",
+              "F1-history-qx10-a16d3c2cd24567be2ae8",
+              "F1-history-qx10-2cba8fdeea8a986532de",
+              "F1-history-qx10-85dc3e0f0b42829d5320"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 27,
+            "independentCount": 27,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-02-0",
@@ -92852,7 +92881,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-prehistory"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-03-0",
@@ -92876,14 +92906,18 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-03-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-03-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-03-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-03-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-03-21",
+              "F1-history-qx10-c80469bcf34e95b9388a",
+              "F1-history-qx10-d8ee274a20a83028ddca",
+              "F1-history-qx10-bf7e18a86efc768a8239",
+              "F1-history-qx10-252b43c915028977c5e2"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 26,
+            "independentCount": 26,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-03-0",
@@ -92903,7 +92937,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-civilisations"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-04-0",
@@ -92949,14 +92984,19 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-05-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-05-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-05-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-05-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-05-21",
+              "F1-history-qx10-6372ea414d8c57c26c6a",
+              "F1-history-qx10-8d125385481215c5fee9",
+              "F1-history-qx10-7edb58dcc7709528741f",
+              "F1-history-qx10-6ed831647c319994eeb6",
+              "F1-history-qx10-e4aaf3fa3eaeea64a463"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 44,
-            "independentCount": 44,
+            "questionCount": 49,
+            "independentCount": 49,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-04-0",
@@ -92976,7 +93016,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-development"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-06-0",
@@ -93022,14 +93063,19 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-07-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-07-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-07-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-07-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-07-21",
+              "F1-history-qx10-787bcc8187acf511ec1c",
+              "F1-history-qx10-c8c53a9298421d37d912",
+              "F1-history-qx10-9981b66e389f59537f8d",
+              "F1-history-qx10-c6e73bb1479896ede5a2",
+              "F1-history-qx10-98be07ba8f345e8a7c01"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 44,
-            "independentCount": 44,
+            "questionCount": 49,
+            "independentCount": 49,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-06-0",
@@ -93049,7 +93095,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-islamic"
             ],
             "questionIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-08-0",
@@ -93073,14 +93120,20 @@
               "sh-F1-history-term-definition-legacy-fact-f1-sj-08-18",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-08-19",
               "sh-F1-history-term-definition-legacy-fact-f1-sj-08-20",
-              "sh-F1-history-term-definition-legacy-fact-f1-sj-08-21"
+              "sh-F1-history-term-definition-legacy-fact-f1-sj-08-21",
+              "F1-history-qx10-f83f59cd5369df1bf554",
+              "F1-history-qx10-c6e272c19dcefeb792ed",
+              "F1-history-qx10-b169deaa0985aa053fab",
+              "F1-history-qx10-20d8f9f0f1d853916d93",
+              "F1-history-qx10-11092a88092fc2ae1ac1",
+              "F1-history-qx10-8304f23931f1a31a5eea"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f1"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F1-history-term-definition-legacy-fact-f1-sj-08-0",
@@ -104533,8 +104586,8 @@
       "level": "F2",
       "subject": "history",
       "title": "Sejarah / History",
-      "active": 283,
-      "stored": 1170,
+      "active": 345,
+      "stored": 1232,
       "retired": 617,
       "sourceIds": [
         "sh-melaka",
@@ -104542,13 +104595,15 @@
         "sh-author",
         "sh-legacy",
         "sh-dskp-f2",
-        "curriculum-v2-history"
+        "curriculum-v2-history",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F2-history",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-history-f2"
+          "cfh-history-f2",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -104698,7 +104753,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-melaka"
             ],
             "questionIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-05-0",
@@ -104727,14 +104783,40 @@
               "sh-F2-history-term-definition-legacy-fact-f2-sj-05-23",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-05-24",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-05-25",
-              "sh-F2-history-term-definition-legacy-fact-f2-sj-05-26"
+              "sh-F2-history-term-definition-legacy-fact-f2-sj-05-26",
+              "F2-history-qx10-481c68b2ab3326323f08",
+              "F2-history-qx10-532a90e647b11f1d16c7",
+              "F2-history-qx10-be16f04373075492fe3b",
+              "F2-history-qx10-a5406c936a0372b2cd34",
+              "F2-history-qx10-c2cc10790dc12598a9dc",
+              "F2-history-qx10-ac28b2d9cb25dfd669ba",
+              "F2-history-qx10-8f6230eb673e88c1f19b",
+              "F2-history-qx10-48f64d1e427367e88645",
+              "F2-history-qx10-8b5f20bfef9351c34e74",
+              "F2-history-qx10-8ec20fc68ca7f4104cc0",
+              "F2-history-qx10-862d9287cda44a4b01be",
+              "F2-history-qx10-e87956b26e14ff0f574f",
+              "F2-history-qx10-92cd3672357bd52638dc",
+              "F2-history-qx10-e8c55e4d2da928c9bd93",
+              "F2-history-qx10-83809fa6e513c6c84840",
+              "F2-history-qx10-d5968ba7f8327d6be295",
+              "F2-history-qx10-3792f08ce74ab2366173",
+              "F2-history-qx10-66557e28da9d89c17e40",
+              "F2-history-qx10-a9d7aedc83bf91ad1265",
+              "F2-history-qx10-32e591d6d38be19ab9c7",
+              "F2-history-qx10-87cf3a988cc9ef1797c8",
+              "F2-history-qx10-2592bef51cf070a40089",
+              "F2-history-qx10-61ebc843480598c715c4",
+              "F2-history-qx10-8d8ad6f1f70bce79e212",
+              "F2-history-qx10-c6184d5ee709905a66bd",
+              "F2-history-qx10-21afe31b1bd12fbe1635"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f2"
             ],
-            "questionCount": 27,
-            "independentCount": 27,
+            "questionCount": 53,
+            "independentCount": 53,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-05-0",
@@ -104754,7 +104836,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-successors"
             ],
             "questionIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-06-0",
@@ -104810,14 +104893,23 @@
               "sh-F2-history-term-definition-legacy-fact-f2-sj-07-23",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-07-24",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-07-25",
-              "sh-F2-history-term-definition-legacy-fact-f2-sj-07-26"
+              "sh-F2-history-term-definition-legacy-fact-f2-sj-07-26",
+              "F2-history-qx10-4dabb1d0284c5646ab9a",
+              "F2-history-qx10-af27daeeb38819b672cb",
+              "F2-history-qx10-2edb1e155e6b09b76350",
+              "F2-history-qx10-97ac5c60c4d80ca77a6d",
+              "F2-history-qx10-cd3d81059e2826fd6610",
+              "F2-history-qx10-49d9a7c05591a1100f0b",
+              "F2-history-qx10-966d5dfc17f7597768ee",
+              "F2-history-qx10-be8747a030ad2717754d",
+              "F2-history-qx10-170c7e9001a275089660"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f2"
             ],
-            "questionCount": 54,
-            "independentCount": 54,
+            "questionCount": 63,
+            "independentCount": 63,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-06-0",
@@ -104837,7 +104929,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-northern-states"
             ],
             "questionIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-08-0",
@@ -104893,14 +104986,23 @@
               "sh-F2-history-term-definition-legacy-fact-f2-sj-09-23",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-09-24",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-09-25",
-              "sh-F2-history-term-definition-legacy-fact-f2-sj-09-26"
+              "sh-F2-history-term-definition-legacy-fact-f2-sj-09-26",
+              "F2-history-qx10-3cf400b03e140ef683ea",
+              "F2-history-qx10-6e76690f2f77e1d0d9ec",
+              "F2-history-qx10-cfe4605436fa586278a7",
+              "F2-history-qx10-d6944dcf1fce64edf9d1",
+              "F2-history-qx10-68951b03a7d7500da334",
+              "F2-history-qx10-9a3c449a2598cc96eb89",
+              "F2-history-qx10-b18b999c5a3695fa8b5c",
+              "F2-history-qx10-893ac150a203d99511f7",
+              "F2-history-qx10-cb2f329faee60bed6342"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f2"
             ],
-            "questionCount": 54,
-            "independentCount": 54,
+            "questionCount": 63,
+            "independentCount": 63,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-08-0",
@@ -104920,7 +105022,8 @@
             },
             "status": "partial",
             "models": [
-              "term-definition"
+              "term-definition",
+              "v2-qx10-history-borneo"
             ],
             "questionIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-10-0",
@@ -104949,14 +105052,32 @@
               "sh-F2-history-term-definition-legacy-fact-f2-sj-10-23",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-10-24",
               "sh-F2-history-term-definition-legacy-fact-f2-sj-10-25",
-              "sh-F2-history-term-definition-legacy-fact-f2-sj-10-26"
+              "sh-F2-history-term-definition-legacy-fact-f2-sj-10-26",
+              "F2-history-qx10-13f46d7031d80585c288",
+              "F2-history-qx10-d517e38998c11ffb4532",
+              "F2-history-qx10-174ad9c932005d1ed060",
+              "F2-history-qx10-b9c5052deb6827ca6367",
+              "F2-history-qx10-d86b5c7badb04fb8673f",
+              "F2-history-qx10-aa1d428bcca6461a74ef",
+              "F2-history-qx10-d765780057073d3c5604",
+              "F2-history-qx10-d09588fe2d992970556e",
+              "F2-history-qx10-3a95bfa3bd417e1b46b4",
+              "F2-history-qx10-904ea09a120f2e0c8278",
+              "F2-history-qx10-9ba526e6d6af975428d7",
+              "F2-history-qx10-a31a694d1c28743692cd",
+              "F2-history-qx10-813c9e751390acf29fc5",
+              "F2-history-qx10-47eb0aff06b477255b50",
+              "F2-history-qx10-a366cd3e4e5eff79d797",
+              "F2-history-qx10-da2e818cf87d936eac94",
+              "F2-history-qx10-2ed16bd6965bdea4cec0",
+              "F2-history-qx10-2be699c40e6387a64d62"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f2"
             ],
-            "questionCount": 27,
-            "independentCount": 27,
+            "questionCount": 45,
+            "independentCount": 45,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-F2-history-term-definition-legacy-fact-f2-sj-10-0",
@@ -105683,21 +105804,23 @@
       "level": "F2",
       "subject": "rbt",
       "title": "设计与工艺",
-      "active": 565,
-      "stored": 925,
+      "active": 621,
+      "stored": 981,
       "retired": 360,
       "sourceIds": [
         "mt-rbt-f2",
         "curriculum-v2-rbt",
         "cf-stem-rbt-f2",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F2-rbt",
         "framework": "KSSM",
         "sourceIds": [
           "cf-stem-rbt-f2",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -105707,24 +105830,56 @@
             "status": "partial",
             "models": [
               "v2-cf-inventive-conflict",
-              "v2-qa29-rbt-inventive"
+              "v2-qa29-rbt-inventive",
+              "v2-qx10-rbt-inventive"
             ],
             "questionIds": [
               "F2-rbt-v2-ff5b5bb08d46f1f4b1b9",
               "F2-rbt-qa29-dd1b139d8910f23d7f6f",
-              "F2-rbt-qa29-1d23877a1a892f488225"
+              "F2-rbt-qa29-1d23877a1a892f488225",
+              "F2-rbt-qx10-1059650ace9ffdceacb1",
+              "F2-rbt-qx10-bcdb65a81ba69a9ff135",
+              "F2-rbt-qx10-5ccde9c1a50835204ffb",
+              "F2-rbt-qx10-6050f88bcf53cb874489",
+              "F2-rbt-qx10-b68eeefaa4a66ebbb363",
+              "F2-rbt-qx10-3af028b556a30136e75a",
+              "F2-rbt-qx10-27f00742169768625009",
+              "F2-rbt-qx10-8beec00e5ea64ad1fa0f",
+              "F2-rbt-qx10-c3e84c1e3169e0e4c2a1",
+              "F2-rbt-qx10-8e13e420f69d5342c0a0",
+              "F2-rbt-qx10-ab76c5e7ac6e38600721",
+              "F2-rbt-qx10-7951eebd4b6594c408dd",
+              "F2-rbt-qx10-adaeb1036b4e0ef8262f",
+              "F2-rbt-qx10-6067479669b2d3dc1f40",
+              "F2-rbt-qx10-3a660498def69e87d257",
+              "F2-rbt-qx10-8989442e1016c402abe4",
+              "F2-rbt-qx10-2330a1382f2e4436ca6e",
+              "F2-rbt-qx10-46e6c3a1f1437f37ec3a",
+              "F2-rbt-qx10-9831fc229e41582fac5a",
+              "F2-rbt-qx10-5853447a2faff7b36058",
+              "F2-rbt-qx10-dc5a8b0c55e14e104724",
+              "F2-rbt-qx10-f623f602a5d655b01a96",
+              "F2-rbt-qx10-38a3318ed558e984cafc",
+              "F2-rbt-qx10-7d694e3c9321c061bd18",
+              "F2-rbt-qx10-5be5a9ff9f6de86f4e69",
+              "F2-rbt-qx10-3b33dcbff7a8dc30941b",
+              "F2-rbt-qx10-6e3b92e068ea1aa387e5",
+              "F2-rbt-qx10-1218693049c33a54ee92"
             ],
             "sourceIds": [
               "cf-stem-rbt-f2"
             ],
-            "note": "3 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 3,
-            "independentCount": 3,
+            "note": "31 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 31,
+            "independentCount": 31,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-rbt-v2-ff5b5bb08d46f1f4b1b9",
               "F2-rbt-qa29-dd1b139d8910f23d7f6f",
-              "F2-rbt-qa29-1d23877a1a892f488225"
+              "F2-rbt-qa29-1d23877a1a892f488225",
+              "F2-rbt-qx10-1059650ace9ffdceacb1",
+              "F2-rbt-qx10-bcdb65a81ba69a9ff135",
+              "F2-rbt-qx10-5ccde9c1a50835204ffb"
             ]
           },
           {
@@ -106337,24 +106492,56 @@
             "title": "Aquaponics",
             "status": "partial",
             "models": [
-              "v2-qa29-rbt-aquaponics"
+              "v2-qa29-rbt-aquaponics",
+              "v2-qx10-rbt-aquaponics"
             ],
             "questionIds": [
               "F2-rbt-qa29-8ce12e1115faa639a384",
               "F2-rbt-qa29-10931ef9035ab843d835",
-              "F2-rbt-qa29-4b944e75a41e273bbb69"
+              "F2-rbt-qa29-4b944e75a41e273bbb69",
+              "F2-rbt-qx10-99b5e9284bd3cae352dc",
+              "F2-rbt-qx10-b93051aafce044328f97",
+              "F2-rbt-qx10-b4bfdf7bcb8fac14db05",
+              "F2-rbt-qx10-e7dbeb9378a39d6b7ba1",
+              "F2-rbt-qx10-759bb589014457dbabc6",
+              "F2-rbt-qx10-fbcc4b78675c399ea601",
+              "F2-rbt-qx10-38b7a1a1f9d4e569dc31",
+              "F2-rbt-qx10-0416848ea5b37136b746",
+              "F2-rbt-qx10-df44475b5486c7333d1d",
+              "F2-rbt-qx10-1076bb1027b13370a4d0",
+              "F2-rbt-qx10-fddef0edcd09d01b694f",
+              "F2-rbt-qx10-66c167e7c5135f7613a3",
+              "F2-rbt-qx10-c087d2302a8894a0a13d",
+              "F2-rbt-qx10-147af1e0c1990dde33c0",
+              "F2-rbt-qx10-4db159bd4fc498a9bd4d",
+              "F2-rbt-qx10-f51fb07851b2bfa9f0c0",
+              "F2-rbt-qx10-707f382ec11e4e889429",
+              "F2-rbt-qx10-e9c1c9afc65bf5bcb592",
+              "F2-rbt-qx10-86277387b50b84c0da8e",
+              "F2-rbt-qx10-183a5541a197b5d74633",
+              "F2-rbt-qx10-be6500fdbd0c64bd6e97",
+              "F2-rbt-qx10-5e25a65b40b14340c629",
+              "F2-rbt-qx10-529fad9bafa209f0d400",
+              "F2-rbt-qx10-40bb670bec5e31a5e8ad",
+              "F2-rbt-qx10-9f58dfee1b01abb5d6cc",
+              "F2-rbt-qx10-7df0da49dbbb7de8fa87",
+              "F2-rbt-qx10-20e029a3742f8cc42fb1",
+              "F2-rbt-qx10-a7bcaad0b63d8f9c5d05"
             ],
             "sourceIds": [
               "cf-stem-rbt-f2"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 31,
+            "independentCount": 31,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-rbt-qa29-8ce12e1115faa639a384",
               "F2-rbt-qa29-10931ef9035ab843d835",
-              "F2-rbt-qa29-4b944e75a41e273bbb69"
+              "F2-rbt-qa29-4b944e75a41e273bbb69",
+              "F2-rbt-qx10-99b5e9284bd3cae352dc",
+              "F2-rbt-qx10-b93051aafce044328f97",
+              "F2-rbt-qx10-b4bfdf7bcb8fac14db05"
             ]
           },
           {
@@ -115883,21 +116070,23 @@
       "level": "F3",
       "subject": "history",
       "title": "Sejarah / History",
-      "active": 353,
-      "stored": 900,
+      "active": 631,
+      "stored": 1178,
       "retired": 547,
       "sourceIds": [
         "sh-pangkor",
         "sh-melaka",
         "sh-author",
         "hf3-original",
-        "curriculum-v2-history"
+        "curriculum-v2-history",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F3-history",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
-          "cfh-history-f3"
+          "cfh-history-f3",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -115916,7 +116105,8 @@
               "concept-meaning",
               "corroborating-evidence",
               "reject-overclaim",
-              "test-counterevidence"
+              "test-counterevidence",
+              "v2-qx10-history-arrival"
             ],
             "questionIds": [
               "hf3-concept-meaning-7.1-concept-0",
@@ -115989,14 +116179,46 @@
               "hf3-bounded-inference-7.1-dossier-8",
               "hf3-corroborating-evidence-7.1-dossier-8",
               "hf3-reject-overclaim-7.1-dossier-8",
-              "hf3-test-counterevidence-7.1-dossier-8"
+              "hf3-test-counterevidence-7.1-dossier-8",
+              "F3-history-qx10-7de2b4c7ac82aa6fa582",
+              "F3-history-qx10-5dd28738545e9346b423",
+              "F3-history-qx10-c6972d36808256ab5c7b",
+              "F3-history-qx10-7252dc727e3b71b3a0b5",
+              "F3-history-qx10-a1575c0d00908df3f6e5",
+              "F3-history-qx10-703e6a4ee4191d5a46e9",
+              "F3-history-qx10-d86f5f587faf2cd5a6c0",
+              "F3-history-qx10-cbb92a390b3a16d79327",
+              "F3-history-qx10-8a799a9f1c700716a8de",
+              "F3-history-qx10-ed9d6458b4c1c420ba5b",
+              "F3-history-qx10-ec4c944ba6605dc9a69a",
+              "F3-history-qx10-df9ad6c44f064b4521f6",
+              "F3-history-qx10-591558bbcbe660d2c9c0",
+              "F3-history-qx10-013b0698328bc18a21a4",
+              "F3-history-qx10-dcbfabe2011c16557815",
+              "F3-history-qx10-8107cb68c8f241bda74a",
+              "F3-history-qx10-82b1c0d2998d45eaead3",
+              "F3-history-qx10-926bbfff13345acb407a",
+              "F3-history-qx10-33b0e3c41bd32b22b5f5",
+              "F3-history-qx10-51b8b69c7663ee625d5d",
+              "F3-history-qx10-fc3d8734f1c6b1400062",
+              "F3-history-qx10-bcf2f5545ec78023b27e",
+              "F3-history-qx10-9b06e17d922341815e7d",
+              "F3-history-qx10-89586826468ad23895c0",
+              "F3-history-qx10-bde647730b9786387d03",
+              "F3-history-qx10-cf021e97c516a8829255",
+              "F3-history-qx10-957c2653960065db84c0",
+              "F3-history-qx10-2d0c976038b5dd11c67e",
+              "F3-history-qx10-4f86dc800ef6be0945b2",
+              "F3-history-qx10-83355a88a98fd4e9a9b8",
+              "F3-history-qx10-7f1b5c20968e76716f61",
+              "F3-history-qx10-1af73cca946cfb9fa68b"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f3"
             ],
-            "questionCount": 71,
-            "independentCount": 53,
+            "questionCount": 103,
+            "independentCount": 85,
             "guidedCount": 18,
             "evidenceIds": [
               "hf3-concept-meaning-7.1-concept-0",
@@ -116025,7 +116247,8 @@
               "test-counterevidence",
               "v2-history-corroborate",
               "v2-history-limited-support",
-              "v2-history-missing-evidence"
+              "v2-history-missing-evidence",
+              "v2-qx10-history-administration"
             ],
             "questionIds": [
               "hf3-concept-meaning-7.2-concept-0",
@@ -116194,14 +116417,148 @@
               "hf3-test-counterevidence-7.5-dossier-8",
               "F3-history-v2-56b9bf3e136c17a694f4",
               "F3-history-v2-57af8ddc84007c78cb56",
-              "F3-history-v2-08089a79a7ee872516ee"
+              "F3-history-v2-08089a79a7ee872516ee",
+              "F3-history-qx10-439928dc22cc22d16e21",
+              "F3-history-qx10-f6409b5766e20fbb36b1",
+              "F3-history-qx10-dfdf6cf6550ddac0a39f",
+              "F3-history-qx10-d1dfa2a919ecc7c3707f",
+              "F3-history-qx10-2bc5be5e1337c6f2a6e7",
+              "F3-history-qx10-dea6af5032bb68747133",
+              "F3-history-qx10-6f76f5a9565365baba91",
+              "F3-history-qx10-91763999316093948fb2",
+              "F3-history-qx10-43dcca528ad418cbee0f",
+              "F3-history-qx10-12b50670e1171172451a",
+              "F3-history-qx10-239c9c56fa95721dfad7",
+              "F3-history-qx10-5983fe1a2e6639af9a0e",
+              "F3-history-qx10-98088bfc08703009941a",
+              "F3-history-qx10-01c9e79caf35ee9539d6",
+              "F3-history-qx10-d9138b062c15aec3f3b6",
+              "F3-history-qx10-e7c44d6b049e9a9f572b",
+              "F3-history-qx10-e021242ae4a1a4dc77ce",
+              "F3-history-qx10-c43d44a8de89594ebd02",
+              "F3-history-qx10-744a0d41d63ce7595a90",
+              "F3-history-qx10-135598531a8678640d96",
+              "F3-history-qx10-a7019f2d42c20c7d2b27",
+              "F3-history-qx10-4aeb2499bb2316ea6375",
+              "F3-history-qx10-8e62d2cb4101c25f5de2",
+              "F3-history-qx10-9b497f620572cc44ddf7",
+              "F3-history-qx10-ed975e5e9ad63477b2fe",
+              "F3-history-qx10-3160f1f87597fe591664",
+              "F3-history-qx10-3c20b95a5884255804b9",
+              "F3-history-qx10-c0d49a94a999a8370517",
+              "F3-history-qx10-a4ba2c65a7ea07198d6f",
+              "F3-history-qx10-75995735de3ea75b85e3",
+              "F3-history-qx10-b3642416daa013a5d0e0",
+              "F3-history-qx10-37992fe12bc851c68b52",
+              "F3-history-qx10-4bfa0dc4b7217b4f167a",
+              "F3-history-qx10-00a82d96ea8f0f707929",
+              "F3-history-qx10-dcc55b86675ab18302b1",
+              "F3-history-qx10-66e132fd5a479d02553f",
+              "F3-history-qx10-5c476219d27d5152a864",
+              "F3-history-qx10-c9d4ac4d2d0931722393",
+              "F3-history-qx10-cd172ecb7701456ff3f8",
+              "F3-history-qx10-0ace89da888586851c11",
+              "F3-history-qx10-4fc1a6688c67e1c33572",
+              "F3-history-qx10-e81ca5bc7be1280c7fd8",
+              "F3-history-qx10-cf1f4256f4c604672986",
+              "F3-history-qx10-c9ede7b35eeee189f82e",
+              "F3-history-qx10-df1609941e276f5d5cec",
+              "F3-history-qx10-082c00b27b295d69c015",
+              "F3-history-qx10-19ebdc3700ea912626db",
+              "F3-history-qx10-1cf32f19f1782693d1c9",
+              "F3-history-qx10-3f0db0e892c704bc263d",
+              "F3-history-qx10-f534a6161bc25db1e185",
+              "F3-history-qx10-baa6999927d7b63e7dc3",
+              "F3-history-qx10-9d87374866506539b6d3",
+              "F3-history-qx10-f4b5e0a22e282ce5d721",
+              "F3-history-qx10-542565de51ed5367448c",
+              "F3-history-qx10-36bdb375d0c1058834c6",
+              "F3-history-qx10-f70669579526633f689f",
+              "F3-history-qx10-22b322de536e6db5e4e5",
+              "F3-history-qx10-0c09ed0d24f106cbc567",
+              "F3-history-qx10-4823183b341754bae5ff",
+              "F3-history-qx10-e0f7a002379cf4722c56",
+              "F3-history-qx10-0dfa9ce21bf26bb54324",
+              "F3-history-qx10-5085b371f7e63bef53fb",
+              "F3-history-qx10-99786e6c490e9f7e7d7f",
+              "F3-history-qx10-9aa0ce9ba54889f7267a",
+              "F3-history-qx10-205c6ff9a9f4ac10ffdf",
+              "F3-history-qx10-934967ccf643603b889e",
+              "F3-history-qx10-5b4e60c35c57a23741cd",
+              "F3-history-qx10-80f9abfdcbcf21e84581",
+              "F3-history-qx10-9fce0edc82099abac12f",
+              "F3-history-qx10-d2660b5e7778877572f7",
+              "F3-history-qx10-ebb487cc209154ede244",
+              "F3-history-qx10-de47f1698aa3b892107f",
+              "F3-history-qx10-3ca793d62c1b94d97c01",
+              "F3-history-qx10-b064da9bffc0a3af1612",
+              "F3-history-qx10-0c3f1e7fe7617f032a4d",
+              "F3-history-qx10-f334432b89841864ee50",
+              "F3-history-qx10-7d5b0e8038d26f801240",
+              "F3-history-qx10-50b5484500f0f047c0ec",
+              "F3-history-qx10-b989ca0e636baaf233b4",
+              "F3-history-qx10-78175919b85b5da2ff44",
+              "F3-history-qx10-ca41c28ddddc3b93fdc0",
+              "F3-history-qx10-b01c0057f111c0ec60ee",
+              "F3-history-qx10-9a959cf8fd70876ff5cc",
+              "F3-history-qx10-656f15e2da7fc744c516",
+              "F3-history-qx10-2f2defabbbd89f9357d9",
+              "F3-history-qx10-5f64dc51e819721982ba",
+              "F3-history-qx10-c68f3f3439df5a719c1c",
+              "F3-history-qx10-782d79a3043912344abf",
+              "F3-history-qx10-b6132a1a5639e991d0b7",
+              "F3-history-qx10-8bba3eb962ce12680049",
+              "F3-history-qx10-4dcc9cc214ba006df6d7",
+              "F3-history-qx10-97618e8c2b1009fae216",
+              "F3-history-qx10-b3ee8e3b2d69dda85257",
+              "F3-history-qx10-dd7cfe11de013fe8edde",
+              "F3-history-qx10-fdd9286400469588ea2a",
+              "F3-history-qx10-878d20db947b062b1f86",
+              "F3-history-qx10-582cdcfa5039133b0923",
+              "F3-history-qx10-58a9a13fe2819de60392",
+              "F3-history-qx10-59ac946dabe9e7ebfe13",
+              "F3-history-qx10-84849ebac94487cfb191",
+              "F3-history-qx10-de8fc878211c6feff903",
+              "F3-history-qx10-9e2d1daf9dab891386c5",
+              "F3-history-qx10-529820003b3335ed6782",
+              "F3-history-qx10-1a23949516c5d28371bf",
+              "F3-history-qx10-cbfce1efd2f3ca269bd8",
+              "F3-history-qx10-2292e428eaa070bfa288",
+              "F3-history-qx10-a368e89b909e01978ed8",
+              "F3-history-qx10-8dad2ed59842c1f30656",
+              "F3-history-qx10-2ea216983d51dc11df41",
+              "F3-history-qx10-40bac45802fd661b617e",
+              "F3-history-qx10-3e721eb3a52ff4af0237",
+              "F3-history-qx10-b1d75f0b8a67be3283e9",
+              "F3-history-qx10-54018721b18f7eb3a9ac",
+              "F3-history-qx10-ef0d0cf2e827acc52ed7",
+              "F3-history-qx10-0314b7871056d46b1f07",
+              "F3-history-qx10-9255aabce25daa28a521",
+              "F3-history-qx10-e1495ad148ad8bfb21ee",
+              "F3-history-qx10-f1574317ae9ff22697e8",
+              "F3-history-qx10-783b7704f5d375e699ef",
+              "F3-history-qx10-2f99ce24aa193edcadde",
+              "F3-history-qx10-31de6bbd0a591d5d27cc",
+              "F3-history-qx10-a86bc2f67fa206c22bfb",
+              "F3-history-qx10-3edbd069e397fe9dc88f",
+              "F3-history-qx10-aa0dce7157157772bd32",
+              "F3-history-qx10-823f230426335d170cdb",
+              "F3-history-qx10-098a47bd059d25214a3b",
+              "F3-history-qx10-c6046c190faf88688642",
+              "F3-history-qx10-1195f7869f32893fb6b2",
+              "F3-history-qx10-f5dbf80e12bbc26efbe6",
+              "F3-history-qx10-66cd68a1ffad61228cf3",
+              "F3-history-qx10-3c19c89b81ab22a8667b",
+              "F3-history-qx10-9f9bea011157a5e41e28",
+              "F3-history-qx10-426ea84eec7e39575673",
+              "F3-history-qx10-9041037b06ef15a7ea6c"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f3"
             ],
-            "questionCount": 167,
-            "independentCount": 125,
+            "questionCount": 301,
+            "independentCount": 259,
             "guidedCount": 42,
             "evidenceIds": [
               "hf3-concept-meaning-7.2-concept-0",
@@ -116223,7 +116580,8 @@
             "models": [
               "concept-identification",
               "concept-meaning",
-              "test-counterevidence"
+              "test-counterevidence",
+              "v2-qx10-history-effects"
             ],
             "questionIds": [
               "hf3-concept-meaning-7.6-concept-0",
@@ -116260,14 +116618,70 @@
               "hf3-test-counterevidence-7.6-dossier-5",
               "hf3-test-counterevidence-7.6-dossier-6",
               "hf3-test-counterevidence-7.6-dossier-7",
-              "hf3-test-counterevidence-7.6-dossier-8"
+              "hf3-test-counterevidence-7.6-dossier-8",
+              "F3-history-qx10-c03387431b796077547c",
+              "F3-history-qx10-5189a087634899aa90fa",
+              "F3-history-qx10-e7b8eebf9c1e62f566ff",
+              "F3-history-qx10-66d10ed76c6415b3a526",
+              "F3-history-qx10-3c3a452f82a654faa6de",
+              "F3-history-qx10-9139e28f0278109cdec0",
+              "F3-history-qx10-78ffb80a5cea01573202",
+              "F3-history-qx10-45fe55b9ad4ec97946d6",
+              "F3-history-qx10-3a3d66aca8f212caa22d",
+              "F3-history-qx10-06c004a21276698f905c",
+              "F3-history-qx10-1e246adf26952adc6a3f",
+              "F3-history-qx10-af8c66fe7f122004e1c9",
+              "F3-history-qx10-37142693bfe38576695c",
+              "F3-history-qx10-574ce72bd7a793bf860d",
+              "F3-history-qx10-18813385c8eafcdb51be",
+              "F3-history-qx10-95328bc75d640d9d3248",
+              "F3-history-qx10-bca7b3f42ab2d35434a3",
+              "F3-history-qx10-eeb4778a65e5d563189d",
+              "F3-history-qx10-371f84c6f6c583246b22",
+              "F3-history-qx10-2a901173148f1474b542",
+              "F3-history-qx10-7ab047a6ef2af8e9db82",
+              "F3-history-qx10-96bd689340385d789391",
+              "F3-history-qx10-3546189a8c14810f4c11",
+              "F3-history-qx10-00bda5ed969e3e762759",
+              "F3-history-qx10-42c792f1985e600a3d5f",
+              "F3-history-qx10-20cff053a9b50d3d046e",
+              "F3-history-qx10-bde44377f54c57141d3c",
+              "F3-history-qx10-e25d5795f6f75c839914",
+              "F3-history-qx10-5d82e15ab6c979684a65",
+              "F3-history-qx10-acc16509f25e8433bda2",
+              "F3-history-qx10-7521fea377f078fe0eae",
+              "F3-history-qx10-40eee7bcc3d688b303bf",
+              "F3-history-qx10-d04efa0562f4f79c8eb7",
+              "F3-history-qx10-68367c85246851064b38",
+              "F3-history-qx10-3f15f64a4ac12a67733b",
+              "F3-history-qx10-2f610ebfff1d6df7fc5a",
+              "F3-history-qx10-c8b6896d26cc378e9d3c",
+              "F3-history-qx10-6e5428be5ef384445cb5",
+              "F3-history-qx10-b8af6e61203b49432a69",
+              "F3-history-qx10-996ad3735469de0a3d21",
+              "F3-history-qx10-25be29c75dc6720f67a9",
+              "F3-history-qx10-e31388d27954edea6136",
+              "F3-history-qx10-942c2052c07797fd916a",
+              "F3-history-qx10-aebae8212d288f058710",
+              "F3-history-qx10-b77911b45c6e27691857",
+              "F3-history-qx10-fda6d2f0cb00190eca91",
+              "F3-history-qx10-60b0f84516f59b907928",
+              "F3-history-qx10-903e2936449c6f8abf61",
+              "F3-history-qx10-c265906ae862162b5e1e",
+              "F3-history-qx10-1cca6b882722360e3bda",
+              "F3-history-qx10-c5985a736e0b7103a3e5",
+              "F3-history-qx10-d5280af46a335a855924",
+              "F3-history-qx10-bd123005360aec5105f1",
+              "F3-history-qx10-7ff86c717221b3f12472",
+              "F3-history-qx10-7406704eb2a69a49217f",
+              "F3-history-qx10-01827a4252b70b7d55df"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f3"
             ],
-            "questionCount": 35,
-            "independentCount": 26,
+            "questionCount": 91,
+            "independentCount": 82,
             "guidedCount": 9,
             "evidenceIds": [
               "hf3-concept-meaning-7.6-concept-0",
@@ -116289,7 +116703,8 @@
             "models": [
               "concept-identification",
               "concept-meaning",
-              "test-counterevidence"
+              "test-counterevidence",
+              "v2-qx10-history-resistance"
             ],
             "questionIds": [
               "hf3-concept-meaning-8.1-concept-0",
@@ -116361,14 +116776,70 @@
               "hf3-test-counterevidence-8.2-dossier-5",
               "hf3-test-counterevidence-8.2-dossier-6",
               "hf3-test-counterevidence-8.2-dossier-7",
-              "hf3-test-counterevidence-8.2-dossier-8"
+              "hf3-test-counterevidence-8.2-dossier-8",
+              "F3-history-qx10-04e328ebf9d22934f300",
+              "F3-history-qx10-f559b416bfc4f6470635",
+              "F3-history-qx10-ec04806099d1d4d448b2",
+              "F3-history-qx10-10bbaddbdcd7d394599d",
+              "F3-history-qx10-705e06e81ad26daaf105",
+              "F3-history-qx10-47503ba94af323a07c5b",
+              "F3-history-qx10-08156852494197cec59d",
+              "F3-history-qx10-d0c8c633de9c7e7e1b3a",
+              "F3-history-qx10-68bf666f87db15398420",
+              "F3-history-qx10-aa7e94001a7323d036b9",
+              "F3-history-qx10-e1d1863c1b65b1b6840d",
+              "F3-history-qx10-e98361b0018b02ff1926",
+              "F3-history-qx10-91dbc389a1c62f76a8aa",
+              "F3-history-qx10-f21fe1891fdcc0b1bf8b",
+              "F3-history-qx10-92c755facbdb6cc0de6e",
+              "F3-history-qx10-412aa204f2873d081cb0",
+              "F3-history-qx10-6dc80dbc56b3d0fe589c",
+              "F3-history-qx10-87bb9b5d64e5f59f69f8",
+              "F3-history-qx10-0251c68456da9a934766",
+              "F3-history-qx10-2db4282519c0ccc0361a",
+              "F3-history-qx10-17d030c3d39e35ca744b",
+              "F3-history-qx10-2b6ed8785cf4c1429454",
+              "F3-history-qx10-19e8e70c49595732873a",
+              "F3-history-qx10-b8afd669e148fb6a68eb",
+              "F3-history-qx10-8ebcb75689f45c39835e",
+              "F3-history-qx10-d553e0c346d3b0430134",
+              "F3-history-qx10-1dc348e104db1b8b996d",
+              "F3-history-qx10-48c2c38680d0b3c98c90",
+              "F3-history-qx10-cd4654d24c90c6d27882",
+              "F3-history-qx10-dbf597c65a708e72349c",
+              "F3-history-qx10-54cb079637f32b6e0a59",
+              "F3-history-qx10-8d29e2e4be194d372d4e",
+              "F3-history-qx10-2de81ad71b232fe96dd1",
+              "F3-history-qx10-7b6077a18fa12018166d",
+              "F3-history-qx10-a5ad17855ecfa11a4652",
+              "F3-history-qx10-1c382aa49cbc19115eeb",
+              "F3-history-qx10-d0e49b51f67860f4c5a7",
+              "F3-history-qx10-9516970fc79eab9e12ca",
+              "F3-history-qx10-7449df8a7b3b642aa098",
+              "F3-history-qx10-eee6431fad9c484f11f0",
+              "F3-history-qx10-f8b5a421e067e21fe340",
+              "F3-history-qx10-e627306a9f07ae262227",
+              "F3-history-qx10-8d7ebf792c30203a75da",
+              "F3-history-qx10-3face85efdba61319b6a",
+              "F3-history-qx10-0be6f7254881d9847625",
+              "F3-history-qx10-62c8a1929f79779b0fb5",
+              "F3-history-qx10-264f4333e712ef73d555",
+              "F3-history-qx10-f2618c5f307fd702e1e2",
+              "F3-history-qx10-4aa99aeab22e31a6daaf",
+              "F3-history-qx10-ed12181a672f96c6ad51",
+              "F3-history-qx10-224456b1323521cec3ec",
+              "F3-history-qx10-d875377a0c8fef8d1efa",
+              "F3-history-qx10-03f4885e2f02551974f3",
+              "F3-history-qx10-9a4f6211c9d63ab1c1fb",
+              "F3-history-qx10-53d9a30ee4c13215498b",
+              "F3-history-qx10-5a52b900f5d1332218e1"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-history-f3"
             ],
-            "questionCount": 70,
-            "independentCount": 52,
+            "questionCount": 126,
+            "independentCount": 108,
             "guidedCount": 18,
             "evidenceIds": [
               "hf3-concept-meaning-8.1-concept-0",
@@ -117033,19 +117504,21 @@
       "level": "F3",
       "subject": "rbt",
       "title": "设计与工艺",
-      "active": 585,
-      "stored": 901,
+      "active": 615,
+      "stored": 931,
       "retired": 316,
       "sourceIds": [
         "mt-rbt-f3",
         "curriculum-v2-rbt",
-        "cf-stem-rbt-f3"
+        "cf-stem-rbt-f3",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F3-rbt",
         "framework": "KSSM",
         "sourceIds": [
-          "cf-stem-rbt-f3"
+          "cf-stem-rbt-f3",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -117057,7 +117530,8 @@
               "circuit",
               "robotloop",
               "sensor",
-              "sensortrace"
+              "sensortrace",
+              "v2-qx10-rbt-mechatronics"
             ],
             "questionIds": [
               "F3-rbt-sensor-001",
@@ -117283,14 +117757,22 @@
               "F3-rbt-circuit-054",
               "F3-rbt-circuit-055",
               "F3-rbt-circuit-057",
-              "F3-rbt-circuit-058"
+              "F3-rbt-circuit-058",
+              "F3-rbt-qx10-d6934f27d5a09284b587",
+              "F3-rbt-qx10-3d15bfc9180c6b2eaffe",
+              "F3-rbt-qx10-f792eb1158a20e04d211",
+              "F3-rbt-qx10-84aff84264ecfdce802d",
+              "F3-rbt-qx10-dc7d337d7b12915e7748",
+              "F3-rbt-qx10-8b911ead06c7fd4383bd",
+              "F3-rbt-qx10-dafb3997c2b9fbb02fbd",
+              "F3-rbt-qx10-85c279122cedf5d48243"
             ],
             "sourceIds": [
               "cf-stem-rbt-f3"
             ],
-            "note": "224 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 224,
-            "independentCount": 224,
+            "note": "232 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 232,
+            "independentCount": 232,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-rbt-sensor-001",
@@ -117636,7 +118118,8 @@
             "status": "partial",
             "models": [
               "advert",
-              "v2-cf-marketing-evidence"
+              "v2-cf-marketing-evidence",
+              "v2-qx10-rbt-marketing"
             ],
             "questionIds": [
               "F3-rbt-advert-001",
@@ -117699,14 +118182,36 @@
               "F3-rbt-advert-058",
               "F3-rbt-advert-059",
               "F3-rbt-advert-060",
-              "F3-rbt-v2-d46f5a0049bdb54aca48"
+              "F3-rbt-v2-d46f5a0049bdb54aca48",
+              "F3-rbt-qx10-b80745c6c75491ed2334",
+              "F3-rbt-qx10-d995590d8cf70195c9e1",
+              "F3-rbt-qx10-1d46e8424cfc77c10ae1",
+              "F3-rbt-qx10-f5d395ecb6b4f3f2bb6a",
+              "F3-rbt-qx10-13355c601efd94af54c9",
+              "F3-rbt-qx10-e28476a7c6b4b0b6a161",
+              "F3-rbt-qx10-27d266a53fafbf40b6e3",
+              "F3-rbt-qx10-0a1483eae52f6ba209dd",
+              "F3-rbt-qx10-a9c085260c2cece5d2d5",
+              "F3-rbt-qx10-3399348d0d7fc55eeae6",
+              "F3-rbt-qx10-6b031019e1c354a48740",
+              "F3-rbt-qx10-fe6b2ffdca8455828cb1",
+              "F3-rbt-qx10-997afb1073d0b315cdd5",
+              "F3-rbt-qx10-e223b4ad60bffaa7980e",
+              "F3-rbt-qx10-7256f4350f7e6dc08d63",
+              "F3-rbt-qx10-6cdb449e6e400f20f43b",
+              "F3-rbt-qx10-68efbd176d896e898f47",
+              "F3-rbt-qx10-01495decabd124fffd71",
+              "F3-rbt-qx10-abb7f84eab24ef85889f",
+              "F3-rbt-qx10-2caefac8ff56f0fe49d4",
+              "F3-rbt-qx10-fd177ca9d3f1f9ae23b2",
+              "F3-rbt-qx10-b37cc74170cea56157a9"
             ],
             "sourceIds": [
               "cf-stem-rbt-f3"
             ],
-            "note": "61 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 61,
-            "independentCount": 61,
+            "note": "83 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 83,
+            "independentCount": 83,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-rbt-advert-001",
@@ -132819,10 +133324,25 @@
           "P6-history"
         ],
         "added": 1188
+      },
+      {
+        "date": "2026-10-10",
+        "contentRevision": "df767c716b5811b8",
+        "previousRevision": "b77275f626ed8af4",
+        "courses": [
+          "P4-history",
+          "P5-history",
+          "F1-history",
+          "F2-history",
+          "F2-rbt",
+          "F3-history",
+          "F3-rbt"
+        ],
+        "added": 471
       }
     ],
-    "addedTotal": 10929,
-    "tierShortfallP1toF3": 16433,
+    "addedTotal": 11400,
+    "tierShortfallP1toF3": 16029,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
