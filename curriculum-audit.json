@@ -1,25 +1,25 @@
 {
   "schemaVersion": 4,
   "date": "2026-10-02",
-  "generatedAt": "2026-10-20T00:00:00+00:00",
+  "generatedAt": "2026-10-21T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "35cbcb68c3f4c1e2",
+  "contentRevision": "188d9d67c485daaa",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 125533,
-    "active": 59349,
-    "gradeScope": 58910,
+    "stored": 126302,
+    "active": 60118,
+    "gradeScope": 59679,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
-    "coursesAtLeast900": 21,
-    "questionShortfall": 59657,
+    "coursesAtLeast900": 27,
+    "questionShortfall": 59017,
     "represented": 0,
     "partial": 813,
     "missing": 5,
     "performance": 124,
     "courses": 131,
-    "coursesBelow900": 110,
+    "coursesBelow900": 104,
     "added": 849,
     "correctedThisRound": 495,
     "retiredThisRound": 30586,
@@ -31630,8 +31630,8 @@
       "level": "P3",
       "subject": "math",
       "title": "数学",
-      "active": 795,
-      "stored": 1034,
+      "active": 915,
+      "stored": 1154,
       "retired": 239,
       "sourceIds": [
         "mt-math-p3",
@@ -31640,7 +31640,8 @@
         "cf-stem-dpk-option",
         "cs28-p3-expansion-dskp-sjkc",
         "cs28-p3-dskp-decimal",
-        "cs28-dpk-ed3-p3-decimal"
+        "cs28-dpk-ed3-p3-decimal",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P3-math",
@@ -31650,7 +31651,8 @@
           "cf-stem-dpk-option",
           "cs28-p3-expansion-dskp-sjkc",
           "cs28-p3-dskp-decimal",
-          "cs28-dpk-ed3-p3-decimal"
+          "cs28-dpk-ed3-p3-decimal",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -31663,7 +31665,8 @@
               "pattern",
               "place",
               "round",
-              "v2-math-build-number"
+              "v2-math-build-number",
+              "v2-qx10-math-numbers"
             ],
             "questionIds": [
               "P3-math-place-001",
@@ -31853,14 +31856,26 @@
               "P3-math-v2-3bee75ba02741e3aed17",
               "P3-math-v2-3923d050759724974278",
               "P3-math-v2-b72a16d04167db9ad991",
-              "P3-math-v2-70dd788bc071ab6edfe1"
+              "P3-math-v2-70dd788bc071ab6edfe1",
+              "P3-math-qx10-cd2cc1bac8e1fbbcd498",
+              "P3-math-qx10-309cecaf5a46f0def0bf",
+              "P3-math-qx10-33c97cdc3068efef93c3",
+              "P3-math-qx10-6fec5e689af4b2d1c755",
+              "P3-math-qx10-1f22b9d4c0513800b579",
+              "P3-math-qx10-360ec05baeabc4b530d7",
+              "P3-math-qx10-14648b54a7265b357f0d",
+              "P3-math-qx10-2311ef8ce473a10d470e",
+              "P3-math-qx10-80f945b398f4b4208091",
+              "P3-math-qx10-141e144bcd116186f8ef",
+              "P3-math-qx10-d63dba9fb639b8dd86b9",
+              "P3-math-qx10-f865ba969f141d829596"
             ],
             "sourceIds": [
               "cf-stem-math-lower"
             ],
             "note": "本主题保留数位、近似值、数列、比较和组成数的证据；基本运算与未知数已另列。",
-            "questionCount": 188,
-            "independentCount": 188,
+            "questionCount": 200,
+            "independentCount": 200,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-place-001",
@@ -31885,7 +31900,8 @@
               "v2-cs28-p3-representations-convert-0",
               "v2-cs28-p3-representations-convert-1",
               "v2-cs28-p3-representations-convert-2",
-              "v2-cs28-p3-representations-convert-3"
+              "v2-cs28-p3-representations-convert-3",
+              "v2-qx10-math-fractions"
             ],
             "questionIds": [
               "P3-math-fraction-001",
@@ -31987,15 +32003,33 @@
               "P3-math-v2-9aad23db55c02b4db76c",
               "P3-math-v2-1ab433da277eb77ca735",
               "P3-math-v2-cabae5eef5751eb226ea",
-              "P3-math-v2-96f3c5720d0fbadede40"
+              "P3-math-v2-96f3c5720d0fbadede40",
+              "P3-math-qx10-ed7c2ecc3a9efa05a8db",
+              "P3-math-qx10-58267cb02891fb1a36c8",
+              "P3-math-qx10-2ecc8e354ed647eabd13",
+              "P3-math-qx10-257d6f4b0d38ffd32f17",
+              "P3-math-qx10-e672736e40e8bde3d539",
+              "P3-math-qx10-04898b766393dc51a264",
+              "P3-math-qx10-2e48478eeb002046cdb7",
+              "P3-math-qx10-1b24047c61570294417f",
+              "P3-math-qx10-359ef8ef665d18adc95f",
+              "P3-math-qx10-d88614acac5e9f7600c4",
+              "P3-math-qx10-d9074a69a06374f19d9f",
+              "P3-math-qx10-81290b48e194057d45c3",
+              "P3-math-qx10-ccab95cb476eac6efd91",
+              "P3-math-qx10-cdd8b9256cc1aeb8573e",
+              "P3-math-qx10-6b4d4718c23e7fa116f3",
+              "P3-math-qx10-28676f23a009bc2b5427",
+              "P3-math-qx10-2473c9b4710ba8fe1cbe",
+              "P3-math-qx10-c50c6b28882ae494585f"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
-            "note": "100 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "118 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 118,
+            "independentCount": 118,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-fraction-001",
@@ -32011,7 +32045,8 @@
             "title": "Money",
             "status": "partial",
             "models": [
-              "v2-math-money-error-check"
+              "v2-math-money-error-check",
+              "v2-qx10-math-money"
             ],
             "questionIds": [
               "P3-math-v2-772b0b70c16bf1495c6b",
@@ -32058,14 +32093,30 @@
               "P3-math-v2-4ea7bde84a1b0dd757d2",
               "P3-math-v2-12d9f14c9dedaff5670c",
               "P3-math-v2-cb595cebf489421765b4",
-              "P3-math-v2-e9b2d19aa57457e502c5"
+              "P3-math-v2-e9b2d19aa57457e502c5",
+              "P3-math-qx10-6d5b35258118ae9fedf7",
+              "P3-math-qx10-989be450512f59b68a0c",
+              "P3-math-qx10-c3003902ffd19781565b",
+              "P3-math-qx10-8385ee179256dbc34cb9",
+              "P3-math-qx10-2b91e1a5ca939385546f",
+              "P3-math-qx10-e9359b1a2711949b01b9",
+              "P3-math-qx10-f70ac1e9b9338549d4f3",
+              "P3-math-qx10-0356cd78ce0365f02a8c",
+              "P3-math-qx10-0ccff5bbb682d272b153",
+              "P3-math-qx10-768284db07782924788d",
+              "P3-math-qx10-e92b6946b3de67bc29ad",
+              "P3-math-qx10-f3edcd8271bc8a5f1f80",
+              "P3-math-qx10-7a469e0dff88051e32c1",
+              "P3-math-qx10-48f8110b6a84b95f8cb9",
+              "P3-math-qx10-0ad6bfac68b3839831b1",
+              "P3-math-qx10-870a8837e517c50fd70f"
             ],
             "sourceIds": [
               "cf-stem-math-lower"
             ],
-            "note": "45 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 45,
-            "independentCount": 45,
+            "note": "61 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 61,
+            "independentCount": 61,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-v2-772b0b70c16bf1495c6b",
@@ -32090,7 +32141,8 @@
               "v2-cs28-p3-time-unit-years",
               "v2-cs28-p3-timetable-duration",
               "v2-cs28-p3-timetable-end",
-              "v2-cs28-p3-timetable-start"
+              "v2-cs28-p3-timetable-start",
+              "v2-qx10-math-time"
             ],
             "questionIds": [
               "P3-math-time-001",
@@ -32142,15 +32194,29 @@
               "P3-math-v2-d5ac844c2997d851be40",
               "P3-math-v2-ac29d130d0996e949147",
               "P3-math-v2-8da3206ec402d6b25157",
-              "P3-math-v2-5fee9beee45ca7a982cb"
+              "P3-math-v2-5fee9beee45ca7a982cb",
+              "P3-math-qx10-04c79275821626d790b8",
+              "P3-math-qx10-469f314cd45a27be7c0e",
+              "P3-math-qx10-a05cd33ba1e707f831bd",
+              "P3-math-qx10-c8c193a04f6414dd7ae3",
+              "P3-math-qx10-4088f30641eebf1271fe",
+              "P3-math-qx10-14702acf082d00e080f0",
+              "P3-math-qx10-584d779e3804fced20bc",
+              "P3-math-qx10-94e2d2006124701eb827",
+              "P3-math-qx10-dee71d39bebca646a60f",
+              "P3-math-qx10-f84a6d5653339bb27af6",
+              "P3-math-qx10-6034d7f4da250a474947",
+              "P3-math-qx10-eaec4ee963147ab32519",
+              "P3-math-qx10-cd64e13cc7683080074a",
+              "P3-math-qx10-f68f9754121349580dbe"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
-            "note": "50 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "64 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 64,
+            "independentCount": 64,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-time-001",
@@ -32173,7 +32239,8 @@
               "v2-cs28-p3-volume-multiply",
               "v2-cs28-p3-volume-three-add",
               "v2-cs28-p3-volume-three-subtract",
-              "v2-math-unit-conversion"
+              "v2-math-unit-conversion",
+              "v2-qx10-math-measurement"
             ],
             "questionIds": [
               "P3-math-v2-101061e25367192cb673",
@@ -32237,15 +32304,31 @@
               "P3-math-v2-9f912a8b15bc9a91f31f",
               "P3-math-v2-5c9ae44c6d2d2b4c1d3e",
               "P3-math-v2-c6049a32db9d2d705fb0",
-              "P3-math-v2-e8f77a9b462553749625"
+              "P3-math-v2-e8f77a9b462553749625",
+              "P3-math-qx10-7f1c5f28953c81066931",
+              "P3-math-qx10-d11132a7e36310971346",
+              "P3-math-qx10-ccc6dba6b0b69f41ad70",
+              "P3-math-qx10-ea543b4a3942ea03a752",
+              "P3-math-qx10-d22d577d9c73a2f7a754",
+              "P3-math-qx10-d415eb95dba209f339a1",
+              "P3-math-qx10-c0497cafd1b9dba239b1",
+              "P3-math-qx10-12b373f4d2e1fe616f0d",
+              "P3-math-qx10-b77633ee714cd33cee8b",
+              "P3-math-qx10-29d3638af0f955a109d6",
+              "P3-math-qx10-a7151dcc6cfa6fb7e0bd",
+              "P3-math-qx10-9a4bd6e1d73aedd5b480",
+              "P3-math-qx10-881e9e95f744970a192a",
+              "P3-math-qx10-47c3d03ed3003baf391f",
+              "P3-math-qx10-253a529488c533e7ea30",
+              "P3-math-qx10-75929d34e4e3e2d505e2"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
-            "note": "62 active grade-scope questions across 8 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 62,
-            "independentCount": 62,
+            "note": "78 active grade-scope questions across 9 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 78,
+            "independentCount": 78,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-v2-101061e25367192cb673",
@@ -32268,7 +32351,8 @@
               "v2-cs28-p3-prism-identify",
               "v2-cs28-p3-prism-vertices",
               "v2-cs28-p3-regular-polygon-name",
-              "v2-cs28-p3-symmetry-count"
+              "v2-cs28-p3-symmetry-count",
+              "v2-qx10-math-space"
             ],
             "questionIds": [
               "P3-math-v2-4749f37ebb3678be7a58",
@@ -32298,15 +32382,25 @@
               "P3-math-v2-c3d03ff3175a4c77c1c3",
               "P3-math-v2-224498ff551247209afe",
               "P3-math-v2-54334d42cdf92c14a513",
-              "P3-math-v2-5ae296f9f055af293ffc"
+              "P3-math-v2-5ae296f9f055af293ffc",
+              "P3-math-qx10-861d067b6abfd38ad343",
+              "P3-math-qx10-4c85650e8e5a32e23573",
+              "P3-math-qx10-8cf1a5760ac6a1d4cb74",
+              "P3-math-qx10-87bacaff974c555f7f53",
+              "P3-math-qx10-6333a5ecd87f97afe0e2",
+              "P3-math-qx10-24f4664ab2f10ddf6133",
+              "P3-math-qx10-21f8e268c283939452e3",
+              "P3-math-qx10-36286dec17350c64ad1b",
+              "P3-math-qx10-f66f03fb001f999a5fc8",
+              "P3-math-qx10-20137cdab0ecb114991f"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
             "note": "本轮增加棱柱体特征、比较、正多边形及对称轴的选择题和实际制作任务。题目存在不等于各学习标准全部完成。",
-            "questionCount": 28,
-            "independentCount": 28,
+            "questionCount": 38,
+            "independentCount": 38,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-v2-4749f37ebb3678be7a58",
@@ -32325,7 +32419,8 @@
               "coordinate",
               "v2-cs28-p3-coordinate-object",
               "v2-cs28-p3-coordinate-read",
-              "v2-cs28-p3-coordinate-reference-route"
+              "v2-cs28-p3-coordinate-reference-route",
+              "v2-qx10-math-coordinates"
             ],
             "questionIds": [
               "P3-math-coordinate-001",
@@ -32389,15 +32484,21 @@
               "P3-math-v2-50f288b82080752538ef",
               "P3-math-v2-b28137d2b7a067c69faa",
               "P3-math-v2-270aab3eeb08b2a95691",
-              "P3-math-v2-ab375ab325005f4b2077"
+              "P3-math-v2-ab375ab325005f4b2077",
+              "P3-math-qx10-54f0d1547956b1aff9ad",
+              "P3-math-qx10-24295abb66bb46f64e1a",
+              "P3-math-qx10-3260391843120b685de1",
+              "P3-math-qx10-fe0a9d6ecc548f90fd5c",
+              "P3-math-qx10-72ab57d7e8a96150e164",
+              "P3-math-qx10-91a0698d0adc270daccb"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
-            "note": "62 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 62,
-            "independentCount": 62,
+            "note": "68 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 68,
+            "independentCount": 68,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-coordinate-001",
@@ -32416,7 +32517,8 @@
               "v2-cs28-p3-pie-bar-check",
               "v2-cs28-p3-pie-difference",
               "v2-cs28-p3-pie-largest",
-              "v2-cs28-p3-pie-total"
+              "v2-cs28-p3-pie-total",
+              "v2-qx10-math-data"
             ],
             "questionIds": [
               "P3-math-v2-72b8199284df79e2d5a3",
@@ -32442,15 +32544,27 @@
               "P3-math-v2-55c4fc474b229d472e34",
               "P3-math-v2-2856c68ecb4904f2a457",
               "P3-math-v2-fbf3c37c3cb79df35194",
-              "P3-math-v2-c9fc260fba1c20ff0daf"
+              "P3-math-v2-c9fc260fba1c20ff0daf",
+              "P3-math-qx10-4681ddcf611448f942ca",
+              "P3-math-qx10-fa2523c17a659fe0ee68",
+              "P3-math-qx10-ef9b819d938844d02910",
+              "P3-math-qx10-7a6b8e95af9c9f0a4f62",
+              "P3-math-qx10-5a0f532160574aeab4fd",
+              "P3-math-qx10-b7c52879eb588ae4e8d2",
+              "P3-math-qx10-e1f8a1d322cc3a313bc9",
+              "P3-math-qx10-e2c34bd66a4d0b71a7b0",
+              "P3-math-qx10-7412cb3716b395be7048",
+              "P3-math-qx10-244f90d343c8157a27ae",
+              "P3-math-qx10-a40b5017be38dec8d722",
+              "P3-math-qx10-9fb76d24c1bbe7c2501c"
             ],
             "sourceIds": [
               "cf-stem-math-lower",
               "cs28-p3-expansion-dskp-sjkc"
             ],
-            "note": "24 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 24,
-            "independentCount": 24,
+            "note": "36 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 36,
+            "independentCount": 36,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-math-v2-72b8199284df79e2d5a3",
@@ -32477,7 +32591,8 @@
               "missing",
               "multiply",
               "subtract",
-              "v2-math-part-whole"
+              "v2-math-part-whole",
+              "v2-qx10-math-operations"
             ],
             "questionIds": [
               "P3-math-add-001",
@@ -32711,7 +32826,23 @@
               "P3-math-v2-5fe9650d2826ec0e703d",
               "P3-math-v2-a2bb9ea68ee305bae60e",
               "P3-math-v2-661e3cc47a15e47ac907",
-              "P3-math-v2-bc1d59bb262c1790f7f3"
+              "P3-math-v2-bc1d59bb262c1790f7f3",
+              "P3-math-qx10-00324b32bceb1a47f4b5",
+              "P3-math-qx10-0d12863a6374c96e9a26",
+              "P3-math-qx10-64de23320a19f0d03d9f",
+              "P3-math-qx10-5ba18f4c00a8e201a01c",
+              "P3-math-qx10-f48eae9fe985a697b0ba",
+              "P3-math-qx10-94602fc84b75fd52f66b",
+              "P3-math-qx10-add85a7ac8a2bda5de58",
+              "P3-math-qx10-fbd7e48931c2f9f329f4",
+              "P3-math-qx10-bc06f4d3b2ea7eac26a6",
+              "P3-math-qx10-5bee6fb4f8c9f1ac5d68",
+              "P3-math-qx10-32c2af8eb5a5ad305f1f",
+              "P3-math-qx10-3889e7419146d07bd82e",
+              "P3-math-qx10-210a59a29aa11bc8cd38",
+              "P3-math-qx10-bdfb68ad9e24121f789a",
+              "P3-math-qx10-c619203aa1440e9318ba",
+              "P3-math-qx10-85d070f194a35208567a"
             ],
             "evidenceIds": [
               "P3-math-add-001",
@@ -32721,8 +32852,8 @@
               "P3-math-add-005",
               "P3-math-add-006"
             ],
-            "questionCount": 232,
-            "independentCount": 232,
+            "questionCount": 248,
+            "independentCount": 248,
             "guidedCount": 0
           }
         ],
@@ -41785,8 +41916,8 @@
       "level": "P4",
       "subject": "math",
       "title": "数学",
-      "active": 776,
-      "stored": 1166,
+      "active": 925,
+      "stored": 1315,
       "retired": 390,
       "sourceIds": [
         "mt-primary",
@@ -41797,7 +41928,8 @@
         "p4mt-mas-currency",
         "p4mt-boe-currency",
         "p4mt-fed-currency",
-        "p4mt-bnm-exchange"
+        "p4mt-bnm-exchange",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P4-math",
@@ -41809,7 +41941,8 @@
           "p4mt-mas-currency",
           "p4mt-boe-currency",
           "p4mt-fed-currency",
-          "p4mt-bnm-exchange"
+          "p4mt-bnm-exchange",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -41826,7 +41959,8 @@
               "v2-goal-p4-number-words",
               "v2-goal-p4-parity-reasoning",
               "v2-goal-p4-reference-estimate",
-              "v2-goal-p4-rounding-range"
+              "v2-goal-p4-rounding-range",
+              "v2-qx10-math-numbers"
             ],
             "questionIds": [
               "P4-math-place-001",
@@ -41971,15 +42105,30 @@
               "P4-math-v2-6dcb40a8e3c55b34bf79",
               "P4-math-v2-5223a4086cddeafcbe53",
               "P4-math-v2-30ea3b5a6b6d0c34fbf0",
-              "P4-math-v2-c3bfd0fb2aed06f908ca"
+              "P4-math-v2-c3bfd0fb2aed06f908ca",
+              "P4-math-qx10-6b80091081c775b5f7bf",
+              "P4-math-qx10-4a3cc2ffab94cbdfe304",
+              "P4-math-qx10-36604eb24ccc915d5fae",
+              "P4-math-qx10-c41e8327aa0f53cb1a03",
+              "P4-math-qx10-741db79781de1b5abe70",
+              "P4-math-qx10-b50ce5972e10567eaef7",
+              "P4-math-qx10-f59ca795bf66a85e9d9f",
+              "P4-math-qx10-6200fdfcd488b8a93bc2",
+              "P4-math-qx10-35483540998a33e0347f",
+              "P4-math-qx10-5ee195ec79e9fa002482",
+              "P4-math-qx10-14a9b5cde3e4a93ba7ce",
+              "P4-math-qx10-4ba83d431c104abdc1cf",
+              "P4-math-qx10-9e34c7bd541efbde36a6",
+              "P4-math-qx10-543a19d8c921008ee262",
+              "P4-math-qx10-6bdd6cd0e0426f25d0f9"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
             "note": "保留整数读写、数位、奇偶、估计、近似值和数列；运算与字母未知数另列。学习标准的选定证据不等于全标准掌握。",
-            "questionCount": 143,
-            "independentCount": 143,
+            "questionCount": 158,
+            "independentCount": 158,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-place-001",
@@ -42008,7 +42157,8 @@
               "v2-goal-p4-fraction-quantity",
               "v2-goal-p4-fraction-subtract",
               "v2-goal-p4-mixed-improper",
-              "v2-goal-p4-three-fraction-add"
+              "v2-goal-p4-three-fraction-add",
+              "v2-qx10-math-fractions"
             ],
             "questionIds": [
               "P4-math-fraction-001",
@@ -42140,15 +42290,37 @@
               "P4-math-v2-f928f875aa3cd5b07e13",
               "P4-math-v2-db310d0c1d89594f04f1",
               "P4-math-v2-aeed67a3c9416f3368e4",
-              "P4-math-v2-5cbc98623a6097312fd1"
+              "P4-math-v2-5cbc98623a6097312fd1",
+              "P4-math-qx10-5a6e5f1343601156659f",
+              "P4-math-qx10-d3e5b96a14a4fc74bb7d",
+              "P4-math-qx10-f97a721e1ca2bedaa482",
+              "P4-math-qx10-14966775d8961e5c8dd1",
+              "P4-math-qx10-aee31f00cf505270b6fe",
+              "P4-math-qx10-00f148cb93a93d5360af",
+              "P4-math-qx10-d077ab31f786eeef6d22",
+              "P4-math-qx10-4d8ebaf369a56230a737",
+              "P4-math-qx10-e8cffb982c4a17139c6d",
+              "P4-math-qx10-2c7f6a591bcd4eb68e3b",
+              "P4-math-qx10-d4836dabe2756fd5e1a8",
+              "P4-math-qx10-64fe388c2d59509794a3",
+              "P4-math-qx10-aa33c6ad671df4cbe818",
+              "P4-math-qx10-fee030e2a0968690e78d",
+              "P4-math-qx10-a894b4174c1d8a130a10",
+              "P4-math-qx10-80653b9060ac790ac1f1",
+              "P4-math-qx10-bd6b4258658d629db174",
+              "P4-math-qx10-fe5d3acefc37ec126125",
+              "P4-math-qx10-29df3b073886bb0dbd94",
+              "P4-math-qx10-39b785cb8b62c9d2edf1",
+              "P4-math-qx10-b35ad6a7f005b199a67b",
+              "P4-math-qx10-9e52b5345b3ee66853f1"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "130 active grade-scope questions across 14 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 130,
-            "independentCount": 130,
+            "note": "152 active grade-scope questions across 15 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 152,
+            "independentCount": 152,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-fraction-001",
@@ -42173,7 +42345,8 @@
               "v2-goal-p4mt-offer-comparison",
               "v2-goal-p4mt-payment-instrument",
               "v2-goal-p4mt-successive-money-subtract",
-              "v2-goal-p4mt-three-money-add"
+              "v2-goal-p4mt-three-money-add",
+              "v2-qx10-math-money"
             ],
             "questionIds": [
               "P4-math-v2-bfa98eff77c3a2dbe574",
@@ -42215,15 +42388,37 @@
               "P4-math-v2-e3eaadba0130b781b34f",
               "P4-math-v2-4d40b80c0ad8fd04fbbf",
               "P4-math-v2-89c3917c26343c47d09b",
-              "P4-math-v2-66ba13b028f5d745f9b6"
+              "P4-math-v2-66ba13b028f5d745f9b6",
+              "P4-math-qx10-509238ae34e843af444d",
+              "P4-math-qx10-b39e0fb674c3c1bbef71",
+              "P4-math-qx10-9d53fe67297a1a753527",
+              "P4-math-qx10-6c9215e92905a0ddb905",
+              "P4-math-qx10-eae8017554c188292bc6",
+              "P4-math-qx10-283a10cd41b2a80d79c3",
+              "P4-math-qx10-8b54545e1b0d9e036b51",
+              "P4-math-qx10-b376b097fff79d301f49",
+              "P4-math-qx10-15bd6678c69b98f7639f",
+              "P4-math-qx10-b349b8be689c2b0d945a",
+              "P4-math-qx10-9962d26f01d116cf515d",
+              "P4-math-qx10-f9f690c962e3503230cc",
+              "P4-math-qx10-a26278120a29c91fafdd",
+              "P4-math-qx10-13464d972532977d6094",
+              "P4-math-qx10-55225be9772baf7f2771",
+              "P4-math-qx10-a5f0164890a6f14ceea0",
+              "P4-math-qx10-19e18e365ac023b04d20",
+              "P4-math-qx10-927b67decc0dfb232b96",
+              "P4-math-qx10-2a33a37cc047c08f5a72",
+              "P4-math-qx10-d4be7817b2621e62da97",
+              "P4-math-qx10-18ce93b01fad044e1f6e",
+              "P4-math-qx10-4b934bc0eb575bb8296d"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "40 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 40,
-            "independentCount": 40,
+            "note": "62 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-v2-bfa98eff77c3a2dbe574",
@@ -42247,7 +42442,8 @@
               "v2-goal-p4mt-time-add-subtract",
               "v2-goal-p4mt-time-conversion",
               "v2-goal-p4mt-time-estimate-benchmark",
-              "v2-goal-p4mt-time-multiply-divide"
+              "v2-goal-p4mt-time-multiply-divide",
+              "v2-qx10-math-time"
             ],
             "questionIds": [
               "P4-math-time-001",
@@ -42313,15 +42509,31 @@
               "P4-math-v2-2db99b4ad1ce467db522",
               "P4-math-v2-7817e35449c52a364e09",
               "P4-math-v2-5065f2b82d2640608039",
-              "P4-math-v2-c8d43bcf35c05dea6410"
+              "P4-math-v2-c8d43bcf35c05dea6410",
+              "P4-math-qx10-20f278d0b66377d780a1",
+              "P4-math-qx10-72c303835bc4c9cd945f",
+              "P4-math-qx10-d11077d444243a22f53a",
+              "P4-math-qx10-4410cacb216df9debb48",
+              "P4-math-qx10-298f6b4384a9b46c8763",
+              "P4-math-qx10-c9aaa451965f9decdf9b",
+              "P4-math-qx10-fd2b462982cbffe50d34",
+              "P4-math-qx10-a5712527fcca429d2cde",
+              "P4-math-qx10-fea12de996867797e265",
+              "P4-math-qx10-69a3018173a8d3ff3e5d",
+              "P4-math-qx10-a2d493e664656da94f75",
+              "P4-math-qx10-de04ff63539faf95bb5b",
+              "P4-math-qx10-e360e715e7b811682e52",
+              "P4-math-qx10-1eab24508d9a6851eb2b",
+              "P4-math-qx10-4c9541a4918641f2ff53",
+              "P4-math-qx10-ca24b6da6b397c891e2f"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "64 active grade-scope questions across 9 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 64,
-            "independentCount": 64,
+            "note": "80 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 80,
+            "independentCount": 80,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-time-001",
@@ -42346,7 +42558,8 @@
               "v2-goal-p4-mass-add-subtract",
               "v2-goal-p4-mass-multiply-divide",
               "v2-goal-p4-measurement-context",
-              "v2-goal-p4-measurement-unit-choice"
+              "v2-goal-p4-measurement-unit-choice",
+              "v2-qx10-math-measurement"
             ],
             "questionIds": [
               "P4-math-v2-6621885ae54fe7125bfd",
@@ -42388,15 +42601,38 @@
               "P4-math-v2-98917dd344ea5bf38b6a",
               "P4-math-v2-b3903b9dfd32f8bbf705",
               "P4-math-v2-dd063525a1f46e20c763",
-              "P4-math-v2-4f4134934f24a424eab7"
+              "P4-math-v2-4f4134934f24a424eab7",
+              "P4-math-qx10-e1f9abb3be01b004c433",
+              "P4-math-qx10-eb18103b4c571c04b9bd",
+              "P4-math-qx10-51f5fb7a3ead17bc66e9",
+              "P4-math-qx10-44e33760929042e9c5cb",
+              "P4-math-qx10-e255fca0be5733a62c2b",
+              "P4-math-qx10-aa4ef6e88747cebfeb04",
+              "P4-math-qx10-f8ab82af8827e2eaff52",
+              "P4-math-qx10-8e1ca5758c3bd72774d6",
+              "P4-math-qx10-76fae23f3acb523057d8",
+              "P4-math-qx10-a71539159b0e28139976",
+              "P4-math-qx10-d7bb37d3c156753673bc",
+              "P4-math-qx10-017164af519a0dc8f842",
+              "P4-math-qx10-c78f08c4e52abda1c07a",
+              "P4-math-qx10-e69b47d596ef40afa7e2",
+              "P4-math-qx10-503e9eb1cc826f94127e",
+              "P4-math-qx10-6e52f15615003654a5ee",
+              "P4-math-qx10-a909ca51fde38f5d407d",
+              "P4-math-qx10-6aa7db0031ed789ccb02",
+              "P4-math-qx10-2526a23c15d27f0bacbe",
+              "P4-math-qx10-48ee6398cc42b0827479",
+              "P4-math-qx10-a508a462d48ff61622ef",
+              "P4-math-qx10-880b6e2a2b5f33931ff1",
+              "P4-math-qx10-ec89f1f029c59c6d93a9"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "40 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 40,
-            "independentCount": 40,
+            "note": "63 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 63,
+            "independentCount": 63,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-v2-6621885ae54fe7125bfd",
@@ -42421,7 +42657,8 @@
               "v2-goal-p4-line-relations",
               "v2-goal-p4-polygon-perimeter",
               "v2-goal-p4-triangle-area",
-              "v2-math-perimeter-inverse"
+              "v2-math-perimeter-inverse",
+              "v2-qx10-math-space"
             ],
             "questionIds": [
               "P4-math-area-001",
@@ -42551,15 +42788,27 @@
               "P4-math-v2-faba6c00a050aa56abb7",
               "P4-math-v2-594d90b7f30d5d7198ed",
               "P4-math-v2-995da61c77af6290b8f7",
-              "P4-math-v2-615fb4d6e52fadde1f17"
+              "P4-math-v2-615fb4d6e52fadde1f17",
+              "P4-math-qx10-4868251b8fa60860131a",
+              "P4-math-qx10-84d15778b589bdf57a94",
+              "P4-math-qx10-931d276d9824ed3a1782",
+              "P4-math-qx10-0ab961d0d03dcf4b5bf3",
+              "P4-math-qx10-cf967b8c5f0f27bba60a",
+              "P4-math-qx10-b63a073064b3f6fb233f",
+              "P4-math-qx10-e5d939ea8249e68ee87a",
+              "P4-math-qx10-a38ea5656d28258e093c",
+              "P4-math-qx10-83a68e2ac20ec85b894f",
+              "P4-math-qx10-6524dda7e4808a611763",
+              "P4-math-qx10-206f7a828c3c78fb1907",
+              "P4-math-qx10-28521093f94375aaca0a"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "128 active grade-scope questions across 10 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 128,
-            "independentCount": 128,
+            "note": "140 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 140,
+            "independentCount": 140,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-area-001",
@@ -42582,7 +42831,8 @@
               "v2-goal-p4-ratio-context",
               "v2-goal-p4-ratio-representation",
               "v2-goal-p4-read-coordinate",
-              "v2-goal-p4-unitary-method"
+              "v2-goal-p4-unitary-method",
+              "v2-qx10-math-ratio"
             ],
             "questionIds": [
               "P4-math-coordinate-001",
@@ -42641,15 +42891,22 @@
               "P4-math-v2-9590bd07cf6c9aa8ea44",
               "P4-math-v2-d1f3c1d0c2f9ab7c05e2",
               "P4-math-v2-dbdeb30591b633ca919a",
-              "P4-math-v2-ee25802b08d99a0bc42e"
+              "P4-math-v2-ee25802b08d99a0bc42e",
+              "P4-math-qx10-68c5e59cfd3de58b2f40",
+              "P4-math-qx10-acd9871d3fb21aa3ed8e",
+              "P4-math-qx10-244dde00aee145613ee6",
+              "P4-math-qx10-e3d598bf23712c9c4365",
+              "P4-math-qx10-095f254016737232ae8e",
+              "P4-math-qx10-dfce0308c1d73ecc83b2",
+              "P4-math-qx10-51fcf393ca3658fafce6"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "57 active grade-scope questions across 8 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 57,
-            "independentCount": 57,
+            "note": "64 active grade-scope questions across 9 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 64,
+            "independentCount": 64,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-coordinate-001",
@@ -42668,7 +42925,8 @@
               "v2-goal-p4-bar-chart-analysis",
               "v2-goal-p4-data-target-decision",
               "v2-goal-p4-pictograph-error-check",
-              "v2-goal-p4-pictograph-key-read"
+              "v2-goal-p4-pictograph-key-read",
+              "v2-qx10-math-data"
             ],
             "questionIds": [
               "P4-math-v2-f3d5d5cf6b2577a38c50",
@@ -42686,15 +42944,27 @@
               "P4-math-v2-73db0784a1f15c42a08b",
               "P4-math-v2-02a9af8d3ad5068c9f19",
               "P4-math-v2-077ca06e12412c92bc2c",
-              "P4-math-v2-f128055ebd99807f6729"
+              "P4-math-v2-f128055ebd99807f6729",
+              "P4-math-qx10-9c654996079f69c41f0b",
+              "P4-math-qx10-b89bea9331333d7592d6",
+              "P4-math-qx10-38cb994d38d77e54f65c",
+              "P4-math-qx10-94f4189db58b861601da",
+              "P4-math-qx10-b52a0e0a57de36946618",
+              "P4-math-qx10-cc5e71c7f93dbcec8ce2",
+              "P4-math-qx10-e27999a46dd5b8521bc2",
+              "P4-math-qx10-754a35e8466e41b5e0d1",
+              "P4-math-qx10-deccaa307ae4483b345f",
+              "P4-math-qx10-136ce326a9d520cce52c",
+              "P4-math-qx10-fab403675ef8aa525e2a",
+              "P4-math-qx10-36908f76ed2a9e9e9320"
             ],
             "sourceIds": [
               "cf-stem-math-p4",
               "p4-dskp-sjkc-2018"
             ],
-            "note": "16 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 16,
-            "independentCount": 16,
+            "note": "28 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-math-v2-f3d5d5cf6b2577a38c50",
@@ -42725,7 +42995,8 @@
               "v2-goal-p4-mixed-multiply-divide",
               "v2-goal-p4-successive-subtract",
               "v2-goal-p4-unknown-story",
-              "v2-math-part-whole"
+              "v2-math-part-whole",
+              "v2-qx10-math-operations"
             ],
             "questionIds": [
               "P4-math-v2-22fa64bdbb6480eeecf2",
@@ -42881,7 +43152,27 @@
               "P4-math-v2-45bb64c86a4712597fdb",
               "P4-math-v2-62280c3201c03ea4a656",
               "P4-math-v2-2fa8fa7738cca09280a2",
-              "P4-math-v2-e7bef03a511f80a2c0f4"
+              "P4-math-v2-e7bef03a511f80a2c0f4",
+              "P4-math-qx10-487f3bd1f16617130de6",
+              "P4-math-qx10-17c452007201e1ef19a5",
+              "P4-math-qx10-b4360ee72e2ef1927be4",
+              "P4-math-qx10-87ba1081bb89a57243bf",
+              "P4-math-qx10-2f00fd5c9072cdb10186",
+              "P4-math-qx10-a6bc51d3df2ba24d900b",
+              "P4-math-qx10-9242c8f5b40b4912c40d",
+              "P4-math-qx10-ab6bcfb891fcf228cd06",
+              "P4-math-qx10-01ccbf69480e2b3e698c",
+              "P4-math-qx10-2ba590a692cdd5359768",
+              "P4-math-qx10-395912d901ae8ac8e9a4",
+              "P4-math-qx10-9d53fb9cb1f1dcbaa7a3",
+              "P4-math-qx10-56325196d23b256a6bc9",
+              "P4-math-qx10-55216a638934f8ac120d",
+              "P4-math-qx10-bf6c1c548f2f6a0841c3",
+              "P4-math-qx10-5a78cf551b7a1e899bcb",
+              "P4-math-qx10-6e6b6e243f7d4c8f5f9e",
+              "P4-math-qx10-c14b0a69419d8f064790",
+              "P4-math-qx10-1dcbec9c1beb582cff5d",
+              "P4-math-qx10-bc94c4e61c18074ec0be"
             ],
             "evidenceIds": [
               "P4-math-v2-22fa64bdbb6480eeecf2",
@@ -42891,8 +43182,8 @@
               "P4-math-v2-cec063e9ef4d08e431e2",
               "P4-math-v2-62c8a066b667daf0fca5"
             ],
-            "questionCount": 154,
-            "independentCount": 154,
+            "questionCount": 174,
+            "independentCount": 174,
             "guidedCount": 0
           }
         ],
@@ -57860,21 +58151,23 @@
       "level": "P5",
       "subject": "math",
       "title": "数学",
-      "active": 882,
-      "stored": 1355,
+      "active": 922,
+      "stored": 1395,
       "retired": 473,
       "sourceIds": [
         "mt-primary",
         "curriculum-v2-math",
         "cf-stem-math-p5",
-        "cs28-p5-dskp-sjkc"
+        "cs28-p5-dskp-sjkc",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P5-math",
         "framework": "KSSR Semakan 2017",
         "sourceIds": [
           "cf-stem-math-p5",
-          "cs28-p5-dskp-sjkc"
+          "cs28-p5-dskp-sjkc",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -57903,7 +58196,8 @@
               "v2-cs28-p5-b3-place-evidence",
               "v2-cs28-p5-b3-product-decomposition",
               "v2-cs28-p5-b3-rounding-audit",
-              "v2-cs28-p5-b3-subtraction-work-check"
+              "v2-cs28-p5-b3-subtraction-work-check",
+              "v2-qx10-math-numbers"
             ],
             "questionIds": [
               "P5-math-add-001",
@@ -58171,16 +58465,19 @@
               "P5-math-v2-baf912204b3b2c4cec9d",
               "P5-math-v2-33a07bc03ee358591114",
               "P5-math-v2-e647f7a61c070d4e7702",
-              "P5-math-v2-dcff7ca839051e2bb20e"
+              "P5-math-v2-dcff7ca839051e2bb20e",
+              "P5-math-qx10-3e8e3b1291046bdf0273",
+              "P5-math-qx10-9512a779bd7f1ef8ab42",
+              "P5-math-qx10-e4e4347f197597bce94f"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc",
               "mt-primary"
             ],
-            "note": "266 active grade-scope questions across 21 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 266,
-            "independentCount": 266,
+            "note": "269 active grade-scope questions across 22 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 269,
+            "independentCount": 269,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-add-001",
@@ -58213,7 +58510,8 @@
               "v2-cs28-p5-b3-mixed-percent-model",
               "v2-cs28-p5-b3-percent-base-audit",
               "v2-cs28-p5-b3-percent-below-whole",
-              "v2-math-percentage-meaning"
+              "v2-math-percentage-meaning",
+              "v2-qx10-math-fractions"
             ],
             "questionIds": [
               "P5-math-percent-001",
@@ -58317,15 +58615,22 @@
               "P5-math-v2-a26318b71d7bb103b782",
               "P5-math-v2-7cbf7eb2b7a70115a67f",
               "P5-math-v2-c78ee8cebb864270fd9e",
-              "P5-math-v2-a76af765b95cf70ecf19"
+              "P5-math-v2-a76af765b95cf70ecf19",
+              "P5-math-qx10-15785bbe5609f0f809a0",
+              "P5-math-qx10-b75e7f0487bfe7cae367",
+              "P5-math-qx10-ff558809ea5b0e6ef43e",
+              "P5-math-qx10-48023a431af2eded52e6",
+              "P5-math-qx10-f4e586460c102fd84d8e",
+              "P5-math-qx10-dd3e3f2952302956f6b8",
+              "P5-math-qx10-31fefcaec03095950fa1"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "102 active grade-scope questions across 18 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 102,
-            "independentCount": 102,
+            "note": "109 active grade-scope questions across 19 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 109,
+            "independentCount": 109,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-percent-001",
@@ -58403,7 +58708,8 @@
               "v2-cs28-p5-b3-money-expression-select",
               "v2-cs28-p5-b3-money-record-reconcile",
               "v2-cs28-p5-b3-money-unit-rate-check",
-              "v2-cs28-p5-b3-saving-investment-record"
+              "v2-cs28-p5-b3-saving-investment-record",
+              "v2-qx10-math-money"
             ],
             "questionIds": [
               "P5-math-v2-bcf74f163bd6a3582fab",
@@ -58461,15 +58767,22 @@
               "P5-math-v2-d102b7b9f312f9d50afc",
               "P5-math-v2-1ace89786d6c3b12bb73",
               "P5-math-v2-d5a4d9ad3294f05eec91",
-              "P5-math-v2-9bd2910df91a7c62b413"
+              "P5-math-v2-9bd2910df91a7c62b413",
+              "P5-math-qx10-fbf43394a730a3158581",
+              "P5-math-qx10-6d93527b6ac6d92094d4",
+              "P5-math-qx10-42d6bd440ca48068c2ef",
+              "P5-math-qx10-2abea396838428b33a85",
+              "P5-math-qx10-56a7b199047b9ecd4ec3",
+              "P5-math-qx10-0e8b11fb09dee9baeecb",
+              "P5-math-qx10-a7cfef2e5b2350e6b4da"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "56 active grade-scope questions across 14 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 56,
-            "independentCount": 56,
+            "note": "63 active grade-scope questions across 15 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 63,
+            "independentCount": 63,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-v2-bcf74f163bd6a3582fab",
@@ -58497,7 +58810,8 @@
               "v2-cs28-p5-b3-fraction-time-mixed-units",
               "v2-cs28-p5-b3-schedule-gap",
               "v2-cs28-p5-b3-time-claim-compare",
-              "v2-cs28-p5-b3-time-unit-error"
+              "v2-cs28-p5-b3-time-unit-error",
+              "v2-qx10-math-time"
             ],
             "questionIds": [
               "P5-math-v2-8db6cd45870bd86ab593",
@@ -58551,15 +58865,21 @@
               "P5-math-v2-da5e27589063181ded18",
               "P5-math-v2-148671bec9ff1dd35f11",
               "P5-math-v2-26ee8ae6be893d850e9c",
-              "P5-math-v2-f98d442957f72f7efa84"
+              "P5-math-v2-f98d442957f72f7efa84",
+              "P5-math-qx10-6a3450dc530f787bca2b",
+              "P5-math-qx10-e7be177bf79a17d0a47f",
+              "P5-math-qx10-fb6cdb99c3819ebd979e",
+              "P5-math-qx10-63e8dc643abb73cc86c8",
+              "P5-math-qx10-893759106c27625e0129",
+              "P5-math-qx10-93734575e4c1c2089b43"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "52 active grade-scope questions across 13 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 52,
-            "independentCount": 52,
+            "note": "58 active grade-scope questions across 14 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 58,
+            "independentCount": 58,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-v2-8db6cd45870bd86ab593",
@@ -58593,7 +58913,8 @@
               "v2-cs28-p5-b3-mass-ingredient-plan",
               "v2-cs28-p5-b3-mass-packing-plan",
               "v2-cs28-p5-b3-mass-unit-audit",
-              "v2-cs28-p5-b3-metric-operation-choice"
+              "v2-cs28-p5-b3-metric-operation-choice",
+              "v2-qx10-math-measurement"
             ],
             "questionIds": [
               "P5-math-v2-51c0477003591ba6a403",
@@ -58671,15 +58992,21 @@
               "P5-math-v2-251a48d8aa9b33c5fc83",
               "P5-math-v2-60a56328a257c682ae14",
               "P5-math-v2-6b4acbc75bde475eb53d",
-              "P5-math-v2-ad399299403d293334eb"
+              "P5-math-v2-ad399299403d293334eb",
+              "P5-math-qx10-26ef63d8a4972246d339",
+              "P5-math-qx10-28d35b3c7c03d9aa2d20",
+              "P5-math-qx10-b445ae44964a9d7c3a45",
+              "P5-math-qx10-5671db77dea4b9dec287",
+              "P5-math-qx10-f179daa3aaabe8284171",
+              "P5-math-qx10-5f3062e1f3f65e41f550"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "76 active grade-scope questions across 19 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 76,
-            "independentCount": 76,
+            "note": "82 active grade-scope questions across 20 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 82,
+            "independentCount": 82,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-v2-51c0477003591ba6a403",
@@ -58709,7 +59036,8 @@
               "v2-cs28-p5-b3-regular-property-audit",
               "v2-cs28-p5-b3-space-context-decision",
               "v2-cs28-p5-b3-symmetry-line-check",
-              "v2-cs28-p5-b3-two-solid-volume-audit"
+              "v2-cs28-p5-b3-two-solid-volume-audit",
+              "v2-qx10-math-space"
             ],
             "questionIds": [
               "P5-math-v2-38b2a8da5e7bb37e0024",
@@ -58771,15 +59099,19 @@
               "P5-math-v2-37969185830cf261d6d8",
               "P5-math-v2-62edc3a4085cab567bab",
               "P5-math-v2-2026ee099e2394d0eac8",
-              "P5-math-v2-a607ec15c23eae935afc"
+              "P5-math-v2-a607ec15c23eae935afc",
+              "P5-math-qx10-5d962393a82f598522aa",
+              "P5-math-qx10-31250a5d4f1f11ba8c5c",
+              "P5-math-qx10-335dd657b6b68fc7a9d1",
+              "P5-math-qx10-cc106dc837c9d1d4d24d"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "60 active grade-scope questions across 15 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 60,
-            "independentCount": 60,
+            "note": "64 active grade-scope questions across 16 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 64,
+            "independentCount": 64,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-v2-38b2a8da5e7bb37e0024",
@@ -58896,7 +59228,8 @@
               "v2-cs28-p5-b3-proportion-plan-check",
               "v2-cs28-p5-b3-ratio-order-audit",
               "v2-cs28-p5-b3-ratio-unit-equivalence",
-              "v2-cs28-p5-b3-route-comparison"
+              "v2-cs28-p5-b3-route-comparison",
+              "v2-qx10-math-coordinates-ratio"
             ],
             "questionIds": [
               "P5-math-coordinate-001",
@@ -58968,15 +59301,18 @@
               "P5-math-v2-c07669b9010e221a5671",
               "P5-math-v2-17462b1b4153607fc2f7",
               "P5-math-v2-a68de2e3ef834602c3fd",
-              "P5-math-v2-fb3b43cd566368ef0dd5"
+              "P5-math-v2-fb3b43cd566368ef0dd5",
+              "P5-math-qx10-fe61ff87a0ee7d371676",
+              "P5-math-qx10-663c076d4e20061c1717",
+              "P5-math-qx10-a598454fa78d652ab34e"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "70 active grade-scope questions across 11 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 70,
-            "independentCount": 70,
+            "note": "73 active grade-scope questions across 12 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 73,
+            "independentCount": 73,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-coordinate-001",
@@ -59004,7 +59340,8 @@
               "v2-cs28-p5-b3-pictogram-statistics",
               "v2-cs28-p5-b3-pie-complement",
               "v2-cs28-p5-b3-pie-two-groups",
-              "v2-cs28-p5-b3-statistic-claim-evidence"
+              "v2-cs28-p5-b3-statistic-claim-evidence",
+              "v2-qx10-math-data"
             ],
             "questionIds": [
               "P5-math-v2-a6f4f9a53950251055f5",
@@ -59052,15 +59389,19 @@
               "P5-math-v2-f97b7b142851bc2f195b",
               "P5-math-v2-8830a27494ea75a27685",
               "P5-math-v2-efd0e5506c2cce4441b0",
-              "P5-math-v2-bc4957d2b22fc135d00c"
+              "P5-math-v2-bc4957d2b22fc135d00c",
+              "P5-math-qx10-c9237027a32e2ae0e98f",
+              "P5-math-qx10-99de8b727ed40cd7df5c",
+              "P5-math-qx10-96ef4a748a3bef2a487b",
+              "P5-math-qx10-839afdc4baf01182e217"
             ],
             "sourceIds": [
               "cf-stem-math-p5",
               "cs28-p5-dskp-sjkc"
             ],
-            "note": "46 active grade-scope questions across 13 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 46,
-            "independentCount": 46,
+            "note": "50 active grade-scope questions across 14 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 50,
+            "independentCount": 50,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-math-v2-a6f4f9a53950251055f5",
@@ -92564,8 +92905,8 @@
       "level": "F1",
       "subject": "math",
       "title": "数学",
-      "active": 827,
-      "stored": 902,
+      "active": 927,
+      "stored": 1002,
       "retired": 75,
       "sourceIds": [
         "mt-f1",
@@ -92573,7 +92914,8 @@
         "cf-stem-math-f1",
         "cs28-f1-math-kpm-2015-quality01",
         "cs28-f1-math-retirement-comparison-kpm-2015",
-        "cs28-f1-math-retirement-comparison-kpm-f4-2018"
+        "cs28-f1-math-retirement-comparison-kpm-f4-2018",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F1-math",
@@ -92582,7 +92924,8 @@
           "cf-stem-math-f1",
           "cs28-f1-math-kpm-2015-quality01",
           "cs28-f1-math-retirement-comparison-kpm-2015",
-          "cs28-f1-math-retirement-comparison-kpm-f4-2018"
+          "cs28-f1-math-retirement-comparison-kpm-f4-2018",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -92593,7 +92936,8 @@
             "models": [
               "fractionmix",
               "integer",
-              "v2-math-directed-change"
+              "v2-math-directed-change",
+              "v2-qx10-math-rational"
             ],
             "questionIds": [
               "F1-math-integer-001",
@@ -92766,14 +93110,16 @@
               "F1-math-v2-796dd325cb99d2ae7a08",
               "F1-math-v2-9349ce39cd80d21284c2",
               "F1-math-v2-324faad7019293ac8234",
-              "F1-math-v2-714327a52315ca82e723"
+              "F1-math-v2-714327a52315ca82e723",
+              "F1-math-qx10-9b8b548c3b8dbef9db58",
+              "F1-math-qx10-fd5cea51746b49c7c0d0"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "171 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 171,
-            "independentCount": 171,
+            "note": "173 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 173,
+            "independentCount": 173,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-integer-001",
@@ -92790,7 +93136,8 @@
             "status": "partial",
             "models": [
               "hcf",
-              "lcm"
+              "lcm",
+              "v2-qx10-math-factors"
             ],
             "questionIds": [
               "F1-math-hcf-001",
@@ -92892,14 +93239,16 @@
               "F1-math-lcm-047",
               "F1-math-lcm-048",
               "F1-math-lcm-049",
-              "F1-math-lcm-050"
+              "F1-math-lcm-050",
+              "F1-math-qx10-c503229983954c63c1d2",
+              "F1-math-qx10-610bf51513f05a76bd29"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "100 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "102 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 102,
+            "independentCount": 102,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-hcf-001",
@@ -92915,7 +93264,8 @@
             "title": "Squares, cubes and roots",
             "status": "partial",
             "models": [
-              "square"
+              "square",
+              "v2-qx10-math-powers"
             ],
             "questionIds": [
               "F1-math-square-001",
@@ -92967,14 +93317,19 @@
               "F1-math-square-047",
               "F1-math-square-048",
               "F1-math-square-049",
-              "F1-math-square-050"
+              "F1-math-square-050",
+              "F1-math-qx10-df374c11539badbb19d7",
+              "F1-math-qx10-6a99fd9b4ffaf7085985",
+              "F1-math-qx10-1cf4157b616f3ec36e17",
+              "F1-math-qx10-3e9a4919acdc56351349",
+              "F1-math-qx10-bd6a59965b059c7b72ef"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "55 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 55,
+            "independentCount": 55,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-square-001",
@@ -92991,7 +93346,8 @@
             "status": "partial",
             "models": [
               "ratio",
-              "v2-math-ratio-part-total"
+              "v2-math-ratio-part-total",
+              "v2-qx10-math-ratio"
             ],
             "questionIds": [
               "F1-math-ratio-001",
@@ -93115,14 +93471,17 @@
               "F1-math-v2-6978f3a035ac94bb7598",
               "F1-math-v2-07f4affd874c15b937b1",
               "F1-math-v2-c02a6d77b170e0cb6382",
-              "F1-math-v2-6975907f35b1b6d59644"
+              "F1-math-v2-6975907f35b1b6d59644",
+              "F1-math-qx10-dab900444656510b8414",
+              "F1-math-qx10-dd4ec4ebec6b3f3dfe28",
+              "F1-math-qx10-e75e7e412c17e8890a8d"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "122 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 122,
-            "independentCount": 122,
+            "note": "125 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 125,
+            "independentCount": 125,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-ratio-001",
@@ -93136,17 +93495,44 @@
           {
             "id": "expressions",
             "title": "Algebraic expressions",
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-math-expressions"
+            ],
+            "questionIds": [
+              "F1-math-qx10-b8a011c2bab2feab48ac",
+              "F1-math-qx10-c7d4dc0ce7cb9b0c0c90",
+              "F1-math-qx10-61dbbfa2d7ddd6b759ff",
+              "F1-math-qx10-8b59b7e7c98aacd3a2b3",
+              "F1-math-qx10-923c08e270c216f10649",
+              "F1-math-qx10-0976438a1f75c6ffb08b",
+              "F1-math-qx10-92d04c9463aa8877e5bf",
+              "F1-math-qx10-763a079018ee97cfa03c",
+              "F1-math-qx10-7e12078e054d3d004675",
+              "F1-math-qx10-a44bdf2fed15c85202d0",
+              "F1-math-qx10-a9d25587cc9f73425f44",
+              "F1-math-qx10-c886aff55727cd1ecdbb",
+              "F1-math-qx10-d35beae4c15f57500570",
+              "F1-math-qx10-880e5b27a318d7039113",
+              "F1-math-qx10-ea5d395b33b490851dc1",
+              "F1-math-qx10-eff100448d32e33ae17b",
+              "F1-math-qx10-b71269c71bcbb75ab312"
+            ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "17 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-math-qx10-b8a011c2bab2feab48ac",
+              "F1-math-qx10-c7d4dc0ce7cb9b0c0c90",
+              "F1-math-qx10-61dbbfa2d7ddd6b759ff",
+              "F1-math-qx10-8b59b7e7c98aacd3a2b3",
+              "F1-math-qx10-923c08e270c216f10649",
+              "F1-math-qx10-0976438a1f75c6ffb08b"
+            ]
           },
           {
             "id": "equations",
@@ -93154,7 +93540,8 @@
             "status": "partial",
             "models": [
               "linear",
-              "v2-math-equation-check"
+              "v2-math-equation-check",
+              "v2-qx10-math-equations"
             ],
             "questionIds": [
               "F1-math-linear-001",
@@ -93278,14 +93665,18 @@
               "F1-math-v2-2e21c7b46d7b7d653dbf",
               "F1-math-v2-9df7c893634efb346d91",
               "F1-math-v2-c44a36ec73dfb2d05ddc",
-              "F1-math-v2-288656708c247d3eb0ec"
+              "F1-math-v2-288656708c247d3eb0ec",
+              "F1-math-qx10-a04d2141f81c76052267",
+              "F1-math-qx10-d2ba3f681613947e49ba",
+              "F1-math-qx10-c1735d056493152dd1d5",
+              "F1-math-qx10-1cbac10676a88bb2c200"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "122 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 122,
-            "independentCount": 122,
+            "note": "126 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 126,
+            "independentCount": 126,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-linear-001",
@@ -93301,20 +93692,41 @@
             "title": "Linear inequalities",
             "status": "partial",
             "models": [
-              "v2-cf-inequality-negative"
+              "v2-cf-inequality-negative",
+              "v2-qx10-math-inequalities"
             ],
             "questionIds": [
-              "F1-math-v2-ed4a75171b8c0ab034ea"
+              "F1-math-v2-ed4a75171b8c0ab034ea",
+              "F1-math-qx10-d6779b6731d7a73312ea",
+              "F1-math-qx10-1986b71df8c13ef8cd1d",
+              "F1-math-qx10-514d3ee2493594231251",
+              "F1-math-qx10-c2e8c97c912f06a2a47c",
+              "F1-math-qx10-214fedc9b974f7311b15",
+              "F1-math-qx10-42c0bd82123384c6d8d5",
+              "F1-math-qx10-7dbc8b96ff74b6f07d48",
+              "F1-math-qx10-f05d038eb84a84743c77",
+              "F1-math-qx10-d2fb271ac65b2e0d4c67",
+              "F1-math-qx10-d325e66def7df1cd7c2e",
+              "F1-math-qx10-773bed22f3742c272f8d",
+              "F1-math-qx10-b6df0194ab9777cf72fe",
+              "F1-math-qx10-8d71a935f3b0795e4eff",
+              "F1-math-qx10-f8a94334ca2994545552",
+              "F1-math-qx10-a006b42c562056154099"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "1 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 1,
-            "independentCount": 1,
+            "note": "16 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 16,
+            "independentCount": 16,
             "guidedCount": 0,
             "evidenceIds": [
-              "F1-math-v2-ed4a75171b8c0ab034ea"
+              "F1-math-v2-ed4a75171b8c0ab034ea",
+              "F1-math-qx10-d6779b6731d7a73312ea",
+              "F1-math-qx10-1986b71df8c13ef8cd1d",
+              "F1-math-qx10-514d3ee2493594231251",
+              "F1-math-qx10-c2e8c97c912f06a2a47c",
+              "F1-math-qx10-214fedc9b974f7311b15"
             ]
           },
           {
@@ -93458,7 +93870,8 @@
             "title": "Basic polygons",
             "status": "partial",
             "models": [
-              "triangle"
+              "triangle",
+              "v2-qx10-math-polygons"
             ],
             "questionIds": [
               "F1-math-triangle-001",
@@ -93510,14 +93923,21 @@
               "F1-math-triangle-047",
               "F1-math-triangle-048",
               "F1-math-triangle-049",
-              "F1-math-triangle-050"
+              "F1-math-triangle-050",
+              "F1-math-qx10-37a6a56557de8093eb69",
+              "F1-math-qx10-69ab23c4252077cd6bc9",
+              "F1-math-qx10-bffe46a0b388c258541a",
+              "F1-math-qx10-bd652db5a5208ce3530f",
+              "F1-math-qx10-79d1fd43853d63d42c97",
+              "F1-math-qx10-09a193d3c77536956861",
+              "F1-math-qx10-a8b7c7646ded83fbb904"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "57 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 57,
+            "independentCount": 57,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-triangle-001",
@@ -93533,7 +93953,8 @@
             "title": "Perimeter and area",
             "status": "partial",
             "models": [
-              "area"
+              "area",
+              "v2-qx10-math-area"
             ],
             "questionIds": [
               "F1-math-area-001",
@@ -93585,14 +94006,21 @@
               "F1-math-area-047",
               "F1-math-area-048",
               "F1-math-area-049",
-              "F1-math-area-050"
+              "F1-math-area-050",
+              "F1-math-qx10-5dc97e0fe64d6ee19f8d",
+              "F1-math-qx10-86dacc24608902ded63b",
+              "F1-math-qx10-76c164cc32cfc7f614ff",
+              "F1-math-qx10-57c4a019083ee2d37725",
+              "F1-math-qx10-08350faceba772c7fb41",
+              "F1-math-qx10-53ca4954f64f49b01793",
+              "F1-math-qx10-06d841355573f630730c"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "57 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 57,
+            "independentCount": 57,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-area-001",
@@ -93606,17 +94034,44 @@
           {
             "id": "sets",
             "title": "Sets",
-            "status": "missing",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-math-sets"
+            ],
+            "questionIds": [
+              "F1-math-qx10-414ff34d90a6568d9fad",
+              "F1-math-qx10-64e22305188fdd805f48",
+              "F1-math-qx10-5022ffbce7418f67099c",
+              "F1-math-qx10-9fb3ed7dd7554298ff77",
+              "F1-math-qx10-cc354d33c0880621a27b",
+              "F1-math-qx10-770236234feed175531e",
+              "F1-math-qx10-f2aa6f6e4fbd92a8ff08",
+              "F1-math-qx10-58bbff1fcacac5d26966",
+              "F1-math-qx10-2fef6a35e333a70fd3db",
+              "F1-math-qx10-cade922121e142c1aade",
+              "F1-math-qx10-484d65ad7453fd76115e",
+              "F1-math-qx10-52e79313a46db2c5fa4f",
+              "F1-math-qx10-47060b22565c7a28f0cf",
+              "F1-math-qx10-dfafb9d7a50f3dd9bbb7",
+              "F1-math-qx10-ffef071119e027ff0075",
+              "F1-math-qx10-834d91204f8976a72bd9",
+              "F1-math-qx10-ee402dcc9c4a2acbdf96"
+            ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "0 active grade-scope questions across 0 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "17 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
-            "evidenceIds": [],
+            "evidenceIds": [
+              "F1-math-qx10-414ff34d90a6568d9fad",
+              "F1-math-qx10-64e22305188fdd805f48",
+              "F1-math-qx10-5022ffbce7418f67099c",
+              "F1-math-qx10-9fb3ed7dd7554298ff77",
+              "F1-math-qx10-cc354d33c0880621a27b",
+              "F1-math-qx10-770236234feed175531e"
+            ],
             "retiredQuestionIds": [
               "F1-math-setunion-001",
               "F1-math-setunion-002",
@@ -93676,7 +94131,8 @@
             "title": "Data handling",
             "status": "partial",
             "models": [
-              "frequency"
+              "frequency",
+              "v2-qx10-math-data"
             ],
             "questionIds": [
               "F1-math-frequency-001",
@@ -93728,14 +94184,22 @@
               "F1-math-frequency-047",
               "F1-math-frequency-048",
               "F1-math-frequency-049",
-              "F1-math-frequency-050"
+              "F1-math-frequency-050",
+              "F1-math-qx10-7a3753fb70ad26162632",
+              "F1-math-qx10-aa41c3e0088747c6923d",
+              "F1-math-qx10-ed0dfeec9b0b5a2e97f4",
+              "F1-math-qx10-c88c5d25f0dcbb3d605d",
+              "F1-math-qx10-383bee2d484b2a1088ab",
+              "F1-math-qx10-05991b64640060191e9a",
+              "F1-math-qx10-9cea39d9fbcdce3e09d6",
+              "F1-math-qx10-4aae24f1b68a13c0c502"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "58 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 58,
+            "independentCount": 58,
             "guidedCount": 0,
             "evidenceIds": [
               "F1-math-frequency-001",
@@ -93778,20 +94242,39 @@
             "title": "Pythagoras",
             "status": "partial",
             "models": [
-              "v2-cf-pythagoras-converse"
+              "v2-cf-pythagoras-converse",
+              "v2-qx10-math-pythagoras"
             ],
             "questionIds": [
-              "F1-math-v2-002e3ab7d72fe9b99dbd"
+              "F1-math-v2-002e3ab7d72fe9b99dbd",
+              "F1-math-qx10-9c1cbcaeda85076f7fc3",
+              "F1-math-qx10-60686aad995dcce39df7",
+              "F1-math-qx10-691e55556ed99ee02c01",
+              "F1-math-qx10-81b6a06a53baf488576a",
+              "F1-math-qx10-5f69f50746d76a6f6666",
+              "F1-math-qx10-490fb9040c793f2a1988",
+              "F1-math-qx10-e40ed60df2f192f7852e",
+              "F1-math-qx10-649bb2ba18e40d772fac",
+              "F1-math-qx10-091079a65aba3b74148d",
+              "F1-math-qx10-829eaca0dd453df310f4",
+              "F1-math-qx10-f9c7dcb25406368ae4c7",
+              "F1-math-qx10-052e9a2853994514d595",
+              "F1-math-qx10-7a032148becceb0fb838"
             ],
             "sourceIds": [
               "cf-stem-math-f1"
             ],
-            "note": "1 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 1,
-            "independentCount": 1,
+            "note": "14 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 14,
+            "independentCount": 14,
             "guidedCount": 0,
             "evidenceIds": [
-              "F1-math-v2-002e3ab7d72fe9b99dbd"
+              "F1-math-v2-002e3ab7d72fe9b99dbd",
+              "F1-math-qx10-9c1cbcaeda85076f7fc3",
+              "F1-math-qx10-60686aad995dcce39df7",
+              "F1-math-qx10-691e55556ed99ee02c01",
+              "F1-math-qx10-81b6a06a53baf488576a",
+              "F1-math-qx10-5f69f50746d76a6f6666"
             ]
           }
         ],
@@ -93829,9 +94312,9 @@
         "unmappedActiveModels": [],
         "summary": {
           "represented": 0,
-          "partial": 11,
-          "missing": 1,
-          "performance": 1
+          "partial": 13,
+          "missing": 0,
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -105800,19 +106283,21 @@
       "level": "F2",
       "subject": "math",
       "title": "数学",
-      "active": 738,
-      "stored": 902,
+      "active": 918,
+      "stored": 1082,
       "retired": 164,
       "sourceIds": [
         "mt-f2",
         "curriculum-v2-math",
-        "cf-stem-math-f2"
+        "cf-stem-math-f2",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F2-math",
         "framework": "KSSM",
         "sourceIds": [
-          "cf-stem-math-f2"
+          "cf-stem-math-f2",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -105822,7 +106307,8 @@
             "status": "partial",
             "models": [
               "sequence",
-              "v2-math-sequence-position"
+              "v2-math-sequence-position",
+              "v2-qx10-math-patterns"
             ],
             "questionIds": [
               "F2-math-sequence-001",
@@ -105943,14 +106429,20 @@
               "F2-math-v2-de761890f967884402b4",
               "F2-math-v2-9a418242d2943b5165e0",
               "F2-math-v2-7ccb6d1072cd256a87d2",
-              "F2-math-v2-bdf12ab98685870cff1b"
+              "F2-math-v2-bdf12ab98685870cff1b",
+              "F2-math-qx10-ccfa81b39b3fa7b6a3e9",
+              "F2-math-qx10-28ff680699ec8b8e5637",
+              "F2-math-qx10-bcce5b3a4c03a9644ed0",
+              "F2-math-qx10-8f84f3931ce060a050d3",
+              "F2-math-qx10-d41cf4c6dfa69fff3a08",
+              "F2-math-qx10-168ce82569219e48421a"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "119 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 119,
-            "independentCount": 119,
+            "note": "125 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 125,
+            "independentCount": 125,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-sequence-001",
@@ -105967,7 +106459,8 @@
             "status": "partial",
             "models": [
               "expand",
-              "factor"
+              "factor",
+              "v2-qx10-math-factorisation"
             ],
             "questionIds": [
               "F2-math-expand-001",
@@ -106069,14 +106562,24 @@
               "F2-math-factor-047",
               "F2-math-factor-048",
               "F2-math-factor-049",
-              "F2-math-factor-050"
+              "F2-math-factor-050",
+              "F2-math-qx10-f9871c409185853fa459",
+              "F2-math-qx10-3c37843f6eec43a629f7",
+              "F2-math-qx10-b1f0911a1aaf5080e8a7",
+              "F2-math-qx10-c7e66fa99efc337ee3ec",
+              "F2-math-qx10-23f6bd889eae51b89eb1",
+              "F2-math-qx10-c37866ed7ee6036e8ed3",
+              "F2-math-qx10-2788f2bf6a90584e5b1e",
+              "F2-math-qx10-68f27f6432f81f656654",
+              "F2-math-qx10-1b0ba5885fd93ed4edd1",
+              "F2-math-qx10-e71e212c2bd2f30fc02b"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "100 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "110 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 110,
+            "independentCount": 110,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-expand-001",
@@ -106092,7 +106595,8 @@
             "title": "Algebraic formulae",
             "status": "partial",
             "models": [
-              "formula"
+              "formula",
+              "v2-qx10-math-formulae"
             ],
             "questionIds": [
               "F2-math-formula-001",
@@ -106144,14 +106648,26 @@
               "F2-math-formula-047",
               "F2-math-formula-048",
               "F2-math-formula-049",
-              "F2-math-formula-050"
+              "F2-math-formula-050",
+              "F2-math-qx10-f9bee79c6c47b916fe9d",
+              "F2-math-qx10-ad241016fb6664e74b55",
+              "F2-math-qx10-68a11acbec7f406aa85e",
+              "F2-math-qx10-abc3bba44d64f3ab2230",
+              "F2-math-qx10-dd11a61b653bef7ba007",
+              "F2-math-qx10-bea8dcd8c92bee0fec81",
+              "F2-math-qx10-8c20f4a6aca130f0a3fe",
+              "F2-math-qx10-13cac531654fe9ad8970",
+              "F2-math-qx10-fe36668de25bdf50684d",
+              "F2-math-qx10-b2fa6c6090a9446c29d4",
+              "F2-math-qx10-228ed94e00fb45067e26",
+              "F2-math-qx10-47c942ce61f403997b89"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "62 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-formula-001",
@@ -106167,7 +106683,8 @@
             "title": "Polygons",
             "status": "partial",
             "models": [
-              "polygon"
+              "polygon",
+              "v2-qx10-math-polygons"
             ],
             "questionIds": [
               "F2-math-polygon-001",
@@ -106219,14 +106736,26 @@
               "F2-math-polygon-047",
               "F2-math-polygon-048",
               "F2-math-polygon-049",
-              "F2-math-polygon-050"
+              "F2-math-polygon-050",
+              "F2-math-qx10-00b557f3ac6afe17fb0f",
+              "F2-math-qx10-221682a59e060d55235d",
+              "F2-math-qx10-8c1e10366e37adacad01",
+              "F2-math-qx10-9f87ef84f0dad361c990",
+              "F2-math-qx10-53d10f275aba7ff76bb4",
+              "F2-math-qx10-f4c824ff4e7a7ae5a2a9",
+              "F2-math-qx10-4d33c8037d2244a15181",
+              "F2-math-qx10-2a3cb10782baa91bb8b5",
+              "F2-math-qx10-7393d6f2403f2e8c8094",
+              "F2-math-qx10-96eac449374d9b549d81",
+              "F2-math-qx10-30a40b6e9f4b3d423b21",
+              "F2-math-qx10-8a6f00f6cfabf25d75d1"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "62 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-polygon-001",
@@ -106242,7 +106771,8 @@
             "title": "Circles",
             "status": "partial",
             "models": [
-              "circle"
+              "circle",
+              "v2-qx10-math-circles"
             ],
             "questionIds": [
               "F2-math-circle-001",
@@ -106294,14 +106824,24 @@
               "F2-math-circle-047",
               "F2-math-circle-048",
               "F2-math-circle-049",
-              "F2-math-circle-050"
+              "F2-math-circle-050",
+              "F2-math-qx10-4ed90a815700e81b7571",
+              "F2-math-qx10-8c198704a7416cf94c99",
+              "F2-math-qx10-a37097e103361fdc4fc2",
+              "F2-math-qx10-9c36fd0a687cede2cc61",
+              "F2-math-qx10-6d5763b929f275b4edf0",
+              "F2-math-qx10-54072eb78c39dc129bf7",
+              "F2-math-qx10-1eb66cc5fa86c3312cdb",
+              "F2-math-qx10-51e019e1f6e7258e1f41",
+              "F2-math-qx10-412af8d91a89043272fd",
+              "F2-math-qx10-c16de9802bf8f04223a0"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "60 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 60,
+            "independentCount": 60,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-circle-001",
@@ -106317,7 +106857,8 @@
             "title": "Three-dimensional shapes",
             "status": "partial",
             "models": [
-              "cylinder"
+              "cylinder",
+              "v2-qx10-math-solids"
             ],
             "questionIds": [
               "F2-math-cylinder-001",
@@ -106369,14 +106910,24 @@
               "F2-math-cylinder-047",
               "F2-math-cylinder-048",
               "F2-math-cylinder-049",
-              "F2-math-cylinder-050"
+              "F2-math-cylinder-050",
+              "F2-math-qx10-e1d8e4b1063d5d877311",
+              "F2-math-qx10-880059a3b031b4f233db",
+              "F2-math-qx10-4a3464be493a8b9b06c1",
+              "F2-math-qx10-5f12dd19b88de31913f4",
+              "F2-math-qx10-ebf2601c68be639b3432",
+              "F2-math-qx10-1f601d0845e934a0fbd0",
+              "F2-math-qx10-eaf0e372b129b2396864",
+              "F2-math-qx10-e957f4e0584e8de97a96",
+              "F2-math-qx10-b67be4d86d089d29670d",
+              "F2-math-qx10-b9797b8b65997f603fc3"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "60 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 60,
+            "independentCount": 60,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-cylinder-001",
@@ -106393,7 +106944,8 @@
             "status": "partial",
             "models": [
               "distance",
-              "midpoint"
+              "midpoint",
+              "v2-qx10-math-coordinates"
             ],
             "questionIds": [
               "F2-math-distance-001",
@@ -106495,14 +107047,18 @@
               "F2-math-midpoint-047",
               "F2-math-midpoint-048",
               "F2-math-midpoint-049",
-              "F2-math-midpoint-050"
+              "F2-math-midpoint-050",
+              "F2-math-qx10-a2e63bc1a585cfa4ed16",
+              "F2-math-qx10-91a49edb9fff4e734468",
+              "F2-math-qx10-41a0a55dc8cdf05ae843",
+              "F2-math-qx10-f510495e663448b32382"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "100 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "104 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 104,
+            "independentCount": 104,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-distance-001",
@@ -106516,17 +107072,55 @@
           {
             "id": "graphs",
             "title": "Graphs of functions",
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-math-graphs"
+            ],
+            "questionIds": [
+              "F2-math-qx10-010f6e60a6b046b46063",
+              "F2-math-qx10-8bbba98003eeac26ded1",
+              "F2-math-qx10-f9f5cc648818c8852fab",
+              "F2-math-qx10-4efb61c6aa03603cdb2e",
+              "F2-math-qx10-a9cd491e8341551b4383",
+              "F2-math-qx10-2048acc72ee624772e4c",
+              "F2-math-qx10-5b9aaf6febb0aa4421e5",
+              "F2-math-qx10-a17f3eeca97544a78f97",
+              "F2-math-qx10-79a0f37b187445a6f984",
+              "F2-math-qx10-eb6a6ebc7b79e2ee7b81",
+              "F2-math-qx10-a246065d17f7aa6ec648",
+              "F2-math-qx10-1a5496471d4f91e94ebd",
+              "F2-math-qx10-46ded751991d91849bf5",
+              "F2-math-qx10-a3e235c002d2143a30e2",
+              "F2-math-qx10-8d9e0b3f36e45e2e1e2d",
+              "F2-math-qx10-5c51ebcb6483bf8441ea",
+              "F2-math-qx10-ef906880e2882f4c9a76",
+              "F2-math-qx10-e7c8ddfdbe880fab7056",
+              "F2-math-qx10-6f7a5b3017e7718d77a6",
+              "F2-math-qx10-ce94bfb8ffa67aa0307f",
+              "F2-math-qx10-c184eb6f2b2c73cfb86d",
+              "F2-math-qx10-deb78bbe22e1b16efa09",
+              "F2-math-qx10-71be2ddfb586502309ed",
+              "F2-math-qx10-33f0d7cbd28b773546e8",
+              "F2-math-qx10-b20764a47674d65784a8",
+              "F2-math-qx10-0937a395adb65b2b8958",
+              "F2-math-qx10-4d9facbbfdcddc582bad",
+              "F2-math-qx10-d25b2bf40c65ccb07407"
+            ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "28 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-math-qx10-010f6e60a6b046b46063",
+              "F2-math-qx10-8bbba98003eeac26ded1",
+              "F2-math-qx10-f9f5cc648818c8852fab",
+              "F2-math-qx10-4efb61c6aa03603cdb2e",
+              "F2-math-qx10-a9cd491e8341551b4383",
+              "F2-math-qx10-2048acc72ee624772e4c"
+            ]
           },
           {
             "id": "speed",
@@ -106534,7 +107128,8 @@
             "status": "partial",
             "models": [
               "speed",
-              "v2-cf-acceleration"
+              "v2-cf-acceleration",
+              "v2-qx10-math-speed"
             ],
             "questionIds": [
               "F2-math-speed-001",
@@ -106587,14 +107182,26 @@
               "F2-math-speed-048",
               "F2-math-speed-049",
               "F2-math-speed-050",
-              "F2-math-v2-889bc2767d27cbc8cbe0"
+              "F2-math-v2-889bc2767d27cbc8cbe0",
+              "F2-math-qx10-ef9fa03194c8d498e396",
+              "F2-math-qx10-6686e280ff7902dd06d1",
+              "F2-math-qx10-459468459954f0d73068",
+              "F2-math-qx10-ff1183aaa1138be92a55",
+              "F2-math-qx10-694257c6145aa607eb82",
+              "F2-math-qx10-224a8d1f39754f41843e",
+              "F2-math-qx10-1ea240fa3fb375052c19",
+              "F2-math-qx10-289cc97cb406acf2c95b",
+              "F2-math-qx10-d29b6ad2e11329e7891b",
+              "F2-math-qx10-5368da509241b2779778",
+              "F2-math-qx10-91c1c35e04f33d3d9b66",
+              "F2-math-qx10-9fea64962c4fbf874ecb"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "51 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 51,
-            "independentCount": 51,
+            "note": "63 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 63,
+            "independentCount": 63,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-speed-001",
@@ -106611,7 +107218,8 @@
             "status": "partial",
             "models": [
               "gradient",
-              "v2-math-gradient-explanation"
+              "v2-math-gradient-explanation",
+              "v2-qx10-math-gradient"
             ],
             "questionIds": [
               "F2-math-gradient-001",
@@ -106732,14 +107340,18 @@
               "F2-math-v2-a2bb7529c41edc60c5e1",
               "F2-math-v2-8a90698b63571c3f077e",
               "F2-math-v2-32adca97481cc20d5bdf",
-              "F2-math-v2-590468921ab634c014b5"
+              "F2-math-v2-590468921ab634c014b5",
+              "F2-math-qx10-895e9a0ba8aa7de67a1d",
+              "F2-math-qx10-42ef1d0654d09cb4ac2d",
+              "F2-math-qx10-36588e6e5f799d368bf3",
+              "F2-math-qx10-c2f5745b57fa1041da4e"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "119 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 119,
-            "independentCount": 119,
+            "note": "123 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 123,
+            "independentCount": 123,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-gradient-001",
@@ -106755,43 +107367,118 @@
             "title": "Isometric transformations",
             "status": "partial",
             "models": [
-              "v2-cf-translation"
+              "v2-cf-translation",
+              "v2-qx10-math-transformations"
             ],
             "questionIds": [
-              "F2-math-v2-fabdff562869eb4c1ec3"
+              "F2-math-v2-fabdff562869eb4c1ec3",
+              "F2-math-qx10-98daa1616580dca79989",
+              "F2-math-qx10-fbe9bf0436ee51386f90",
+              "F2-math-qx10-bee61d763fb99120464d",
+              "F2-math-qx10-9b6a4973c35ef6891cb9",
+              "F2-math-qx10-8c35f68a7657fbaa5d8b",
+              "F2-math-qx10-645f625881b987d704b4",
+              "F2-math-qx10-0849e6084fccd9f7bd1b",
+              "F2-math-qx10-bfc523522fc890ebf871",
+              "F2-math-qx10-13f1821092cadbd1d7eb",
+              "F2-math-qx10-3b76ac4b0e2b795ef7c8",
+              "F2-math-qx10-48d85a0d315775445337",
+              "F2-math-qx10-1854759bfc18927296be",
+              "F2-math-qx10-0bc57198f1a19bd14c13",
+              "F2-math-qx10-abbb2a5804cf788da368",
+              "F2-math-qx10-856266057042d95f5298",
+              "F2-math-qx10-f8b8c432e4c81d7a8631",
+              "F2-math-qx10-ac583a19090a100b87c5",
+              "F2-math-qx10-887b6da34ddd3c95b9fc",
+              "F2-math-qx10-f43d05e2d91039f9ed16",
+              "F2-math-qx10-378ce582adbed6656177",
+              "F2-math-qx10-b6f758c44377c5cae870",
+              "F2-math-qx10-d4b953ad87da4927782a",
+              "F2-math-qx10-f72692309ba65d15af8e",
+              "F2-math-qx10-ef6583850cf1f0ea66b6",
+              "F2-math-qx10-a2afafebb1dccc7fb4c8",
+              "F2-math-qx10-f996e49795df30d59b60",
+              "F2-math-qx10-6d2ede0e1cb5c4d61766",
+              "F2-math-qx10-c1c7ea93970d50213924"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "1 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 1,
-            "independentCount": 1,
+            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
-              "F2-math-v2-fabdff562869eb4c1ec3"
+              "F2-math-v2-fabdff562869eb4c1ec3",
+              "F2-math-qx10-98daa1616580dca79989",
+              "F2-math-qx10-fbe9bf0436ee51386f90",
+              "F2-math-qx10-bee61d763fb99120464d",
+              "F2-math-qx10-9b6a4973c35ef6891cb9",
+              "F2-math-qx10-8c35f68a7657fbaa5d8b"
             ]
           },
           {
             "id": "statistics",
             "title": "Measures of central tendency",
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-math-statistics"
+            ],
+            "questionIds": [
+              "F2-math-qx10-4756fe1d09dfc7f47974",
+              "F2-math-qx10-a628dca369cbcaaa09c4",
+              "F2-math-qx10-d776ab3931ca596ddf31",
+              "F2-math-qx10-07e42fe0a89c0bd2a366",
+              "F2-math-qx10-ddbc7545b54883898b2d",
+              "F2-math-qx10-7132eb1448fa6c2f4c7e",
+              "F2-math-qx10-e57e1f82cf2750521670",
+              "F2-math-qx10-69e1c074b05159731931",
+              "F2-math-qx10-ca74edf15afe27c97de9",
+              "F2-math-qx10-76b23bea816e5d41194c",
+              "F2-math-qx10-1de16014bc4e569d9a8f",
+              "F2-math-qx10-c4815686b110759a5200",
+              "F2-math-qx10-946eb022c77532081155",
+              "F2-math-qx10-691c2905f80517e09b84",
+              "F2-math-qx10-13e808e306676e3e03a9",
+              "F2-math-qx10-e0341a9a822b7da7b33a",
+              "F2-math-qx10-d98d800e75df5d9b3d21",
+              "F2-math-qx10-15913e8a2c1dc5e78dd8",
+              "F2-math-qx10-1c527da794bebbb05bbe",
+              "F2-math-qx10-809f413f2551e3f40608",
+              "F2-math-qx10-f610b4ac2404b9387c7d",
+              "F2-math-qx10-df92f068d87eb5243314",
+              "F2-math-qx10-1907be95a8619d817acd",
+              "F2-math-qx10-38a81b464b8eeaf551dc",
+              "F2-math-qx10-29a6582d323105d8e650",
+              "F2-math-qx10-5d21cc10fa246ca5c835",
+              "F2-math-qx10-d4853d75e0d4dfd47e9c",
+              "F2-math-qx10-64d86b19d07ec69a5f82",
+              "F2-math-qx10-efe3ed029f800b9405cd",
+              "F2-math-qx10-1c1d500170e7c1cb6bb7"
+            ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "30 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-math-qx10-4756fe1d09dfc7f47974",
+              "F2-math-qx10-a628dca369cbcaaa09c4",
+              "F2-math-qx10-d776ab3931ca596ddf31",
+              "F2-math-qx10-07e42fe0a89c0bd2a366",
+              "F2-math-qx10-ddbc7545b54883898b2d",
+              "F2-math-qx10-7132eb1448fa6c2f4c7e"
+            ]
           },
           {
             "id": "probability",
             "title": "Simple probability",
             "status": "partial",
             "models": [
-              "probability"
+              "probability",
+              "v2-qx10-math-probability"
             ],
             "questionIds": [
               "F2-math-probability-001",
@@ -106841,14 +107528,28 @@
               "F2-math-probability-046",
               "F2-math-probability-047",
               "F2-math-probability-048",
-              "F2-math-probability-049"
+              "F2-math-probability-049",
+              "F2-math-qx10-d05dc9394eeb69e56c0c",
+              "F2-math-qx10-d322a16dd171a4c0037d",
+              "F2-math-qx10-62d140bd3f1685d00cc6",
+              "F2-math-qx10-f52398ac0230d3f45b5c",
+              "F2-math-qx10-1ac0ed3b65068ad3725f",
+              "F2-math-qx10-3a4a47113bceb81267d3",
+              "F2-math-qx10-cc1df0018ea0c811f146",
+              "F2-math-qx10-299cf91e726663e8e8ee",
+              "F2-math-qx10-d5ab2c8f08c289bba0aa",
+              "F2-math-qx10-65fa243f2eb54093ad86",
+              "F2-math-qx10-7265a497e91d9da9611e",
+              "F2-math-qx10-aa3eda9e263863807b46",
+              "F2-math-qx10-968b8916c1c7d5fcdd3e",
+              "F2-math-qx10-bd9d6114b8796bcb87c8"
             ],
             "sourceIds": [
               "cf-stem-math-f2"
             ],
-            "note": "48 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 48,
-            "independentCount": 48,
+            "note": "62 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "F2-math-probability-001",
@@ -106910,9 +107611,9 @@
         "unmappedActiveModels": [],
         "summary": {
           "represented": 0,
-          "partial": 11,
+          "partial": 13,
           "missing": 0,
-          "performance": 2
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -118922,19 +119623,21 @@
       "level": "F3",
       "subject": "math",
       "title": "数学",
-      "active": 742,
-      "stored": 902,
+      "active": 922,
+      "stored": 1082,
       "retired": 160,
       "sourceIds": [
         "mt-f23",
         "curriculum-v2-math",
-        "cf-stem-math-f3"
+        "cf-stem-math-f3",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F3-math",
         "framework": "KSSM",
         "sourceIds": [
-          "cf-stem-math-f3"
+          "cf-stem-math-f3",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -118945,7 +119648,8 @@
             "models": [
               "indexroot",
               "indices",
-              "v2-math-index-law-reason"
+              "v2-math-index-law-reason",
+              "v2-qx10-math-indices"
             ],
             "questionIds": [
               "F3-math-indices-001",
@@ -119059,14 +119763,36 @@
               "F3-math-v2-b76250a3d631b00ce9a9",
               "F3-math-v2-43f31b6ac165cbbcd4f1",
               "F3-math-v2-4887f81169773b325e60",
-              "F3-math-v2-2549785c421aa0c5b969"
+              "F3-math-v2-2549785c421aa0c5b969",
+              "F3-math-qx10-3661148125c7c71d3be7",
+              "F3-math-qx10-2c2b2da4a678c1477489",
+              "F3-math-qx10-e1391da1685797b5474a",
+              "F3-math-qx10-f82fb5f865834f3be14d",
+              "F3-math-qx10-39c5e65301571dae81b4",
+              "F3-math-qx10-4e2431ce5390cfd9db97",
+              "F3-math-qx10-e3f4a6b9ce8c0b5e60b1",
+              "F3-math-qx10-bfa746d6b65d11f17ba6",
+              "F3-math-qx10-cc8f9894a7de20f008fb",
+              "F3-math-qx10-953a0ab475c9003dfaab",
+              "F3-math-qx10-4ed52db92db0f7576ba4",
+              "F3-math-qx10-5da43ceeb0002dd9695c",
+              "F3-math-qx10-ce9064435ded20a2aa48",
+              "F3-math-qx10-d8f3b48373e9344523b4",
+              "F3-math-qx10-5f59807e9e4cfa9b5766",
+              "F3-math-qx10-745e2a5c33175eee200b",
+              "F3-math-qx10-7c3099d07c1a13604b32",
+              "F3-math-qx10-86665b2082f049995ebe",
+              "F3-math-qx10-db50e3082fca419b3121",
+              "F3-math-qx10-294ed93d894109ee3236",
+              "F3-math-qx10-486bbafbde137da36856",
+              "F3-math-qx10-d7694ea18ed36bb16ad9"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "112 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 112,
-            "independentCount": 112,
+            "note": "134 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 134,
+            "independentCount": 134,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-indices-001",
@@ -119082,7 +119808,8 @@
             "title": "Standard form",
             "status": "partial",
             "models": [
-              "standard"
+              "standard",
+              "v2-qx10-math-standard"
             ],
             "questionIds": [
               "F3-math-standard-001",
@@ -119134,14 +119861,40 @@
               "F3-math-standard-047",
               "F3-math-standard-048",
               "F3-math-standard-049",
-              "F3-math-standard-050"
+              "F3-math-standard-050",
+              "F3-math-qx10-63c0eb979b384e0247ae",
+              "F3-math-qx10-cb4ff3bb17fd8ac608e4",
+              "F3-math-qx10-e73189615e2719268908",
+              "F3-math-qx10-3e0cdcef5fd238ccc451",
+              "F3-math-qx10-92d0ee31cdb3412f1eff",
+              "F3-math-qx10-dfad51be72ab5ec5a72c",
+              "F3-math-qx10-72c50ef53e50cef798b1",
+              "F3-math-qx10-676700c0e128d7723959",
+              "F3-math-qx10-9a73b87e9aac403b630f",
+              "F3-math-qx10-8f6e78b421cc5aa0f9cf",
+              "F3-math-qx10-909dc70fa0deaad6c0ba",
+              "F3-math-qx10-a13d36d31fa0adb1ea6a",
+              "F3-math-qx10-7c0f3cbc421ac9c116a5",
+              "F3-math-qx10-a3ee74967ebb84bd9099",
+              "F3-math-qx10-1b4fd78176148a5c9e04",
+              "F3-math-qx10-ce6f1e2a9626ef86ffaa",
+              "F3-math-qx10-6d6b4cfa997d72aae976",
+              "F3-math-qx10-a59ef5f90dc08cc21898",
+              "F3-math-qx10-1d9417dea659ff1997ce",
+              "F3-math-qx10-6a575843ab69c4d8c4b2",
+              "F3-math-qx10-0940cd6562f2bd106138",
+              "F3-math-qx10-2dc84e68f325af3f7801",
+              "F3-math-qx10-106e331fbf83b7041edd",
+              "F3-math-qx10-2fc08c7b0cdc15251ed5",
+              "F3-math-qx10-4cbe867fc22c5b3a6ddb",
+              "F3-math-qx10-94c8049dcd21660143b2"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "76 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 76,
+            "independentCount": 76,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-standard-001",
@@ -119160,7 +119913,8 @@
               "compound",
               "simpleinterest",
               "v2-cf-credit-total",
-              "v2-math-simple-interest-decision"
+              "v2-math-simple-interest-decision",
+              "v2-qx10-math-finance"
             ],
             "questionIds": [
               "F3-math-simpleinterest-001",
@@ -119331,14 +120085,36 @@
               "F3-math-v2-5ad2afdfe02691a9b750",
               "F3-math-v2-01bd94c56e115cf68bd5",
               "F3-math-v2-cc9175f681deff8b79b9",
-              "F3-math-v2-907ca14883efa3a7be63"
+              "F3-math-v2-907ca14883efa3a7be63",
+              "F3-math-qx10-7a103c22adda70a1f05c",
+              "F3-math-qx10-8b7cd49b9bbc4c2d773f",
+              "F3-math-qx10-24fff3d47659560f14b5",
+              "F3-math-qx10-acf9f28a049c9ab4af9b",
+              "F3-math-qx10-5da4a7411e29e7f89f6a",
+              "F3-math-qx10-4524cea6c79072a6e031",
+              "F3-math-qx10-09809f6aed8ccd1d9b90",
+              "F3-math-qx10-4c6bac554d2b8bb00d13",
+              "F3-math-qx10-e29e369933c0de349518",
+              "F3-math-qx10-7c51892cb9beaf5952f0",
+              "F3-math-qx10-a02f36a3238ba2b24522",
+              "F3-math-qx10-1a6e2e9c8e3a310f84a1",
+              "F3-math-qx10-534926580250acb2ec7c",
+              "F3-math-qx10-897efa27041df704b642",
+              "F3-math-qx10-5f755209c58bd0abda45",
+              "F3-math-qx10-94bffacf1144b61c92f0",
+              "F3-math-qx10-095dd76fe74aa11b1055",
+              "F3-math-qx10-eb9ed54b87b719c7dda9",
+              "F3-math-qx10-2c0d4033ab2f3080f954",
+              "F3-math-qx10-ae0e0c2950f9d1725783",
+              "F3-math-qx10-e081cbf6a87de72f1e3a",
+              "F3-math-qx10-6f9dafcf6f3de045338a"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "169 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 169,
-            "independentCount": 169,
+            "note": "191 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 191,
+            "independentCount": 191,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-simpleinterest-001",
@@ -119355,7 +120131,8 @@
             "status": "partial",
             "models": [
               "scale",
-              "v2-math-scale-inverse"
+              "v2-math-scale-inverse",
+              "v2-qx10-math-scale"
             ],
             "questionIds": [
               "F3-math-scale-001",
@@ -119467,14 +120244,23 @@
               "F3-math-v2-2644cf2c9eb52f4eeb40",
               "F3-math-v2-0310eb90322ccee24c97",
               "F3-math-v2-d48f5060971757fff464",
-              "F3-math-v2-3605865a97fd20f247ab"
+              "F3-math-v2-3605865a97fd20f247ab",
+              "F3-math-qx10-f78c9145ff4b59be15e8",
+              "F3-math-qx10-e04132633e7041956829",
+              "F3-math-qx10-b1f8e8920076583fe92b",
+              "F3-math-qx10-5acab4bf5527d518f4dd",
+              "F3-math-qx10-ed4847395616fc86afe2",
+              "F3-math-qx10-a75022e7d9c1c361ab22",
+              "F3-math-qx10-110a79ca7db2108a10f9",
+              "F3-math-qx10-e04f8202f8488a963558",
+              "F3-math-qx10-02c6fc86fa5f094fcf56"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "110 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 110,
-            "independentCount": 110,
+            "note": "119 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 119,
+            "independentCount": 119,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-scale-001",
@@ -119490,7 +120276,8 @@
             "title": "Trigonometric ratios",
             "status": "partial",
             "models": [
-              "trig"
+              "trig",
+              "v2-qx10-math-trigonometry"
             ],
             "questionIds": [
               "F3-math-trig-001",
@@ -119542,14 +120329,42 @@
               "F3-math-trig-047",
               "F3-math-trig-048",
               "F3-math-trig-049",
-              "F3-math-trig-050"
+              "F3-math-trig-050",
+              "F3-math-qx10-2bf6ba841072b8178c7e",
+              "F3-math-qx10-bfcb3759658a014ff622",
+              "F3-math-qx10-a1144fb2281f82202a97",
+              "F3-math-qx10-629d2a454e97501f44c4",
+              "F3-math-qx10-b629e3ea7f335d7d32ee",
+              "F3-math-qx10-0847f3ddf6210740dead",
+              "F3-math-qx10-88a55f9d5dcf7cab7766",
+              "F3-math-qx10-2aaf454544af97956cff",
+              "F3-math-qx10-47034e618a68e5e65ed4",
+              "F3-math-qx10-2c5901055aa19258781a",
+              "F3-math-qx10-8e038ac5d06c5b233207",
+              "F3-math-qx10-b73996909bc9bd630f5c",
+              "F3-math-qx10-7ff9a3664388cdeab15d",
+              "F3-math-qx10-214da8abf08d577e60f5",
+              "F3-math-qx10-cbc8ebcb1c7fbaf1144d",
+              "F3-math-qx10-85f62956cb38ab9e8241",
+              "F3-math-qx10-1c7ff02d44881535f4e2",
+              "F3-math-qx10-f876fb2613468b0d80a2",
+              "F3-math-qx10-9ee581fb558a829aaf9b",
+              "F3-math-qx10-3d53fd7c2b555e0f3111",
+              "F3-math-qx10-c4399319bdf53d8b9a23",
+              "F3-math-qx10-aba199098d351d6f0469",
+              "F3-math-qx10-6ef2f82470defd377b22",
+              "F3-math-qx10-8ed179cc0c23ac1a627a",
+              "F3-math-qx10-1218d773e03109ee8d8b",
+              "F3-math-qx10-4c4eb500749de59d701e",
+              "F3-math-qx10-21b335c93295fab75296",
+              "F3-math-qx10-664e26abfc730481b17d"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "78 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 78,
+            "independentCount": 78,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-trig-001",
@@ -119566,7 +120381,8 @@
             "status": "partial",
             "models": [
               "circleangle",
-              "cyclic"
+              "cyclic",
+              "v2-qx10-math-circle"
             ],
             "questionIds": [
               "F3-math-circleangle-001",
@@ -119668,14 +120484,29 @@
               "F3-math-cyclic-047",
               "F3-math-cyclic-048",
               "F3-math-cyclic-049",
-              "F3-math-cyclic-050"
+              "F3-math-cyclic-050",
+              "F3-math-qx10-ef1cb5c25e28f5e32d31",
+              "F3-math-qx10-ee4ea130296f67e17104",
+              "F3-math-qx10-8fd8cabe5a70c039f7c9",
+              "F3-math-qx10-b1ee1ef0554d525b4722",
+              "F3-math-qx10-59fadf029d324c61f8eb",
+              "F3-math-qx10-af1bc10302540ea4432d",
+              "F3-math-qx10-eaf8e5b2d9dc0298d8ce",
+              "F3-math-qx10-830c819f72c695915fb8",
+              "F3-math-qx10-f5c9fa430b055c5b34c3",
+              "F3-math-qx10-dd8e50a0bb4957048036",
+              "F3-math-qx10-d03a0a873f789e6b4870",
+              "F3-math-qx10-bae1b287357f3f66ad90",
+              "F3-math-qx10-9314369c7d938ae9c09f",
+              "F3-math-qx10-6598829f4741152a850e",
+              "F3-math-qx10-34ab3e349177e8e3f16c"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "100 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "115 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 115,
+            "independentCount": 115,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-circleangle-001",
@@ -119691,7 +120522,8 @@
             "title": "Plans and elevations",
             "status": "partial",
             "models": [
-              "plan"
+              "plan",
+              "v2-qx10-math-plans"
             ],
             "questionIds": [
               "F3-math-plan-001",
@@ -119743,14 +120575,32 @@
               "F3-math-plan-047",
               "F3-math-plan-048",
               "F3-math-plan-049",
-              "F3-math-plan-050"
+              "F3-math-plan-050",
+              "F3-math-qx10-7fe0dc83c4232aa73a3b",
+              "F3-math-qx10-35a131623927198d08f6",
+              "F3-math-qx10-bded51a7a82e5b00871f",
+              "F3-math-qx10-daa322ef95d8e8792013",
+              "F3-math-qx10-b389752d638467583e41",
+              "F3-math-qx10-8e10c2b7dd31d6701360",
+              "F3-math-qx10-812beb3ba78320587961",
+              "F3-math-qx10-a210815e23fea532670f",
+              "F3-math-qx10-96e610caad00a79c2330",
+              "F3-math-qx10-ee480d8eb1413ff0c5d1",
+              "F3-math-qx10-6fdc23f1d1c5d291e702",
+              "F3-math-qx10-eac32c0dfcfbe3fcc840",
+              "F3-math-qx10-a9a17e3cd3ae7633e6e1",
+              "F3-math-qx10-cd48bc13fafcf088e712",
+              "F3-math-qx10-6a353d9565a6473baacb",
+              "F3-math-qx10-dec397e9647897e28e1b",
+              "F3-math-qx10-3ef6eb137bbae0383056",
+              "F3-math-qx10-1bd8329bc6edbaa1de49"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "50 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 50,
-            "independentCount": 50,
+            "note": "68 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 68,
+            "independentCount": 68,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-plan-001",
@@ -119766,20 +120616,54 @@
             "title": "Loci in two dimensions",
             "status": "partial",
             "models": [
-              "v2-cf-locus-equidistant"
+              "v2-cf-locus-equidistant",
+              "v2-qx10-math-locus"
             ],
             "questionIds": [
-              "F3-math-v2-f64d31dae59d88821bd5"
+              "F3-math-v2-f64d31dae59d88821bd5",
+              "F3-math-qx10-2691003856d9e17c1c18",
+              "F3-math-qx10-44f4d00e4ff33b315821",
+              "F3-math-qx10-3bd2e7ca56d175135f7f",
+              "F3-math-qx10-074a5bb10c3e0c20018b",
+              "F3-math-qx10-a04d17be4f1e2f9828b7",
+              "F3-math-qx10-af96273110975722fa39",
+              "F3-math-qx10-f8394d71ae599fbb2e0e",
+              "F3-math-qx10-4107dc50a6a22dd46074",
+              "F3-math-qx10-330f83aa2ad7f4f0db7f",
+              "F3-math-qx10-3c6a88f8d81778d5fe50",
+              "F3-math-qx10-608130e8c6e9378ae6a5",
+              "F3-math-qx10-27171052eff67f32b87e",
+              "F3-math-qx10-5e76df91c12df424b559",
+              "F3-math-qx10-c140661943f4437887e4",
+              "F3-math-qx10-37de79b4c1d93a6d9124",
+              "F3-math-qx10-171b63dcd126dfbb0e23",
+              "F3-math-qx10-bf1f124cfcfc0ee94da1",
+              "F3-math-qx10-8d8286959a41eee0a577",
+              "F3-math-qx10-c6f615de0015407df44c",
+              "F3-math-qx10-527294f01891ee576a8a",
+              "F3-math-qx10-cc886682bbd309c12b13",
+              "F3-math-qx10-963987bbe0a4aee66dd3",
+              "F3-math-qx10-fa4f82708dabc932d225",
+              "F3-math-qx10-d1e9a1ee2b2befd78df1",
+              "F3-math-qx10-cba0c078d9b78d49b8b2",
+              "F3-math-qx10-f173570d628f51a37a15",
+              "F3-math-qx10-d6ebcc0df5ab59eb0113",
+              "F3-math-qx10-462a5991e4023f48dea2"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "1 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 1,
-            "independentCount": 1,
+            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
-              "F3-math-v2-f64d31dae59d88821bd5"
+              "F3-math-v2-f64d31dae59d88821bd5",
+              "F3-math-qx10-2691003856d9e17c1c18",
+              "F3-math-qx10-44f4d00e4ff33b315821",
+              "F3-math-qx10-3bd2e7ca56d175135f7f",
+              "F3-math-qx10-074a5bb10c3e0c20018b",
+              "F3-math-qx10-a04d17be4f1e2f9828b7"
             ]
           },
           {
@@ -119788,7 +120672,8 @@
             "status": "partial",
             "models": [
               "gradient",
-              "line"
+              "line",
+              "v2-qx10-math-lines"
             ],
             "questionIds": [
               "F3-math-gradient-001",
@@ -119890,14 +120775,26 @@
               "F3-math-line-047",
               "F3-math-line-048",
               "F3-math-line-049",
-              "F3-math-line-050"
+              "F3-math-line-050",
+              "F3-math-qx10-b47f2af2db4afbece40f",
+              "F3-math-qx10-71140a61e8c0df8245ab",
+              "F3-math-qx10-0ba55dd28e544a85fd64",
+              "F3-math-qx10-37dc9ec3e3242fcd859b",
+              "F3-math-qx10-acf8303b721519b2c8d7",
+              "F3-math-qx10-ea90c49c2bdbfbcfe5c0",
+              "F3-math-qx10-3d43cb166faf16e793a7",
+              "F3-math-qx10-25962f47202bc81bdae0",
+              "F3-math-qx10-a65138d40e5ab5ae8c81",
+              "F3-math-qx10-1c32d59b0f152d37f13e",
+              "F3-math-qx10-b335ee1812a1f39a9894",
+              "F3-math-qx10-3fbd4093e61021b1da82"
             ],
             "sourceIds": [
               "cf-stem-math-f3"
             ],
-            "note": "100 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 100,
-            "independentCount": 100,
+            "note": "112 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 112,
+            "independentCount": 112,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-math-gradient-001",
@@ -142210,10 +143107,24 @@
           "F3-bm"
         ],
         "added": 1704
+      },
+      {
+        "date": "2026-10-21",
+        "contentRevision": "188d9d67c485daaa",
+        "previousRevision": "35cbcb68c3f4c1e2",
+        "courses": [
+          "P3-math",
+          "P4-math",
+          "P5-math",
+          "F1-math",
+          "F2-math",
+          "F3-math"
+        ],
+        "added": 769
       }
     ],
-    "addedTotal": 19540,
-    "tierShortfallP1toF3": 8052,
+    "addedTotal": 20309,
+    "tierShortfallP1toF3": 7382,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
