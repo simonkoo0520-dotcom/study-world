@@ -1,25 +1,25 @@
 {
   "schemaVersion": 4,
   "date": "2026-10-02",
-  "generatedAt": "2026-10-21T00:00:00+00:00",
+  "generatedAt": "2026-10-28T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "188d9d67c485daaa",
+  "contentRevision": "71174d55e42127b4",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 126302,
-    "active": 60118,
-    "gradeScope": 59679,
+    "stored": 126777,
+    "active": 60593,
+    "gradeScope": 60154,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
-    "coursesAtLeast900": 27,
-    "questionShortfall": 59017,
+    "coursesAtLeast900": 31,
+    "questionShortfall": 58588,
     "represented": 0,
     "partial": 813,
     "missing": 5,
     "performance": 124,
     "courses": 131,
-    "coursesBelow900": 104,
+    "coursesBelow900": 100,
     "added": 849,
     "correctedThisRound": 495,
     "retiredThisRound": 30586,
@@ -5165,43 +5165,55 @@
       "level": "P1",
       "subject": "english",
       "title": "English · P1",
-      "active": 897,
-      "stored": 1257,
+      "active": 917,
+      "stored": 1277,
       "retired": 305,
       "sourceIds": [
         "lang-original",
         "lang-kssr-catalog",
         "curriculum-v2-english",
-        "CF-EN-P3-SJK-DSKP"
+        "CF-EN-P3-SJK-DSKP",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P1-english",
         "framework": "KSSR Semakan 2017 Bahasa Inggeris SJK (CEFR)",
         "sourceIds": [
-          "CF-EN-P3-SJK-DSKP"
+          "CF-EN-P3-SJK-DSKP",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
           {
             "id": "listening-speaking",
             "title": "聆听、口语交流与回应",
-            "status": "performance",
+            "status": "partial",
             "models": [
-              "v2-functional-dialogue"
+              "v2-functional-dialogue",
+              "v2-qx10-english-listening-speaking"
             ],
-            "note": "书面选择合适回应不能证明听力或真实对话能力。现提供同伴朗读材料、复述、追问和核对任务。",
+            "note": "9 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "P1-english-v2-442d209d4a42087621c8",
               "P1-english-v2-9c6c1dbfcb057c928faa",
-              "P1-english-v2-003e42cdc1f49f692f05"
+              "P1-english-v2-003e42cdc1f49f692f05",
+              "P1-english-qx10-8faef5424787f5f7105d",
+              "P1-english-qx10-e51bc0c34a5bb9f53392",
+              "P1-english-qx10-aa55a06556a4dd1d8ed0",
+              "P1-english-qx10-6ca61e565024d20158fb",
+              "P1-english-qx10-6ddba45089b6a7bcda85",
+              "P1-english-qx10-874e1585990c2a1a6378"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 9,
+            "independentCount": 9,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-english-v2-442d209d4a42087621c8",
               "P1-english-v2-9c6c1dbfcb057c928faa",
-              "P1-english-v2-003e42cdc1f49f692f05"
+              "P1-english-v2-003e42cdc1f49f692f05",
+              "P1-english-qx10-8faef5424787f5f7105d",
+              "P1-english-qx10-e51bc0c34a5bb9f53392",
+              "P1-english-qx10-aa55a06556a4dd1d8ed0"
             ]
           },
           {
@@ -5214,6 +5226,7 @@
               "primary1-reading-2",
               "primary1-reading-3",
               "primary1-reading-4",
+              "v2-qx10-english-reading-retrieval",
               "v2-reading-evidence"
             ],
             "note": "题库有资料定位任务；“已有练习”只说明存在，不表示覆盖全部学习标准。",
@@ -5349,10 +5362,13 @@
               "P1-english-v2-6491ce8df5756fb60e38",
               "P1-english-v2-62e5139be35a8a0b28cf",
               "CF27-P1-english-story-inference",
-              "CF27-P1-english-story-evidence"
+              "CF27-P1-english-story-evidence",
+              "P1-english-qx10-7ecedb14345b0b8da14e",
+              "P1-english-qx10-6035696830446effd7c8",
+              "P1-english-qx10-5d53fa554a6eeab7fe04"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 135,
+            "independentCount": 135,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P1-english-primary1-reading-1-00-0",
@@ -5373,6 +5389,7 @@
               "primary1-reading-2",
               "primary1-reading-3",
               "primary1-reading-4",
+              "v2-qx10-english-reading-interpretation",
               "v2-reading-evidence"
             ],
             "note": "已有短材料练习；材料长度、体裁、独立广泛阅读与各年级标准的深度仍不完整。",
@@ -5508,10 +5525,12 @@
               "P1-english-v2-6491ce8df5756fb60e38",
               "P1-english-v2-62e5139be35a8a0b28cf",
               "CF27-P1-english-story-inference",
-              "CF27-P1-english-story-evidence"
+              "CF27-P1-english-story-evidence",
+              "P1-english-qx10-90e5145845f1870b361a",
+              "P1-english-qx10-12a97b6ec9fce362687d"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 134,
+            "independentCount": 134,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P1-english-primary1-reading-1-00-0",
@@ -5528,7 +5547,8 @@
             "status": "partial",
             "models": [
               "v2-english-rule-transfer",
-              "v2-language-in-context"
+              "v2-language-in-context",
+              "v2-qx10-english-language-in-context"
             ],
             "note": "包含词汇、句子与部分语法；模板数量不能代表独立知识点。未逐项证明本年级全部语法/字词范围。",
             "questionIds": [
@@ -5791,10 +5811,14 @@
               "P1-english-v2-dfad19851e91b809177c",
               "P1-english-v2-56ee275f36d3247e39d6",
               "P1-english-v2-cb8481805d5e97b66190",
-              "P1-english-v2-e30a85f2895737151660"
+              "P1-english-v2-e30a85f2895737151660",
+              "P1-english-qx10-4666a4b033d136ed2d35",
+              "P1-english-qx10-7fbbd3e2d1d3694e019c",
+              "P1-english-qx10-ccc2ed97496bf9622a24",
+              "P1-english-qx10-9cfc4cab530c748a3da1"
             ],
-            "questionCount": 260,
-            "independentCount": 260,
+            "questionCount": 264,
+            "independentCount": 264,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-english-v2-bf2f448ac5013a6189b6",
@@ -5808,28 +5832,39 @@
           {
             "id": "writing-production",
             "title": "实际书写、写作、规划与修改",
-            "status": "performance",
-            "models": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。编辑选择题只能检查部分判断。现提供保留初稿、修改稿与修改理由的具体任务；需教师或同伴观察。",
-            "questionIds": [],
-            "questionCount": 0,
-            "independentCount": 0,
+            "status": "partial",
+            "models": [
+              "v2-qx10-english-writing-production"
+            ],
+            "note": "3 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionIds": [
+              "P1-english-qx10-38b6e3b9d35b2e611822",
+              "P1-english-qx10-9b399fc2a3a668802aa2",
+              "P1-english-qx10-5d16bf2b404c9c1593f2"
+            ],
+            "questionCount": 3,
+            "independentCount": 3,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P1-english-qx10-38b6e3b9d35b2e611822",
+              "P1-english-qx10-9b399fc2a3a668802aa2",
+              "P1-english-qx10-5d16bf2b404c9c1593f2"
+            ]
           },
           {
             "id": "literature-performance",
             "title": "Language Arts / Literature in Action",
-            "status": "performance",
+            "status": "partial",
             "models": [
               "cf-en-literary-reading",
               "primary1-reading-1",
               "primary1-reading-2",
               "primary1-reading-3",
               "primary1-reading-4",
+              "v2-qx10-english-literature-performance",
               "v2-reading-evidence"
             ],
-            "note": "已有部分阅读判断和新增表演/创作任务；不能据选择题分数推断朗读、欣赏或创作表现。",
+            "note": "134 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "L2-P1-english-primary1-reading-1-00-0",
               "L2-P1-english-primary1-reading-2-00-0",
@@ -5962,10 +5997,12 @@
               "P1-english-v2-6491ce8df5756fb60e38",
               "P1-english-v2-62e5139be35a8a0b28cf",
               "CF27-P1-english-story-inference",
-              "CF27-P1-english-story-evidence"
+              "CF27-P1-english-story-evidence",
+              "P1-english-qx10-bd3442923984e63d8f93",
+              "P1-english-qx10-0f993213fc799bf6a705"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 134,
+            "independentCount": 134,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P1-english-primary1-reading-1-00-0",
@@ -6048,9 +6085,9 @@
         ],
         "summary": {
           "represented": 1,
-          "partial": 2,
+          "partial": 5,
           "missing": 0,
-          "performance": 3
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -18384,43 +18421,90 @@
       "level": "P2",
       "subject": "english",
       "title": "English · P2",
-      "active": 719,
-      "stored": 2002,
+      "active": 914,
+      "stored": 2197,
       "retired": 1169,
       "sourceIds": [
         "lang-original",
         "lang-kssr-catalog",
         "curriculum-v2-english",
-        "CF-EN-P3-SJK-DSKP"
+        "CF-EN-P3-SJK-DSKP",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P2-english",
         "framework": "KSSR Semakan 2017 Bahasa Inggeris SJK (CEFR)",
         "sourceIds": [
-          "CF-EN-P3-SJK-DSKP"
+          "CF-EN-P3-SJK-DSKP",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
           {
             "id": "listening-speaking",
             "title": "聆听、口语交流与回应",
-            "status": "performance",
+            "status": "partial",
             "models": [
-              "v2-functional-dialogue"
+              "v2-functional-dialogue",
+              "v2-qx10-english-listening-speaking"
             ],
-            "note": "书面选择合适回应不能证明听力或真实对话能力。现提供同伴朗读材料、复述、追问和核对任务。",
+            "note": "44 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "P2-english-v2-a4f78a1a5ea7074eaa5d",
               "P2-english-v2-1a14441ecd7d12fb5b70",
-              "P2-english-v2-956231129c90c0346ea9"
+              "P2-english-v2-956231129c90c0346ea9",
+              "P2-english-qx10-581f4e3fb242489150d3",
+              "P2-english-qx10-b121d105360d811f84ef",
+              "P2-english-qx10-3de7c84929da05a0ce4b",
+              "P2-english-qx10-040e5651cfb82c0abe1a",
+              "P2-english-qx10-5692ec2fdbaadb3ba092",
+              "P2-english-qx10-591c0580899bd5a5b58a",
+              "P2-english-qx10-c307ab958435bc11735c",
+              "P2-english-qx10-4348a2ee71e84ca885a5",
+              "P2-english-qx10-d6c0093e80cf57566a9d",
+              "P2-english-qx10-27ebf6f8ceac0158678f",
+              "P2-english-qx10-7c59532489dbea824b46",
+              "P2-english-qx10-500567a31dd5b694d20b",
+              "P2-english-qx10-1a0b28333d33d1ed2795",
+              "P2-english-qx10-75d559a1edb3fd13b3b1",
+              "P2-english-qx10-b92a9690c46989f47660",
+              "P2-english-qx10-a92b7c28b2817f22c9ee",
+              "P2-english-qx10-84a342c389fd03fb27d8",
+              "P2-english-qx10-0d45c4f16cc82a2ab900",
+              "P2-english-qx10-e339625f6ece00d26235",
+              "P2-english-qx10-e33340653995e1f157a1",
+              "P2-english-qx10-51a12e0ec775e63b57a9",
+              "P2-english-qx10-8faa140b4430e73c7a25",
+              "P2-english-qx10-7234dde5844c8f219ab1",
+              "P2-english-qx10-726974983685b2f4e403",
+              "P2-english-qx10-9766d58558ffafee7115",
+              "P2-english-qx10-aac08ac847ec5c718171",
+              "P2-english-qx10-e2ede16231dcb627ac8d",
+              "P2-english-qx10-b58581c2bdcacbedd5b3",
+              "P2-english-qx10-f94b7fc2a7f2bfcb2eb1",
+              "P2-english-qx10-42de04c11df918646324",
+              "P2-english-qx10-640c387ee984aaf86a88",
+              "P2-english-qx10-e906659bede5df319776",
+              "P2-english-qx10-a1f55972a1472f858d77",
+              "P2-english-qx10-3339a6494a3106a49344",
+              "P2-english-qx10-36e37cc1e4b6517b5266",
+              "P2-english-qx10-a660e5125c8baeeff20f",
+              "P2-english-qx10-9b5e344401cacb2fa2df",
+              "P2-english-qx10-4bf053cdfa7fd61cfb63",
+              "P2-english-qx10-a6742a0a57d92ccb01ac",
+              "P2-english-qx10-1f3fa7cee492f91e91b4",
+              "P2-english-qx10-92f8587b277758125309"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 44,
+            "independentCount": 44,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-english-v2-a4f78a1a5ea7074eaa5d",
               "P2-english-v2-1a14441ecd7d12fb5b70",
-              "P2-english-v2-956231129c90c0346ea9"
+              "P2-english-v2-956231129c90c0346ea9",
+              "P2-english-qx10-581f4e3fb242489150d3",
+              "P2-english-qx10-b121d105360d811f84ef",
+              "P2-english-qx10-3de7c84929da05a0ce4b"
             ]
           },
           {
@@ -18433,6 +18517,7 @@
               "primary2-reading-2",
               "primary2-reading-3",
               "primary2-reading-4",
+              "v2-qx10-english-reading-retrieval",
               "v2-reading-evidence"
             ],
             "note": "题库有资料定位任务；“已有练习”只说明存在，不表示覆盖全部学习标准。",
@@ -18544,10 +18629,49 @@
               "P2-english-v2-d56780536c9e0664b269",
               "P2-english-v2-638f3383deb2bd362855",
               "CF27-P2-english-story-inference",
-              "CF27-P2-english-story-evidence"
+              "CF27-P2-english-story-evidence",
+              "P2-english-qx10-4ff09e92e974bb1afb8b",
+              "P2-english-qx10-e0ca7faa30c42a3e73ba",
+              "P2-english-qx10-b00a2e08d2e529c87cd1",
+              "P2-english-qx10-71fddf1728c12cce6da2",
+              "P2-english-qx10-af531c624d986dbb8e2c",
+              "P2-english-qx10-81c8d71c6e57c90dca65",
+              "P2-english-qx10-170e49b4904d5d82ede8",
+              "P2-english-qx10-0e9eaad1e71d24ed022a",
+              "P2-english-qx10-136cb9fad966814ac455",
+              "P2-english-qx10-ef7ab0180db27aed9fda",
+              "P2-english-qx10-6128ed952c7e8ca01a2a",
+              "P2-english-qx10-2b16b92390d2888ac568",
+              "P2-english-qx10-a963c7ccf5d857e1b159",
+              "P2-english-qx10-d1424b24beb87f1b56c9",
+              "P2-english-qx10-f3ad9328afdef03c76ca",
+              "P2-english-qx10-1fb50c5601cf36c38a1a",
+              "P2-english-qx10-565a8d4b87cfe501d7f5",
+              "P2-english-qx10-8f982cfdfb2d0d166aa6",
+              "P2-english-qx10-8d54d83121fa11291a3b",
+              "P2-english-qx10-0c53576c58e1d8147326",
+              "P2-english-qx10-f866b753aa6ea2067da9",
+              "P2-english-qx10-f6408821dbf924018f0a",
+              "P2-english-qx10-b4734b15212d02018db3",
+              "P2-english-qx10-4031a8e50f8e297e5515",
+              "P2-english-qx10-f3e1506bda226a675d56",
+              "P2-english-qx10-01f5efc509f9e3af3b65",
+              "P2-english-qx10-61337b4db0b796976c26",
+              "P2-english-qx10-9f35c208c24cecd723dc",
+              "P2-english-qx10-3b89ca42abc45863c2e9",
+              "P2-english-qx10-23a83044ccef88e47fbe",
+              "P2-english-qx10-2822d3bd838544747cb0",
+              "P2-english-qx10-493a7d717303e7658ca4",
+              "P2-english-qx10-fc11b6d16c2173d3c1c8",
+              "P2-english-qx10-a6e2e06f29114503613f",
+              "P2-english-qx10-ba635306bcc90026631c",
+              "P2-english-qx10-8d530fb7c057fc8ad994",
+              "P2-english-qx10-c31062b266e67e4e671f",
+              "P2-english-qx10-7bdffbb042953045c64e",
+              "P2-english-qx10-8117f3189fa4b3eacff6"
             ],
-            "questionCount": 108,
-            "independentCount": 108,
+            "questionCount": 147,
+            "independentCount": 147,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P2-english-primary2-reading-1-00-0",
@@ -18568,6 +18692,7 @@
               "primary2-reading-2",
               "primary2-reading-3",
               "primary2-reading-4",
+              "v2-qx10-english-reading-interpretation",
               "v2-reading-evidence"
             ],
             "note": "已有短材料练习；材料长度、体裁、独立广泛阅读与各年级标准的深度仍不完整。",
@@ -18679,10 +18804,44 @@
               "P2-english-v2-d56780536c9e0664b269",
               "P2-english-v2-638f3383deb2bd362855",
               "CF27-P2-english-story-inference",
-              "CF27-P2-english-story-evidence"
+              "CF27-P2-english-story-evidence",
+              "P2-english-qx10-2b3630d9a4fbe431e727",
+              "P2-english-qx10-4bb5fc5222f1bc60f4b6",
+              "P2-english-qx10-1af765ed1b24f533fa83",
+              "P2-english-qx10-1c7828bfd5665aa56325",
+              "P2-english-qx10-ac36af80e1fdfbc8672a",
+              "P2-english-qx10-20a5afd2637faeb3b3b0",
+              "P2-english-qx10-2e9138ea1e9fd02d6362",
+              "P2-english-qx10-7af5a24829564c319647",
+              "P2-english-qx10-20b4baa7aa2ed98abd4e",
+              "P2-english-qx10-049d570a6afd6178c480",
+              "P2-english-qx10-594eacee0e48f0bde546",
+              "P2-english-qx10-57a347b00ab0717e5f6b",
+              "P2-english-qx10-e8c94f9d8cac39c69872",
+              "P2-english-qx10-c3d881eb6c46cc8c7841",
+              "P2-english-qx10-839471bda99b0c16aa72",
+              "P2-english-qx10-c3546a1edf9d6c6855dd",
+              "P2-english-qx10-f677f8e17cb6f75a008b",
+              "P2-english-qx10-965695348f4a625cfad2",
+              "P2-english-qx10-0cc61561c751a92538e9",
+              "P2-english-qx10-695e7d4d4163f663de73",
+              "P2-english-qx10-1537d5bd53a11e50a0a4",
+              "P2-english-qx10-8b6465d2a5e4e1a14146",
+              "P2-english-qx10-98c236ca3cc02a8749b2",
+              "P2-english-qx10-1f0aedbc4823c8e71860",
+              "P2-english-qx10-9ccc14ddcb449b0ed841",
+              "P2-english-qx10-f2b67f7664db35aefcb1",
+              "P2-english-qx10-fcf9894a8a0b444d65e9",
+              "P2-english-qx10-3d849a7aba77655db326",
+              "P2-english-qx10-f22d6eb546caeb17be78",
+              "P2-english-qx10-c93dc019647bb78ab7f0",
+              "P2-english-qx10-4cbbaa78fc630833744b",
+              "P2-english-qx10-473b67e4cb025d79688e",
+              "P2-english-qx10-ba5c7261c7791eff2556",
+              "P2-english-qx10-7255e8515f3229852b58"
             ],
-            "questionCount": 108,
-            "independentCount": 108,
+            "questionCount": 142,
+            "independentCount": 142,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P2-english-primary2-reading-1-00-0",
@@ -18699,7 +18858,8 @@
             "status": "partial",
             "models": [
               "v2-english-rule-transfer",
-              "v2-language-in-context"
+              "v2-language-in-context",
+              "v2-qx10-english-language-in-context"
             ],
             "note": "包含词汇、句子与部分语法；模板数量不能代表独立知识点。未逐项证明本年级全部语法/字词范围。",
             "questionIds": [
@@ -19079,10 +19239,44 @@
               "P2-english-v2-8902194c7a55622c97c9",
               "P2-english-v2-f37e7837d291459f42e7",
               "P2-english-v2-30ec424105e83311d802",
-              "P2-english-v2-e5efbccce564fc343d6e"
+              "P2-english-v2-e5efbccce564fc343d6e",
+              "P2-english-qx10-3e544bebfac4eb97905d",
+              "P2-english-qx10-3409b53bda57eb88f298",
+              "P2-english-qx10-2d4a420eb4d1b7d664bf",
+              "P2-english-qx10-9022d22676d9218ff058",
+              "P2-english-qx10-6d7994c5a908ae740441",
+              "P2-english-qx10-0e38280c233919602f1c",
+              "P2-english-qx10-a37bce2db1c3145c77b3",
+              "P2-english-qx10-ac616b8403cda9f69d98",
+              "P2-english-qx10-73d5e033a624d3c942f9",
+              "P2-english-qx10-7e94d9642512ec68b064",
+              "P2-english-qx10-54d00661e3ddb21e77f3",
+              "P2-english-qx10-8ffcd4e5bde459ead4ba",
+              "P2-english-qx10-f4a495351630bd8cc2ac",
+              "P2-english-qx10-4c6526f7e85d4ec11291",
+              "P2-english-qx10-8f7ee2edf4c3a077669b",
+              "P2-english-qx10-cbf02dc2dd4ab3d456d9",
+              "P2-english-qx10-b12263c0a8d13dcfc322",
+              "P2-english-qx10-48a4d673862ea0d29262",
+              "P2-english-qx10-da611a43a756defb9d2a",
+              "P2-english-qx10-b5f336f6c4a25e8b93b4",
+              "P2-english-qx10-0f95501de1629ec92ae1",
+              "P2-english-qx10-6a7f27bc372a7de17d9a",
+              "P2-english-qx10-7e639ede81a7505c3e63",
+              "P2-english-qx10-b64ce1f11d15e9e0bcd3",
+              "P2-english-qx10-66086cd4d296c4bdd727",
+              "P2-english-qx10-083564bb0bec00961b49",
+              "P2-english-qx10-b42c15c984395c3bb2c7",
+              "P2-english-qx10-f2f35c42a31f74db3e16",
+              "P2-english-qx10-9d9f06c30bacb6f5806b",
+              "P2-english-qx10-275f1293ba7b63ecbaf9",
+              "P2-english-qx10-b25e4d1eaef0489a8cec",
+              "P2-english-qx10-010a164bfbb835684fcc",
+              "P2-english-qx10-2ec7e83bddfcd105884c",
+              "P2-english-qx10-d46e003c0c7161d230d0"
             ],
-            "questionCount": 377,
-            "independentCount": 377,
+            "questionCount": 411,
+            "independentCount": 411,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-english-v2-5dd9af763c655ba2ebf6",
@@ -19096,28 +19290,66 @@
           {
             "id": "writing-production",
             "title": "实际书写、写作、规划与修改",
-            "status": "performance",
-            "models": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。编辑选择题只能检查部分判断。现提供保留初稿、修改稿与修改理由的具体任务；需教师或同伴观察。",
-            "questionIds": [],
-            "questionCount": 0,
-            "independentCount": 0,
+            "status": "partial",
+            "models": [
+              "v2-qx10-english-writing-production"
+            ],
+            "note": "27 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionIds": [
+              "P2-english-qx10-ef7f187ccee65098a5c8",
+              "P2-english-qx10-05443f3bf62b13fa89e3",
+              "P2-english-qx10-07619bab8f3f57d839c6",
+              "P2-english-qx10-bf66935693ac60197855",
+              "P2-english-qx10-862598578427d8966836",
+              "P2-english-qx10-e431227fe9f359b58d11",
+              "P2-english-qx10-cf57ba06ed153efbbe6d",
+              "P2-english-qx10-9f52995b781e5490add2",
+              "P2-english-qx10-53662db42ce7a37346a5",
+              "P2-english-qx10-bb95a6ca1f5de646a7ae",
+              "P2-english-qx10-40d2b4b5ca3af064e6a0",
+              "P2-english-qx10-b60cbb65c1b0d33270df",
+              "P2-english-qx10-f87985a4be42160a1da5",
+              "P2-english-qx10-cf5a62bc1183f440a070",
+              "P2-english-qx10-728f2b6522e670cd5300",
+              "P2-english-qx10-83114d8564f9f431060d",
+              "P2-english-qx10-aca9cc1cd5f5e1b95beb",
+              "P2-english-qx10-ac6838bd4b046fb5addb",
+              "P2-english-qx10-94ef44fda3947b05c775",
+              "P2-english-qx10-192cbbcf15e1bb628cda",
+              "P2-english-qx10-b74d3a086533ef75a961",
+              "P2-english-qx10-ec99559c3031f7cabae3",
+              "P2-english-qx10-910465cf7ccacfdd3c77",
+              "P2-english-qx10-64fcd784814596f90e6b",
+              "P2-english-qx10-e481950574dfbaa73d8d",
+              "P2-english-qx10-2428a31c77e04dd1c4da",
+              "P2-english-qx10-7c4cdec08efb2304cb00"
+            ],
+            "questionCount": 27,
+            "independentCount": 27,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P2-english-qx10-ef7f187ccee65098a5c8",
+              "P2-english-qx10-05443f3bf62b13fa89e3",
+              "P2-english-qx10-07619bab8f3f57d839c6",
+              "P2-english-qx10-bf66935693ac60197855",
+              "P2-english-qx10-862598578427d8966836",
+              "P2-english-qx10-e431227fe9f359b58d11"
+            ]
           },
           {
             "id": "literature-performance",
             "title": "Language Arts / Literature in Action",
-            "status": "performance",
+            "status": "partial",
             "models": [
               "cf-en-literary-reading",
               "primary2-reading-1",
               "primary2-reading-2",
               "primary2-reading-3",
               "primary2-reading-4",
+              "v2-qx10-english-literature-performance",
               "v2-reading-evidence"
             ],
-            "note": "已有部分阅读判断和新增表演/创作任务；不能据选择题分数推断朗读、欣赏或创作表现。",
+            "note": "128 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "L2-P2-english-primary2-reading-1-00-0",
               "L2-P2-english-primary2-reading-3-00-0",
@@ -19226,10 +19458,30 @@
               "P2-english-v2-d56780536c9e0664b269",
               "P2-english-v2-638f3383deb2bd362855",
               "CF27-P2-english-story-inference",
-              "CF27-P2-english-story-evidence"
+              "CF27-P2-english-story-evidence",
+              "P2-english-qx10-0a965c2ac9b49b3b0eb0",
+              "P2-english-qx10-85ec1006017523fa2e26",
+              "P2-english-qx10-ee976a25048329acd0ed",
+              "P2-english-qx10-4c9dc332e7b96ee66485",
+              "P2-english-qx10-6240d1dfad5a0c2e7a6f",
+              "P2-english-qx10-abb0dee7e70f2000e815",
+              "P2-english-qx10-5cd2dd7be63ef47fbb8c",
+              "P2-english-qx10-663ac46d113294598e55",
+              "P2-english-qx10-1a80a90179c4f7e96429",
+              "P2-english-qx10-093e04ebc4b4f7702966",
+              "P2-english-qx10-9e5600c76526e2010df1",
+              "P2-english-qx10-c7caee53155b4c215f3a",
+              "P2-english-qx10-6439750a7d96dc491b12",
+              "P2-english-qx10-3fada82375666c7b6557",
+              "P2-english-qx10-3dce4f555b3a0659b888",
+              "P2-english-qx10-cece20c49c325bc2da08",
+              "P2-english-qx10-fb72ce3f96868b1c60c7",
+              "P2-english-qx10-d5a8d1644d4afbc45ff0",
+              "P2-english-qx10-e5913cd3cc3d4a166340",
+              "P2-english-qx10-ea61333c45d33524ae03"
             ],
-            "questionCount": 108,
-            "independentCount": 108,
+            "questionCount": 128,
+            "independentCount": 128,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P2-english-primary2-reading-1-00-0",
@@ -19312,9 +19564,9 @@
         ],
         "summary": {
           "represented": 1,
-          "partial": 2,
+          "partial": 5,
           "missing": 0,
-          "performance": 3
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -29353,43 +29605,91 @@
       "level": "P3",
       "subject": "english",
       "title": "English · P3",
-      "active": 701,
-      "stored": 1774,
+      "active": 906,
+      "stored": 1979,
       "retired": 1073,
       "sourceIds": [
         "lang-original",
         "lang-kssr-catalog",
         "curriculum-v2-english",
-        "CF-EN-P3-SJK-DSKP"
+        "CF-EN-P3-SJK-DSKP",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P3-english",
         "framework": "KSSR Semakan 2017 Bahasa Inggeris SJK (CEFR)",
         "sourceIds": [
-          "CF-EN-P3-SJK-DSKP"
+          "CF-EN-P3-SJK-DSKP",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
           {
             "id": "listening-speaking",
             "title": "聆听、口语交流与回应",
-            "status": "performance",
+            "status": "partial",
             "models": [
-              "v2-functional-dialogue"
+              "v2-functional-dialogue",
+              "v2-qx10-english-listening-speaking"
             ],
-            "note": "书面选择合适回应不能证明听力或真实对话能力。现提供同伴朗读材料、复述、追问和核对任务。",
+            "note": "45 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "P3-english-v2-28a632047d2488d9ce8f",
               "P3-english-v2-3085be086032ad6ab566",
-              "P3-english-v2-9ebaeffca33a81475f4c"
+              "P3-english-v2-9ebaeffca33a81475f4c",
+              "P3-english-qx10-325779d91114253922f6",
+              "P3-english-qx10-1f8bc3d3e6c2f160e0fe",
+              "P3-english-qx10-93b9fc6a6a8f7845f480",
+              "P3-english-qx10-c357b942a284703a20ca",
+              "P3-english-qx10-086e4c361d30ad94c99b",
+              "P3-english-qx10-0ee635aa0f6b1adc049a",
+              "P3-english-qx10-8c397c9d3eb261b81c8f",
+              "P3-english-qx10-43a5e31d4e47f84e3b24",
+              "P3-english-qx10-165b17e99f9e59629f0f",
+              "P3-english-qx10-fcff3b818b2f2e18ade0",
+              "P3-english-qx10-1beff6a01da38cd03c07",
+              "P3-english-qx10-b674696d7fff26a2a1ea",
+              "P3-english-qx10-07d4f59362bcea47acf9",
+              "P3-english-qx10-5fd23d1b7c5bc61d132d",
+              "P3-english-qx10-25192e4bc182d9bb776e",
+              "P3-english-qx10-e393e6328cff50ae3d27",
+              "P3-english-qx10-f52c15139dce467da8a4",
+              "P3-english-qx10-943f7ea3af3e011a72a7",
+              "P3-english-qx10-3ca74cf62fab9b9b16b4",
+              "P3-english-qx10-989018d3539120a20012",
+              "P3-english-qx10-ed70020394764a860543",
+              "P3-english-qx10-75368032e00e05c23170",
+              "P3-english-qx10-711b2c30d342cdde8c2e",
+              "P3-english-qx10-5290880de76e87846dfc",
+              "P3-english-qx10-fd5e61bb9229e09deb9f",
+              "P3-english-qx10-7163a0b552166b54dfb6",
+              "P3-english-qx10-7dd1fd5f1b386956a1c8",
+              "P3-english-qx10-6819e46a153cb0ad65bc",
+              "P3-english-qx10-0579f15efae4b1646e33",
+              "P3-english-qx10-d87094bb020f5bb4f5a0",
+              "P3-english-qx10-0ff5b8f12584403e564b",
+              "P3-english-qx10-0551c6153b6c130f1bb3",
+              "P3-english-qx10-86d1d470a82dc7847e4b",
+              "P3-english-qx10-62b9749f8d7fa597ed46",
+              "P3-english-qx10-098ad77b929ea647f473",
+              "P3-english-qx10-e504f9841c43763fe1b8",
+              "P3-english-qx10-c6a9fb703926ba87f1a9",
+              "P3-english-qx10-eb2220e867772b73a3b1",
+              "P3-english-qx10-9805f432ff759f5e2dcb",
+              "P3-english-qx10-04da4e0a182ce9755c5f",
+              "P3-english-qx10-a0a7ce9b1318053a18d4",
+              "P3-english-qx10-754ea79447239286379f"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 45,
+            "independentCount": 45,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-english-v2-28a632047d2488d9ce8f",
               "P3-english-v2-3085be086032ad6ab566",
-              "P3-english-v2-9ebaeffca33a81475f4c"
+              "P3-english-v2-9ebaeffca33a81475f4c",
+              "P3-english-qx10-325779d91114253922f6",
+              "P3-english-qx10-1f8bc3d3e6c2f160e0fe",
+              "P3-english-qx10-93b9fc6a6a8f7845f480"
             ]
           },
           {
@@ -29402,6 +29702,7 @@
               "primary3-reading-2",
               "primary3-reading-3",
               "primary3-reading-4",
+              "v2-qx10-english-reading-retrieval",
               "v2-reading-evidence"
             ],
             "note": "题库有资料定位任务；“已有练习”只说明存在，不表示覆盖全部学习标准。",
@@ -29537,10 +29838,43 @@
               "P3-english-v2-c45ae36b2c9eda57db43",
               "P3-english-v2-c52e0ade88960a27e385",
               "CF27-P3-english-story-inference",
-              "CF27-P3-english-story-evidence"
+              "CF27-P3-english-story-evidence",
+              "P3-english-qx10-9785c0fd6515ae3546a2",
+              "P3-english-qx10-2bc3819be761167e4cee",
+              "P3-english-qx10-787673b6d538ada3f8e2",
+              "P3-english-qx10-00bd55f5d859798cbf87",
+              "P3-english-qx10-8c43e48b1eac55496fe2",
+              "P3-english-qx10-afa7b04e37aca8369163",
+              "P3-english-qx10-32d93d96d4b12d46cfda",
+              "P3-english-qx10-eb28bab912b4da573a86",
+              "P3-english-qx10-942f2028605d0ecd34f8",
+              "P3-english-qx10-e594a8c6fbf20d0eac14",
+              "P3-english-qx10-5f9661d898b6f592275e",
+              "P3-english-qx10-b252f93360d9e4b6e959",
+              "P3-english-qx10-7fee71ddc887a144f21f",
+              "P3-english-qx10-755ab1cf30e7ba7affa1",
+              "P3-english-qx10-962f901ae79104721108",
+              "P3-english-qx10-63ba2818ab8208c910ab",
+              "P3-english-qx10-50988a3ae5be0cd9f109",
+              "P3-english-qx10-0359448c08267586a1bc",
+              "P3-english-qx10-4cb450a726a82904678b",
+              "P3-english-qx10-eee9be08ad8a85334c37",
+              "P3-english-qx10-57b556c0c0c9033d2ce9",
+              "P3-english-qx10-3dc79afc572a8806802d",
+              "P3-english-qx10-289f94fb06df57a09d24",
+              "P3-english-qx10-fe89dc142941983c59dc",
+              "P3-english-qx10-606939e32559b82fe5af",
+              "P3-english-qx10-7742d52bcc27ae7bb5ae",
+              "P3-english-qx10-d8a00d3517301e81116f",
+              "P3-english-qx10-97e6d6f2ca8bcfecc67c",
+              "P3-english-qx10-1f8bf468f1a0a4540883",
+              "P3-english-qx10-21d962bd62c78ccd9512",
+              "P3-english-qx10-ef635699e3fe895b51c9",
+              "P3-english-qx10-75723bbf8e6e8f21b13d",
+              "P3-english-qx10-e2d6cd035e7e286212a5"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 165,
+            "independentCount": 165,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P3-english-primary3-reading-1-00-0",
@@ -29561,6 +29895,7 @@
               "primary3-reading-2",
               "primary3-reading-3",
               "primary3-reading-4",
+              "v2-qx10-english-reading-interpretation",
               "v2-reading-evidence"
             ],
             "note": "已有短材料练习；材料长度、体裁、独立广泛阅读与各年级标准的深度仍不完整。",
@@ -29696,10 +30031,47 @@
               "P3-english-v2-c45ae36b2c9eda57db43",
               "P3-english-v2-c52e0ade88960a27e385",
               "CF27-P3-english-story-inference",
-              "CF27-P3-english-story-evidence"
+              "CF27-P3-english-story-evidence",
+              "P3-english-qx10-765822c65b1451529b43",
+              "P3-english-qx10-8a0cf436fff4f96eaa08",
+              "P3-english-qx10-527b88cbaf1c9138a0aa",
+              "P3-english-qx10-325c54ab79fb41f40a75",
+              "P3-english-qx10-816ccbb1555d474071ab",
+              "P3-english-qx10-028a88332bf237cd46ad",
+              "P3-english-qx10-2b257585bbb03669dbc2",
+              "P3-english-qx10-70d68562d4ad458b912d",
+              "P3-english-qx10-2c07b23be4d0280811e3",
+              "P3-english-qx10-c83ba4bce4993bc47eec",
+              "P3-english-qx10-e914ba60d33474d57694",
+              "P3-english-qx10-1cdfba327661067581f9",
+              "P3-english-qx10-0b3d284327ef454ed231",
+              "P3-english-qx10-84cc01854eb6fd104387",
+              "P3-english-qx10-f2e232b6bec6ae78fa6e",
+              "P3-english-qx10-1ec138bbd6adbf909e62",
+              "P3-english-qx10-e4dd57c121ff01c6bf33",
+              "P3-english-qx10-870eb1ae019c6029f440",
+              "P3-english-qx10-1388e37fde764984030e",
+              "P3-english-qx10-49ce61d66cde91496e69",
+              "P3-english-qx10-ef909845d5c0694930e7",
+              "P3-english-qx10-fd5f4778b1705e8b8108",
+              "P3-english-qx10-5c593d11241d9d059a11",
+              "P3-english-qx10-5a4930e15a0c1afdc1c8",
+              "P3-english-qx10-55762070a458108cc222",
+              "P3-english-qx10-eaa6698f3a3e98a20849",
+              "P3-english-qx10-51842f820d9388bd736f",
+              "P3-english-qx10-282e1ca8045cb85beeb6",
+              "P3-english-qx10-168b0fd46f0908c653ad",
+              "P3-english-qx10-b77078a06fe83e8c6d7a",
+              "P3-english-qx10-41bd69fe421d6f8d22e5",
+              "P3-english-qx10-7efff554f1385ee7e718",
+              "P3-english-qx10-b4535b6d6e2a01dc2776",
+              "P3-english-qx10-1388b1c4282b2514a223",
+              "P3-english-qx10-e58528e0df493e792b6d",
+              "P3-english-qx10-7a62f9a9dfe7f7577311",
+              "P3-english-qx10-e3a2656bad6d5cf7c530"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 169,
+            "independentCount": 169,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P3-english-primary3-reading-1-00-0",
@@ -29716,7 +30088,8 @@
             "status": "partial",
             "models": [
               "v2-english-rule-transfer",
-              "v2-language-in-context"
+              "v2-language-in-context",
+              "v2-qx10-english-language-in-context"
             ],
             "note": "包含词汇、句子与部分语法；模板数量不能代表独立知识点。未逐项证明本年级全部语法/字词范围。",
             "questionIds": [
@@ -30210,10 +30583,54 @@
               "P3-english-v2-327dd883ae7a2918e621",
               "P3-english-v2-7f4cd96d79f38f1babbc",
               "P3-english-v2-8d24d899661d0236dae7",
-              "P3-english-v2-820e4374720381b3bfc0"
+              "P3-english-v2-820e4374720381b3bfc0",
+              "P3-english-qx10-f66bdfd026f41c1e5ea5",
+              "P3-english-qx10-602bb6a2f0d7d0669b69",
+              "P3-english-qx10-4d649357e9999a09b143",
+              "P3-english-qx10-ed566284347dee2d306a",
+              "P3-english-qx10-a9a45891902ebead15c8",
+              "P3-english-qx10-7b7009760534fc47ab3e",
+              "P3-english-qx10-d9663ea3a568bde1c52d",
+              "P3-english-qx10-65f0aa40cc3b911ae429",
+              "P3-english-qx10-96e7f6828f8837993a50",
+              "P3-english-qx10-dd45778e788c936f56b4",
+              "P3-english-qx10-840f314147c241ee3631",
+              "P3-english-qx10-08289ccb400e0a180a7f",
+              "P3-english-qx10-f751a06f9ab333ba8c26",
+              "P3-english-qx10-0c3fc9445182fa5b1c54",
+              "P3-english-qx10-e1ee59faeb94b779aab2",
+              "P3-english-qx10-c30b38a8ceb4f3b96430",
+              "P3-english-qx10-830d2f8053fda8829f69",
+              "P3-english-qx10-bab2b2a4bc530af74cc3",
+              "P3-english-qx10-e662b5eb00df5014e26a",
+              "P3-english-qx10-c48ca9a18764eed1a296",
+              "P3-english-qx10-a6bc4f10767e6f5ad889",
+              "P3-english-qx10-7e9578c945217aef78fa",
+              "P3-english-qx10-38ed5cfe524e1173b5c1",
+              "P3-english-qx10-60418eb29c33d78a064a",
+              "P3-english-qx10-bf62e1e5c4af6324233b",
+              "P3-english-qx10-62d4bc4a27a52b5e0533",
+              "P3-english-qx10-9bcdb24941c0713e0676",
+              "P3-english-qx10-239f72418e876e6f762f",
+              "P3-english-qx10-f7c29cabb036d728cbb5",
+              "P3-english-qx10-692ae61d7cabf120cafb",
+              "P3-english-qx10-6b13f9b6423ffc109dc2",
+              "P3-english-qx10-a63c72a735a48c8c42a8",
+              "P3-english-qx10-226c61a5e9d70c29b150",
+              "P3-english-qx10-a9310fd9b75dd50e7d7e",
+              "P3-english-qx10-8f11e77802d837a9b1c3",
+              "P3-english-qx10-4095a80e87121677155b",
+              "P3-english-qx10-5006d7a42b2e762aed9b",
+              "P3-english-qx10-b35c12afb47db3739554",
+              "P3-english-qx10-6e038a78e03f837f3efe",
+              "P3-english-qx10-a72df829c9ceb5979af6",
+              "P3-english-qx10-074ab5d3fa1be35c75b9",
+              "P3-english-qx10-b17ac2f553b63db004bd",
+              "P3-english-qx10-df77613ab3e4ec500c6a",
+              "P3-english-qx10-8d1239d2521ecd168121"
             ],
-            "questionCount": 491,
-            "independentCount": 491,
+            "questionCount": 535,
+            "independentCount": 535,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-english-v2-9d756be4d2fc8612c23a",
@@ -30227,28 +30644,69 @@
           {
             "id": "writing-production",
             "title": "实际书写、写作、规划与修改",
-            "status": "performance",
-            "models": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。编辑选择题只能检查部分判断。现提供保留初稿、修改稿与修改理由的具体任务；需教师或同伴观察。",
-            "questionIds": [],
-            "questionCount": 0,
-            "independentCount": 0,
+            "status": "partial",
+            "models": [
+              "v2-qx10-english-writing-production"
+            ],
+            "note": "30 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionIds": [
+              "P3-english-qx10-0394fc30689830cf5f0f",
+              "P3-english-qx10-dd65cf730d782cb01382",
+              "P3-english-qx10-ce913cddccd90699de30",
+              "P3-english-qx10-3ac8e73af0f3c872adb1",
+              "P3-english-qx10-e4507882b4d87a2ea07c",
+              "P3-english-qx10-55ccbd92b0d338d5d5de",
+              "P3-english-qx10-28fa8b2b9dcb88b1edfb",
+              "P3-english-qx10-1e19ca93b8013901e170",
+              "P3-english-qx10-c33796c6e840ecf351f1",
+              "P3-english-qx10-a6747f6933bcd4bea023",
+              "P3-english-qx10-b8c98c9b937f7bea5893",
+              "P3-english-qx10-9978373bac28ae2f3587",
+              "P3-english-qx10-729a4f04b420b1e159fb",
+              "P3-english-qx10-3ade91bc279cfde493e5",
+              "P3-english-qx10-2146c293a6509292be7a",
+              "P3-english-qx10-6b0bb8a14285b5686841",
+              "P3-english-qx10-36f3e7a3bd67e87a5d9b",
+              "P3-english-qx10-76e688645f98ceba778e",
+              "P3-english-qx10-a59f4a127e9b6857a07a",
+              "P3-english-qx10-37c6b1537f93e279d64b",
+              "P3-english-qx10-4b37c4bbd52f1f26ed98",
+              "P3-english-qx10-966f2a0501c7dca03a57",
+              "P3-english-qx10-4f72f8a2fc9ca41a9c40",
+              "P3-english-qx10-d0f164464a701058d910",
+              "P3-english-qx10-4effd15690e87b415590",
+              "P3-english-qx10-89b2973083219d342b61",
+              "P3-english-qx10-19b92c6e37ffac11b5c9",
+              "P3-english-qx10-c1b891c4530d86848f85",
+              "P3-english-qx10-18d4e0fd8626655bcf6a",
+              "P3-english-qx10-d7764055265f437463cd"
+            ],
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P3-english-qx10-0394fc30689830cf5f0f",
+              "P3-english-qx10-dd65cf730d782cb01382",
+              "P3-english-qx10-ce913cddccd90699de30",
+              "P3-english-qx10-3ac8e73af0f3c872adb1",
+              "P3-english-qx10-e4507882b4d87a2ea07c",
+              "P3-english-qx10-55ccbd92b0d338d5d5de"
+            ]
           },
           {
             "id": "literature-performance",
             "title": "Language Arts / Literature in Action",
-            "status": "performance",
+            "status": "partial",
             "models": [
               "cf-en-literary-reading",
               "primary3-reading-1",
               "primary3-reading-2",
               "primary3-reading-3",
               "primary3-reading-4",
+              "v2-qx10-english-literature-performance",
               "v2-reading-evidence"
             ],
-            "note": "已有部分阅读判断和新增表演/创作任务；不能据选择题分数推断朗读、欣赏或创作表现。",
+            "note": "151 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "L2-P3-english-primary3-reading-1-00-0",
               "L2-P3-english-primary3-reading-2-00-0",
@@ -30381,10 +30839,29 @@
               "P3-english-v2-c45ae36b2c9eda57db43",
               "P3-english-v2-c52e0ade88960a27e385",
               "CF27-P3-english-story-inference",
-              "CF27-P3-english-story-evidence"
+              "CF27-P3-english-story-evidence",
+              "P3-english-qx10-7ed5c5edbf80bd4cbe63",
+              "P3-english-qx10-508008892dc2ca45f9a6",
+              "P3-english-qx10-080a6ad9d5b47e219635",
+              "P3-english-qx10-5f7c26aec5f6c94cc841",
+              "P3-english-qx10-06d7186a7b90fdadf38f",
+              "P3-english-qx10-322bc02128467301f77e",
+              "P3-english-qx10-7098626fec04e2288279",
+              "P3-english-qx10-645c381949adfdce031d",
+              "P3-english-qx10-a3cba76b1e845c8699f3",
+              "P3-english-qx10-18a2598f3c108e44103e",
+              "P3-english-qx10-9e331c4ea5d75e7364ae",
+              "P3-english-qx10-c77889cc0cac5c46a47b",
+              "P3-english-qx10-d7df8d479e7f00a9ac6d",
+              "P3-english-qx10-dc6587b4bc41094d616b",
+              "P3-english-qx10-094c4e1e25a289f30ea1",
+              "P3-english-qx10-7e55567a928f1d8fd2e7",
+              "P3-english-qx10-518fb68b13c695b7235c",
+              "P3-english-qx10-2ff64229b78dcf8de6a5",
+              "P3-english-qx10-fb1827df3becfb892800"
             ],
-            "questionCount": 132,
-            "independentCount": 132,
+            "questionCount": 151,
+            "independentCount": 151,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P3-english-primary3-reading-1-00-0",
@@ -30467,9 +30944,9 @@
         ],
         "summary": {
           "represented": 1,
-          "partial": 2,
+          "partial": 5,
           "missing": 0,
-          "performance": 3
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -55703,40 +56180,61 @@
       "level": "P5",
       "subject": "english",
       "title": "English · P5",
-      "active": 854,
-      "stored": 1681,
+      "active": 909,
+      "stored": 1736,
       "retired": 827,
       "sourceIds": [
         "lang-original",
         "lang-kssr-catalog",
         "lang-retained",
         "curriculum-v2-english",
-        "CF-EN-P3-SJK-DSKP"
+        "CF-EN-P3-SJK-DSKP",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P5-english",
         "framework": "KSSR Semakan 2017 Bahasa Inggeris SJK (CEFR)",
         "sourceIds": [
-          "CF-EN-P3-SJK-DSKP"
+          "CF-EN-P3-SJK-DSKP",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
           {
             "id": "listening-speaking",
             "title": "聆听、口语交流与回应",
-            "status": "performance",
+            "status": "partial",
             "models": [
-              "v2-functional-dialogue"
+              "v2-functional-dialogue",
+              "v2-qx10-english-listening-speaking"
             ],
-            "note": "书面选择合适回应不能证明听力或真实对话能力。现提供同伴朗读材料、复述、追问和核对任务。",
+            "note": "14 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
-              "P5-english-v2-7d2c82a2a08e1ced3962"
+              "P5-english-v2-7d2c82a2a08e1ced3962",
+              "P5-english-qx10-2986710812a3b7f912eb",
+              "P5-english-qx10-4c55f7db461359496721",
+              "P5-english-qx10-12959a93dcaf04ee9852",
+              "P5-english-qx10-f24a238792d49af5bea2",
+              "P5-english-qx10-b99984241c6a9c59481b",
+              "P5-english-qx10-d2efea43dd30cf2b5d10",
+              "P5-english-qx10-3a2f4542410662ccdacb",
+              "P5-english-qx10-7a87c3fb011e629586d2",
+              "P5-english-qx10-e559deb6ef69ec4ad28d",
+              "P5-english-qx10-edfa6f722c54ad89b4a7",
+              "P5-english-qx10-fcce63bc5147f4e18be2",
+              "P5-english-qx10-7adc9c2ecd7e1861b85a",
+              "P5-english-qx10-c734aed1e81912568a24"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 14,
+            "independentCount": 14,
             "guidedCount": 0,
             "evidenceIds": [
-              "P5-english-v2-7d2c82a2a08e1ced3962"
+              "P5-english-v2-7d2c82a2a08e1ced3962",
+              "P5-english-qx10-2986710812a3b7f912eb",
+              "P5-english-qx10-4c55f7db461359496721",
+              "P5-english-qx10-12959a93dcaf04ee9852",
+              "P5-english-qx10-f24a238792d49af5bea2",
+              "P5-english-qx10-b99984241c6a9c59481b"
             ]
           },
           {
@@ -55746,6 +56244,7 @@
             "models": [
               "cf-en-literary-reading",
               "retained-reading",
+              "v2-qx10-english-reading-retrieval",
               "v2-reading-evidence"
             ],
             "note": "题库有资料定位任务；“已有练习”只说明存在，不表示覆盖全部学习标准。",
@@ -55926,10 +56425,17 @@
               "P5-english-v2-65fde2db5f1eb9804abd",
               "P5-english-v2-309e5263da8acbc12c44",
               "CF27-P5-english-story-inference",
-              "CF27-P5-english-story-evidence"
+              "CF27-P5-english-story-evidence",
+              "P5-english-qx10-baa02742b4e8a6ca4655",
+              "P5-english-qx10-599e6f16a6bdb50d536a",
+              "P5-english-qx10-c6e4c3c070c72527f04d",
+              "P5-english-qx10-6c2c48c0aa16714da7fc",
+              "P5-english-qx10-dd05e0fa49e8469d543d",
+              "P5-english-qx10-df4807ef3a452814505d",
+              "P5-english-qx10-7713875b4e766b963436"
             ],
-            "questionCount": 177,
-            "independentCount": 177,
+            "questionCount": 184,
+            "independentCount": 184,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P5-english-retained-reading-S2_EN5_ST01_01",
@@ -55947,6 +56453,7 @@
             "models": [
               "cf-en-literary-reading",
               "retained-reading",
+              "v2-qx10-english-reading-interpretation",
               "v2-reading-evidence"
             ],
             "note": "已有短材料练习；材料长度、体裁、独立广泛阅读与各年级标准的深度仍不完整。",
@@ -56127,10 +56634,19 @@
               "P5-english-v2-65fde2db5f1eb9804abd",
               "P5-english-v2-309e5263da8acbc12c44",
               "CF27-P5-english-story-inference",
-              "CF27-P5-english-story-evidence"
+              "CF27-P5-english-story-evidence",
+              "P5-english-qx10-afb59a85b32ee392283b",
+              "P5-english-qx10-eb40b9be18afc8626877",
+              "P5-english-qx10-d1e1899c9587fe17f28f",
+              "P5-english-qx10-adba4186c2e5e68e3423",
+              "P5-english-qx10-f69e7ed5b0cf3306af4d",
+              "P5-english-qx10-42d2ab8fa087ec3fd25d",
+              "P5-english-qx10-c39dc2b87de6d5d85d98",
+              "P5-english-qx10-a9bf27b6c83a013c4280",
+              "P5-english-qx10-aec5a05ffb18603ae9ef"
             ],
-            "questionCount": 177,
-            "independentCount": 177,
+            "questionCount": 186,
+            "independentCount": 186,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P5-english-retained-reading-S2_EN5_ST01_01",
@@ -56146,7 +56662,8 @@
             "title": "语文知识在情境中的运用",
             "status": "partial",
             "models": [
-              "v2-english-rule-transfer"
+              "v2-english-rule-transfer",
+              "v2-qx10-english-language-in-context"
             ],
             "note": "包含词汇、句子与部分语法；模板数量不能代表独立知识点。未逐项证明本年级全部语法/字词范围。",
             "questionIds": [
@@ -56628,10 +57145,21 @@
               "P5-english-v2-0463be6ea8b134fb5d9e",
               "P5-english-v2-66f1b128fe03b5f6c306",
               "P5-english-v2-4031a4bc158b8d722734",
-              "P5-english-v2-23ff862e2cf9159e1d94"
+              "P5-english-v2-23ff862e2cf9159e1d94",
+              "P5-english-qx10-de5ae2371a060fc6ecbc",
+              "P5-english-qx10-7bc011bf8bd470afaddf",
+              "P5-english-qx10-47def6c51535e0f9134e",
+              "P5-english-qx10-0eb21d96002cd8668f5c",
+              "P5-english-qx10-88d3a8ac4e3180574796",
+              "P5-english-qx10-25a4abbb91e42ebfec7c",
+              "P5-english-qx10-30e57f273878723e6c7c",
+              "P5-english-qx10-3820b64d8534e6330e37",
+              "P5-english-qx10-de59610fc00b1c82fd76",
+              "P5-english-qx10-f0ef98c992979c7dcbef",
+              "P5-english-qx10-87738b2ababb70f4c50c"
             ],
-            "questionCount": 479,
-            "independentCount": 479,
+            "questionCount": 490,
+            "independentCount": 490,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-english-v2-2b7750956de56e1b4778",
@@ -56645,25 +57173,45 @@
           {
             "id": "writing-production",
             "title": "实际书写、写作、规划与修改",
-            "status": "performance",
-            "models": [],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。编辑选择题只能检查部分判断。现提供保留初稿、修改稿与修改理由的具体任务；需教师或同伴观察。",
-            "questionIds": [],
-            "questionCount": 0,
-            "independentCount": 0,
+            "status": "partial",
+            "models": [
+              "v2-qx10-english-writing-production"
+            ],
+            "note": "9 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionIds": [
+              "P5-english-qx10-b8e32f87de47c0d4e824",
+              "P5-english-qx10-1a5e75eb3ef371c09f0e",
+              "P5-english-qx10-66e4e6eebf92238cc189",
+              "P5-english-qx10-6e1987f0fe1507ec8095",
+              "P5-english-qx10-c1bcb6029a41215ad534",
+              "P5-english-qx10-773e68f9ac27b6878501",
+              "P5-english-qx10-afd9aa475642701c4968",
+              "P5-english-qx10-274dc889f1f424180e6b",
+              "P5-english-qx10-3c430093ddad2ae7e183"
+            ],
+            "questionCount": 9,
+            "independentCount": 9,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P5-english-qx10-b8e32f87de47c0d4e824",
+              "P5-english-qx10-1a5e75eb3ef371c09f0e",
+              "P5-english-qx10-66e4e6eebf92238cc189",
+              "P5-english-qx10-6e1987f0fe1507ec8095",
+              "P5-english-qx10-c1bcb6029a41215ad534",
+              "P5-english-qx10-773e68f9ac27b6878501"
+            ]
           },
           {
             "id": "literature-performance",
             "title": "Language Arts / Literature in Action",
-            "status": "performance",
+            "status": "partial",
             "models": [
               "cf-en-literary-reading",
               "retained-reading",
+              "v2-qx10-english-literature-performance",
               "v2-reading-evidence"
             ],
-            "note": "已有部分阅读判断和新增表演/创作任务；不能据选择题分数推断朗读、欣赏或创作表现。",
+            "note": "183 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
             "questionIds": [
               "L2-P5-english-retained-reading-S2_EN5_ST01_01",
               "L2-P5-english-retained-reading-S2_EN5_ST01_02",
@@ -56841,10 +57389,16 @@
               "P5-english-v2-65fde2db5f1eb9804abd",
               "P5-english-v2-309e5263da8acbc12c44",
               "CF27-P5-english-story-inference",
-              "CF27-P5-english-story-evidence"
+              "CF27-P5-english-story-evidence",
+              "P5-english-qx10-7036cf486b4fc2409511",
+              "P5-english-qx10-927ea12981966883836c",
+              "P5-english-qx10-40d1767057bbdd581f32",
+              "P5-english-qx10-1629043beb921897fb19",
+              "P5-english-qx10-b202851ae5d3b2a54daf",
+              "P5-english-qx10-b776f176d08e8b75e17a"
             ],
-            "questionCount": 177,
-            "independentCount": 177,
+            "questionCount": 183,
+            "independentCount": 183,
             "guidedCount": 0,
             "evidenceIds": [
               "L2-P5-english-retained-reading-S2_EN5_ST01_01",
@@ -56927,9 +57481,9 @@
         ],
         "summary": {
           "represented": 1,
-          "partial": 2,
+          "partial": 5,
           "missing": 0,
-          "performance": 3
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -143121,10 +143675,22 @@
           "F3-math"
         ],
         "added": 769
+      },
+      {
+        "date": "2026-10-28",
+        "contentRevision": "71174d55e42127b4",
+        "previousRevision": "188d9d67c485daaa",
+        "courses": [
+          "P1-english",
+          "P2-english",
+          "P3-english",
+          "P5-english"
+        ],
+        "added": 475
       }
     ],
-    "addedTotal": 20309,
-    "tierShortfallP1toF3": 7382,
+    "addedTotal": 20784,
+    "tierShortfallP1toF3": 6953,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
