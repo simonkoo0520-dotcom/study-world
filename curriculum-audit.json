@@ -1,19 +1,19 @@
 {
   "schemaVersion": 4,
   "date": "2026-10-02",
-  "generatedAt": "2026-10-28T00:00:00+00:00",
+  "generatedAt": "2026-10-29T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "71174d55e42127b4",
+  "contentRevision": "6e7aef73c963dca1",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 126777,
-    "active": 60593,
-    "gradeScope": 60154,
+    "stored": 127299,
+    "active": 61115,
+    "gradeScope": 60676,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 31,
-    "questionShortfall": 58588,
+    "questionShortfall": 58066,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -13660,8 +13660,8 @@
       "level": "P1",
       "subject": "science",
       "title": "Sains / Science",
-      "active": 290,
-      "stored": 1091,
+      "active": 368,
+      "stored": 1169,
       "retired": 801,
       "sourceIds": [
         "sh-author",
@@ -13720,14 +13720,30 @@
               "P1-science-qx10-f626b14a47c9347357d7",
               "P1-science-qx10-9c776b8eded04a5561e1",
               "P1-science-qx10-72739a5f0c45914bc5ab",
-              "P1-science-qx10-bf08845520cd51db8b08"
+              "P1-science-qx10-bf08845520cd51db8b08",
+              "P1-science-qx10-3411bf67c06c82d15208",
+              "P1-science-qx10-81a93595dfe2195d7611",
+              "P1-science-qx10-cdcb2170c4d697db1590",
+              "P1-science-qx10-b3ad8ef399037ff1a3bb",
+              "P1-science-qx10-4db60d43339c57e98cd4",
+              "P1-science-qx10-1d66c79c44fb0ef7b6ed",
+              "P1-science-qx10-8f4832cac94032a780dc",
+              "P1-science-qx10-6a124011917d6fa1fb4f",
+              "P1-science-qx10-0e5cd027aa7ac124de97",
+              "P1-science-qx10-2505bfa9505d096271b5",
+              "P1-science-qx10-1f9e2e6ea3d6615a83fb",
+              "P1-science-qx10-04e5d71f143b24473de0",
+              "P1-science-qx10-abfb72f9f50bb4f829d2",
+              "P1-science-qx10-a9ee8711132e6131ae76",
+              "P1-science-qx10-a83f5294983ba7dabfc1",
+              "P1-science-qx10-38e4ba60e08aaa874647"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "28 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 28,
-            "independentCount": 28,
+            "note": "44 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 44,
+            "independentCount": 44,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-concept-unknown-unknown",
@@ -13788,14 +13804,21 @@
               "P1-science-qx10-3e1e3442bcf135490736",
               "P1-science-qx10-d6bb7b904bc5e9a57c5e",
               "P1-science-qx10-b847d45cb4d65641e8cf",
-              "P1-science-qx10-791d78c090d300d05b03"
+              "P1-science-qx10-791d78c090d300d05b03",
+              "P1-science-qx10-f578d9c6d161d825cfd7",
+              "P1-science-qx10-73481c2ed3a76810aac1",
+              "P1-science-qx10-ffeca132a364da96daa9",
+              "P1-science-qx10-b955f1afdc4bd1b27910",
+              "P1-science-qx10-38e935c53facd7d7dbce",
+              "P1-science-qx10-a3a72b7d96bf475491d2",
+              "P1-science-qx10-b287a4683ad0603468e6"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "39 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 39,
-            "independentCount": 39,
+            "note": "46 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 46,
+            "independentCount": 46,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-growth-change-1",
@@ -13813,6 +13836,7 @@
             "models": [
               "concept-ears",
               "concept-eyes",
+              "v2-qx10-science-human",
               "v2-science-classify-senses",
               "v2-science-compare-senses"
             ],
@@ -13864,14 +13888,27 @@
               "P1-science-v2-a398549b72a8f25ad295",
               "P1-science-v2-e6ef425c35efb5bd18f8",
               "P1-science-v2-f5746cbae84667eca7ec",
-              "P1-science-v2-fda79bc1428886d22847"
+              "P1-science-v2-fda79bc1428886d22847",
+              "P1-science-qx10-e49a5eb1804789de7020",
+              "P1-science-qx10-e7fbabd371aac0e7d6fc",
+              "P1-science-qx10-8d81662a51b6cda4d8ec",
+              "P1-science-qx10-16064efb4cca88771c1a",
+              "P1-science-qx10-a568c2e22ac35a6b23d8",
+              "P1-science-qx10-90f87ab24132c7e62513",
+              "P1-science-qx10-2b9a4a749dca89040011",
+              "P1-science-qx10-b622fa3b0f85438db3d5",
+              "P1-science-qx10-80b64c206a5ff3ebb09b",
+              "P1-science-qx10-6dac5ce31bc6c39b02d3",
+              "P1-science-qx10-b949d3f9d1a44edb721c",
+              "P1-science-qx10-75ad0bc90cb902d9e8db",
+              "P1-science-qx10-ceeec634e91ceceaeedc"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "48 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 48,
-            "independentCount": 48,
+            "note": "61 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 61,
+            "independentCount": 61,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-concept-eyes-eyes",
@@ -13887,6 +13924,7 @@
             "title": "Animal body parts",
             "status": "partial",
             "models": [
+              "v2-qx10-science-animals",
               "v2-science-classify-animal-coverings",
               "v2-science-compare-animal-coverings"
             ],
@@ -13936,14 +13974,26 @@
               "P1-science-v2-5fc0e6b599bb40e4f7c3",
               "P1-science-v2-9d34561f40e115e0b315",
               "P1-science-v2-e1974055cebdc923782d",
-              "P1-science-v2-ca84b0765c06b03e52b1"
+              "P1-science-v2-ca84b0765c06b03e52b1",
+              "P1-science-qx10-84c59161b5872d17d936",
+              "P1-science-qx10-04cce99592a386c795fe",
+              "P1-science-qx10-6602d4874830d8489f80",
+              "P1-science-qx10-84648f648dab8706f50e",
+              "P1-science-qx10-2529547e6fa91e4554e6",
+              "P1-science-qx10-558aa5bcb61347d7c9d4",
+              "P1-science-qx10-418d961c294d3f514809",
+              "P1-science-qx10-0c8ebd5748f1c60e98d9",
+              "P1-science-qx10-3ba78d923ba8381ecfe1",
+              "P1-science-qx10-7e8cc0016647ad1bf618",
+              "P1-science-qx10-50f549da3279a73e45b8",
+              "P1-science-qx10-73e40009c0f3462242b4"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "46 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 46,
-            "independentCount": 46,
+            "note": "58 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 58,
+            "independentCount": 58,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-science-v2-e9eb2c3806d123145822",
@@ -13961,6 +14011,7 @@
             "models": [
               "concept-roots",
               "plant",
+              "v2-qx10-science-plants",
               "v2-science-classify-plant-parts",
               "v2-science-compare-plant-parts"
             ],
@@ -14011,14 +14062,27 @@
               "P1-science-v2-817f36d6cab6cc73c9a4",
               "P1-science-v2-dd3b7222ad8f1f03ccc1",
               "P1-science-v2-3883c4228d08b58ba3e8",
-              "P1-science-v2-a3bba6a15913ce69b68a"
+              "P1-science-v2-a3bba6a15913ce69b68a",
+              "P1-science-qx10-5fd10ca8326453654742",
+              "P1-science-qx10-8099d4d3ebbb8b8bd2cd",
+              "P1-science-qx10-76317838a22db61546fd",
+              "P1-science-qx10-0ae2bdfafa4f0b62831d",
+              "P1-science-qx10-3b880045b010b53b3092",
+              "P1-science-qx10-2653362539c56ae702be",
+              "P1-science-qx10-c3ca3a6807812bfc8072",
+              "P1-science-qx10-c7d80a2d7e8f3902669f",
+              "P1-science-qx10-56fe84e5727570c9b682",
+              "P1-science-qx10-e748531fc47260a56d64",
+              "P1-science-qx10-f649ab7f81f1b60dd912",
+              "P1-science-qx10-1095c86deff3a01038d2",
+              "P1-science-qx10-974d1a406ed0c5f8c6b1"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "47 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 47,
-            "independentCount": 47,
+            "note": "60 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 60,
+            "independentCount": 60,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-plant-1",
@@ -14069,14 +14133,17 @@
               "P1-science-qx10-6155bec08f557d2b7186",
               "P1-science-qx10-4355848f8a94b31691aa",
               "P1-science-qx10-91e4c0b1180aa87b9efe",
-              "P1-science-qx10-557a944a31d7942c39d2"
+              "P1-science-qx10-557a944a31d7942c39d2",
+              "P1-science-qx10-d34554a1cf03a3e12e62",
+              "P1-science-qx10-0a883bfefe17e645630a",
+              "P1-science-qx10-be9d9369fadea0be4fd3"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "30 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 30,
-            "independentCount": 30,
+            "note": "33 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 33,
+            "independentCount": 33,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-magnet-1",
@@ -14124,14 +14191,17 @@
               "P1-science-qx10-d70f2b2add137a6f6716",
               "P1-science-qx10-71988ef8ae67ebf98bde",
               "P1-science-qx10-c413cae168002a3f1d05",
-              "P1-science-qx10-5aa52b694b3cbd2603e1"
+              "P1-science-qx10-5aa52b694b3cbd2603e1",
+              "P1-science-qx10-07e00a50fa0ac3abe490",
+              "P1-science-qx10-e7002823eee13ee460f6",
+              "P1-science-qx10-af9b37976537644173c8"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 29,
-            "independentCount": 29,
+            "note": "32 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 32,
+            "independentCount": 32,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-absorb-1",
@@ -14173,14 +14243,15 @@
               "P1-science-qx10-9ead817e90b78d868c97",
               "P1-science-qx10-7a9ea36c7f3950b4d70a",
               "P1-science-qx10-554aed1afcec7efb25e4",
-              "P1-science-qx10-7b6f231d9bbe627f5087"
+              "P1-science-qx10-7b6f231d9bbe627f5087",
+              "P1-science-qx10-6a9c0c26185a9683fb47"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "23 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 23,
-            "independentCount": 23,
+            "note": "24 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P1-science-soil-1",
@@ -14194,17 +14265,37 @@
           {
             "id": "construction",
             "title": "Construction sets",
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-science-construction"
+            ],
+            "questionIds": [
+              "P1-science-qx10-42c208933e73aa178873",
+              "P1-science-qx10-c4cb3a8d41fcf47f0cd8",
+              "P1-science-qx10-9a5665030ed09e64589d",
+              "P1-science-qx10-f313e500ccd71b04d55d",
+              "P1-science-qx10-8a3885de5e533d522d99",
+              "P1-science-qx10-f345da0be73f68adbeed",
+              "P1-science-qx10-f543432bf30581b607ea",
+              "P1-science-qx10-ac5341d0cd8087421899",
+              "P1-science-qx10-8659f218e6f790cb6e9a",
+              "P1-science-qx10-8a3809b982ec615cc59f"
+            ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "10 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 10,
+            "independentCount": 10,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P1-science-qx10-42c208933e73aa178873",
+              "P1-science-qx10-c4cb3a8d41fcf47f0cd8",
+              "P1-science-qx10-9a5665030ed09e64589d",
+              "P1-science-qx10-f313e500ccd71b04d55d",
+              "P1-science-qx10-8a3885de5e533d522d99",
+              "P1-science-qx10-f345da0be73f68adbeed"
+            ]
           }
         ],
         "limits": [
@@ -14297,9 +14388,9 @@
         "unmappedActiveModels": [],
         "summary": {
           "represented": 0,
-          "partial": 8,
+          "partial": 9,
           "missing": 0,
-          "performance": 1
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -25384,8 +25475,8 @@
       "level": "P2",
       "subject": "science",
       "title": "Sains / Science",
-      "active": 216,
-      "stored": 1016,
+      "active": 308,
+      "stored": 1108,
       "retired": 800,
       "sourceIds": [
         "sh-author",
@@ -25444,14 +25535,33 @@
               "P2-science-qx10-ea4ef6f79be7b9df8900",
               "P2-science-qx10-2411b31296e014a2f047",
               "P2-science-qx10-f8bd9ea5e99c8e19e2e7",
-              "P2-science-qx10-47e8e8cb290e749b95f4"
+              "P2-science-qx10-47e8e8cb290e749b95f4",
+              "P2-science-qx10-19875198dc81775bd96b",
+              "P2-science-qx10-ad4db7e04b3e7adaf336",
+              "P2-science-qx10-cf647c69d089c5ac34a3",
+              "P2-science-qx10-085606326b39fd70d78b",
+              "P2-science-qx10-b53aac81508a837ee5f4",
+              "P2-science-qx10-a22eb9cfde9b2db400b1",
+              "P2-science-qx10-3fe90bb86caf354d32ce",
+              "P2-science-qx10-28cc1f9feaa5a20500fa",
+              "P2-science-qx10-9874bb68ba0490a4fd43",
+              "P2-science-qx10-a51b1178357383cd2941",
+              "P2-science-qx10-2ad9b22b26e39e6c4709",
+              "P2-science-qx10-7dd805503d38061eba96",
+              "P2-science-qx10-3587086ededa9969567d",
+              "P2-science-qx10-ef63e2e8a5b9fb5c1da0",
+              "P2-science-qx10-a2ca9fc91fe09e95cb16",
+              "P2-science-qx10-9e4554be49ea6c86f624",
+              "P2-science-qx10-764eca0e83c32f420a18",
+              "P2-science-qx10-163749a619c68b930dd4",
+              "P2-science-qx10-9e6203bd32729f093f12"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "30 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 30,
-            "independentCount": 30,
+            "note": "49 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 49,
+            "independentCount": 49,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-science-v2-042f197f978cace9d3b0",
@@ -25487,14 +25597,19 @@
               "P2-science-qx10-e84a878a74b63188eab7",
               "P2-science-qx10-a4570b421433dae481d3",
               "P2-science-qx10-d95b4fb620e357db42b5",
-              "P2-science-qx10-d57d0d718a6ef3444a38"
+              "P2-science-qx10-d57d0d718a6ef3444a38",
+              "P2-science-qx10-c33ac5fe82a2e818c833",
+              "P2-science-qx10-a16760ad141ef8c1ecc6",
+              "P2-science-qx10-c2d9e5e712c2a29b8221",
+              "P2-science-qx10-d0968906c554b1a2ee0c",
+              "P2-science-qx10-fe3416e325a4e01a511d"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "17 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 17,
-            "independentCount": 17,
+            "note": "22 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P2-science-concept-growth-growth",
@@ -25511,6 +25626,7 @@
             "status": "partial",
             "models": [
               "concept-chicken",
+              "v2-qx10-science-animals",
               "v2-science-classify-animal-development",
               "v2-science-compare-animal-development"
             ],
@@ -25548,14 +25664,28 @@
               "P2-science-v2-7304893ff51fad4814f9",
               "P2-science-v2-8865aed75e181f943ee6",
               "P2-science-v2-2544c3c84cb211479379",
-              "P2-science-v2-1a2987a70448984b3c5f"
+              "P2-science-v2-1a2987a70448984b3c5f",
+              "P2-science-qx10-c2933a368cd680143145",
+              "P2-science-qx10-cc72cd853da70a771552",
+              "P2-science-qx10-11e2d6890dc7f043c9a4",
+              "P2-science-qx10-9b999a1ef3685452fff9",
+              "P2-science-qx10-9377d648cd28f99658e4",
+              "P2-science-qx10-8bbd8fea5cbdda6d0cfa",
+              "P2-science-qx10-7a156a1d3c0681f515f5",
+              "P2-science-qx10-6e4e609c01cb83f324aa",
+              "P2-science-qx10-6283350963e9e7e87622",
+              "P2-science-qx10-c833904c7afb0dfbb3cf",
+              "P2-science-qx10-ebcc4b8a60622c2b9331",
+              "P2-science-qx10-3df47eb1d72a610e9d7a",
+              "P2-science-qx10-41824840afbf96f22993",
+              "P2-science-qx10-9634486822983519e350"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "34 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 34,
-            "independentCount": 34,
+            "note": "48 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 48,
+            "independentCount": 48,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P2-science-concept-chicken-chicken",
@@ -25610,14 +25740,18 @@
               "P2-science-qx10-15308963ee78490040aa",
               "P2-science-qx10-cf3990b155f6a9dd89b7",
               "P2-science-qx10-5cd820edc34e8322b45b",
-              "P2-science-qx10-1ccf9ec2be0a062175c5"
+              "P2-science-qx10-1ccf9ec2be0a062175c5",
+              "P2-science-qx10-c32992b27278334445d4",
+              "P2-science-qx10-2dc907fb85c3d2091400",
+              "P2-science-qx10-799763d932cf14fd6302",
+              "P2-science-qx10-f1685f44ff8f7319b606"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "34 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 34,
-            "independentCount": 34,
+            "note": "38 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 38,
+            "independentCount": 38,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P2-science-fair-plant-test-1",
@@ -25662,14 +25796,18 @@
               "P2-science-qx10-125b0da1cd96b238dde1",
               "P2-science-qx10-aabb5508c20a91b22b27",
               "P2-science-qx10-6be51a897870c21cd0bc",
-              "P2-science-qx10-1509251cdc4d7cd476ea"
+              "P2-science-qx10-1509251cdc4d7cd476ea",
+              "P2-science-qx10-ec24050022f7c39d6138",
+              "P2-science-qx10-b790feb5dcee01d4d573",
+              "P2-science-qx10-0b2a2eedca06726e38a5",
+              "P2-science-qx10-4d59d424d7091bc7854f"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "25 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 25,
-            "independentCount": 25,
+            "note": "29 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P2-science-shadow-1",
@@ -25707,14 +25845,17 @@
               "P2-science-qx10-77776a1e171eb09f637a",
               "P2-science-qx10-3cdbd8759e3c470d790d",
               "P2-science-qx10-1be1f95cc90fa14c9734",
-              "P2-science-qx10-cbd1e095c10a8dadbddd"
+              "P2-science-qx10-cbd1e095c10a8dadbddd",
+              "P2-science-qx10-d12e84b13909d59c262a",
+              "P2-science-qx10-7eb92ece486d1900387a",
+              "P2-science-qx10-efbdf8157fc9338ccc32"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "19 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 19,
-            "independentCount": 19,
+            "note": "22 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-science-v2-e55275ad2dc123f2c3f1",
@@ -25731,6 +25872,7 @@
             "status": "partial",
             "models": [
               "magnetic-separation",
+              "v2-qx10-science-mixtures",
               "v2-science-classify-separation",
               "v2-science-compare-separation"
             ],
@@ -25773,14 +25915,37 @@
               "P2-science-v2-a6786206112be7567582",
               "P2-science-v2-59d52647eb80e243c5bf",
               "P2-science-v2-eda42c61887398cfc222",
-              "P2-science-v2-1c4c1aa2e01c13920a87"
+              "P2-science-v2-1c4c1aa2e01c13920a87",
+              "P2-science-qx10-628e9fd79505ececb060",
+              "P2-science-qx10-452f45008beff29499c3",
+              "P2-science-qx10-daeabb1abf378fd94f7a",
+              "P2-science-qx10-1435ccb16b4e1c5cc1c4",
+              "P2-science-qx10-bac64585bde4b3f76123",
+              "P2-science-qx10-ca50116a9b8bea57ab6f",
+              "P2-science-qx10-ec51a47d73f94153a158",
+              "P2-science-qx10-40ddf9f7fdbd46190089",
+              "P2-science-qx10-7d080bd167b2242aaf09",
+              "P2-science-qx10-9dbc0ba716e67c6c4b1d",
+              "P2-science-qx10-c4d0ea3b0254057b92bd",
+              "P2-science-qx10-1ec5f4226221b2bc0bab",
+              "P2-science-qx10-67942890a006b2113196",
+              "P2-science-qx10-5761075c65f94aac0589",
+              "P2-science-qx10-7b6f04fb0182f6915c45",
+              "P2-science-qx10-5b5d34e8619ff5a6f00c",
+              "P2-science-qx10-13ed974a340d31412ce1",
+              "P2-science-qx10-543dc34663d024185532",
+              "P2-science-qx10-ace11917711f6e381468",
+              "P2-science-qx10-144e979b54ed54503788",
+              "P2-science-qx10-76e63d4fdd5ad8dd6c28",
+              "P2-science-qx10-b24d88a0ab0cc1cd5823",
+              "P2-science-qx10-cc390cefd6b66ec242f4"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "39 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 39,
-            "independentCount": 39,
+            "note": "62 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P2-science-magnetic-separation-1",
@@ -25817,14 +25982,25 @@
               "P2-science-qx10-5b0375f7bbe48cfe2be4",
               "P2-science-qx10-5457ec561cc2276c9c8b",
               "P2-science-qx10-fba7be7269c7e9abf1b3",
-              "P2-science-qx10-907a6139d51e7abc0eee"
+              "P2-science-qx10-907a6139d51e7abc0eee",
+              "P2-science-qx10-ae86071b1e91a7aefc86",
+              "P2-science-qx10-d284b7d7a8f07a686d36",
+              "P2-science-qx10-6d473b79f030302bcc50",
+              "P2-science-qx10-3a403cea4f0ef6933d1c",
+              "P2-science-qx10-1a841bb961ee7d1d43db",
+              "P2-science-qx10-615a4af4b4adc600ffac",
+              "P2-science-qx10-5aa360f38304a57c2b58",
+              "P2-science-qx10-0305005e547f4080c85e",
+              "P2-science-qx10-d1b75be25a207f2b518a",
+              "P2-science-qx10-0e197d1ee895fac658b5",
+              "P2-science-qx10-a86920a4f79b3a702c44"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "18 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 18,
-            "independentCount": 18,
+            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-science-v2-540ae61880342adb7f56",
@@ -25838,17 +26014,36 @@
           {
             "id": "construction",
             "title": "Construction sets",
-            "status": "performance",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-science-construction"
+            ],
+            "questionIds": [
+              "P2-science-qx10-1221b6a5cc4e865e1049",
+              "P2-science-qx10-59fcfbf30602747c6b0a",
+              "P2-science-qx10-b00faa0e5bed4af8b866",
+              "P2-science-qx10-81986d1c88c6e39b29f5",
+              "P2-science-qx10-0e378f05c669c5f1fe17",
+              "P2-science-qx10-530a06ce68dc17286775",
+              "P2-science-qx10-e88abe46a8dc9bf049ca",
+              "P2-science-qx10-77fbb98657d69eb06d06",
+              "P2-science-qx10-da533064afcb13559810"
+            ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No suitable scored MCQ currently mapped. A concrete application/practical task with success criteria is supplied; completion requires human review.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "9 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 9,
+            "independentCount": 9,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "P2-science-qx10-1221b6a5cc4e865e1049",
+              "P2-science-qx10-59fcfbf30602747c6b0a",
+              "P2-science-qx10-b00faa0e5bed4af8b866",
+              "P2-science-qx10-81986d1c88c6e39b29f5",
+              "P2-science-qx10-0e378f05c669c5f1fe17",
+              "P2-science-qx10-530a06ce68dc17286775"
+            ]
           }
         ],
         "limits": [
@@ -25923,9 +26118,9 @@
         ],
         "summary": {
           "represented": 0,
-          "partial": 8,
+          "partial": 9,
           "missing": 0,
-          "performance": 1
+          "performance": 0
         },
         "fullSyllabusCertified": false
       }
@@ -34120,8 +34315,8 @@
       "level": "P3",
       "subject": "science",
       "title": "Sains / Science",
-      "active": 254,
-      "stored": 1013,
+      "active": 381,
+      "stored": 1140,
       "retired": 759,
       "sourceIds": [
         "sh-author",
@@ -34171,14 +34366,35 @@
               "P3-science-qx10-5824da26e2c0dc74eaf3",
               "P3-science-qx10-31ec120e64452bf62570",
               "P3-science-qx10-519fc869b6a7f0d07044",
-              "P3-science-qx10-54d23fa667dac59546a5"
+              "P3-science-qx10-54d23fa667dac59546a5",
+              "P3-science-qx10-48bfb159d0019335ceb7",
+              "P3-science-qx10-ffe1922684687ba26239",
+              "P3-science-qx10-e03e29586688df804569",
+              "P3-science-qx10-73acb0c736597ff07ee6",
+              "P3-science-qx10-d2474e892b82a33e1cda",
+              "P3-science-qx10-a270603e77fda55cdd6a",
+              "P3-science-qx10-5aee508513db457147cc",
+              "P3-science-qx10-1b3ec5534cf14560daa9",
+              "P3-science-qx10-d056b1cae7f485139104",
+              "P3-science-qx10-1c1de64ee7de4c7c4005",
+              "P3-science-qx10-3dffb9131f70aa00f5f3",
+              "P3-science-qx10-099717cdc07b6b9bbbf6",
+              "P3-science-qx10-0a9e788ae058f1dabbae",
+              "P3-science-qx10-1d6beea0c739bbd6a008",
+              "P3-science-qx10-e12be144a3160ae37e51",
+              "P3-science-qx10-3c6567a0a4f132b37391",
+              "P3-science-qx10-a1262811992e5d6a7b10",
+              "P3-science-qx10-eb69b6d7b326bb4fd05c",
+              "P3-science-qx10-5008d8098d040a8cb0e9",
+              "P3-science-qx10-227a77c4981ae03b2df6",
+              "P3-science-qx10-b488a8b602bf39499ba2"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "24 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 24,
-            "independentCount": 24,
+            "note": "45 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 45,
+            "independentCount": 45,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-science-qx10-d486ffdfddf64a573465",
@@ -34196,6 +34412,7 @@
             "models": [
               "concept-protein",
               "v2-cf-digestion-sequence",
+              "v2-qx10-science-human",
               "v2-science-classify-food-body",
               "v2-science-compare-food-body"
             ],
@@ -34234,14 +34451,56 @@
               "P3-science-v2-4780d5b7b2e745ea6f8f",
               "P3-science-v2-202956a5a8966dbcd297",
               "P3-science-v2-71b7f9bca8bf549bc1d5",
-              "P3-science-v2-868a1219ac1d6a2f42b1"
+              "P3-science-v2-868a1219ac1d6a2f42b1",
+              "P3-science-qx10-444998525147f0f81601",
+              "P3-science-qx10-c7004681a338407b6193",
+              "P3-science-qx10-3dbe708410e1abcdab9e",
+              "P3-science-qx10-2ee0c68255353e9dca1a",
+              "P3-science-qx10-bac85268f175b772af3e",
+              "P3-science-qx10-8344fe83811b3c673576",
+              "P3-science-qx10-c7245f31a1c6a6871f13",
+              "P3-science-qx10-fdc30c50da2b3a1dadd0",
+              "P3-science-qx10-f1c3e98f8ca6f03c1c38",
+              "P3-science-qx10-d5f68306a470f0eb0b49",
+              "P3-science-qx10-5db795bee4d0987e954e",
+              "P3-science-qx10-20f39edd57fad906703d",
+              "P3-science-qx10-59b4cf1948198a61478c",
+              "P3-science-qx10-dcbcdb2a5be583cdbd33",
+              "P3-science-qx10-c64c4e03e62f65d9abf5",
+              "P3-science-qx10-263ca432eaecc48b0b3c",
+              "P3-science-qx10-8c676e583399f68051f9",
+              "P3-science-qx10-91044d5165548dfc8274",
+              "P3-science-qx10-2015af3ab79546471f5b",
+              "P3-science-qx10-c054775fa4f09c38882d",
+              "P3-science-qx10-d73cf8a0e48e50e39071",
+              "P3-science-qx10-7fbc6d351f6da2ea2615",
+              "P3-science-qx10-b0fd078710f5a74c3d66",
+              "P3-science-qx10-5d3122f2983d99e4389b",
+              "P3-science-qx10-cd327c436a975952b310",
+              "P3-science-qx10-9c095967028d442cf51f",
+              "P3-science-qx10-6369a83f953c3eb3eb65",
+              "P3-science-qx10-2f01e0cd6ab7be59e808",
+              "P3-science-qx10-28e0c64672532badbcfa",
+              "P3-science-qx10-8c58dc0020deb7028663",
+              "P3-science-qx10-f2fea565bf6637be2b3c",
+              "P3-science-qx10-6a5050c69a40aab5d6fa",
+              "P3-science-qx10-24d26bd0b8c5e40a6675",
+              "P3-science-qx10-75a903561aa398d2365b",
+              "P3-science-qx10-5fc512e2ef1614320cb9",
+              "P3-science-qx10-deb98aab4b8b06a7aa3f",
+              "P3-science-qx10-5b214bbce6b69178f9b4",
+              "P3-science-qx10-ba550cce1738091d1639",
+              "P3-science-qx10-814c0d70a10f474059f8",
+              "P3-science-qx10-0c362ce1ad0ac3e16639",
+              "P3-science-qx10-f1d0ab70139607dec209",
+              "P3-science-qx10-d27225988cce3da8c3fc"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "35 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 35,
-            "independentCount": 35,
+            "note": "77 active grade-scope questions across 5 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 77,
+            "independentCount": 77,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-concept-protein-protein",
@@ -34258,6 +34517,7 @@
             "status": "partial",
             "models": [
               "concept-omnivore",
+              "v2-qx10-science-animals",
               "v2-science-classify-diet-role",
               "v2-science-compare-diet-role"
             ],
@@ -34290,14 +34550,29 @@
               "P3-science-v2-cfa78b4066b253c9ba08",
               "P3-science-v2-d853c83a628f2c936bce",
               "P3-science-v2-2cd8bd99a735293ff07d",
-              "P3-science-v2-d5e6618a11f4b599e051"
+              "P3-science-v2-d5e6618a11f4b599e051",
+              "P3-science-qx10-211d9f597c1be564ab1e",
+              "P3-science-qx10-8b51c26a5c4f31c49d39",
+              "P3-science-qx10-6e877d1124e2e2e46246",
+              "P3-science-qx10-4ff6c316d7b7c5714c61",
+              "P3-science-qx10-90e9b3d8b6c2d3edc36d",
+              "P3-science-qx10-8a76bb6a256f91bffbfd",
+              "P3-science-qx10-b3d0f6ff49f7f864f1a5",
+              "P3-science-qx10-9c8b938bbed72a4f783e",
+              "P3-science-qx10-ac2d8396bc4c1916cd90",
+              "P3-science-qx10-9becd2233026cde44239",
+              "P3-science-qx10-ae3f3a28d2d49012bbc6",
+              "P3-science-qx10-46d0d1161a3281c9b44f",
+              "P3-science-qx10-5b34566ac08c517b9aaa",
+              "P3-science-qx10-ef33b289a6a84cf7837b",
+              "P3-science-qx10-ed340313ec5df9be316e"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "29 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 29,
-            "independentCount": 29,
+            "note": "44 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 44,
+            "independentCount": 44,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-concept-omnivore-omnivore",
@@ -34313,6 +34588,7 @@
             "title": "Plant reproduction",
             "status": "partial",
             "models": [
+              "v2-qx10-science-plants",
               "v2-science-classify-plant-propagation",
               "v2-science-compare-plant-propagation"
             ],
@@ -34344,14 +34620,27 @@
               "P3-science-v2-1c44c6574b882e598dca",
               "P3-science-v2-84a35d32b610821fb43e",
               "P3-science-v2-209a713aa7f3457b714e",
-              "P3-science-v2-d36908147687a5614db2"
+              "P3-science-v2-d36908147687a5614db2",
+              "P3-science-qx10-ccd714b2b12336af66b7",
+              "P3-science-qx10-fa5856ff6500abbb183e",
+              "P3-science-qx10-5ce1d8610f2d5fd5e0db",
+              "P3-science-qx10-852807285cb349823969",
+              "P3-science-qx10-35c047995eddc7eccd43",
+              "P3-science-qx10-9fdad1909a2979a133c5",
+              "P3-science-qx10-81cf2927d2a7bd0839b3",
+              "P3-science-qx10-4b49a4ba10b097e2d390",
+              "P3-science-qx10-3bb8e79131a0d35289e1",
+              "P3-science-qx10-676cc4d0800eb44d3931",
+              "P3-science-qx10-dd3d65c85976a0ff9686",
+              "P3-science-qx10-03761b3b28b8ffdc9773",
+              "P3-science-qx10-43a43170a3e6149ad127"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "28 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 28,
-            "independentCount": 28,
+            "note": "41 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 41,
+            "independentCount": 41,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-science-v2-668bd84908b63914c9b8",
@@ -34369,6 +34658,7 @@
             "models": [
               "grid-area",
               "unit-cube-volume",
+              "v2-qx10-science-measurement",
               "water-displacement"
             ],
             "questionIds": [
@@ -34407,14 +34697,39 @@
               "sh-P3-science-unit-cube-volume-73",
               "sh-P3-science-unit-cube-volume-82",
               "sh-P3-science-unit-cube-volume-91",
-              "sh-P3-science-unit-cube-volume-100"
+              "sh-P3-science-unit-cube-volume-100",
+              "P3-science-qx10-c2899dc5a0e8a2c8a248",
+              "P3-science-qx10-f68d1a90092d15c51f0c",
+              "P3-science-qx10-c43ffb691c1cf331fdb8",
+              "P3-science-qx10-417ac65644b2bb400585",
+              "P3-science-qx10-932328f12efff3be5f1c",
+              "P3-science-qx10-95b79eab78b654dbc3c2",
+              "P3-science-qx10-719a63cab192028567cd",
+              "P3-science-qx10-30be63c889fb02e60c24",
+              "P3-science-qx10-9c0797821e75c43371df",
+              "P3-science-qx10-85b2a39a297a692d678e",
+              "P3-science-qx10-bf49d9a45f8b656ee8a7",
+              "P3-science-qx10-699ed8178b5c2e07b825",
+              "P3-science-qx10-54ed793ba53b6c19bdb8",
+              "P3-science-qx10-7ed1ab1179dcea126d79",
+              "P3-science-qx10-601a3efb2bb7efc9fe9d",
+              "P3-science-qx10-937eb92951907a5c04fd",
+              "P3-science-qx10-abecca04914c61650e49",
+              "P3-science-qx10-5414024cb71de87a39d9",
+              "P3-science-qx10-975a65a1cc3f305e0984",
+              "P3-science-qx10-4db7a9197834b9cca421",
+              "P3-science-qx10-1d58ba59dc5f2e30e7c2",
+              "P3-science-qx10-83f34e0163667c330028",
+              "P3-science-qx10-d09bedaa0dbaf7ee43f3",
+              "P3-science-qx10-09f8e3dffdccbcd1547e",
+              "P3-science-qx10-6ade0d0089bc4b4f8822"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "36 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 36,
-            "independentCount": 36,
+            "note": "61 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 61,
+            "independentCount": 61,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-water-displacement-1",
@@ -34460,14 +34775,17 @@
               "P3-science-qx10-d46c454cb4e6df3b6201",
               "P3-science-qx10-b2070abd6bf5a2122a00",
               "P3-science-qx10-c2a49d21dfa759431791",
-              "P3-science-qx10-d87a27b4aeb6c01b8d04"
+              "P3-science-qx10-d87a27b4aeb6c01b8d04",
+              "P3-science-qx10-68f157d3a46950be57bb",
+              "P3-science-qx10-338c416cf585ab8cd069",
+              "P3-science-qx10-49e7407b093fa2cca27d"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "27 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 27,
-            "independentCount": 27,
+            "note": "30 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-float-evidence-1",
@@ -34523,14 +34841,16 @@
               "P3-science-qx10-80523b2f2736863349b3",
               "P3-science-qx10-ba4594757f146fe073f5",
               "P3-science-qx10-ee8c89dbd16283bb0516",
-              "P3-science-qx10-b27b9311b913b2cf4c88"
+              "P3-science-qx10-b27b9311b913b2cf4c88",
+              "P3-science-qx10-5a91c35518b1a5eab6a5",
+              "P3-science-qx10-75423c857e227294fbfe"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "37 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 37,
-            "independentCount": 37,
+            "note": "39 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 39,
+            "independentCount": 39,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-litmus-classification-1",
@@ -34570,14 +34890,19 @@
               "P3-science-qx10-1ab4da96d1d56f23a55a",
               "P3-science-qx10-57766d4bd62f4574bf22",
               "P3-science-qx10-96dac994b1a70f0aeda7",
-              "P3-science-qx10-b514d2b862cc17741ca0"
+              "P3-science-qx10-b514d2b862cc17741ca0",
+              "P3-science-qx10-28c069f25d5d0135625b",
+              "P3-science-qx10-9fe5dec6f02891b5ae25",
+              "P3-science-qx10-23f0d2f111e57c46fd12",
+              "P3-science-qx10-41686cbd51ba8e17aeb0",
+              "P3-science-qx10-9bc4299e7e0819f631e0"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "21 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 21,
-            "independentCount": 21,
+            "note": "26 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 26,
+            "independentCount": 26,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P3-science-concept-planet-planet",
@@ -34613,14 +34938,15 @@
               "P3-science-qx10-f8645444f791dd67fca0",
               "P3-science-qx10-f75ee7c254436993f239",
               "P3-science-qx10-a01ce20aa0f64aa26656",
-              "P3-science-qx10-35348e427fe6b298e228"
+              "P3-science-qx10-35348e427fe6b298e228",
+              "P3-science-qx10-7da6ee1a737caf63c2be"
             ],
             "sourceIds": [
               "cf-stem-science-lower"
             ],
-            "note": "17 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 17,
-            "independentCount": 17,
+            "note": "18 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 18,
+            "independentCount": 18,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-science-v2-e7e0d4a1ad54ca353d9a",
@@ -49223,8 +49549,8 @@
       "level": "P4",
       "subject": "science",
       "title": "Sains / Science",
-      "active": 268,
-      "stored": 1167,
+      "active": 366,
+      "stored": 1265,
       "retired": 899,
       "sourceIds": [
         "sh-author",
@@ -49273,14 +49599,23 @@
               "P4-science-qx10-0c1516e4105631a66310",
               "P4-science-qx10-7d965fcb396d36457b72",
               "P4-science-qx10-bb67991e3910c22039b3",
-              "P4-science-qx10-802ead0cb8028c5599a0"
+              "P4-science-qx10-802ead0cb8028c5599a0",
+              "P4-science-qx10-b004fe9f53c30d116ff6",
+              "P4-science-qx10-bf772514f5c9a20544eb",
+              "P4-science-qx10-89229314dd393a7874de",
+              "P4-science-qx10-5c29e931a980161438ac",
+              "P4-science-qx10-b15413ce4951cdc6c158",
+              "P4-science-qx10-a7ebde67272700b4f4d1",
+              "P4-science-qx10-6a4694fe92a7aef38834",
+              "P4-science-qx10-c8f47cf66c73ad313e5d",
+              "P4-science-qx10-2aa189f0142fc5c70e59"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "25 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 25,
-            "independentCount": 25,
+            "note": "34 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 34,
+            "independentCount": 34,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-qx10-30b7b453ebc32b911156",
@@ -49325,14 +49660,22 @@
               "P4-science-qx10-71328ccc2bcaa6cbe567",
               "P4-science-qx10-028b9e69cfae2a479a6f",
               "P4-science-qx10-2970859d4d459f739a6a",
-              "P4-science-qx10-94df82546bac4fb6b776"
+              "P4-science-qx10-94df82546bac4fb6b776",
+              "P4-science-qx10-3b370f56a7a4f09295fa",
+              "P4-science-qx10-721c3bdf110fb4073749",
+              "P4-science-qx10-f13fb1fdb5583d5f1f1b",
+              "P4-science-qx10-b7eaa904433f44d49213",
+              "P4-science-qx10-8fb33cae55d6cfabeafd",
+              "P4-science-qx10-d0f57619ae71691f24b5",
+              "P4-science-qx10-3eac16c657c018b195af",
+              "P4-science-qx10-6608fc3aa4f5729a4bf7"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "26 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 26,
-            "independentCount": 26,
+            "note": "34 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 34,
+            "independentCount": 34,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P4-science-concept-lungs-lungs",
@@ -49348,6 +49691,7 @@
             "title": "Animal breathing and groups",
             "status": "partial",
             "models": [
+              "v2-qx10-science-animals",
               "v2-science-classify-breathing-organs",
               "v2-science-compare-breathing-organs"
             ],
@@ -49380,14 +49724,29 @@
               "P4-science-v2-79fb46e0b0e4b52fc697",
               "P4-science-v2-de08cc7c6a94f049e131",
               "P4-science-v2-70db4bbc282b13083bf2",
-              "P4-science-v2-fc107d1e73de08081927"
+              "P4-science-v2-fc107d1e73de08081927",
+              "P4-science-qx10-c95c5bbbda1b3f1a97dc",
+              "P4-science-qx10-8c046fc84181c8d2aaa6",
+              "P4-science-qx10-6df3a56b8fb466e2006d",
+              "P4-science-qx10-db5b15c5365f1b339350",
+              "P4-science-qx10-9b09404f9a270f3a070e",
+              "P4-science-qx10-16a2515265ce7be0dbc2",
+              "P4-science-qx10-1634b0944edce13722d4",
+              "P4-science-qx10-a94bc85fd069546f9bcb",
+              "P4-science-qx10-291a00b8368cbb6d37ef",
+              "P4-science-qx10-4da3a42b51289c139392",
+              "P4-science-qx10-f3ff78d0f44a430250b0",
+              "P4-science-qx10-8b92add4076352dcd700",
+              "P4-science-qx10-b4ba1542b4ade3aa574b",
+              "P4-science-qx10-503186b37b0fce656fc2",
+              "P4-science-qx10-f2a57418fbcbd2259fb7"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 29,
-            "independentCount": 29,
+            "note": "44 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 44,
+            "independentCount": 44,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-v2-afe94e7691e04045c715",
@@ -49434,14 +49793,18 @@
               "P4-science-qx10-9203955d5e483da1adae",
               "P4-science-qx10-98d9cf9bf9e48571dd47",
               "P4-science-qx10-ba282878762586baa9b2",
-              "P4-science-qx10-44d90bd4b6e7fda7f627"
+              "P4-science-qx10-44d90bd4b6e7fda7f627",
+              "P4-science-qx10-7935bf57c1f6437d4d0f",
+              "P4-science-qx10-4d5164f0708bcb126b13",
+              "P4-science-qx10-d007152ff8c844031248",
+              "P4-science-qx10-dad9bb0dbb8b66587684"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "27 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 27,
-            "independentCount": 27,
+            "note": "31 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 31,
+            "independentCount": 31,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P4-science-concept-photosynthesis-photosynthesis",
@@ -49458,6 +49821,7 @@
             "status": "partial",
             "models": [
               "concept-opaque",
+              "v2-qx10-science-light",
               "v2-science-classify-light-materials",
               "v2-science-compare-light-materials"
             ],
@@ -49495,14 +49859,33 @@
               "P4-science-v2-3e15f9e55fa1127cc5ee",
               "P4-science-v2-ad42c848a2738e80176c",
               "P4-science-v2-bb9a28d208228d231e68",
-              "P4-science-v2-ff97e90b3243b95db75f"
+              "P4-science-v2-ff97e90b3243b95db75f",
+              "P4-science-qx10-a646f594dbafacd97965",
+              "P4-science-qx10-accf73daa04f139ac874",
+              "P4-science-qx10-3af970dd69c76d67b65b",
+              "P4-science-qx10-40fa2492b0504ec9baa5",
+              "P4-science-qx10-6bb8b391258006868a53",
+              "P4-science-qx10-5ef0623c20048c6e8378",
+              "P4-science-qx10-2377e80194ff43038fa1",
+              "P4-science-qx10-ede5dea9bfd9c3de8f3d",
+              "P4-science-qx10-d27f267801d316007999",
+              "P4-science-qx10-8d1c6759d88971a4936c",
+              "P4-science-qx10-fdfb015decd69e958596",
+              "P4-science-qx10-b5b79e8e163e422c0d68",
+              "P4-science-qx10-fa5d9024e5107e308a8b",
+              "P4-science-qx10-2f102b6b913d1ab28734",
+              "P4-science-qx10-49e2f3ab188af15ebd4b",
+              "P4-science-qx10-f25c67bd6ceb3cf37e1c",
+              "P4-science-qx10-23ae83a38cc2fc910263",
+              "P4-science-qx10-3a709cf575fa07feaf27",
+              "P4-science-qx10-19bf37718e1d241c630d"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "34 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 34,
-            "independentCount": 34,
+            "note": "53 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 53,
+            "independentCount": 53,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P4-science-concept-opaque-opaque",
@@ -49537,14 +49920,19 @@
               "P4-science-qx10-bf6a7d4e4e9645564423",
               "P4-science-qx10-9812b60b4e74f9a2a937",
               "P4-science-qx10-e3665f93b6b11bd06254",
-              "P4-science-qx10-2af6cf720255fa56cf43"
+              "P4-science-qx10-2af6cf720255fa56cf43",
+              "P4-science-qx10-e04a55b2372fd53ce3ab",
+              "P4-science-qx10-23b3986c78adc5bd4841",
+              "P4-science-qx10-0c70c577828851c6e156",
+              "P4-science-qx10-5548122a927655281d43",
+              "P4-science-qx10-f52bf681d027ffd2ca6e"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "17 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
-            "questionCount": 17,
-            "independentCount": 17,
+            "note": "22 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-qx10-76e5577aca9ce6a42dba",
@@ -49561,6 +49949,7 @@
             "status": "partial",
             "models": [
               "concept-sun",
+              "v2-qx10-science-energy",
               "v2-science-classify-energy-form",
               "v2-science-compare-energy-form"
             ],
@@ -49599,14 +49988,34 @@
               "P4-science-v2-bcf9779d786214449d2b",
               "P4-science-v2-158df25cb694a276d2d1",
               "P4-science-v2-d36c915a1c283b4f5249",
-              "P4-science-v2-74a4d5403dd59b08bd4f"
+              "P4-science-v2-74a4d5403dd59b08bd4f",
+              "P4-science-qx10-7885cf91544ad671ef84",
+              "P4-science-qx10-1f0fc97dc6aa5fc99d36",
+              "P4-science-qx10-01a7967365302a384659",
+              "P4-science-qx10-e341df869a0163df1e1d",
+              "P4-science-qx10-aebab8c906f57c54ddc3",
+              "P4-science-qx10-17d81ed7e981c8ec98bc",
+              "P4-science-qx10-f2e9c584b332ac6a00af",
+              "P4-science-qx10-98e8c8a79a2520f473b5",
+              "P4-science-qx10-1b8a352beb7c21098f60",
+              "P4-science-qx10-026b6d565b31a96f0c12",
+              "P4-science-qx10-03ea833b89a065ce91fe",
+              "P4-science-qx10-30d8a1178e0b273b6a0c",
+              "P4-science-qx10-9e5791b857b9a7ffe161",
+              "P4-science-qx10-4e0316c6061707155685",
+              "P4-science-qx10-a1d7a535ba21c52ebf64",
+              "P4-science-qx10-97b9f0f39f845822e39f",
+              "P4-science-qx10-11bdca8de9e2549707ad",
+              "P4-science-qx10-974df0610a71cda9c356",
+              "P4-science-qx10-6d20c1713eff54e1e8ec",
+              "P4-science-qx10-40335e829b38bc926b5c"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "35 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 35,
-            "independentCount": 35,
+            "note": "55 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 55,
+            "independentCount": 55,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P4-science-concept-sun-sun",
@@ -49647,14 +50056,21 @@
               "P4-science-qx10-a559fd09694a7f8940d4",
               "P4-science-qx10-b5e5a0a1e66b12484dad",
               "P4-science-qx10-88c5b86fd007583ef491",
-              "P4-science-qx10-1d39354da9fe20c83554"
+              "P4-science-qx10-1d39354da9fe20c83554",
+              "P4-science-qx10-6b4fe7f4ffb087c7807b",
+              "P4-science-qx10-bd14f1ba3e987c9f6182",
+              "P4-science-qx10-9144aaff07055d98fe37",
+              "P4-science-qx10-bfd5734e0af6b986d0cb",
+              "P4-science-qx10-dbc455e84314b247cfb5",
+              "P4-science-qx10-b8ba2572248f6ac2d669",
+              "P4-science-qx10-ecfb7a4b52b0e0cb311c"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "23 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 23,
-            "independentCount": 23,
+            "note": "30 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-qx10-ee5b7a6cf363fe400657",
@@ -49699,14 +50115,18 @@
               "P4-science-qx10-14398fa652dee5609526",
               "P4-science-qx10-6b64af7b9a5392b3b0df",
               "P4-science-qx10-182b05ad708428c27307",
-              "P4-science-qx10-c04c9e0671cffb612b23"
+              "P4-science-qx10-c04c9e0671cffb612b23",
+              "P4-science-qx10-0abf580154d34e07343b",
+              "P4-science-qx10-cee28562aca1281ae4e5",
+              "P4-science-qx10-ca2f2c0d5181d6aeb5d2",
+              "P4-science-qx10-0e7cdd9c3a7833b4b02e"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "26 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 26,
-            "independentCount": 26,
+            "note": "30 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-v2-d39c3213e26b9d01e151",
@@ -49751,14 +50171,21 @@
               "P4-science-qx10-543c157d1bde39b51406",
               "P4-science-qx10-1536160248b3eed88b87",
               "P4-science-qx10-d8a77e66d82e5cb80dac",
-              "P4-science-qx10-e726e5a816fdaa263408"
+              "P4-science-qx10-e726e5a816fdaa263408",
+              "P4-science-qx10-32f1d367710511e9fad7",
+              "P4-science-qx10-d3318a8c642d5b4ae85e",
+              "P4-science-qx10-b9d15c06db688d1fc1e8",
+              "P4-science-qx10-71af6525776072176841",
+              "P4-science-qx10-c05a7eebca4df948f4b8",
+              "P4-science-qx10-00d94a0f242c4365678a",
+              "P4-science-qx10-e707048392c87c9eb1a1"
             ],
             "sourceIds": [
               "cf-stem-science-p4"
             ],
-            "note": "26 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 26,
-            "independentCount": 26,
+            "note": "33 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 33,
+            "independentCount": 33,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-science-v2-b866dc791d191a5b3d3e",
@@ -64110,8 +64537,8 @@
       "level": "P5",
       "subject": "science",
       "title": "Sains / Science",
-      "active": 277,
-      "stored": 1066,
+      "active": 404,
+      "stored": 1193,
       "retired": 789,
       "sourceIds": [
         "sh-author",
@@ -64142,7 +64569,8 @@
               "v2-goal-p5science-inquiry-operational-definition",
               "v2-goal-p5science-inquiry-report-repair",
               "v2-goal-p5science-inquiry-testable-hypothesis",
-              "v2-goal-p5science-inquiry-time-sequence"
+              "v2-goal-p5science-inquiry-time-sequence",
+              "v2-qx10-science-skills"
             ],
             "questionIds": [
               "P5-science-v2-e79a4828b42d2bcaeaff",
@@ -64168,15 +64596,42 @@
               "P5-science-v2-c238d2da3fac9fe8d4c0",
               "P5-science-v2-0db882b043d3caa70218",
               "P5-science-v2-83ce1259eb7adab634ee",
-              "P5-science-v2-5ef5579ef9629d472d7a"
+              "P5-science-v2-5ef5579ef9629d472d7a",
+              "P5-science-qx10-382341ed5853aa57c719",
+              "P5-science-qx10-f7a31dbc25a185d89e9f",
+              "P5-science-qx10-f75009f8a06976085e7f",
+              "P5-science-qx10-64dfde1442097bc564de",
+              "P5-science-qx10-a904faff7ee3cd0cb755",
+              "P5-science-qx10-3004e63041cbd9d106cc",
+              "P5-science-qx10-e1e955069aaebeed9b03",
+              "P5-science-qx10-bcdf1ca453fc6d5291ac",
+              "P5-science-qx10-4f6c374082dde7c49040",
+              "P5-science-qx10-00f069bbf29f1487280f",
+              "P5-science-qx10-926ceb3da1f66b9708c7",
+              "P5-science-qx10-c98e7d5fba5e1dc4894a",
+              "P5-science-qx10-fd5f0e19579fb33108e2",
+              "P5-science-qx10-624175429013a995a7b0",
+              "P5-science-qx10-5faf1328a22319e55f43",
+              "P5-science-qx10-da48323885b0b5ae6bdb",
+              "P5-science-qx10-9210b52cc9f795aeb95b",
+              "P5-science-qx10-7b709b67cc319429eac3",
+              "P5-science-qx10-922fe2fafc0deb253a4a",
+              "P5-science-qx10-4a2ded8fb549674b19c5",
+              "P5-science-qx10-f8d33f1ff78394c3e755",
+              "P5-science-qx10-2ba2f6fd21f6fac6de5e",
+              "P5-science-qx10-93e681a12444b7974378",
+              "P5-science-qx10-c9ed2fe230c058606b2c",
+              "P5-science-qx10-22e9d71dfb248c2c91f6",
+              "P5-science-qx10-93a6eb8dc74f6a240b80",
+              "P5-science-qx10-79029fcd5c0a5fbfacff"
             ],
             "sourceIds": [
               "cf-stem-science-p5",
               "cs29-p5-inquiry-kpm2019"
             ],
-            "note": "24 active grade-scope questions across 6 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 24,
-            "independentCount": 24,
+            "note": "51 active grade-scope questions across 7 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 51,
+            "independentCount": 51,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-v2-e79a4828b42d2bcaeaff",
@@ -64192,6 +64647,7 @@
             "title": "Skeleton, muscles and circulation",
             "status": "partial",
             "models": [
+              "v2-qx10-science-human",
               "v2-science-classify-body-systems",
               "v2-science-compare-body-systems"
             ],
@@ -64223,14 +64679,35 @@
               "P5-science-v2-653e6fb9211f74c134b3",
               "P5-science-v2-248e507479ca0af3ac48",
               "P5-science-v2-eb9e98b14c917a553d87",
-              "P5-science-v2-08cb95a648d640b97bc4"
+              "P5-science-v2-08cb95a648d640b97bc4",
+              "P5-science-qx10-e15a8a4d5af4d839c6a0",
+              "P5-science-qx10-0b3e2c7340f6c0db104c",
+              "P5-science-qx10-2c634c3b4b4d59cd2978",
+              "P5-science-qx10-00d0eeef6d34d7bd3e34",
+              "P5-science-qx10-7e2f2578403be8dd7a9b",
+              "P5-science-qx10-47c3a4c84373abbbe0ed",
+              "P5-science-qx10-d1740ee9621eda6c08ef",
+              "P5-science-qx10-4cd09e4414b02c4f51a8",
+              "P5-science-qx10-85a22f449b252ce15bb5",
+              "P5-science-qx10-e6dfb7db1c6cd365530b",
+              "P5-science-qx10-1fe6a6e596fa960c673f",
+              "P5-science-qx10-01823ea7b30306f19769",
+              "P5-science-qx10-068c6b52f07427d7a885",
+              "P5-science-qx10-a5860685381a125c5391",
+              "P5-science-qx10-598b8ce626753e8d821a",
+              "P5-science-qx10-8b1291b839d68fc52c45",
+              "P5-science-qx10-230d3bb78d077fe8567c",
+              "P5-science-qx10-30c3a9b3ecbbead2d8e2",
+              "P5-science-qx10-9a10e92c4c2eb00ce923",
+              "P5-science-qx10-824083e1693b7c051e68",
+              "P5-science-qx10-6689c47490e572946d17"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "28 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 28,
-            "independentCount": 28,
+            "note": "49 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 49,
+            "independentCount": 49,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-v2-c114368845046f308e6b",
@@ -64275,14 +64752,36 @@
               "P5-science-qx10-72ad094ba20ad5f7f3c8",
               "P5-science-qx10-11532ff469d2a5400341",
               "P5-science-qx10-6d26fbd6e9e534fec55e",
-              "P5-science-qx10-2ba24e9f02df4dbe576e"
+              "P5-science-qx10-2ba24e9f02df4dbe576e",
+              "P5-science-qx10-09e6f66a5009c52eb5c9",
+              "P5-science-qx10-4790d6646aba507eba55",
+              "P5-science-qx10-7ba4d9433c152ba49069",
+              "P5-science-qx10-e3a4385fce61a5ef756b",
+              "P5-science-qx10-5e4e1ceb3ba46b8e3bcd",
+              "P5-science-qx10-1991176ba76d6a205ad1",
+              "P5-science-qx10-c770091caf2c62ddd1d1",
+              "P5-science-qx10-b2825feb663e827b0bb2",
+              "P5-science-qx10-e88f52685a63cc24829e",
+              "P5-science-qx10-41ffb556d5d1e389c958",
+              "P5-science-qx10-239627cac75e2db5d182",
+              "P5-science-qx10-6ee9b2b6b15b9e782a82",
+              "P5-science-qx10-cf960fd671f01344383b",
+              "P5-science-qx10-dbca58ada1ac83aab89f",
+              "P5-science-qx10-00f41742100baa9f4017",
+              "P5-science-qx10-7f6b29e7fd84a6fea185",
+              "P5-science-qx10-843dfd9462b083fa7aed",
+              "P5-science-qx10-02125ae327e3f3c2ccd5",
+              "P5-science-qx10-02d4f6b9f918f61a944f",
+              "P5-science-qx10-5fa954d03afa2b1ccf80",
+              "P5-science-qx10-e8177ef41c7b13333284",
+              "P5-science-qx10-eeb7b27f97125c5c9633"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "26 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 26,
-            "independentCount": 26,
+            "note": "48 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 48,
+            "independentCount": 48,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-v2-ff9293ce4316e4620ad7",
@@ -64298,6 +64797,7 @@
             "title": "Seed and fruit dispersal",
             "status": "partial",
             "models": [
+              "v2-qx10-science-plants",
               "v2-science-classify-seed-dispersal",
               "v2-science-compare-seed-dispersal"
             ],
@@ -64334,14 +64834,28 @@
               "P5-science-v2-312783730292346d02a1",
               "P5-science-v2-5cc9a294f245da6b2720",
               "P5-science-v2-972961b761405384ff82",
-              "P5-science-v2-a4d957db23ca168bfb0e"
+              "P5-science-v2-a4d957db23ca168bfb0e",
+              "P5-science-qx10-f8bd5022cf83e8d173f4",
+              "P5-science-qx10-aa89b07b6b38cf962809",
+              "P5-science-qx10-b71b2f753f64970cb5cb",
+              "P5-science-qx10-563c8019eb13629449df",
+              "P5-science-qx10-e505796c2c0857b3acf2",
+              "P5-science-qx10-92ff11a53444f428acfc",
+              "P5-science-qx10-3a086f0ee67ebf170eab",
+              "P5-science-qx10-273e78457be1ab587fd6",
+              "P5-science-qx10-8569728bfa122e4c3609",
+              "P5-science-qx10-d39058aaabfe7cfcb7ed",
+              "P5-science-qx10-b42b67e6bc0cd41cab2a",
+              "P5-science-qx10-218e1115b1f59e9dd81d",
+              "P5-science-qx10-f4b8a0c1134055ed6ca4",
+              "P5-science-qx10-89956c47430c6c0b1042"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "33 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 33,
-            "independentCount": 33,
+            "note": "47 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 47,
+            "independentCount": 47,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-v2-0bafe019b267c9c03599",
@@ -64399,14 +64913,28 @@
               "P5-science-qx10-6ae0c411d6de609208cd",
               "P5-science-qx10-381614a03661d71f302a",
               "P5-science-qx10-c948ee70bed1463839b0",
-              "P5-science-qx10-f5cabbcdc3a8ba7ab8c8"
+              "P5-science-qx10-f5cabbcdc3a8ba7ab8c8",
+              "P5-science-qx10-e6f0958374ff62ae1834",
+              "P5-science-qx10-7145b1871dd7f2f0cc58",
+              "P5-science-qx10-545a9ea9df728ff6836d",
+              "P5-science-qx10-36d0e4604e7f83a116b7",
+              "P5-science-qx10-ed1f73216c80979b1d6e",
+              "P5-science-qx10-c835a5ee8d5c57db5b3a",
+              "P5-science-qx10-3c690b7e7de7f2e737ca",
+              "P5-science-qx10-e1dfea286da4174bd974",
+              "P5-science-qx10-69c4d15e35d33a0d5673",
+              "P5-science-qx10-2b060fd7ec385c95bb0a",
+              "P5-science-qx10-ba34aa8f680441f35b12",
+              "P5-science-qx10-1959fec9eac9e622921b",
+              "P5-science-qx10-15404c2a6af618cd082a",
+              "P5-science-qx10-05c2a16d2f61242ea3f0"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "38 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 38,
-            "independentCount": 38,
+            "note": "52 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 52,
+            "independentCount": 52,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P5-science-branch-paths-1",
@@ -64448,14 +64976,20 @@
               "P5-science-qx10-9b7bed82104d9c3eb706",
               "P5-science-qx10-575cdcc1c1aeda412770",
               "P5-science-qx10-ca52a40453a3139f2e9f",
-              "P5-science-qx10-68b5faa7971cd5d8c54a"
+              "P5-science-qx10-68b5faa7971cd5d8c54a",
+              "P5-science-qx10-687174b35858c489ad03",
+              "P5-science-qx10-5d84a4b1d1f97ba152ee",
+              "P5-science-qx10-605047cdcba582e42ca7",
+              "P5-science-qx10-dd3433fe0a383d442c35",
+              "P5-science-qx10-880441a3ca42f64dfe26",
+              "P5-science-qx10-2b449b346bbb0df435c8"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "23 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 23,
-            "independentCount": 23,
+            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P5-science-concept-expansion-expansion",
@@ -64501,14 +65035,18 @@
               "P5-science-qx10-2b26d9ba880457fa5f60",
               "P5-science-qx10-c899cd304f5492365599",
               "P5-science-qx10-9fd43eafd6b18fa9e9de",
-              "P5-science-qx10-95c7e9b94cbb08918faf"
+              "P5-science-qx10-95c7e9b94cbb08918faf",
+              "P5-science-qx10-c0e622067f97f09e3988",
+              "P5-science-qx10-090f4499ff1fab84a10a",
+              "P5-science-qx10-6d213e8fb9c6031768ba",
+              "P5-science-qx10-601a74e9af3d47c6a1bb"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "26 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 26,
-            "independentCount": 26,
+            "note": "30 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 30,
+            "independentCount": 30,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P5-science-rust-comparison-1",
@@ -64525,6 +65063,7 @@
             "status": "partial",
             "models": [
               "concept-condensation",
+              "v2-qx10-science-matter",
               "v2-science-classify-state-changes",
               "v2-science-compare-state-changes"
             ],
@@ -64562,14 +65101,26 @@
               "P5-science-v2-30306ae85971ada6f44d",
               "P5-science-v2-eae7fbc12b0db60043d9",
               "P5-science-v2-0d6141142af8534172c3",
-              "P5-science-v2-c9541d5d335bdfe17aaa"
+              "P5-science-v2-c9541d5d335bdfe17aaa",
+              "P5-science-qx10-2a3e01c8f6ad20d0262e",
+              "P5-science-qx10-42a416fc7993ba23fae6",
+              "P5-science-qx10-87c53cd59f040e76375f",
+              "P5-science-qx10-fcf400978f1d05b3a0ad",
+              "P5-science-qx10-19e2d8cfa222382052f4",
+              "P5-science-qx10-9a22c049a1a9e4ac7e0e",
+              "P5-science-qx10-8a9a3705fa16898c5cea",
+              "P5-science-qx10-2692d5b6056d3ac6b9b6",
+              "P5-science-qx10-3a9c1f86d6a66fae9d09",
+              "P5-science-qx10-a8d232e4ee7180a37c16",
+              "P5-science-qx10-c49d142f800ca04157a7",
+              "P5-science-qx10-7b7d2ddd2595da5ddee7"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "34 active grade-scope questions across 3 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 34,
-            "independentCount": 34,
+            "note": "46 active grade-scope questions across 4 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 46,
+            "independentCount": 46,
             "guidedCount": 0,
             "evidenceIds": [
               "sh-P5-science-concept-condensation-condensation",
@@ -64613,14 +65164,18 @@
               "P5-science-qx10-89b3ad9f07a13d1d1d5e",
               "P5-science-qx10-0b71c44eecc06c4475d3",
               "P5-science-qx10-9d54ce95cc99e2439d47",
-              "P5-science-qx10-25b04bb904fc3ae9a19a"
+              "P5-science-qx10-25b04bb904fc3ae9a19a",
+              "P5-science-qx10-17071412ec9ce79495ef",
+              "P5-science-qx10-1b3b6eb57b793c0d6009",
+              "P5-science-qx10-07434bd37967940dda8e",
+              "P5-science-qx10-587ebae23f3c5ccaf6b9"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "25 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 25,
-            "independentCount": 25,
+            "note": "29 active grade-scope questions across 2 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-v2-618e4e2c466df180b89b",
@@ -64658,14 +65213,17 @@
               "P5-science-qx10-6528595c7d45992e6f0f",
               "P5-science-qx10-c209be68650ded31473d",
               "P5-science-qx10-b2d8691fff6f20002d36",
-              "P5-science-qx10-56eaa11cdd53dab11b4a"
+              "P5-science-qx10-56eaa11cdd53dab11b4a",
+              "P5-science-qx10-906c352402aa65d196a0",
+              "P5-science-qx10-607a04eb27f49fadb507",
+              "P5-science-qx10-88db8d3676294e74e508"
             ],
             "sourceIds": [
               "cf-stem-science-p5"
             ],
-            "note": "20 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
-            "questionCount": 20,
-            "independentCount": 20,
+            "note": "23 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical task is also supplied for hands-on assessment.",
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "P5-science-qx10-6ed3c1a7d970b3d5c9f3",
@@ -143687,10 +144245,23 @@
           "P5-english"
         ],
         "added": 475
+      },
+      {
+        "date": "2026-10-29",
+        "contentRevision": "6e7aef73c963dca1",
+        "previousRevision": "71174d55e42127b4",
+        "courses": [
+          "P1-science",
+          "P2-science",
+          "P3-science",
+          "P4-science",
+          "P5-science"
+        ],
+        "added": 522
       }
     ],
-    "addedTotal": 20784,
-    "tierShortfallP1toF3": 6953,
+    "addedTotal": 21306,
+    "tierShortfallP1toF3": 6431,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   }
 }
