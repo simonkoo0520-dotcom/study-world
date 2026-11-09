@@ -3,17 +3,17 @@
   "date": "2026-10-02",
   "generatedAt": "2026-11-10T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "5aa50fe536168e40",
+  "contentRevision": "872fa1c549334f0b",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 128214,
-    "active": 62030,
-    "gradeScope": 61591,
+    "stored": 129129,
+    "active": 62945,
+    "gradeScope": 62506,
     "prerequisite": 439,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 31,
-    "questionShortfall": 57151,
+    "questionShortfall": 56236,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -14915,8 +14915,8 @@
       "level": "P1",
       "subject": "pjpk",
       "title": "P1 体育与健康 / PJPK",
-      "active": 271,
-      "stored": 1127,
+      "active": 295,
+      "stored": 1151,
       "retired": 856,
       "sourceIds": [
         "pjpk-jpn-directory",
@@ -14996,14 +14996,18 @@
               "P1-pjpk-qx10-5646f76fa2ef8518e1ad",
               "P1-pjpk-qx10-aa32460a213ec3d153f2",
               "P1-pjpk-qx10-d97ad17c0fc603d4b847",
-              "P1-pjpk-qx10-fbcd45f2f30e88029300"
+              "P1-pjpk-qx10-fbcd45f2f30e88029300",
+              "P1-pjpk-qx10-a47b6efc1d6ff33fe997",
+              "P1-pjpk-qx10-79b37d2d4efdc09e6e6f",
+              "P1-pjpk-qx10-3b00b7a890a53cdd473e",
+              "P1-pjpk-qx10-1046af15ae8624748ef3"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 46,
-            "independentCount": 46,
+            "questionCount": 50,
+            "independentCount": 50,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-passing-choice-0",
@@ -15042,14 +15046,15 @@
               "P1-pjpk-qx10-b11abc1833d927775a18",
               "P1-pjpk-qx10-a8b8ba38f36127bf38cf",
               "P1-pjpk-qx10-512f7bf2e8e87a2be9b7",
-              "P1-pjpk-qx10-e1e2fcd0341427c05008"
+              "P1-pjpk-qx10-e1e2fcd0341427c05008",
+              "P1-pjpk-qx10-adb37844754248828e84"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 16,
-            "independentCount": 16,
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-3b3ecf85b3f278d05c0f",
@@ -15090,14 +15095,16 @@
               "P1-pjpk-qx10-bfa8111874ba80edd4aa",
               "P1-pjpk-qx10-bcdd5b772d74b63c5300",
               "P1-pjpk-qx10-8e349f0b9b8d677ab6c5",
-              "P1-pjpk-qx10-b4bfc9c4350bbb68f51c"
+              "P1-pjpk-qx10-b4bfc9c4350bbb68f51c",
+              "P1-pjpk-qx10-2d98e239c86f08ef9989",
+              "P1-pjpk-qx10-dc4b6a62e0466c6d8a64"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 18,
-            "independentCount": 18,
+            "questionCount": 20,
+            "independentCount": 20,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-a12d246d8ba2e1d386e4",
@@ -15135,14 +15142,15 @@
               "P1-pjpk-qx10-e1ef66b6795fd308849c",
               "P1-pjpk-qx10-213bd2ecd5c6c73c9316",
               "P1-pjpk-qx10-6882795443e4f7f45b55",
-              "P1-pjpk-qx10-211aabde7b679ec255df"
+              "P1-pjpk-qx10-211aabde7b679ec255df",
+              "P1-pjpk-qx10-5143d8d781b76b8a1d12"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 15,
-            "independentCount": 15,
+            "questionCount": 16,
+            "independentCount": 16,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-a8893372f75b9370c1b9",
@@ -15186,14 +15194,17 @@
               "P1-pjpk-qx10-9d62b19637cc4bfad252",
               "P1-pjpk-qx10-1987dc76046bfa93d0ac",
               "P1-pjpk-qx10-04d6b56455da3f2e8fef",
-              "P1-pjpk-qx10-b9a164f926e4113d9178"
+              "P1-pjpk-qx10-b9a164f926e4113d9178",
+              "P1-pjpk-qx10-5c868fa74dd326a867d1",
+              "P1-pjpk-qx10-0d385bf727bf567f01b6",
+              "P1-pjpk-qx10-a30106c8d437d566308e"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 21,
-            "independentCount": 21,
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-ffeb1cf04c524a233854",
@@ -15245,14 +15256,18 @@
               "P1-pjpk-qx10-cfe37873ba4e36a36ab5",
               "P1-pjpk-qx10-7eb503b9519c901250a6",
               "P1-pjpk-qx10-3745a60c36e579d787d3",
-              "P1-pjpk-qx10-efe587000a4a7422464f"
+              "P1-pjpk-qx10-efe587000a4a7422464f",
+              "P1-pjpk-qx10-13e1e48a76bfe6d5530c",
+              "P1-pjpk-qx10-a40319e6ec55c9f32ba6",
+              "P1-pjpk-qx10-eca65370896cc94a5449",
+              "P1-pjpk-qx10-cbeb382d114349bdbe18"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 29,
-            "independentCount": 29,
+            "questionCount": 33,
+            "independentCount": 33,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-1bfdac682c363b89edb6",
@@ -15361,14 +15376,21 @@
               "P1-pjpk-qx10-d26c7b61ff94b311524d",
               "P1-pjpk-qx10-53eae9d3e2a6e8ff0625",
               "P1-pjpk-qx10-39252c42108f987996f2",
-              "P1-pjpk-qx10-f1a53d27e93b3fbbd671"
+              "P1-pjpk-qx10-f1a53d27e93b3fbbd671",
+              "P1-pjpk-qx10-19e3ba2910a02f58a228",
+              "P1-pjpk-qx10-c3c0e9f5d325f4c162c1",
+              "P1-pjpk-qx10-eb332d981302c711034e",
+              "P1-pjpk-qx10-22f85b08d874af122e76",
+              "P1-pjpk-qx10-477e30bed84565cbfd14",
+              "P1-pjpk-qx10-fac8b9ef3f4a1570fdb6",
+              "P1-pjpk-qx10-959f57d797688e0f3a98"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 33,
-            "independentCount": 33,
+            "questionCount": 40,
+            "independentCount": 40,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-8c490101122a325c765f",
@@ -15422,14 +15444,15 @@
               "P1-pjpk-qx10-190ccccbf374d58a0e48",
               "P1-pjpk-qx10-9ed16c1ad3032ff9c5f1",
               "P1-pjpk-qx10-904b2321349259d7b062",
-              "P1-pjpk-qx10-58be0bcd41374fb1430d"
+              "P1-pjpk-qx10-58be0bcd41374fb1430d",
+              "P1-pjpk-qx10-88f78eb884ec296b8525"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 30,
-            "independentCount": 30,
+            "questionCount": 31,
+            "independentCount": 31,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-meal-check-0",
@@ -15475,14 +15498,15 @@
               "P1-pjpk-qx10-b2db4b9b7a77ec6d8e6d",
               "P1-pjpk-qx10-747ccc067c4d3fc8f14a",
               "P1-pjpk-qx10-71f8b202a5c700316e04",
-              "P1-pjpk-qx10-21258ad0da1b99c1d568"
+              "P1-pjpk-qx10-21258ad0da1b99c1d568",
+              "P1-pjpk-qx10-73aeab16386f7003a3ee"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 23,
-            "independentCount": 23,
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
             "evidenceIds": [
               "P1-pjpk-qa29-1c8e35576fb0d1a70a81",
@@ -26816,8 +26840,8 @@
       "level": "P2",
       "subject": "pjpk",
       "title": "P2 体育与健康 / PJPK",
-      "active": 270,
-      "stored": 1159,
+      "active": 290,
+      "stored": 1179,
       "retired": 889,
       "sourceIds": [
         "pjpk-jpn-directory",
@@ -26895,14 +26919,20 @@
               "P2-pjpk-qx10-4dd96add8ed43b5809f9",
               "P2-pjpk-qx10-81796122a82944bacd09",
               "P2-pjpk-qx10-4ee4e594e2913a448e14",
-              "P2-pjpk-qx10-f20fa2578e0830a9c543"
+              "P2-pjpk-qx10-f20fa2578e0830a9c543",
+              "P2-pjpk-qx10-f16a054f9f47cc6e5fae",
+              "P2-pjpk-qx10-a99a000e48316ea6bda2",
+              "P2-pjpk-qx10-a6ec2b668210bd3ddc2b",
+              "P2-pjpk-qx10-6b6860682744161dd16e",
+              "P2-pjpk-qx10-b53bd76854a2e3a83b62",
+              "P2-pjpk-qx10-09677790e1ba943648cd"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 44,
-            "independentCount": 44,
+            "questionCount": 50,
+            "independentCount": 50,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-passing-choice-0",
@@ -26987,14 +27017,15 @@
               "P2-pjpk-qx10-1130f6519bca1a39921f",
               "P2-pjpk-qx10-299b42cf84f4a84cec36",
               "P2-pjpk-qx10-ebbdcf48ffde414e753b",
-              "P2-pjpk-qx10-e659fd36d97ff0167379"
+              "P2-pjpk-qx10-e659fd36d97ff0167379",
+              "P2-pjpk-qx10-fc9677d6c7f38d7b1ab7"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 15,
-            "independentCount": 15,
+            "questionCount": 16,
+            "independentCount": 16,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qa29-f781b8dada455b30cd2b",
@@ -27029,14 +27060,16 @@
               "P2-pjpk-qx10-e460fccc894d404c00a3",
               "P2-pjpk-qx10-ff5c988befd201b914e4",
               "P2-pjpk-qx10-5052b6e709b6ce58a262",
-              "P2-pjpk-qx10-b438a7922015c078d5ed"
+              "P2-pjpk-qx10-b438a7922015c078d5ed",
+              "P2-pjpk-qx10-0e743a267d004f9480d0",
+              "P2-pjpk-qx10-8f7dad38fefa6690bbfe"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 13,
-            "independentCount": 13,
+            "questionCount": 15,
+            "independentCount": 15,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qx10-6afe6a4f3c3c35a0dc3a",
@@ -27080,14 +27113,15 @@
               "P2-pjpk-qx10-7853e9b15cea6bfb0ddf",
               "P2-pjpk-qx10-c39a427b60553a54bba1",
               "P2-pjpk-qx10-0a345759ead58a22d83f",
-              "P2-pjpk-qx10-4a62c4d29419fb2006d7"
+              "P2-pjpk-qx10-4a62c4d29419fb2006d7",
+              "P2-pjpk-qx10-0bc2a320a0df278eba0c"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qx10-29cdde84b2c370d14c20",
@@ -27141,14 +27175,17 @@
               "P2-pjpk-qx10-589629ee27f63da0e16c",
               "P2-pjpk-qx10-fadcf6e3490d236abaf1",
               "P2-pjpk-qx10-ec7183173038756faeb1",
-              "P2-pjpk-qx10-8162114af2c406800831"
+              "P2-pjpk-qx10-8162114af2c406800831",
+              "P2-pjpk-qx10-df951c2b0abe4e07c8c7",
+              "P2-pjpk-qx10-3ea009f0a83256aa3819",
+              "P2-pjpk-qx10-2cc2328244fbff09c8db"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 31,
-            "independentCount": 31,
+            "questionCount": 34,
+            "independentCount": 34,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qa29-5c7fa1f5a40aef302783",
@@ -27281,14 +27318,18 @@
               "P2-pjpk-qx10-7b3d080f87fec28101a2",
               "P2-pjpk-qx10-255a8ecdc6c4a3c18712",
               "P2-pjpk-qx10-354053fc6e56b6985ad4",
-              "P2-pjpk-qx10-e8cc35931028cb052943"
+              "P2-pjpk-qx10-e8cc35931028cb052943",
+              "P2-pjpk-qx10-f0bbd2081bdf4eda0bbb",
+              "P2-pjpk-qx10-cf15a0002c9e6397d850",
+              "P2-pjpk-qx10-6ba44455e66547621e59",
+              "P2-pjpk-qx10-21cba0e105fea96a0b72"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 41,
-            "independentCount": 41,
+            "questionCount": 45,
+            "independentCount": 45,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qa29-be98761d8a794a4d16fa",
@@ -27327,14 +27368,16 @@
               "P2-pjpk-qx10-dcc16a0db5e33d313ed3",
               "P2-pjpk-qx10-baa159dfc30847f2b4ed",
               "P2-pjpk-qx10-df71ae71ab6405dc33fe",
-              "P2-pjpk-qx10-6b1d299c507dd11aa271"
+              "P2-pjpk-qx10-6b1d299c507dd11aa271",
+              "P2-pjpk-qx10-8eda670b77aded92182c",
+              "P2-pjpk-qx10-c5377533a470fa2ffd36"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 16,
-            "independentCount": 16,
+            "questionCount": 18,
+            "independentCount": 18,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qa29-b7af5637a242ad11324b",
@@ -27388,14 +27431,15 @@
               "P2-pjpk-qx10-42b58a011718e479865e",
               "P2-pjpk-qx10-4e47f5b2fc4107f69200",
               "P2-pjpk-qx10-80a594c73a63b90ba4a6",
-              "P2-pjpk-qx10-6757769078e041892708"
+              "P2-pjpk-qx10-6757769078e041892708",
+              "P2-pjpk-qx10-cbe0c283cd832d2b261c"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 31,
-            "independentCount": 31,
+            "questionCount": 32,
+            "independentCount": 32,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-pjpk-qa29-993b44dd745ad44d9b64",
@@ -27809,21 +27853,23 @@
       "level": "P2",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 33,
-      "stored": 923,
+      "active": 167,
+      "stored": 1057,
       "retired": 890,
       "sourceIds": [
         "am-psv-p1",
         "curriculum-v2-art",
         "cfh-art-p1",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "P2-art",
         "framework": "KSSR Semakan 2017 — major-field audit",
         "sourceIds": [
           "cfh-art-p1",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -27837,7 +27883,8 @@
             "status": "partial",
             "models": [
               "v2-qa29-art-colour",
-              "v2-qa29-art-elements"
+              "v2-qa29-art-elements",
+              "v2-qx10-art-visual-language"
             ],
             "questionIds": [
               "P2-art-qa29-69b37b887bda5f225f79",
@@ -27849,14 +27896,36 @@
               "P2-art-qa29-c195ba6a05a29a0900ee",
               "P2-art-qa29-b959d78dc18c0925d57e",
               "P2-art-qa29-d772d5108c6a5d508783",
-              "P2-art-qa29-1f764685cb7c8f03e33a"
+              "P2-art-qa29-1f764685cb7c8f03e33a",
+              "P2-art-qx10-8f4826c177c843dcc53f",
+              "P2-art-qx10-0af3c9b3051ae011fdf8",
+              "P2-art-qx10-ba1064794a57195f9d4b",
+              "P2-art-qx10-feec54bb242c77ac914d",
+              "P2-art-qx10-f3157d9b886274d75311",
+              "P2-art-qx10-e2bb9338ac71888e1302",
+              "P2-art-qx10-0b3e39fbeba12bc78e31",
+              "P2-art-qx10-f7bda3bb6bb69fe6859f",
+              "P2-art-qx10-b28ec3a32e267eab1c75",
+              "P2-art-qx10-6dac1e1ceadb5f110ba2",
+              "P2-art-qx10-fb51d3ff587491fc4832",
+              "P2-art-qx10-e2d1c247cb1d038f67e7",
+              "P2-art-qx10-1e32e71e8fb772ba2e29",
+              "P2-art-qx10-b6b4b74ae1fe4f9daa81",
+              "P2-art-qx10-e96b86dbf1811e7510ac",
+              "P2-art-qx10-36a8ccf0be53a64e2517",
+              "P2-art-qx10-2fff06db6078876263f9",
+              "P2-art-qx10-9416067ee3d1b58fe4e8",
+              "P2-art-qx10-0058b904cd7d8e393688",
+              "P2-art-qx10-cabcc57b2d58d224bc71",
+              "P2-art-qx10-ddf9cb0229c02752acfb",
+              "P2-art-qx10-158445d6ced7ae758b4e"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 10,
-            "independentCount": 10,
+            "questionCount": 32,
+            "independentCount": 32,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-art-qa29-69b37b887bda5f225f79",
@@ -27877,24 +27946,53 @@
             "status": "partial",
             "models": [
               "cfh-art-print-vs-rub",
-              "v2-qa29-art-drawing"
+              "v2-qa29-art-drawing",
+              "v2-qx10-art-drawing"
             ],
             "questionIds": [
               "cfh-P2-art-print-vs-rub",
               "P2-art-qa29-e73e84f80ecba8c13c2a",
-              "P2-art-qa29-431990dd66a172f6bd9c"
+              "P2-art-qa29-431990dd66a172f6bd9c",
+              "P2-art-qx10-badc980769c0bffb3f3d",
+              "P2-art-qx10-88f256935c904a598e4c",
+              "P2-art-qx10-3b6081cb111c95bac210",
+              "P2-art-qx10-a8bf67c19e58737c51bf",
+              "P2-art-qx10-fb1daf9ef44eaf9e0fc6",
+              "P2-art-qx10-7bc4f91e58f620f4e725",
+              "P2-art-qx10-b4eafe038ae3baf90579",
+              "P2-art-qx10-2367728b3a86ef76bef9",
+              "P2-art-qx10-4799dcb6941d8c4a4c69",
+              "P2-art-qx10-24c0edb07f013f3d8bc9",
+              "P2-art-qx10-56cbf7fbcec91c2cf21e",
+              "P2-art-qx10-00d67c11826d8550c306",
+              "P2-art-qx10-da3608e88a78dcbab283",
+              "P2-art-qx10-4fcbea80696dac8012a2",
+              "P2-art-qx10-4e050fdc6ec448d819ff",
+              "P2-art-qx10-259843d8510be8ebee61",
+              "P2-art-qx10-83bb11117d442bc8290c",
+              "P2-art-qx10-9af86ef6f45223ec0691",
+              "P2-art-qx10-62370dc902168c926238",
+              "P2-art-qx10-3754447adf7536f5fcd6",
+              "P2-art-qx10-bb05307ec4bd6f259e24",
+              "P2-art-qx10-91d1a56938f24614146a",
+              "P2-art-qx10-14f7bac52d84cc10bc3e",
+              "P2-art-qx10-43c55a0a004153b8feb5",
+              "P2-art-qx10-cd44dbf347e9b2672cc2"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P2-art-print-vs-rub",
               "P2-art-qa29-e73e84f80ecba8c13c2a",
-              "P2-art-qa29-431990dd66a172f6bd9c"
+              "P2-art-qa29-431990dd66a172f6bd9c",
+              "P2-art-qx10-badc980769c0bffb3f3d",
+              "P2-art-qx10-88f256935c904a598e4c",
+              "P2-art-qx10-3b6081cb111c95bac210"
             ]
           },
           {
@@ -27906,26 +28004,51 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-art-print"
+              "v2-qa29-art-print",
+              "v2-qx10-art-pattern"
             ],
             "questionIds": [
               "P2-art-qa29-c2b0f876f14338723e23",
               "P2-art-qa29-4b3021ff1c4a8c0dbdba",
               "P2-art-qa29-45f9eb99b2d7310ab00b",
-              "P2-art-qa29-db299603fd07ef16a697"
+              "P2-art-qa29-db299603fd07ef16a697",
+              "P2-art-qx10-4b9fbf3888eff3acfc55",
+              "P2-art-qx10-7bae83fb1717097627d4",
+              "P2-art-qx10-3bf0ee0d7fec0bea505d",
+              "P2-art-qx10-38ea34d08fc9928a6702",
+              "P2-art-qx10-7ec48532f05c1b0ddd2b",
+              "P2-art-qx10-89e5a9eb76e8facca3b7",
+              "P2-art-qx10-3e1f20d6079f0217bdc4",
+              "P2-art-qx10-202d758946675e233967",
+              "P2-art-qx10-3667ddb6ec60590c54a4",
+              "P2-art-qx10-c0d898cbe5496901d5cd",
+              "P2-art-qx10-2ae83dd4c9bcd57a2416",
+              "P2-art-qx10-e11a6811585c39f6a48f",
+              "P2-art-qx10-df5949ffd0459c10b153",
+              "P2-art-qx10-621d39a8ebecd841f157",
+              "P2-art-qx10-4a2e06bd89b2fbec0fdb",
+              "P2-art-qx10-9bbe9d66f4543fa6af88",
+              "P2-art-qx10-394918cd973ed0e6e7ed",
+              "P2-art-qx10-f930047000ad5081619d",
+              "P2-art-qx10-c606a9725d4e865aa026",
+              "P2-art-qx10-69cf9c77bc09aece69de",
+              "P2-art-qx10-cee9590c00c80195709f",
+              "P2-art-qx10-a3a3d4b14eeae520bb9b"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 26,
+            "independentCount": 26,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-art-qa29-c2b0f876f14338723e23",
               "P2-art-qa29-4b3021ff1c4a8c0dbdba",
               "P2-art-qa29-45f9eb99b2d7310ab00b",
-              "P2-art-qa29-db299603fd07ef16a697"
+              "P2-art-qa29-db299603fd07ef16a697",
+              "P2-art-qx10-4b9fbf3888eff3acfc55",
+              "P2-art-qx10-7bae83fb1717097627d4"
             ]
           },
           {
@@ -27937,22 +28060,50 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-art-construct"
+              "v2-qa29-art-construct",
+              "v2-qx10-art-construction"
             ],
             "questionIds": [
               "P2-art-qa29-8b6edc5f4510aac2bdbc",
-              "P2-art-qa29-bf8a47c7c73a14b955be"
+              "P2-art-qa29-bf8a47c7c73a14b955be",
+              "P2-art-qx10-52dec7551a482a802af5",
+              "P2-art-qx10-744e5d42fcbcb7772c06",
+              "P2-art-qx10-ab0a05a243624af40ac4",
+              "P2-art-qx10-76cd68d4d2e92fadcfde",
+              "P2-art-qx10-78e69702aad7a2f47852",
+              "P2-art-qx10-7a0e300c950cd9cc2ae8",
+              "P2-art-qx10-d9dd8ced73a8b6ada241",
+              "P2-art-qx10-732ab3a1f6b86c9bf4c3",
+              "P2-art-qx10-469d5044af6551acfbda",
+              "P2-art-qx10-e999247a354eb8996ce1",
+              "P2-art-qx10-da0a5141759a4237e491",
+              "P2-art-qx10-b8ad010aec9cd5fff505",
+              "P2-art-qx10-f9ae2d72368bdf66dff2",
+              "P2-art-qx10-e68ef5aad49ed5824405",
+              "P2-art-qx10-f99d75fea50370b2e38a",
+              "P2-art-qx10-313f2d77100f48464180",
+              "P2-art-qx10-ea20d9f6c6da3709a171",
+              "P2-art-qx10-46a4ea0bca5eb90167e3",
+              "P2-art-qx10-4454afa76e55cf2c49c3",
+              "P2-art-qx10-c52186b875608cb9a932",
+              "P2-art-qx10-0b3eb506d3e6a81ee519",
+              "P2-art-qx10-ea66fc839896e3d7a749",
+              "P2-art-qx10-ef35e42efa9b8699a8be"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 2,
-            "independentCount": 2,
+            "questionCount": 25,
+            "independentCount": 25,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-art-qa29-8b6edc5f4510aac2bdbc",
-              "P2-art-qa29-bf8a47c7c73a14b955be"
+              "P2-art-qa29-bf8a47c7c73a14b955be",
+              "P2-art-qx10-52dec7551a482a802af5",
+              "P2-art-qx10-744e5d42fcbcb7772c06",
+              "P2-art-qx10-ab0a05a243624af40ac4",
+              "P2-art-qx10-76cd68d4d2e92fadcfde"
             ]
           },
           {
@@ -27964,24 +28115,54 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-art-craft"
+              "v2-qa29-art-craft",
+              "v2-qx10-art-craft"
             ],
             "questionIds": [
               "P2-art-qa29-4bb95fcdba8fe21cdc47",
               "P2-art-qa29-112443791a2be3cb5800",
-              "P2-art-qa29-8768643d1f3f8a9fa81b"
+              "P2-art-qa29-8768643d1f3f8a9fa81b",
+              "P2-art-qx10-d95ee64f1c63011c3b51",
+              "P2-art-qx10-046a05062a8c4d32bbba",
+              "P2-art-qx10-fbf5ccad15515f2995c0",
+              "P2-art-qx10-fc4330ae95447ab75867",
+              "P2-art-qx10-81bb2a732620a10fb554",
+              "P2-art-qx10-1cf7d02621e1162d08df",
+              "P2-art-qx10-02f7b2b5c1b675e8a71c",
+              "P2-art-qx10-5adf85703d071a79f1eb",
+              "P2-art-qx10-0a099ac5a654d57d6e1a",
+              "P2-art-qx10-65f5c0f089f55b65d1f8",
+              "P2-art-qx10-4c2a71ba6c3f7443d0a2",
+              "P2-art-qx10-904aa1fa22b1868605a5",
+              "P2-art-qx10-7b28f91bebfe3a57e858",
+              "P2-art-qx10-7ed14c73c43ac0ad5882",
+              "P2-art-qx10-da837711faefd0d88705",
+              "P2-art-qx10-794348badb87850de5ee",
+              "P2-art-qx10-d5091bb1c22a1fb8d607",
+              "P2-art-qx10-99bf099b7fbadc5a2bba",
+              "P2-art-qx10-7c08ee4fb287af23544b",
+              "P2-art-qx10-dac7fd3a27c914e3d0a5",
+              "P2-art-qx10-6b155559b4a449b88129",
+              "P2-art-qx10-c059d7e8d48f658c95d4",
+              "P2-art-qx10-1d371aca987c55c7bfd1",
+              "P2-art-qx10-3df1cd2d8e5369379e66",
+              "P2-art-qx10-78e523f4c3bae387bbda",
+              "P2-art-qx10-70e1dcfeb716c007d994"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 3,
-            "independentCount": 3,
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "P2-art-qa29-4bb95fcdba8fe21cdc47",
               "P2-art-qa29-112443791a2be3cb5800",
-              "P2-art-qa29-8768643d1f3f8a9fa81b"
+              "P2-art-qa29-8768643d1f3f8a9fa81b",
+              "P2-art-qx10-d95ee64f1c63011c3b51",
+              "P2-art-qx10-046a05062a8c4d32bbba",
+              "P2-art-qx10-fbf5ccad15515f2995c0"
             ]
           },
           {
@@ -27993,20 +28174,42 @@
             },
             "status": "partial",
             "models": [
-              "v2-qa29-art-appreciate"
+              "v2-qa29-art-appreciate",
+              "v2-qx10-art-appreciation"
             ],
             "questionIds": [
-              "P2-art-qa29-ea7f91ce8aa8bfafb9a1"
+              "P2-art-qa29-ea7f91ce8aa8bfafb9a1",
+              "P2-art-qx10-54edaa71f39223fd6c95",
+              "P2-art-qx10-ec686ab2384668496f26",
+              "P2-art-qx10-14c80df69c003cf5efdf",
+              "P2-art-qx10-e1d3a0833a9708025818",
+              "P2-art-qx10-6989e7554b6756ce86b1",
+              "P2-art-qx10-8f84138ad4ad54e3ed99",
+              "P2-art-qx10-ae86048e7f72fad3d0d9",
+              "P2-art-qx10-eb768201b6fce485a0a2",
+              "P2-art-qx10-5e4af29db0a583dae676",
+              "P2-art-qx10-e5c16df49426b9e7daaa",
+              "P2-art-qx10-4e3da6c1ebde64151ab1",
+              "P2-art-qx10-498e9d53a710b7243cdd",
+              "P2-art-qx10-101a7850975fb3d2af4c",
+              "P2-art-qx10-ca76fadd3b6dd63757bb",
+              "P2-art-qx10-63c9ab8883b9d8f1d683",
+              "P2-art-qx10-53a1c130bd4bf48f9009"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p1"
             ],
-            "questionCount": 1,
-            "independentCount": 1,
+            "questionCount": 17,
+            "independentCount": 17,
             "guidedCount": 0,
             "evidenceIds": [
-              "P2-art-qa29-ea7f91ce8aa8bfafb9a1"
+              "P2-art-qa29-ea7f91ce8aa8bfafb9a1",
+              "P2-art-qx10-54edaa71f39223fd6c95",
+              "P2-art-qx10-ec686ab2384668496f26",
+              "P2-art-qx10-14c80df69c003cf5efdf",
+              "P2-art-qx10-e1d3a0833a9708025818",
+              "P2-art-qx10-6989e7554b6756ce86b1"
             ]
           }
         ],
@@ -35814,8 +36017,8 @@
       "level": "P3",
       "subject": "pjpk",
       "title": "P3 体育与健康 / PJPK",
-      "active": 291,
-      "stored": 1191,
+      "active": 300,
+      "stored": 1200,
       "retired": 900,
       "sourceIds": [
         "pjpk-jpn-directory",
@@ -35892,14 +36095,16 @@
               "P3-pjpk-qx10-b99b221e7b5776949fef",
               "P3-pjpk-qx10-2bc69d953710bae53baf",
               "P3-pjpk-qx10-908e7cf8ebf2514fb75c",
-              "P3-pjpk-qx10-f1ed51233e5b6a017cd0"
+              "P3-pjpk-qx10-f1ed51233e5b6a017cd0",
+              "P3-pjpk-qx10-1c2b227e9ebf218b30bb",
+              "P3-pjpk-qx10-6fb9d001ae3df10c10f8"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 45,
-            "independentCount": 45,
+            "questionCount": 47,
+            "independentCount": 47,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qa29-0e86388fea81789d1d75",
@@ -35941,14 +36146,16 @@
               "P3-pjpk-qx10-54cb1fbb46d3f363d51e",
               "P3-pjpk-qx10-65ba16907138ec2a55fe",
               "P3-pjpk-qx10-c21fff6aac7c3cc7474c",
-              "P3-pjpk-qx10-ecdcf72fe540f73de7ae"
+              "P3-pjpk-qx10-ecdcf72fe540f73de7ae",
+              "P3-pjpk-qx10-be67b5daee0fcd00f5d8",
+              "P3-pjpk-qx10-9f5e2b48e5d47e2063ff"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 20,
-            "independentCount": 20,
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qx10-257faa795552ea6a65c2",
@@ -35993,14 +36200,15 @@
               "P3-pjpk-qx10-9bcc613b8f6d0c3c0f83",
               "P3-pjpk-qx10-7000cc05119e805046f8",
               "P3-pjpk-qx10-e1125b86e104e76cc41f",
-              "P3-pjpk-qx10-7739371120ab53861d6c"
+              "P3-pjpk-qx10-7739371120ab53861d6c",
+              "P3-pjpk-qx10-c7f6964f41608a6690fd"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qa29-d5e8a33ec21b7f483b51",
@@ -36097,14 +36305,15 @@
               "P3-pjpk-qx10-bb6c32ba221660f18417",
               "P3-pjpk-qx10-4602f41ec608552af5a5",
               "P3-pjpk-qx10-79312d007549e6208de6",
-              "P3-pjpk-qx10-f1bf493f4a9887b713b5"
+              "P3-pjpk-qx10-f1bf493f4a9887b713b5",
+              "P3-pjpk-qx10-c025708db1b3855e682b"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 22,
-            "independentCount": 22,
+            "questionCount": 23,
+            "independentCount": 23,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qa29-77a15ffd3d5ca66445be",
@@ -36154,14 +36363,16 @@
               "P3-pjpk-qx10-a95593f41d96797dff4e",
               "P3-pjpk-qx10-3b0e29cfe7d09cdec720",
               "P3-pjpk-qx10-873d927f5f0dd651fff0",
-              "P3-pjpk-qx10-3373cecc920cf745d0fb"
+              "P3-pjpk-qx10-3373cecc920cf745d0fb",
+              "P3-pjpk-qx10-64601d70c4ae7f837fad",
+              "P3-pjpk-qx10-7ae6ca4e2ee0c793009f"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 27,
-            "independentCount": 27,
+            "questionCount": 29,
+            "independentCount": 29,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qa29-7ba7a11e7af3303a5e47",
@@ -36280,14 +36491,15 @@
               "P3-pjpk-qx10-2f296a5bb5b9405763b7",
               "P3-pjpk-qx10-0390d7b1da2335f60c35",
               "P3-pjpk-qx10-73361bda2195b679b123",
-              "P3-pjpk-qx10-9c262f22f4f94b095cbd"
+              "P3-pjpk-qx10-9c262f22f4f94b095cbd",
+              "P3-pjpk-qx10-8008f269fa5cd5952b39"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-primary"
             ],
-            "questionCount": 38,
-            "independentCount": 38,
+            "questionCount": 39,
+            "independentCount": 39,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-pjpk-qa29-cc36809b71aa75d5a998",
@@ -36829,8 +37041,8 @@
       "level": "P3",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 159,
-      "stored": 1059,
+      "active": 266,
+      "stored": 1166,
       "retired": 900,
       "sourceIds": [
         "am-psv-p1",
@@ -36892,14 +37104,21 @@
               "P3-art-qx10-40ca44ae410e0eceaad3",
               "P3-art-qx10-a1bf93eeab9e9da3da5a",
               "P3-art-qx10-fe48d541689b72ffbf3d",
-              "P3-art-qx10-a42f9170ff3f99afc04b"
+              "P3-art-qx10-a42f9170ff3f99afc04b",
+              "P3-art-qx10-9a62c5259faea63fa6f6",
+              "P3-art-qx10-561575f7b6494b0e572a",
+              "P3-art-qx10-66bb732c64e35553beec",
+              "P3-art-qx10-89806be95e2ca1e49a0f",
+              "P3-art-qx10-5642b7a8c881a1f09a1b",
+              "P3-art-qx10-0e0bcfb66d10d2ce9699",
+              "P3-art-qx10-3f8522584404a517a6ed"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 30,
-            "independentCount": 30,
+            "questionCount": 37,
+            "independentCount": 37,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-art-qa29-8f4d157789221fea791e",
@@ -36948,14 +37167,45 @@
               "P3-art-qx10-554d8c5f3629fda8b702",
               "P3-art-qx10-e841b3285630a3a20036",
               "P3-art-qx10-aa7a4a2fc8c4bb6ee4d1",
-              "P3-art-qx10-bd165e27bff01ab44e3b"
+              "P3-art-qx10-bd165e27bff01ab44e3b",
+              "P3-art-qx10-a6e46e37bb553988c4a9",
+              "P3-art-qx10-589c935b6983cded2bdd",
+              "P3-art-qx10-499632834bd72d5fd296",
+              "P3-art-qx10-0aa16e1ccf2742daec81",
+              "P3-art-qx10-d292e3ebee914533a2cb",
+              "P3-art-qx10-3aedff7dcfb49f2544c7",
+              "P3-art-qx10-7be74944d23b8feca086",
+              "P3-art-qx10-d211047fff049f083749",
+              "P3-art-qx10-5482ac2a6983727d8508",
+              "P3-art-qx10-a4f7c73a7874d7b63d89",
+              "P3-art-qx10-1dbcac5552d78203721d",
+              "P3-art-qx10-8cb9e67a708002da9aa9",
+              "P3-art-qx10-2b387021fda9d70d0aab",
+              "P3-art-qx10-2a7989dd2ca05f08b6b9",
+              "P3-art-qx10-a45d2703c7ae8825be52",
+              "P3-art-qx10-f7ce21d663a1cb931591",
+              "P3-art-qx10-2d3c090879053496918c",
+              "P3-art-qx10-79382b822eeeb1398928",
+              "P3-art-qx10-9d6ea441a43665f01932",
+              "P3-art-qx10-8a095f79564c64ca7be7",
+              "P3-art-qx10-1177384fccf3af2f81d1",
+              "P3-art-qx10-1c82d1a2d098bb6f50d8",
+              "P3-art-qx10-5e3a2b3956cf45be8f04",
+              "P3-art-qx10-685d9dd915eae1500ebf",
+              "P3-art-qx10-4a379cc58d1a91f3760e",
+              "P3-art-qx10-65e84dd2a6043a1f26ed",
+              "P3-art-qx10-f5bc10e82074307ef472",
+              "P3-art-qx10-0d96c72401acc1ef4aa6",
+              "P3-art-qx10-c3673534dfdc54a872de",
+              "P3-art-qx10-d9273aed3825748ab869",
+              "P3-art-qx10-7f62e35e694b2a37b301"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 26,
-            "independentCount": 26,
+            "questionCount": 57,
+            "independentCount": 57,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-art-qa29-785d134c77a68a70d0dc",
@@ -36998,14 +37248,40 @@
               "P3-art-qx10-348a64a14460edd552af",
               "P3-art-qx10-055b4e9b6eb0979e3879",
               "P3-art-qx10-6d1fa786a54da0e46f5d",
-              "P3-art-qx10-d9060656b3b555f3f9c1"
+              "P3-art-qx10-d9060656b3b555f3f9c1",
+              "P3-art-qx10-027a2a1c3f298dd768b4",
+              "P3-art-qx10-fb0d99a3939a6b9d900e",
+              "P3-art-qx10-9f5163e5c3c28f3edbb4",
+              "P3-art-qx10-a9c54de8e0bcb3d1ee2e",
+              "P3-art-qx10-7f97654cd94c0c2d326e",
+              "P3-art-qx10-eded87e64599b0c6f3b5",
+              "P3-art-qx10-dcc4495a162422a34aaa",
+              "P3-art-qx10-1b3c87cc87da47dfb679",
+              "P3-art-qx10-3ba35582e6c7aabca051",
+              "P3-art-qx10-8c253d97e81a17d13442",
+              "P3-art-qx10-f9fe9b652245ab656665",
+              "P3-art-qx10-4fb4187edc9bcfcf0a8f",
+              "P3-art-qx10-f627031c0cc8607037fd",
+              "P3-art-qx10-294dbd538f3896369e18",
+              "P3-art-qx10-b92a5e1bbc8dd6febedf",
+              "P3-art-qx10-1dd79084c4fb7dd418ed",
+              "P3-art-qx10-777077e2bc045dfb3e19",
+              "P3-art-qx10-8c5d2b1d07771976a781",
+              "P3-art-qx10-72a4f3f42fb2a379f502",
+              "P3-art-qx10-208c97ad8484ab15c0b5",
+              "P3-art-qx10-b5aed3c1cbaa72562047",
+              "P3-art-qx10-43561ef9d0bead207778",
+              "P3-art-qx10-21b37da9a239eb09b583",
+              "P3-art-qx10-ec4ad291a454b7411c26",
+              "P3-art-qx10-0ce5af76ee47c8f4fcc8",
+              "P3-art-qx10-3afeea0c9e64a9b3710e"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 20,
-            "independentCount": 20,
+            "questionCount": 46,
+            "independentCount": 46,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-art-qa29-dd5a247864d9c32aad23",
@@ -37070,14 +37346,31 @@
               "P3-art-qx10-07de102a3e1c46e4ac5c",
               "P3-art-qx10-1223fbb6973709f15f7f",
               "P3-art-qx10-74f3c2359c13d22afed8",
-              "P3-art-qx10-0f150f5f296f827fc298"
+              "P3-art-qx10-0f150f5f296f827fc298",
+              "P3-art-qx10-59a2238fbf406f119ccf",
+              "P3-art-qx10-d21a00387f40467a7a9c",
+              "P3-art-qx10-313c9c9bf2b177ca0de4",
+              "P3-art-qx10-5e706e05a8abffaa8814",
+              "P3-art-qx10-d95e337a168e94bccd21",
+              "P3-art-qx10-e70447a90c45420c7d60",
+              "P3-art-qx10-64fb8b908ac833e2cf1d",
+              "P3-art-qx10-c6df3fb566685079f73f",
+              "P3-art-qx10-735b9c439ebc116894a4",
+              "P3-art-qx10-302c7953838afecb8e02",
+              "P3-art-qx10-b5b5883a482eab112e37",
+              "P3-art-qx10-51451d491316ebde5a4f",
+              "P3-art-qx10-1864d9c692d1ee5e12a8",
+              "P3-art-qx10-a4bc0219a31709464871",
+              "P3-art-qx10-d211283b501903f785fa",
+              "P3-art-qx10-aac50e97ece0adc2885a",
+              "P3-art-qx10-265530790f8965cc91ab"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 42,
-            "independentCount": 42,
+            "questionCount": 59,
+            "independentCount": 59,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-art-qa29-49428b562d5548aef7ee",
@@ -37117,14 +37410,25 @@
               "P3-art-qx10-66408d7d1d905bbeec08",
               "P3-art-qx10-b24e9f51797ecc42725d",
               "P3-art-qx10-963345a2f3fd951b64e2",
-              "P3-art-qx10-602fd612412fe8c38a9d"
+              "P3-art-qx10-602fd612412fe8c38a9d",
+              "P3-art-qx10-fccd81b4a5f7f879c3a4",
+              "P3-art-qx10-45da8792042f40ceca87",
+              "P3-art-qx10-945073dc4d5e3c73ac7e",
+              "P3-art-qx10-5ce45e79cef00321c004",
+              "P3-art-qx10-ed53924e582d1b9af24b",
+              "P3-art-qx10-c2856278b49fe4725a1b",
+              "P3-art-qx10-be3f75a2ad87e4115369",
+              "P3-art-qx10-7ee590c739dcc2a44026",
+              "P3-art-qx10-c114606bd5e2a29a5863",
+              "P3-art-qx10-2096a91b79be82d6c772",
+              "P3-art-qx10-861b036733b45d8100f0"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 16,
-            "independentCount": 16,
+            "questionCount": 27,
+            "independentCount": 27,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P3-art-weave-edge",
@@ -37173,14 +37477,29 @@
               "P3-art-qx10-62524d9a13c2926771c3",
               "P3-art-qx10-56497fec574e53fb2db5",
               "P3-art-qx10-8e995e5412941ccacbce",
-              "P3-art-qx10-3bfb4fc0d886267c9472"
+              "P3-art-qx10-3bfb4fc0d886267c9472",
+              "P3-art-qx10-af653df0c9de7c3a383e",
+              "P3-art-qx10-8cf76ea365b1f422b382",
+              "P3-art-qx10-28c3dc4106044b42c56e",
+              "P3-art-qx10-78c0cf2acaf95a5bb04a",
+              "P3-art-qx10-e80db0b14cc69f46e892",
+              "P3-art-qx10-6514c5e11df7c8cfc7c9",
+              "P3-art-qx10-69a7bc60668adc90ba63",
+              "P3-art-qx10-f1fcbe018c6e795499dc",
+              "P3-art-qx10-d06968763e59cee4920e",
+              "P3-art-qx10-b48213dca13455e478db",
+              "P3-art-qx10-f91d284e97ae1c9b3cc2",
+              "P3-art-qx10-6575664e2cc5aceb79c7",
+              "P3-art-qx10-d7235bc4db7f9031c4e6",
+              "P3-art-qx10-3c40d24cd9aae9d26cef",
+              "P3-art-qx10-3eed211c7c474df6adbc"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p3"
             ],
-            "questionCount": 25,
-            "independentCount": 25,
+            "questionCount": 40,
+            "independentCount": 40,
             "guidedCount": 0,
             "evidenceIds": [
               "P3-art-qa29-dcb3691178ced9cb85d6",
@@ -52091,8 +52410,8 @@
       "level": "P4",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 227,
-      "stored": 1127,
+      "active": 291,
+      "stored": 1191,
       "retired": 900,
       "sourceIds": [
         "am-psv-p1",
@@ -52157,14 +52476,19 @@
               "P4-art-qx10-a81a264cab3c2a09bbd9",
               "P4-art-qx10-16d3727069e1294c5c37",
               "P4-art-qx10-e6bf318717e84c306799",
-              "P4-art-qx10-e4d51f027263d1019006"
+              "P4-art-qx10-e4d51f027263d1019006",
+              "P4-art-qx10-120f185811563f9e37d1",
+              "P4-art-qx10-939f06e2bfc8e9380fad",
+              "P4-art-qx10-dfc643d301db895de338",
+              "P4-art-qx10-999242c33db3bbf1d4f9",
+              "P4-art-qx10-3a4a8cefef09a77ec1c7"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 32,
-            "independentCount": 32,
+            "questionCount": 37,
+            "independentCount": 37,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-art-qa29-64c35b3505359dc7a3e6",
@@ -52234,14 +52558,30 @@
               "P4-art-qx10-08da31c231be58768d48",
               "P4-art-qx10-c9f0bd696e3283b7d24c",
               "P4-art-qx10-b00e1f65f1f2f210f62f",
-              "P4-art-qx10-c4096c0a8a93f8def251"
+              "P4-art-qx10-c4096c0a8a93f8def251",
+              "P4-art-qx10-17b742d52e7268a978c8",
+              "P4-art-qx10-17cd2962ec35f42b11fb",
+              "P4-art-qx10-94746ad1bbb82d42c746",
+              "P4-art-qx10-89eacd72c4392f36ca6e",
+              "P4-art-qx10-4ec1861b8bb0a3630422",
+              "P4-art-qx10-0d16378416334d45d08b",
+              "P4-art-qx10-3a82c7dc6d50d85b90b4",
+              "P4-art-qx10-01940c035a4215d245fd",
+              "P4-art-qx10-1cce8413bf3a3866e8cc",
+              "P4-art-qx10-106ee02ff9cfe5acb825",
+              "P4-art-qx10-4278dfe4f11f3ec6b7c9",
+              "P4-art-qx10-b7b10b85296e0809d381",
+              "P4-art-qx10-dbc149b33a68a5c99a1f",
+              "P4-art-qx10-fc57feef378f6e4cc7e2",
+              "P4-art-qx10-c16f76b3bfdc2406a4f1",
+              "P4-art-qx10-98c7ce2d63c30dac90d7"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 46,
-            "independentCount": 46,
+            "questionCount": 62,
+            "independentCount": 62,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-P4-art-print-test",
@@ -52297,14 +52637,28 @@
               "P4-art-qx10-000d09f9fe859fc1821c",
               "P4-art-qx10-3f53db76ec57525bd28b",
               "P4-art-qx10-801b4af8c915e679cb11",
-              "P4-art-qx10-04e966da0d3aa7eccb2b"
+              "P4-art-qx10-04e966da0d3aa7eccb2b",
+              "P4-art-qx10-94b3680c7de39a652b6c",
+              "P4-art-qx10-010ab69ad4a9199be2ef",
+              "P4-art-qx10-0451e314e4355a345b6b",
+              "P4-art-qx10-0d17d05c3b8f284d8e05",
+              "P4-art-qx10-ff0619c0840a5588b8f3",
+              "P4-art-qx10-b8137f405bcdeb1cfcde",
+              "P4-art-qx10-25492f7b023d23b39a71",
+              "P4-art-qx10-ad4d25a9cbca4096dd78",
+              "P4-art-qx10-ea8b664894fc5cbefbf5",
+              "P4-art-qx10-5ecdaac9519fb07101c3",
+              "P4-art-qx10-a5ddc3b8be68feb3e0cc",
+              "P4-art-qx10-e1343400c89eba6eb105",
+              "P4-art-qx10-36151464223bb66df874",
+              "P4-art-qx10-b16628e9c9e2e46330c3"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 33,
-            "independentCount": 33,
+            "questionCount": 47,
+            "independentCount": 47,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-art-qa29-8856f3e792fde5acfc8e",
@@ -52373,14 +52727,29 @@
               "P4-art-qx10-862f391cc1cbdfd2b1b5",
               "P4-art-qx10-e88d45e3d56224293b48",
               "P4-art-qx10-5f9288a2f88c52624772",
-              "P4-art-qx10-d70de627dec0ba3c1082"
+              "P4-art-qx10-d70de627dec0ba3c1082",
+              "P4-art-qx10-b98c9e18ee2192ff97dd",
+              "P4-art-qx10-52ba4358115ebb72e949",
+              "P4-art-qx10-7196d4c423216b5ef2f1",
+              "P4-art-qx10-0469ef1a9e41930534e3",
+              "P4-art-qx10-2334f571867dbb8ec1b7",
+              "P4-art-qx10-357d6251302fd5d98991",
+              "P4-art-qx10-316857a7586a9b786bf3",
+              "P4-art-qx10-4165428d58d17cc7d874",
+              "P4-art-qx10-02576a7348a53673a860",
+              "P4-art-qx10-e025129f53ee4d78c4d2",
+              "P4-art-qx10-56e2286d965b275a8a68",
+              "P4-art-qx10-f49145fd5365385289ff",
+              "P4-art-qx10-d31b43e1682111a177f5",
+              "P4-art-qx10-34a78b13da44fa08caa8",
+              "P4-art-qx10-2ef92b160e9b7d7b0ca1"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 46,
-            "independentCount": 46,
+            "questionCount": 61,
+            "independentCount": 61,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-art-qa29-d7693ca1574ecb2a70b8",
@@ -52450,14 +52819,23 @@
               "P4-art-qx10-28914249affeb7d7b062",
               "P4-art-qx10-2ffbed53e2209db7751e",
               "P4-art-qx10-370740720c9480ba08de",
-              "P4-art-qx10-bb8ecef00a911d799d84"
+              "P4-art-qx10-bb8ecef00a911d799d84",
+              "P4-art-qx10-9f9998378f6bb7e36d0d",
+              "P4-art-qx10-0d39f302f422b43dd4df",
+              "P4-art-qx10-307fbfc906f8fb0a6067",
+              "P4-art-qx10-9190845b86aa7cd75060",
+              "P4-art-qx10-feee11a9e5dbdf189ea4",
+              "P4-art-qx10-faf8f5157ce728d2aefa",
+              "P4-art-qx10-4480b972cae755f7d849",
+              "P4-art-qx10-7d4ea1f5432f47582440",
+              "P4-art-qx10-7f8ca225069b5fe2a049"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 47,
-            "independentCount": 47,
+            "questionCount": 56,
+            "independentCount": 56,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-art-qa29-30f198009a339bdf4d94",
@@ -52504,14 +52882,19 @@
               "P4-art-qx10-4780b8d1e7b6edc207df",
               "P4-art-qx10-615c69dcb83ba95bbe0f",
               "P4-art-qx10-72280915768a2eda9b8f",
-              "P4-art-qx10-1ffcc3852f8cef242999"
+              "P4-art-qx10-1ffcc3852f8cef242999",
+              "P4-art-qx10-e2d4d71c03eef1acf23a",
+              "P4-art-qx10-22e7517219cf3d805745",
+              "P4-art-qx10-54a904c3fd8e33041b51",
+              "P4-art-qx10-9773564e23563f0cee98",
+              "P4-art-qx10-9f1bc271c00a0e8676e7"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-art-p4"
             ],
-            "questionCount": 23,
-            "independentCount": 23,
+            "questionCount": 28,
+            "independentCount": 28,
             "guidedCount": 0,
             "evidenceIds": [
               "P4-art-qa29-dec8b2fd96f2ad40e49e",
@@ -98814,21 +99197,23 @@
       "level": "F1",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 29,
-      "stored": 929,
+      "active": 197,
+      "stored": 1097,
       "retired": 900,
       "sourceIds": [
         "am-psv-f2",
         "curriculum-v2-art",
         "cfh-art-f1",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F1-art",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
           "cfh-art-f1",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -98842,7 +99227,8 @@
             "status": "partial",
             "models": [
               "cfh-art-artist-evidence",
-              "v2-qa29-art-history"
+              "v2-qa29-art-history",
+              "v2-qx10-art-art-history"
             ],
             "questionIds": [
               "cfh-F1-art-artist-evidence",
@@ -98852,14 +99238,60 @@
               "F1-art-qa29-865ae472c3a82ce00b4a",
               "F1-art-qa29-fc98ff8df8494cf16dc4",
               "F1-art-qa29-503a514dd184b40332dc",
-              "F1-art-qa29-20e9fd288a91a8939ac3"
+              "F1-art-qa29-20e9fd288a91a8939ac3",
+              "F1-art-qx10-b8da9f18b991c0662b08",
+              "F1-art-qx10-d14b3b573d4f5aefdfc5",
+              "F1-art-qx10-1982ee200bbe3505d411",
+              "F1-art-qx10-a572ff6c8126ad0521fc",
+              "F1-art-qx10-a529f81bab98db1ff79e",
+              "F1-art-qx10-4d65624fc767ab45f901",
+              "F1-art-qx10-1df3b09923052802a24b",
+              "F1-art-qx10-253e288182efa485df91",
+              "F1-art-qx10-bdd535c6e21bf35a9e53",
+              "F1-art-qx10-c0aaf6944e6f3343eca4",
+              "F1-art-qx10-edb5dac358a713d4484d",
+              "F1-art-qx10-446312cfc078048a414d",
+              "F1-art-qx10-666b4b3d1b1a43b1e409",
+              "F1-art-qx10-ceb528c8596ebdd64d11",
+              "F1-art-qx10-f5b7900acb8e40e41648",
+              "F1-art-qx10-9fd64e093cc463d6c3f2",
+              "F1-art-qx10-e3b0e7722453c72d2802",
+              "F1-art-qx10-572a4e4edb1052ca5d47",
+              "F1-art-qx10-16eac62c20d81e394e04",
+              "F1-art-qx10-f996892a8bb952ed4923",
+              "F1-art-qx10-bbc0abfc1d3de7dcd1a1",
+              "F1-art-qx10-5359533ffa3c784e0264",
+              "F1-art-qx10-24acc441695e5b45cba4",
+              "F1-art-qx10-f920146530e74f65a13c",
+              "F1-art-qx10-0d0c85074389722abad8",
+              "F1-art-qx10-1b9ccbf753a960dc01ca",
+              "F1-art-qx10-28d3ee9d4da4d2666a3e",
+              "F1-art-qx10-2a19bb2f83daa2508241",
+              "F1-art-qx10-eb9aa954734205429eea",
+              "F1-art-qx10-ace8bbd38d56da26df47",
+              "F1-art-qx10-a4af8e2171eaa7640293",
+              "F1-art-qx10-7b71b9a77c674832165d",
+              "F1-art-qx10-deeeb227c5fab1c24893",
+              "F1-art-qx10-a237af4fd91a953a8d40",
+              "F1-art-qx10-17616d565dd029325ff7",
+              "F1-art-qx10-a18f6b1195c1a46b5aef",
+              "F1-art-qx10-acfa556a0c614705206a",
+              "F1-art-qx10-0fb58fadffdbffbdc069",
+              "F1-art-qx10-d789f4e94a687708dfbb",
+              "F1-art-qx10-b312afb322f37324e8da",
+              "F1-art-qx10-dc3dfdd6745796fd2599",
+              "F1-art-qx10-8794e90b7963f750cc13",
+              "F1-art-qx10-e8cb7ce9a7af18db09d9",
+              "F1-art-qx10-9740ad0cbad241d8e871",
+              "F1-art-qx10-7c2ef9075c4e60889a17",
+              "F1-art-qx10-1bae3fdd24775e7a0955"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f1"
             ],
-            "questionCount": 8,
-            "independentCount": 8,
+            "questionCount": 54,
+            "independentCount": 54,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F1-art-artist-evidence",
@@ -98881,7 +99313,8 @@
             "models": [
               "cfh-art-balance-not-symmetry",
               "v2-qa29-art-elements",
-              "v2-qa29-art-principles"
+              "v2-qa29-art-principles",
+              "v2-qx10-art-visual-language"
             ],
             "questionIds": [
               "cfh-F1-art-balance-not-symmetry",
@@ -98897,14 +99330,96 @@
               "F1-art-qa29-2b9dd1d84bafcd4b76ac",
               "F1-art-qa29-3e456660b71fc43a4deb",
               "F1-art-qa29-9f5a5369d7c46f59f7a4",
-              "F1-art-qa29-a8b0a643282b538e1a83"
+              "F1-art-qa29-a8b0a643282b538e1a83",
+              "F1-art-qx10-dab35a13da187c2ceaab",
+              "F1-art-qx10-8f4f1a17c7e5d0b014fc",
+              "F1-art-qx10-0c4070c39f3d6b44df06",
+              "F1-art-qx10-df61ec2c118561b85640",
+              "F1-art-qx10-b35bf7c2ad2b2afcbec4",
+              "F1-art-qx10-4ddc121ecdcb2e0534c7",
+              "F1-art-qx10-1d1e61ca657c7607e394",
+              "F1-art-qx10-e7b3be554633226b08f1",
+              "F1-art-qx10-1315428260cb5f83566c",
+              "F1-art-qx10-1d8c5b623a82ebfb0297",
+              "F1-art-qx10-64ef6815b4ab6f3969e7",
+              "F1-art-qx10-2cca78e1e101e43d9313",
+              "F1-art-qx10-fc56dfafe88fb3ae7e76",
+              "F1-art-qx10-f103fb3ccf447f2ddfc3",
+              "F1-art-qx10-e8eec24ad3c32bb7be40",
+              "F1-art-qx10-67ded5fc83372cb6d146",
+              "F1-art-qx10-918c52fd6ddb11a50afa",
+              "F1-art-qx10-05b8bfcfd4abe3001a05",
+              "F1-art-qx10-3e763382120fb3fd2e5a",
+              "F1-art-qx10-fa8229b4425ca5a477ae",
+              "F1-art-qx10-08ff6764d3e46a11aaf6",
+              "F1-art-qx10-2ad5f352a0548727fa18",
+              "F1-art-qx10-2ad8886647123dd0ab21",
+              "F1-art-qx10-04a59eec9c027097e334",
+              "F1-art-qx10-a486fd5f659c99b80101",
+              "F1-art-qx10-4a69cd87aac85b234b63",
+              "F1-art-qx10-100d6f835afeb4a78ac8",
+              "F1-art-qx10-7bcee154a0ec15eadb9e",
+              "F1-art-qx10-9cf2cec302e4000de92e",
+              "F1-art-qx10-b74b28dd071463416081",
+              "F1-art-qx10-5073d8b4d51ad584cd67",
+              "F1-art-qx10-dfeddd33770596e34103",
+              "F1-art-qx10-7fc5d7a3f19505f60e1b",
+              "F1-art-qx10-e1359f530a72a0314f91",
+              "F1-art-qx10-89bad68e4f111ab904cf",
+              "F1-art-qx10-6d4411f52c461acdbfef",
+              "F1-art-qx10-3498341a1e3030721b14",
+              "F1-art-qx10-9b015cbe7b06f9a681b5",
+              "F1-art-qx10-146cb96b0b94f76cb895",
+              "F1-art-qx10-2046b824fdae9f34b0ff",
+              "F1-art-qx10-34f8735299268e0341bf",
+              "F1-art-qx10-c2bec155567a098175ce",
+              "F1-art-qx10-f8cbe932898e80c88932",
+              "F1-art-qx10-6f092edbc6c3eaafb519",
+              "F1-art-qx10-c01b91b7d60881751bbe",
+              "F1-art-qx10-62879d3f46d2464aa717",
+              "F1-art-qx10-2c1fc4a33a6ec1fdd7f1",
+              "F1-art-qx10-d58bce39723b3d6ae681",
+              "F1-art-qx10-df132931f4ad4d5b0d63",
+              "F1-art-qx10-e273708a5ee70711d050",
+              "F1-art-qx10-2db3824eeb50d8bae7d3",
+              "F1-art-qx10-cdbb2693c174b9256ba2",
+              "F1-art-qx10-e3585c9c56919830d39f",
+              "F1-art-qx10-fe6a699f6d9f8439af6a",
+              "F1-art-qx10-ffb7f403abf816741317",
+              "F1-art-qx10-9b5ef9b89064949c75e0",
+              "F1-art-qx10-86b4911f7fae008e87f5",
+              "F1-art-qx10-530c87db72b4d6b516c7",
+              "F1-art-qx10-6931212be2bed098867e",
+              "F1-art-qx10-f012e42f643d9f61cd8d",
+              "F1-art-qx10-a358f31436aea76c72e9",
+              "F1-art-qx10-0d446ee96faac5960128",
+              "F1-art-qx10-f7555f90b3d3e137fdf2",
+              "F1-art-qx10-b7e9012c276e72e39394",
+              "F1-art-qx10-51cf45dd3aab928ace05",
+              "F1-art-qx10-595310b262a1b6223763",
+              "F1-art-qx10-8ae5e6c9dfc5fac69724",
+              "F1-art-qx10-cabfdfebb33ff7471811",
+              "F1-art-qx10-5eecf6f454a7616763ef",
+              "F1-art-qx10-0dee3c14dbd04590a0a2",
+              "F1-art-qx10-fc7a352bbf00d0b0a535",
+              "F1-art-qx10-8723ac48d23dd0f6bea7",
+              "F1-art-qx10-1f394b915fd077c2aaf7",
+              "F1-art-qx10-d26e8da259b9e6fc2ec7",
+              "F1-art-qx10-7e936c14b2fd6ee10fa9",
+              "F1-art-qx10-4e0403e7710afcbc19c1",
+              "F1-art-qx10-50904bb0bd55aa854274",
+              "F1-art-qx10-680e01b0c0868997f0a1",
+              "F1-art-qx10-fcf5335ef0d49ec2864b",
+              "F1-art-qx10-881233e27b66f2fee3c0",
+              "F1-art-qx10-37673b05884831c35cd8",
+              "F1-art-qx10-c7e489b82b4525e48d3a"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f1"
             ],
-            "questionCount": 14,
-            "independentCount": 14,
+            "questionCount": 96,
+            "independentCount": 96,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F1-art-balance-not-symmetry",
@@ -98925,7 +99440,8 @@
             "status": "partial",
             "models": [
               "cfh-art-designomic",
-              "v2-qa29-art-thinking"
+              "v2-qa29-art-thinking",
+              "v2-qx10-art-visual-thinking"
             ],
             "questionIds": [
               "cfh-F1-art-designomic",
@@ -98934,14 +99450,54 @@
               "F1-art-qa29-498d29ab71f1bdc7d57a",
               "F1-art-qa29-ea19d792eaffe4ff11fc",
               "F1-art-qa29-2fcafe23e03f6e35d9bd",
-              "F1-art-qa29-0ac8b180214f32e99491"
+              "F1-art-qa29-0ac8b180214f32e99491",
+              "F1-art-qx10-0525406bc6ff63739e07",
+              "F1-art-qx10-9572bf886eebe8263d5b",
+              "F1-art-qx10-502ca7d94353ca4b3770",
+              "F1-art-qx10-ca0956391353aa1ac7b5",
+              "F1-art-qx10-254481e56534fea6e382",
+              "F1-art-qx10-4bfeae0f64a6a4ac6a6c",
+              "F1-art-qx10-70fe365b2248468260cd",
+              "F1-art-qx10-01e5a7f49ffbcc107693",
+              "F1-art-qx10-027f9c83a815ad274bfa",
+              "F1-art-qx10-ff92e2931fe7711681ca",
+              "F1-art-qx10-9e6f202193477587cd26",
+              "F1-art-qx10-192590ac47626d486946",
+              "F1-art-qx10-c369463d01402cf41031",
+              "F1-art-qx10-5e8442d1d9ef34966298",
+              "F1-art-qx10-3e00fc1ceca019866176",
+              "F1-art-qx10-6a9bd47890c2f31cdf12",
+              "F1-art-qx10-3a78fd6f556f55edb70c",
+              "F1-art-qx10-35f94f934a4f04a69622",
+              "F1-art-qx10-0794522d37082585f961",
+              "F1-art-qx10-5e1607cefb5897c3988a",
+              "F1-art-qx10-9f59c28f52d8fc32d12e",
+              "F1-art-qx10-35902747998f6deacba9",
+              "F1-art-qx10-adb0f8d6493d2940871c",
+              "F1-art-qx10-974878bee67c919906de",
+              "F1-art-qx10-e8e3ec242d7c066d368c",
+              "F1-art-qx10-f475ade8392160732f64",
+              "F1-art-qx10-ec57f783c19058a39533",
+              "F1-art-qx10-5ab72a61db009901dd06",
+              "F1-art-qx10-564a1e0427f8a05f80c5",
+              "F1-art-qx10-dc9b6053d86791bd1708",
+              "F1-art-qx10-63f7952b1ede9855271c",
+              "F1-art-qx10-a8b8236f1c176e0b268c",
+              "F1-art-qx10-e5aa3f11c0aadcc15841",
+              "F1-art-qx10-20a4fc63aaa95cc1501d",
+              "F1-art-qx10-6c4d3e96758fd83f879c",
+              "F1-art-qx10-ad9c0d0f4670e54f7ba8",
+              "F1-art-qx10-67b20792e45eb017060b",
+              "F1-art-qx10-2c34ff28334704058d17",
+              "F1-art-qx10-9ade5b6268be1bf962bd",
+              "F1-art-qx10-9485a14ff5cebd8c8fac"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f1"
             ],
-            "questionCount": 7,
-            "independentCount": 7,
+            "questionCount": 47,
+            "independentCount": 47,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F1-art-designomic",
@@ -112543,21 +113099,23 @@
       "level": "F2",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 30,
-      "stored": 930,
+      "active": 217,
+      "stored": 1117,
       "retired": 900,
       "sourceIds": [
         "am-psv-f2",
         "curriculum-v2-art",
         "cfh-art-f2",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F2-art",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
           "cfh-art-f2",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -112571,28 +113129,51 @@
             "status": "partial",
             "models": [
               "cfh-art-ornament-use",
-              "v2-qa29-art-heritage"
+              "v2-qa29-art-heritage",
+              "v2-qx10-art-heritage"
             ],
             "questionIds": [
               "cfh-F2-art-ornament-use",
               "F2-art-qa29-7dc9bc998ff1114c085d",
               "F2-art-qa29-2d62837943ad61e116e8",
               "F2-art-qa29-d28a6cf9249fcb6a9149",
-              "F2-art-qa29-e867d60e0b5776d203af"
+              "F2-art-qa29-e867d60e0b5776d203af",
+              "F2-art-qx10-929e3f2792e97a7d579a",
+              "F2-art-qx10-dcbc59ac720ddf93acdd",
+              "F2-art-qx10-79a659c044d2f5e6177e",
+              "F2-art-qx10-a5a4c960f494a8ac9b9b",
+              "F2-art-qx10-744a585aa9c6d4e46b6c",
+              "F2-art-qx10-712a45e8e46a339e3ca3",
+              "F2-art-qx10-c7a23b3c19bb9591c191",
+              "F2-art-qx10-a728f56a49fd72d1242d",
+              "F2-art-qx10-0462e6cc6cd2f8619230",
+              "F2-art-qx10-6b2196f793e9a3f4ed70",
+              "F2-art-qx10-2c23ff73170a4c9524d7",
+              "F2-art-qx10-81675723fdb6eb90675a",
+              "F2-art-qx10-3f27ee7e5118fce259a1",
+              "F2-art-qx10-d9f28454d3254a5d2b1a",
+              "F2-art-qx10-d85a7ceb3ef88ed392f0",
+              "F2-art-qx10-f739bc293a17117d6924",
+              "F2-art-qx10-960f974012319c3266a6",
+              "F2-art-qx10-33d612be4dce13244542",
+              "F2-art-qx10-a978899a6b0c41f4f9d1",
+              "F2-art-qx10-454edfc0e1bc7adda98f",
+              "F2-art-qx10-fe8104ba766e74be25ce"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f2"
             ],
-            "questionCount": 5,
-            "independentCount": 5,
+            "questionCount": 26,
+            "independentCount": 26,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F2-art-ornament-use",
               "F2-art-qa29-7dc9bc998ff1114c085d",
               "F2-art-qa29-2d62837943ad61e116e8",
               "F2-art-qa29-d28a6cf9249fcb6a9149",
-              "F2-art-qa29-e867d60e0b5776d203af"
+              "F2-art-qa29-e867d60e0b5776d203af",
+              "F2-art-qx10-929e3f2792e97a7d579a"
             ]
           },
           {
@@ -112605,7 +113186,8 @@
             "status": "partial",
             "models": [
               "cfh-art-relief-print",
-              "v2-qa29-art-fineart"
+              "v2-qa29-art-fineart",
+              "v2-qx10-art-fine-art"
             ],
             "questionIds": [
               "cfh-F2-art-relief-print",
@@ -112615,14 +113197,80 @@
               "F2-art-qa29-88d1bf3ecd8c3c23cc21",
               "F2-art-qa29-1a0b270e4216f6ac5bc2",
               "F2-art-qa29-1785dd9e43fbc6d1cc20",
-              "F2-art-qa29-1758601439fdeb0f8885"
+              "F2-art-qa29-1758601439fdeb0f8885",
+              "F2-art-qx10-7a4408bb293b87cf3068",
+              "F2-art-qx10-44db54c7c110b22a0e3d",
+              "F2-art-qx10-40ecc5b8f90e1c3b64c2",
+              "F2-art-qx10-9484c3430b32bfeb237d",
+              "F2-art-qx10-c66291fc99722185376e",
+              "F2-art-qx10-f1d96ae3a0475b3ce144",
+              "F2-art-qx10-98deaa1683e0aef5a4aa",
+              "F2-art-qx10-d05bcdb0942d02ab30b5",
+              "F2-art-qx10-48994978a2c886870318",
+              "F2-art-qx10-b006e42b778ae1251cd4",
+              "F2-art-qx10-9274aca9e3ba3a432df3",
+              "F2-art-qx10-cbc9574e407fbdea25b0",
+              "F2-art-qx10-835a67ac2fe32d66d050",
+              "F2-art-qx10-31d3f215ea43a9b0db10",
+              "F2-art-qx10-38fc807f9c210f45d20b",
+              "F2-art-qx10-c1e3db0594e5f78c2632",
+              "F2-art-qx10-e9ef882b1357c8b71a7e",
+              "F2-art-qx10-9241b434f06006e8ac49",
+              "F2-art-qx10-049568b429313ea561c2",
+              "F2-art-qx10-a43f1661eb86ea125d6e",
+              "F2-art-qx10-c4820ac27b5092d7243f",
+              "F2-art-qx10-6fed772e89b61c5ec623",
+              "F2-art-qx10-778fcf79c0ef4017dffc",
+              "F2-art-qx10-6f126c426dca373f95cc",
+              "F2-art-qx10-55dd4b4b0beab7dbd855",
+              "F2-art-qx10-00631eec34d3306aa656",
+              "F2-art-qx10-c8cc04202bda2867f53f",
+              "F2-art-qx10-fd73fc195d7934d24436",
+              "F2-art-qx10-3ad700fe7cd5a1cfc75f",
+              "F2-art-qx10-cdacc0ba4c03a9fbf572",
+              "F2-art-qx10-e13dc4aaeaa6fc1b5a1c",
+              "F2-art-qx10-9509d9eca7c83307c091",
+              "F2-art-qx10-9a49ea65af85e643128b",
+              "F2-art-qx10-a665463cfef020d43a07",
+              "F2-art-qx10-a3fa1959b21434ef53af",
+              "F2-art-qx10-7231839c3d3cf6beb4cc",
+              "F2-art-qx10-06698dd032fb178ede9e",
+              "F2-art-qx10-b582e8e9641d9401990b",
+              "F2-art-qx10-0b84ccba4631bfeb9e12",
+              "F2-art-qx10-524fbd9e590bc91c8cbd",
+              "F2-art-qx10-84c5ae8363751bb32b93",
+              "F2-art-qx10-6278225c23bbad5f540f",
+              "F2-art-qx10-ac0820d0034ecfc17693",
+              "F2-art-qx10-5a67acba993c7c3db724",
+              "F2-art-qx10-385b5a8c1e3ae0ace144",
+              "F2-art-qx10-8cb86b2fc630c95b3614",
+              "F2-art-qx10-450c9b54544d4709c194",
+              "F2-art-qx10-748803c943e28e9fe737",
+              "F2-art-qx10-d748caa9c1f809b98a16",
+              "F2-art-qx10-4161def99ba2fdbd3e59",
+              "F2-art-qx10-79a6d75343b04a6eef04",
+              "F2-art-qx10-c3f308e0ba0d6bea4a21",
+              "F2-art-qx10-6ff9c6f151b92c33f8af",
+              "F2-art-qx10-9b75b1a99c3bc4959648",
+              "F2-art-qx10-90b845e26ef47625b6ad",
+              "F2-art-qx10-ecae69515ab746244ea0",
+              "F2-art-qx10-f094497d757e77c4ef73",
+              "F2-art-qx10-bba7cbebf14a7325aa44",
+              "F2-art-qx10-15f9d282c9699d15819c",
+              "F2-art-qx10-9ce22c6f92aa4164594a",
+              "F2-art-qx10-df7d1a678bab8dcc2612",
+              "F2-art-qx10-735fe153fc53c8c985c6",
+              "F2-art-qx10-529f4394f8ed7ffdea15",
+              "F2-art-qx10-98081a28c220d3da350a",
+              "F2-art-qx10-7bc26bb6ee60f3164466",
+              "F2-art-qx10-0fa7ae443a740615226e"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f2"
             ],
-            "questionCount": 8,
-            "independentCount": 8,
+            "questionCount": 74,
+            "independentCount": 74,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F2-art-relief-print",
@@ -112643,28 +113291,71 @@
             "status": "partial",
             "models": [
               "cfh-art-interior-circulation",
-              "v2-qa29-art-design"
+              "v2-qa29-art-design",
+              "v2-qx10-art-design"
             ],
             "questionIds": [
               "cfh-F2-art-interior-circulation",
               "F2-art-qa29-6bd85df91441cd96733d",
               "F2-art-qa29-766b0273e37e9d7f620f",
               "F2-art-qa29-890dbefbad210914ee27",
-              "F2-art-qa29-fbd39bd173a7cc0d0d29"
+              "F2-art-qa29-fbd39bd173a7cc0d0d29",
+              "F2-art-qx10-85375aee2355847aa610",
+              "F2-art-qx10-a4471979ee292bcf9a73",
+              "F2-art-qx10-ca44eff257339b9ced6a",
+              "F2-art-qx10-5a481f401c73733c0760",
+              "F2-art-qx10-6635114a36358cd32c5b",
+              "F2-art-qx10-48b6d3cc532b3b9cbc4c",
+              "F2-art-qx10-01a983069c39aa236817",
+              "F2-art-qx10-e0365dacec88eced2825",
+              "F2-art-qx10-669f8bc8e9d5e4be8375",
+              "F2-art-qx10-3b73bbb2adca8f0aa37d",
+              "F2-art-qx10-9bb64ea5ffb88a8a33bc",
+              "F2-art-qx10-72e2b4c2bc22dbd5e622",
+              "F2-art-qx10-55f79898b7ea8ad89ef6",
+              "F2-art-qx10-f99126a1782de59b07a1",
+              "F2-art-qx10-8d540d0c779805997654",
+              "F2-art-qx10-2ac0c2a1a62bdb81e692",
+              "F2-art-qx10-f1b27749a0b398ef2cf8",
+              "F2-art-qx10-150ac211b5230712c1b8",
+              "F2-art-qx10-2c4a84dc7eb4ffe4fc05",
+              "F2-art-qx10-fde0a21e7a4fa5a953a6",
+              "F2-art-qx10-6abca0a19b0a217f3834",
+              "F2-art-qx10-a2f6f5bda0697ae37940",
+              "F2-art-qx10-768548ad14cd3327cabc",
+              "F2-art-qx10-74baf3c28d2e3575900f",
+              "F2-art-qx10-70259d5ed08ff6b7525e",
+              "F2-art-qx10-22648cc104f477897a5a",
+              "F2-art-qx10-bddeefee57103b56995a",
+              "F2-art-qx10-2a4c69203d5cffa59781",
+              "F2-art-qx10-79b901b2b98ed77a00d4",
+              "F2-art-qx10-5a6c8ff97afe981e1643",
+              "F2-art-qx10-b1f4029f6927c284aa67",
+              "F2-art-qx10-a9c9cb67fdedb6b663f8",
+              "F2-art-qx10-2717e6e821f3eef10ad5",
+              "F2-art-qx10-f6005ba04260bfb96be4",
+              "F2-art-qx10-b70edd3b14b19f34f50d",
+              "F2-art-qx10-e3f5301718a0bb40d117",
+              "F2-art-qx10-17f1471eda283b81ea42",
+              "F2-art-qx10-d46dcdb11323369eb75c",
+              "F2-art-qx10-6dec2ff37c7fa46305f5",
+              "F2-art-qx10-c45b329f4eb2249da69d",
+              "F2-art-qx10-d59921965efb9cf4afe2"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f2"
             ],
-            "questionCount": 5,
-            "independentCount": 5,
+            "questionCount": 46,
+            "independentCount": 46,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F2-art-interior-circulation",
               "F2-art-qa29-6bd85df91441cd96733d",
               "F2-art-qa29-766b0273e37e9d7f620f",
               "F2-art-qa29-890dbefbad210914ee27",
-              "F2-art-qa29-fbd39bd173a7cc0d0d29"
+              "F2-art-qa29-fbd39bd173a7cc0d0d29",
+              "F2-art-qx10-85375aee2355847aa610"
             ]
           },
           {
@@ -112677,28 +113368,60 @@
             "status": "partial",
             "models": [
               "cfh-art-ceramic-test",
-              "v2-qa29-art-craft"
+              "v2-qa29-art-craft",
+              "v2-qx10-art-craft"
             ],
             "questionIds": [
               "cfh-F2-art-ceramic-test",
               "F2-art-qa29-b5e02b6fc034c3f588ee",
               "F2-art-qa29-5e3ffadec86bd4d1d974",
               "F2-art-qa29-a50c9de63066b7c18134",
-              "F2-art-qa29-7489e5a7792d5af0201e"
+              "F2-art-qa29-7489e5a7792d5af0201e",
+              "F2-art-qx10-a48d0fb0a6ca94582798",
+              "F2-art-qx10-54674025bacfb0223579",
+              "F2-art-qx10-00be8b996330d0bab99f",
+              "F2-art-qx10-5438d6b2b2eed9d75372",
+              "F2-art-qx10-f3e8d5ec8c4776376cf2",
+              "F2-art-qx10-d6534c0c26b210c3a37a",
+              "F2-art-qx10-4d28d9b1af6411b8029e",
+              "F2-art-qx10-1b9048e2d3acc77db9e7",
+              "F2-art-qx10-d0ce2a9947a86a3fb070",
+              "F2-art-qx10-deb83cde3a7b1a2fc99b",
+              "F2-art-qx10-f7432e6c12e16ef519d9",
+              "F2-art-qx10-9275a6d89af6841585ec",
+              "F2-art-qx10-a6cd71bc45b28aeaaeaa",
+              "F2-art-qx10-5e2fffe664c53a611243",
+              "F2-art-qx10-dc0a0dcd03a67a8eda2c",
+              "F2-art-qx10-228762744c11dd617127",
+              "F2-art-qx10-e10f0661eb0c1483d2db",
+              "F2-art-qx10-24efa899168d4670d8c4",
+              "F2-art-qx10-a8fce3b6755dbfbbd9df",
+              "F2-art-qx10-7f4af0a646e009a0ad5e",
+              "F2-art-qx10-1f2b060dbab1cee91d9b",
+              "F2-art-qx10-7c8774b4172bd991c511",
+              "F2-art-qx10-a7b57ca73fd9d0186a62",
+              "F2-art-qx10-b5e61b6e607c0e8b8d5b",
+              "F2-art-qx10-054b745f0c4ff35a16a1",
+              "F2-art-qx10-97c1969129da3b95f8ac",
+              "F2-art-qx10-09df1fb0dfde78033fc1",
+              "F2-art-qx10-5cccb1076190310cff40",
+              "F2-art-qx10-3e19ca61b2292d73c10e",
+              "F2-art-qx10-7f61305aee8185b97d36"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f2"
             ],
-            "questionCount": 5,
-            "independentCount": 5,
+            "questionCount": 35,
+            "independentCount": 35,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F2-art-ceramic-test",
               "F2-art-qa29-b5e02b6fc034c3f588ee",
               "F2-art-qa29-5e3ffadec86bd4d1d974",
               "F2-art-qa29-a50c9de63066b7c18134",
-              "F2-art-qa29-7489e5a7792d5af0201e"
+              "F2-art-qa29-7489e5a7792d5af0201e",
+              "F2-art-qx10-a48d0fb0a6ca94582798"
             ]
           },
           {
@@ -112711,7 +113434,8 @@
             "status": "partial",
             "models": [
               "cfh-art-logo-reduction",
-              "v2-qa29-art-comm"
+              "v2-qa29-art-comm",
+              "v2-qx10-art-communication"
             ],
             "questionIds": [
               "cfh-F2-art-logo-reduction",
@@ -112720,14 +113444,43 @@
               "F2-art-qa29-46bfe416afca91237e38",
               "F2-art-qa29-9a8382e6421df67f8de3",
               "F2-art-qa29-853026818bfa147dab9d",
-              "F2-art-qa29-adb3b9bf07f06ff19c08"
+              "F2-art-qa29-adb3b9bf07f06ff19c08",
+              "F2-art-qx10-faa57f7d9342a7399bc5",
+              "F2-art-qx10-63a8e0cc45d7821c8ed0",
+              "F2-art-qx10-012d9b3cf46952d93f7b",
+              "F2-art-qx10-58fc5dffe60427d17cbe",
+              "F2-art-qx10-8cc2c68d5f5b0cb906ae",
+              "F2-art-qx10-8511e116beb2cb3e0474",
+              "F2-art-qx10-01716c7448a2d88631f3",
+              "F2-art-qx10-20c48cd0a81ded08b63f",
+              "F2-art-qx10-79ffaaa503123da5f1e6",
+              "F2-art-qx10-1e51e8d62ff462418b26",
+              "F2-art-qx10-70102528ad0b999d1a5e",
+              "F2-art-qx10-763a7c704cff4b3eef1e",
+              "F2-art-qx10-782a7a3f20d7385a4338",
+              "F2-art-qx10-0f6bd03f9a7cac433aa4",
+              "F2-art-qx10-a0c6c68b7f7f9aa82afd",
+              "F2-art-qx10-05cf8fb22233f1a3991c",
+              "F2-art-qx10-2611d4e1b58f7c23af04",
+              "F2-art-qx10-4ab970d7f63aaa46b672",
+              "F2-art-qx10-f39c807cdd78ad93b65b",
+              "F2-art-qx10-89ddfb74345c1e4f4a62",
+              "F2-art-qx10-1535c692a1b1bf62c1f2",
+              "F2-art-qx10-86c7c3704b3bf6d65014",
+              "F2-art-qx10-847817be84e1c390d274",
+              "F2-art-qx10-2a83db3919753f8b471f",
+              "F2-art-qx10-44b9f56d66122cf88c9f",
+              "F2-art-qx10-282a295dd7fd2aafaeba",
+              "F2-art-qx10-836a91d1f1b5b2e72919",
+              "F2-art-qx10-1a7296e468186cfa25fb",
+              "F2-art-qx10-e1d9d21abe33067810f9"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f2"
             ],
-            "questionCount": 7,
-            "independentCount": 7,
+            "questionCount": 36,
+            "independentCount": 36,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F2-art-logo-reduction",
@@ -124827,8 +125580,8 @@
       "level": "F3",
       "subject": "pjpk",
       "title": "F3 体育与健康 / PJPK",
-      "active": 297,
-      "stored": 1197,
+      "active": 300,
+      "stored": 1200,
       "retired": 900,
       "sourceIds": [
         "pjpk-jpn-directory",
@@ -125112,20 +125865,22 @@
               "F3-pjpk-qx10-f6e435bfbe7d4f37b7a3",
               "F3-pjpk-qx10-17d8e5e258c2eab6da21",
               "F3-pjpk-qx10-a9bcfe7e3db08fd22934",
-              "F3-pjpk-qx10-65b58fc281d314da524b"
+              "F3-pjpk-qx10-65b58fc281d314da524b",
+              "F3-pjpk-qx10-e1985b24901e74e1115f"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-secondary"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 5,
+            "independentCount": 5,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-pjpk-qx10-f6e435bfbe7d4f37b7a3",
               "F3-pjpk-qx10-17d8e5e258c2eab6da21",
               "F3-pjpk-qx10-a9bcfe7e3db08fd22934",
-              "F3-pjpk-qx10-65b58fc281d314da524b"
+              "F3-pjpk-qx10-65b58fc281d314da524b",
+              "F3-pjpk-qx10-e1985b24901e74e1115f"
             ]
           },
           {
@@ -125144,21 +125899,23 @@
               "F3-pjpk-qx10-ab09a2db45a87791be28",
               "F3-pjpk-qx10-cb20372f0e186a3ae23a",
               "F3-pjpk-qx10-1c0fc6bf8e5241521168",
-              "F3-pjpk-qx10-d932a58029ef0885df63"
+              "F3-pjpk-qx10-d932a58029ef0885df63",
+              "F3-pjpk-qx10-fd3905bdc48797af7e80"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-secondary"
             ],
-            "questionCount": 5,
-            "independentCount": 5,
+            "questionCount": 6,
+            "independentCount": 6,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-pjpk-qx10-00d65845a3934b46a341",
               "F3-pjpk-qx10-ab09a2db45a87791be28",
               "F3-pjpk-qx10-cb20372f0e186a3ae23a",
               "F3-pjpk-qx10-1c0fc6bf8e5241521168",
-              "F3-pjpk-qx10-d932a58029ef0885df63"
+              "F3-pjpk-qx10-d932a58029ef0885df63",
+              "F3-pjpk-qx10-fd3905bdc48797af7e80"
             ]
           },
           {
@@ -125194,14 +125951,15 @@
               "F3-pjpk-qx10-20fc91bb39569be64d30",
               "F3-pjpk-qx10-e264ff1216f071c6a11c",
               "F3-pjpk-qx10-313ebc21cdf75b270ca3",
-              "F3-pjpk-qx10-65a33c7ac82ab64c085c"
+              "F3-pjpk-qx10-65a33c7ac82ab64c085c",
+              "F3-pjpk-qx10-70977b06ea361d2604ad"
             ],
             "note": "当前没有符合本年级范围的对应计分题；已提供具体实作任务，须根据实际成果人工评价。No active quiz evidence is claimed. This original activity requires teacher review before use and observation or review of the completed work; it is not automatic certification.",
             "sourceIds": [
               "cfh-pjpk-secondary"
             ],
-            "questionCount": 21,
-            "independentCount": 21,
+            "questionCount": 22,
+            "independentCount": 22,
             "guidedCount": 0,
             "evidenceIds": [
               "F3-pjpk-qa29-03bcd955cc704bef3394",
@@ -126050,21 +126808,23 @@
       "level": "F3",
       "subject": "art",
       "title": "美术 · 图形工作室",
-      "active": 29,
-      "stored": 929,
+      "active": 228,
+      "stored": 1128,
       "retired": 900,
       "sourceIds": [
         "am-psv-f2",
         "curriculum-v2-art",
         "cfh-art-f3",
-        "qa29-original"
+        "qa29-original",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F3-art",
         "framework": "KSSM — major-field audit",
         "sourceIds": [
           "cfh-art-f3",
-          "qa29-original"
+          "qa29-original",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -126078,7 +126838,8 @@
             "status": "partial",
             "models": [
               "cfh-art-dress-provenance",
-              "v2-qa29-art-heritage"
+              "v2-qa29-art-heritage",
+              "v2-qx10-art-heritage"
             ],
             "questionIds": [
               "cfh-F3-art-dress-provenance",
@@ -126087,14 +126848,45 @@
               "F3-art-qa29-6114179db0106fc97e97",
               "F3-art-qa29-7d809962a4363625ed03",
               "F3-art-qa29-0a427f774ba1df8644fb",
-              "F3-art-qa29-470c4e7243d6c41c3e86"
+              "F3-art-qa29-470c4e7243d6c41c3e86",
+              "F3-art-qx10-3602bac83a0d7564d1ce",
+              "F3-art-qx10-362aaf7f9853dda992b6",
+              "F3-art-qx10-5ab0b0aab6da43c9e0ba",
+              "F3-art-qx10-7a9c55865ecdb668334d",
+              "F3-art-qx10-0663f85fdb1437d774b6",
+              "F3-art-qx10-0afa252b3a067335ddc2",
+              "F3-art-qx10-22a893eb54244cd6da73",
+              "F3-art-qx10-500e12d6de21df5d6428",
+              "F3-art-qx10-58a951384179b4a89b00",
+              "F3-art-qx10-b743e7833bf992834292",
+              "F3-art-qx10-8ca551abeb22d393bb3d",
+              "F3-art-qx10-527e9bc6284e25a6d71c",
+              "F3-art-qx10-b85c196042e48f984509",
+              "F3-art-qx10-2a57bb4e186c85b69168",
+              "F3-art-qx10-94e332ff64784716a302",
+              "F3-art-qx10-c5bf052a31debc5482a9",
+              "F3-art-qx10-2fe0a67dae227cc80ee1",
+              "F3-art-qx10-29244499dc4bf19aa8f7",
+              "F3-art-qx10-d931602a679efdd8ae9c",
+              "F3-art-qx10-1f3ef6dba9d57335c61c",
+              "F3-art-qx10-f9fc47113b2942d328dc",
+              "F3-art-qx10-5b33f1ea296de79c13aa",
+              "F3-art-qx10-575e0fe02f68fc10832a",
+              "F3-art-qx10-cc33a32c9a131a295529",
+              "F3-art-qx10-8ba4b861cacdb7eff9b8",
+              "F3-art-qx10-5821bf2c8034a8f67777",
+              "F3-art-qx10-7f7ce01385b914ccf3c4",
+              "F3-art-qx10-7dc78b43823ecb7ce156",
+              "F3-art-qx10-6bd54537fe0650b21eff",
+              "F3-art-qx10-170e4b9552436d341395",
+              "F3-art-qx10-771aaa6c4485b098eeaa"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f3"
             ],
-            "questionCount": 7,
-            "independentCount": 7,
+            "questionCount": 38,
+            "independentCount": 38,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F3-art-dress-provenance",
@@ -126115,7 +126907,8 @@
             "status": "partial",
             "models": [
               "cfh-art-sculpture-volume",
-              "v2-qa29-art-fineart"
+              "v2-qa29-art-fineart",
+              "v2-qx10-art-fine-art"
             ],
             "questionIds": [
               "cfh-F3-art-sculpture-volume",
@@ -126123,14 +126916,74 @@
               "F3-art-qa29-6abec96777023569095b",
               "F3-art-qa29-96a3a917d276a850c3f2",
               "F3-art-qa29-778bc7037baa21b67ce8",
-              "F3-art-qa29-5eadfd0bb050e1632355"
+              "F3-art-qa29-5eadfd0bb050e1632355",
+              "F3-art-qx10-f79422358609dcb750e3",
+              "F3-art-qx10-072dae6036bf25244996",
+              "F3-art-qx10-00d15dcca3298a5dc4e4",
+              "F3-art-qx10-b065767e0b50a620d724",
+              "F3-art-qx10-d6a366d323598d094591",
+              "F3-art-qx10-0d4607c2ca42a1df9846",
+              "F3-art-qx10-f72609c693f91799bb3a",
+              "F3-art-qx10-ad35dbba74984f2bfcbd",
+              "F3-art-qx10-fe770e06b4651533d816",
+              "F3-art-qx10-a92c47ccd097d32618c7",
+              "F3-art-qx10-f22e112ebb9091ec06fa",
+              "F3-art-qx10-f6d23361e3f8c5f36a80",
+              "F3-art-qx10-cbe84b920a75ba60e9e2",
+              "F3-art-qx10-b06968db55db1e3ccbe5",
+              "F3-art-qx10-17d6158fff0aa71f025c",
+              "F3-art-qx10-3d249ebdb7595e3e7c68",
+              "F3-art-qx10-e130beac1fa9e77ff5be",
+              "F3-art-qx10-2abd6da37690fb0d7839",
+              "F3-art-qx10-0d5e2ada3dd594415b35",
+              "F3-art-qx10-9bbf4629e5304c674e8c",
+              "F3-art-qx10-c5dee529ed073d8bddb8",
+              "F3-art-qx10-b64deeaeee533f66c08a",
+              "F3-art-qx10-1d9403cdf062f92ad53e",
+              "F3-art-qx10-89e0769731672708d4bd",
+              "F3-art-qx10-6b660535d303af76eec3",
+              "F3-art-qx10-0d062f3e95e216934826",
+              "F3-art-qx10-7c66233bab657c5efbf3",
+              "F3-art-qx10-fd4f662f1acc903e9b5f",
+              "F3-art-qx10-11c40d8bb13c68f5dc65",
+              "F3-art-qx10-1cec90f3d9a09f69f5f0",
+              "F3-art-qx10-7a494f013e1eaa4d232a",
+              "F3-art-qx10-78f98215abeafbf8c52f",
+              "F3-art-qx10-c27f9e4bd1401b1a0884",
+              "F3-art-qx10-4645a8527401011d9fa2",
+              "F3-art-qx10-4c0782d49b89118a5ecb",
+              "F3-art-qx10-61fa93f3226e14715806",
+              "F3-art-qx10-ddfcce56a35223192459",
+              "F3-art-qx10-48ec9eaff990fe160290",
+              "F3-art-qx10-1d68ca05f8ad87110245",
+              "F3-art-qx10-be4aaef4b1862fe14989",
+              "F3-art-qx10-8977bb64f687d5026b9d",
+              "F3-art-qx10-43d9893b457fe1c8e2cf",
+              "F3-art-qx10-2d8c718f9f9f0402ba5a",
+              "F3-art-qx10-496cf873a317d02c8b6f",
+              "F3-art-qx10-791396d4e78079fec034",
+              "F3-art-qx10-e368d289925928ef15b2",
+              "F3-art-qx10-c6e37191848d0c51a9c9",
+              "F3-art-qx10-d4f28bf4386db1913b87",
+              "F3-art-qx10-a39fd7dade2268945580",
+              "F3-art-qx10-f719a175fd162bdd2ac3",
+              "F3-art-qx10-6756b0a59a71f3fbf5e9",
+              "F3-art-qx10-288f1c81ab8849adfc63",
+              "F3-art-qx10-7f6c09de5a0bfb629d78",
+              "F3-art-qx10-c69da64d17cc2019db85",
+              "F3-art-qx10-d9386f2de1087db612ca",
+              "F3-art-qx10-a5a361c14c6473e66394",
+              "F3-art-qx10-ad62ae4120d3f4f6f770",
+              "F3-art-qx10-60d3a7422208cc8d4e2b",
+              "F3-art-qx10-6ae828e265351ea93bce",
+              "F3-art-qx10-18ac2dfe9b71556e13a7"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f3"
             ],
-            "questionCount": 6,
-            "independentCount": 6,
+            "questionCount": 66,
+            "independentCount": 66,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F3-art-sculpture-volume",
@@ -126151,26 +127004,69 @@
             "status": "partial",
             "models": [
               "cfh-art-design-user-test",
-              "v2-qa29-art-design"
+              "v2-qa29-art-design",
+              "v2-qx10-art-design"
             ],
             "questionIds": [
               "cfh-F3-art-design-user-test",
               "F3-art-qa29-d09090635bc341f53efa",
               "F3-art-qa29-e8e637ddfba852731adc",
-              "F3-art-qa29-25941d1d162cbaeacb1b"
+              "F3-art-qa29-25941d1d162cbaeacb1b",
+              "F3-art-qx10-6d986d31f78affcc94d5",
+              "F3-art-qx10-8c35196f07c990217777",
+              "F3-art-qx10-07b80dd2c0f4df53819d",
+              "F3-art-qx10-15dbd63a1264da971cc1",
+              "F3-art-qx10-24e83d2d58979c2a053e",
+              "F3-art-qx10-56e1025ca144585b4450",
+              "F3-art-qx10-6f03665f79d383d401de",
+              "F3-art-qx10-f54069fdfac8d1204115",
+              "F3-art-qx10-59902a7ce04edfd048da",
+              "F3-art-qx10-53d614a70d89643136d8",
+              "F3-art-qx10-7f4d7d61bb182e492380",
+              "F3-art-qx10-29e13b80e3d9a418e203",
+              "F3-art-qx10-cfae76a1ae708d20d69c",
+              "F3-art-qx10-7822c36c4fe5dd6a91be",
+              "F3-art-qx10-c43363187ca5362d9ea6",
+              "F3-art-qx10-dd22e167be4a335068e9",
+              "F3-art-qx10-0a27404d677a275a0197",
+              "F3-art-qx10-8e5d7c0450dac8de5262",
+              "F3-art-qx10-d8db1de47a4d615ac2e3",
+              "F3-art-qx10-556223ae3679a8eb0e65",
+              "F3-art-qx10-65de304a4765cfd3e2b9",
+              "F3-art-qx10-00f92f244931a1eff1b3",
+              "F3-art-qx10-fc04231cc81772df0cd0",
+              "F3-art-qx10-b994b90dfc85d9c7f79a",
+              "F3-art-qx10-c605abf9ced07e8831db",
+              "F3-art-qx10-b6a026e53fcc8add8cc2",
+              "F3-art-qx10-829ccb873051bd8a539f",
+              "F3-art-qx10-5f04cb24f34936dfd54a",
+              "F3-art-qx10-6ef4f8b44f360630b976",
+              "F3-art-qx10-8c83cb42c8898cd6b702",
+              "F3-art-qx10-16e9cef1981039221a2f",
+              "F3-art-qx10-b47b82838efcf82d1628",
+              "F3-art-qx10-815fed808e9a2ccda2f0",
+              "F3-art-qx10-f71f6859104dddf2a2a1",
+              "F3-art-qx10-cca5f2a252c5188ce970",
+              "F3-art-qx10-abda4fca663a7c8bbeaa",
+              "F3-art-qx10-99dfc1a7031922de64c3",
+              "F3-art-qx10-344b12ea752ba56b8a45",
+              "F3-art-qx10-c6d5a48425814d3bc6b2",
+              "F3-art-qx10-9cd176292d41b7b9da64"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f3"
             ],
-            "questionCount": 4,
-            "independentCount": 4,
+            "questionCount": 44,
+            "independentCount": 44,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F3-art-design-user-test",
               "F3-art-qa29-d09090635bc341f53efa",
               "F3-art-qa29-e8e637ddfba852731adc",
-              "F3-art-qa29-25941d1d162cbaeacb1b"
+              "F3-art-qa29-25941d1d162cbaeacb1b",
+              "F3-art-qx10-6d986d31f78affcc94d5",
+              "F3-art-qx10-8c35196f07c990217777"
             ]
           },
           {
@@ -126183,28 +127079,56 @@
             "status": "partial",
             "models": [
               "cfh-art-weave-structure",
-              "v2-qa29-art-craft"
+              "v2-qa29-art-craft",
+              "v2-qx10-art-craft"
             ],
             "questionIds": [
               "cfh-F3-art-weave-structure",
               "F3-art-qa29-ef6ef6eaefc08a369f52",
               "F3-art-qa29-9fd9e3163f3e5df2bce0",
               "F3-art-qa29-6e62c26c8a78ab577978",
-              "F3-art-qa29-6322477482e8a4ac837e"
+              "F3-art-qa29-6322477482e8a4ac837e",
+              "F3-art-qx10-978e1b750dc18c508862",
+              "F3-art-qx10-6106bac2d70caed26c11",
+              "F3-art-qx10-65f6b160e1572224546e",
+              "F3-art-qx10-29d64b8c7612efadf9c7",
+              "F3-art-qx10-8ec1ff002ab4da1ab84f",
+              "F3-art-qx10-15eb0104f44fb0255b3d",
+              "F3-art-qx10-263c390284efb37c8326",
+              "F3-art-qx10-6ce389d9b39516f76554",
+              "F3-art-qx10-be6e2919f5ddcb1a1408",
+              "F3-art-qx10-50d023951d10c179d149",
+              "F3-art-qx10-39c0be5200840114b475",
+              "F3-art-qx10-6b54f45718de96aa0dbd",
+              "F3-art-qx10-f752cbab2c174f9bbd1a",
+              "F3-art-qx10-8281d4a534d319ca89be",
+              "F3-art-qx10-dec38e7c9e59b97ef2ef",
+              "F3-art-qx10-9b57d21b96017fb9ebd7",
+              "F3-art-qx10-d5b7709aa2c4bb274837",
+              "F3-art-qx10-fc31bf569cb93b862574",
+              "F3-art-qx10-5bfa94c62aa50a642106",
+              "F3-art-qx10-318a437bb4a7a513911d",
+              "F3-art-qx10-126ac2114da9a2e3d296",
+              "F3-art-qx10-f9dc2c93d4effeea6752",
+              "F3-art-qx10-5a00d722f5dd78aa8b6e",
+              "F3-art-qx10-033ac99825ae2fc4d818",
+              "F3-art-qx10-c5ba15cec38da9be3861",
+              "F3-art-qx10-eef34e4fd7fd34664cf0"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f3"
             ],
-            "questionCount": 5,
-            "independentCount": 5,
+            "questionCount": 31,
+            "independentCount": 31,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F3-art-weave-structure",
               "F3-art-qa29-ef6ef6eaefc08a369f52",
               "F3-art-qa29-9fd9e3163f3e5df2bce0",
               "F3-art-qa29-6e62c26c8a78ab577978",
-              "F3-art-qa29-6322477482e8a4ac837e"
+              "F3-art-qa29-6322477482e8a4ac837e",
+              "F3-art-qx10-978e1b750dc18c508862"
             ]
           },
           {
@@ -126217,7 +127141,8 @@
             "status": "partial",
             "models": [
               "cfh-art-typography-legibility",
-              "v2-qa29-art-comm"
+              "v2-qa29-art-comm",
+              "v2-qx10-art-communication"
             ],
             "questionIds": [
               "cfh-F3-art-typography-legibility",
@@ -126226,14 +127151,56 @@
               "F3-art-qa29-67665b5b2f748ff9c7a8",
               "F3-art-qa29-9db8f18596c39b669bc3",
               "F3-art-qa29-9444251371e395fdd1f4",
-              "F3-art-qa29-40006acdb9e9acd78d1a"
+              "F3-art-qa29-40006acdb9e9acd78d1a",
+              "F3-art-qx10-37f80b45c6fa35ccdb39",
+              "F3-art-qx10-65afb78707d9ca05e0da",
+              "F3-art-qx10-528002b623b64334ee69",
+              "F3-art-qx10-ca070762a824db284855",
+              "F3-art-qx10-59f46c3de05b66695414",
+              "F3-art-qx10-58f2b9cb267ccdb1fa9f",
+              "F3-art-qx10-b1395447ead650653c94",
+              "F3-art-qx10-558ac066628f6e40bce5",
+              "F3-art-qx10-f9d02d4b80b583b9d48c",
+              "F3-art-qx10-242a3d27da9e4593bb41",
+              "F3-art-qx10-4756f33707c06230ae6e",
+              "F3-art-qx10-bd0f6211e2e4159572ab",
+              "F3-art-qx10-9359d204b4fceae54cf9",
+              "F3-art-qx10-1f2f62d85a3e6e40b968",
+              "F3-art-qx10-50a9443fb3389d309295",
+              "F3-art-qx10-a192aac020be78a657e5",
+              "F3-art-qx10-4471c074ba13054b8d30",
+              "F3-art-qx10-294d682af2d11d48502b",
+              "F3-art-qx10-b8ec5a9a2c8a49959c1b",
+              "F3-art-qx10-f8c1570ff8f37a814a30",
+              "F3-art-qx10-2a80a1cda9a1d268b106",
+              "F3-art-qx10-ff3611a7c908a9521c47",
+              "F3-art-qx10-7ce869e47554916708c3",
+              "F3-art-qx10-2a2e2eafbed519eebe93",
+              "F3-art-qx10-3b424bb939a42b3bd2e9",
+              "F3-art-qx10-c12e8079a3a6a198b2fd",
+              "F3-art-qx10-1f3dac364b24c6d373ca",
+              "F3-art-qx10-aa1a2731e013b7d8ba72",
+              "F3-art-qx10-980bc74f35e8a09541e8",
+              "F3-art-qx10-db59dec8c662063bc032",
+              "F3-art-qx10-86047d6e96ac58181baa",
+              "F3-art-qx10-a7336634093e181a50f3",
+              "F3-art-qx10-938ac18b1d3e5d973e0c",
+              "F3-art-qx10-5362d032f1fe569ac800",
+              "F3-art-qx10-393f56dde13c0a6938aa",
+              "F3-art-qx10-7d6032dc9ef8f4f942b6",
+              "F3-art-qx10-bcf686ad0aa9434b8068",
+              "F3-art-qx10-a6284e39fa91e1421483",
+              "F3-art-qx10-6c1a4f45770d3626e7d9",
+              "F3-art-qx10-095276ffe3bbf6692527",
+              "F3-art-qx10-ca97cba05de3c3a4a7d3",
+              "F3-art-qx10-fc002195e8352b82e08d"
             ],
             "note": "Selected questions represent part of this field. Counts do not establish complete SK/SP depth or practical mastery.",
             "sourceIds": [
               "cfh-art-f3"
             ],
-            "questionCount": 7,
-            "independentCount": 7,
+            "questionCount": 49,
+            "independentCount": 49,
             "guidedCount": 0,
             "evidenceIds": [
               "cfh-F3-art-typography-legibility",
@@ -145189,10 +146156,28 @@
           "F3-chinese"
         ],
         "added": 915
+      },
+      {
+        "date": "2026-11-10",
+        "contentRevision": "872fa1c549334f0b",
+        "previousRevision": "5aa50fe536168e40",
+        "courses": [
+          "P1-pjpk",
+          "P2-pjpk",
+          "P2-art",
+          "P3-pjpk",
+          "P3-art",
+          "P4-art",
+          "F1-art",
+          "F2-art",
+          "F3-pjpk",
+          "F3-art"
+        ],
+        "added": 915
       }
     ],
-    "addedTotal": 22221,
-    "tierShortfallP1toF3": 5516,
+    "addedTotal": 23136,
+    "tierShortfallP1toF3": 4601,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   },
   "corrections": [
