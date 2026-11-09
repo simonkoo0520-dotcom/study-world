@@ -35,3 +35,7 @@ details.learning-plan .learning-reflection{margin-top:0;padding:8px 0 16px}
   .plan-goal select{margin:6px 0 0;width:100%}
   .plan-goal label{width:100%}
 }
+/* 2026-11 简约版：学习旅程收成一行 */
+details.learning-plan{background:none;border:0;box-shadow:none;margin:6px 0 0}
+details.learning-plan>summary{padding:6px 2px;font-size:.85rem}
+details.learning-plan[open]{background:var(--white,#fffdf7);border:1px solid var(--line,#ddd);padding-bottom:14px}

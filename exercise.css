@@ -102,3 +102,38 @@ details.transfer-task>summary~*{margin-top:10px}
   #app .tablewrap th,#app .tablewrap td{padding:10px 8px;word-break:keep-all}
   #app .tablewrap .btn{white-space:nowrap;padding:6px 10px;min-height:36px}
 }
+/* 2026-11 简约版：去装饰、收次要，功能不变 */
+.hero.hero-compact{display:block;padding:16px 22px;min-height:0;border-radius:16px;margin-bottom:8px}
+.hero.hero-compact>div{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+.hero.hero-compact h1{font-size:1.25rem;margin:0}
+.hero.hero-compact .hero-stats{margin:0;gap:4px;padding-bottom:0}
+.hero.hero-compact .hero-stats span{background:none;border:0;padding:0 6px}
+.section-label{display:none}
+.gradebar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:4px;margin-top:18px;padding-bottom:2px}
+.gradebar::-webkit-scrollbar{display:none}
+.gradebar button{border:0;background:transparent;min-height:40px;padding:6px 14px;border-radius:999px;flex-shrink:0;color:var(--muted)}
+.gradebar button.on{background:var(--ink);color:#fff}
+.subjectgrid{gap:10px}
+.subjectcard{padding:14px 16px;border-radius:14px;box-shadow:none;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:center;text-align:left}
+.subjectcard:hover{transform:none}
+.subjectcard .symbol{grid-column:1;grid-row:1/span 2;margin:0;width:38px;height:38px;font-size:1.15rem;border-radius:10px}
+.subjectcard .sc-name{grid-column:2;grid-row:1;margin:0}
+.subjectcard .subname{display:none}
+.subjectcard .count{grid-column:2;grid-row:2;font-size:.75rem;color:var(--muted);margin:0}
+main.layout>footer{display:none}
+details.footnote{margin-top:24px;text-align:center}
+.course-panel{box-shadow:none}
+.filters .filter-extra{flex:1 1 100%;min-width:0}
+.filters .filter-extra>summary{font-size:.82rem;color:var(--muted);cursor:pointer;width:max-content}
+.filter-extra-body{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.missions.missions-simple{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+.missions-simple .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px;padding:8px 20px;flex:0 1 auto}
+.missions-simple .btn small{font-size:.72rem;font-weight:500;opacity:.75}
+.missions-simple .mission-main{flex:1 1 240px;font-size:1.05rem}
+.course-sub{margin-top:10px}
+.course-sub .btn{border:0;background:none;text-decoration:underline;color:var(--muted);padding:0;min-height:0}
+.question{box-shadow:none}
+.quizwrap>.progress{height:4px}
+.option .letter{background:none;border:1px solid var(--line)}
+.break-hint{text-align:center;margin-top:12px}
+@media(max-width:600px){.missions-simple .btn{flex:1 1 40%}.missions-simple .mission-main{flex:1 1 100%}}
