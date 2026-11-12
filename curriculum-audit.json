@@ -1,19 +1,19 @@
 {
   "schemaVersion": 4,
   "date": "2026-10-02",
-  "generatedAt": "2026-11-10T00:00:00+00:00",
+  "generatedAt": "2026-11-12T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "8c2198ed8d925514",
+  "contentRevision": "fe7dfeffdca796df",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 131836,
-    "active": 64805,
-    "gradeScope": 64461,
+    "stored": 131966,
+    "active": 64935,
+    "gradeScope": 64591,
     "prerequisite": 344,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 31,
-    "questionShortfall": 54376,
+    "questionShortfall": 54246,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -102280,19 +102280,21 @@
       "level": "F1",
       "subject": "rbt",
       "title": "设计与工艺",
-      "active": 361,
-      "stored": 901,
+      "active": 467,
+      "stored": 1007,
       "retired": 540,
       "sourceIds": [
         "mt-rbt-f1",
         "curriculum-v2-rbt",
-        "cf-stem-rbt-f1"
+        "cf-stem-rbt-f1",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F1-rbt",
         "framework": "KSSM",
         "sourceIds": [
-          "cf-stem-rbt-f1"
+          "cf-stem-rbt-f1",
+          "qx10-original"
         ],
         "granularity": "major-topics",
         "topics": [
@@ -102527,17 +102529,64 @@
           {
             "id": "sketch",
             "title": "Sketching",
-            "status": "missing",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-rbt-sketch"
+            ],
+            "questionIds": [
+              "F1-rbt-qx10-bb4ba46f95799f18de7a",
+              "F1-rbt-qx10-b5e7f9e5ee5258a814e1",
+              "F1-rbt-qx10-bdf84d128a9a76aaf450",
+              "F1-rbt-qx10-519e498c69cee4775c76",
+              "F1-rbt-qx10-db7e27b2e50838d14455",
+              "F1-rbt-qx10-b400bfaf097b847087da",
+              "F1-rbt-qx10-c3b0c9fa144f3e46fad5",
+              "F1-rbt-qx10-3f4faa793d910252efd2",
+              "F1-rbt-qx10-cd7571097b77e4134d35",
+              "F1-rbt-qx10-fe65f67e958d791bfa80",
+              "F1-rbt-qx10-eb82eaac63ed91fa68ef",
+              "F1-rbt-qx10-6c9e51d50fe313489a16",
+              "F1-rbt-qx10-a0583208d8f6ffe4f911",
+              "F1-rbt-qx10-88ab765c74b8d4586c80",
+              "F1-rbt-qx10-b49108a0835c5e728eba",
+              "F1-rbt-qx10-d13c5a128ac99577e803",
+              "F1-rbt-qx10-8b98d5803ed13a979822",
+              "F1-rbt-qx10-0dafde5b20b98a43400d",
+              "F1-rbt-qx10-146e76d35e3903d56e68",
+              "F1-rbt-qx10-d45ed2e71b317bb775a9",
+              "F1-rbt-qx10-9d7277f8db360dfd090b",
+              "F1-rbt-qx10-c4e665880f9fa4d40f01",
+              "F1-rbt-qx10-7caf11b30577a4910132",
+              "F1-rbt-qx10-8da989dac3e4b65584e1",
+              "F1-rbt-qx10-ed98ff35f90689c2fab0",
+              "F1-rbt-qx10-a671f60b61dc36a97c08",
+              "F1-rbt-qx10-e7aba6829050f6e0c38d",
+              "F1-rbt-qx10-efed4df8a1c5b72acab9",
+              "F1-rbt-qx10-3d21197ac06a9961861e",
+              "F1-rbt-qx10-6c2bb567b8a73f8be000",
+              "F1-rbt-qx10-5e12056db5bf3138e7cd",
+              "F1-rbt-qx10-b316421b9363c6d55d12",
+              "F1-rbt-qx10-c3b0f4e06fa57b8753b2",
+              "F1-rbt-qx10-d954340d74d2be0af63e",
+              "F1-rbt-qx10-70dc46b19ada5b61b469",
+              "F1-rbt-qx10-c25a022639954599a2c0",
+              "F1-rbt-qx10-4c45e6f586dd55a52e8d"
+            ],
             "sourceIds": [
               "cf-stem-rbt-f1"
             ],
-            "note": "0 active grade-scope questions across 0 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "37 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 37,
+            "independentCount": 37,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-rbt-qx10-bb4ba46f95799f18de7a",
+              "F1-rbt-qx10-b5e7f9e5ee5258a814e1",
+              "F1-rbt-qx10-bdf84d128a9a76aaf450",
+              "F1-rbt-qx10-519e498c69cee4775c76",
+              "F1-rbt-qx10-db7e27b2e50838d14455",
+              "F1-rbt-qx10-b400bfaf097b847087da"
+            ]
           },
           {
             "id": "brief",
@@ -102749,32 +102798,121 @@
           {
             "id": "fertigation",
             "title": "Fertigation",
-            "status": "missing",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-rbt-fertigation"
+            ],
+            "questionIds": [
+              "F1-rbt-qx10-0d5ac8e99b067d2fd761",
+              "F1-rbt-qx10-a09811ed933cccafd563",
+              "F1-rbt-qx10-df1a4fb4f473f5385307",
+              "F1-rbt-qx10-f3ddf83cde5666cbec34",
+              "F1-rbt-qx10-bb4681fd6579a603260a",
+              "F1-rbt-qx10-9ac4c97ee45f02e94a5e",
+              "F1-rbt-qx10-19a23d3b66166a32a5e1",
+              "F1-rbt-qx10-882e2d5aebe9672e29c4",
+              "F1-rbt-qx10-6ec41779244f99533d76",
+              "F1-rbt-qx10-8f585f390df345589e9d",
+              "F1-rbt-qx10-9eab3df6381c2c65bbeb",
+              "F1-rbt-qx10-c472d8f5874d7697d1ae",
+              "F1-rbt-qx10-327899b2cd1d1980d686",
+              "F1-rbt-qx10-7e7bd80f22b4658e2086",
+              "F1-rbt-qx10-87387f655268e0230e50",
+              "F1-rbt-qx10-0766d9d59fe002d6b06a",
+              "F1-rbt-qx10-62e42602b1c9e0bfc2c2",
+              "F1-rbt-qx10-b391ff9c08d13fd8e25b",
+              "F1-rbt-qx10-cb41565eee9105657a48",
+              "F1-rbt-qx10-39d2b0696ba30ec0b63a",
+              "F1-rbt-qx10-874bdf2ea2e42d26ac2b",
+              "F1-rbt-qx10-bb4817630c54ac98767a",
+              "F1-rbt-qx10-6304987f6efddef169d2",
+              "F1-rbt-qx10-223bc4880f94aa3ab08c",
+              "F1-rbt-qx10-b896837ed2f04bc53bee",
+              "F1-rbt-qx10-9a71cdec8d4765c1e7df",
+              "F1-rbt-qx10-2bb29772ca645b44897d",
+              "F1-rbt-qx10-00c3024aef8efaf40ebc",
+              "F1-rbt-qx10-8dce4f4fd6121c0315ab",
+              "F1-rbt-qx10-12be3f7043bac33202eb",
+              "F1-rbt-qx10-48f0c148c0c8065e2c73",
+              "F1-rbt-qx10-36fcf82f0f8f579d5123"
+            ],
             "sourceIds": [
               "cf-stem-rbt-f1"
             ],
-            "note": "0 active grade-scope questions across 0 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "32 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 32,
+            "independentCount": 32,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-rbt-qx10-0d5ac8e99b067d2fd761",
+              "F1-rbt-qx10-a09811ed933cccafd563",
+              "F1-rbt-qx10-df1a4fb4f473f5385307",
+              "F1-rbt-qx10-f3ddf83cde5666cbec34",
+              "F1-rbt-qx10-bb4681fd6579a603260a",
+              "F1-rbt-qx10-9ac4c97ee45f02e94a5e"
+            ]
           },
           {
             "id": "fashion",
             "title": "Fashion design",
-            "status": "missing",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-rbt-fashion"
+            ],
+            "questionIds": [
+              "F1-rbt-qx10-a275b8721db002e15190",
+              "F1-rbt-qx10-eb639f482cfeddae2d4e",
+              "F1-rbt-qx10-29ad08677def5911b1fb",
+              "F1-rbt-qx10-998e0de30e71ecbb78b0",
+              "F1-rbt-qx10-835a4dfdd036c063d867",
+              "F1-rbt-qx10-f3d7e4d87544301842f9",
+              "F1-rbt-qx10-04f79a7a2fc073d12274",
+              "F1-rbt-qx10-6e42a1f93fb691eebeb2",
+              "F1-rbt-qx10-ee31db219c7f4a062650",
+              "F1-rbt-qx10-9e27cf01b1158a47a696",
+              "F1-rbt-qx10-92f6b671a6c33e5f9015",
+              "F1-rbt-qx10-1442fa3b9d224c6e7672",
+              "F1-rbt-qx10-7217e6efc9c4f015b595",
+              "F1-rbt-qx10-f1f0942fc3d18a04a9bc",
+              "F1-rbt-qx10-87b99dfde93f4ff98e59",
+              "F1-rbt-qx10-6920902ffee770f3cbe3",
+              "F1-rbt-qx10-adaf4feebbc135e93766",
+              "F1-rbt-qx10-6be4603670c35d612719",
+              "F1-rbt-qx10-bcc428f2ea7e2db3f160",
+              "F1-rbt-qx10-267274cc8be40a5abc1b",
+              "F1-rbt-qx10-b72f228106a707906e1c",
+              "F1-rbt-qx10-720811647c09b6a371dd",
+              "F1-rbt-qx10-2a27da1000cc64a05be4",
+              "F1-rbt-qx10-f8149e924cfd9ac296b9",
+              "F1-rbt-qx10-5de2a7d61040aa72c7c8",
+              "F1-rbt-qx10-52827b413555eeae9987",
+              "F1-rbt-qx10-c757d63b527f76dcb110",
+              "F1-rbt-qx10-09b640a16a9b7832396a",
+              "F1-rbt-qx10-a2d478745ea8d233f191",
+              "F1-rbt-qx10-20b3b8b87c806d046063",
+              "F1-rbt-qx10-76af2ab38c953b58da09",
+              "F1-rbt-qx10-3c9a6f8ad003587e9237",
+              "F1-rbt-qx10-317c7a0cd290d4167c59",
+              "F1-rbt-qx10-7eaf7ce14b3ace74d419",
+              "F1-rbt-qx10-814fb5c7e8988cbab0e3",
+              "F1-rbt-qx10-19f394f3d2749583fffc",
+              "F1-rbt-qx10-9c251ffb7c15c8719517"
+            ],
             "sourceIds": [
               "cf-stem-rbt-f1"
             ],
-            "note": "0 active grade-scope questions across 0 models. Selected subskills only; complete SP depth is not established.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "37 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established.",
+            "questionCount": 37,
+            "independentCount": 37,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F1-rbt-qx10-a275b8721db002e15190",
+              "F1-rbt-qx10-eb639f482cfeddae2d4e",
+              "F1-rbt-qx10-29ad08677def5911b1fb",
+              "F1-rbt-qx10-998e0de30e71ecbb78b0",
+              "F1-rbt-qx10-835a4dfdd036c063d867",
+              "F1-rbt-qx10-f3d7e4d87544301842f9"
+            ]
           }
         ],
         "limits": [
@@ -102827,8 +102965,8 @@
         "unmappedActiveModels": [],
         "summary": {
           "represented": 0,
-          "partial": 3,
-          "missing": 3,
+          "partial": 6,
+          "missing": 0,
           "performance": 0
         },
         "fullSyllabusCertified": false
@@ -116118,8 +116256,8 @@
       "level": "F2",
       "subject": "rbt",
       "title": "设计与工艺",
-      "active": 428,
-      "stored": 981,
+      "active": 452,
+      "stored": 1005,
       "retired": 553,
       "sourceIds": [
         "mt-rbt-f2",
@@ -116724,17 +116862,51 @@
           {
             "id": "food",
             "title": "Food design",
-            "status": "missing",
-            "models": [],
-            "questionIds": [],
+            "status": "partial",
+            "models": [
+              "v2-qx10-rbt-food"
+            ],
+            "questionIds": [
+              "F2-rbt-qx10-55cf5718c8100265cf3d",
+              "F2-rbt-qx10-8d6ee82f75c944e0c1f2",
+              "F2-rbt-qx10-13e3b4049f55f8577270",
+              "F2-rbt-qx10-1bf3e9ee67d2bf6a0682",
+              "F2-rbt-qx10-95ba443c6ffcec04f2d6",
+              "F2-rbt-qx10-88dfd58b09021f77a6dd",
+              "F2-rbt-qx10-009dd7cdf16c7abe9495",
+              "F2-rbt-qx10-fb79b86baf888e41d5ce",
+              "F2-rbt-qx10-66263b60ef3bb4366426",
+              "F2-rbt-qx10-c947745c8afaa5fd3dda",
+              "F2-rbt-qx10-6ba5da5720f1bb54c9c9",
+              "F2-rbt-qx10-19748b3b516997ce46ef",
+              "F2-rbt-qx10-8278ea26a9f3e5cf57c6",
+              "F2-rbt-qx10-710e7bc23a50b062f2fb",
+              "F2-rbt-qx10-2e405e998daeb73fc9c3",
+              "F2-rbt-qx10-f4cd3dbc38fa57b92c24",
+              "F2-rbt-qx10-d7f7792cac33fb68b478",
+              "F2-rbt-qx10-3ec0791eb690df8cc858",
+              "F2-rbt-qx10-59ebe88e8ed78c29bc43",
+              "F2-rbt-qx10-327e51906d706467420e",
+              "F2-rbt-qx10-7dce254cd44066c81faa",
+              "F2-rbt-qx10-4acbefb100272b747f3f",
+              "F2-rbt-qx10-d1c9e22da76fd47da64e",
+              "F2-rbt-qx10-acfb863c5f9f9f6bd269"
+            ],
             "sourceIds": [
               "cf-stem-rbt-f2"
             ],
-            "note": "0 active grade-scope questions across 0 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
-            "questionCount": 0,
-            "independentCount": 0,
+            "note": "24 active grade-scope questions across 1 models. Selected subskills only; complete SP depth is not established. A practical/application task is also supplied.",
+            "questionCount": 24,
+            "independentCount": 24,
             "guidedCount": 0,
-            "evidenceIds": []
+            "evidenceIds": [
+              "F2-rbt-qx10-55cf5718c8100265cf3d",
+              "F2-rbt-qx10-8d6ee82f75c944e0c1f2",
+              "F2-rbt-qx10-13e3b4049f55f8577270",
+              "F2-rbt-qx10-1bf3e9ee67d2bf6a0682",
+              "F2-rbt-qx10-95ba443c6ffcec04f2d6",
+              "F2-rbt-qx10-88dfd58b09021f77a6dd"
+            ]
           }
         ],
         "limits": [
@@ -116787,8 +116959,8 @@
         "unmappedActiveModels": [],
         "summary": {
           "represented": 0,
-          "partial": 6,
-          "missing": 1,
+          "partial": 7,
+          "missing": 0,
           "performance": 0
         },
         "fullSyllabusCertified": false
@@ -149176,10 +149348,20 @@
           "F5-biology"
         ],
         "added": 2707
+      },
+      {
+        "date": "2026-11-12",
+        "contentRevision": "fe7dfeffdca796df",
+        "previousRevision": "8c2198ed8d925514",
+        "courses": [
+          "F1-rbt",
+          "F2-rbt"
+        ],
+        "added": 130
       }
     ],
-    "addedTotal": 25843,
-    "tierShortfallP1toF3": 5316,
+    "addedTotal": 25973,
+    "tierShortfallP1toF3": 5186,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   },
   "corrections": [
