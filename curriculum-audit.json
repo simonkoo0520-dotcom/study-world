@@ -1,19 +1,19 @@
 {
   "schemaVersion": 4,
   "date": "2026-10-02",
-  "generatedAt": "2026-11-12T00:00:00+00:00",
+  "generatedAt": "2026-11-23T00:00:00+00:00",
   "status": "upper-secondary-added-partial-curriculum-coverage",
-  "contentRevision": "fe7dfeffdca796df",
+  "contentRevision": "9b3200778d34b85d",
   "baseline": "7c3e9228da8bbb40",
   "counts": {
-    "stored": 131966,
-    "active": 64935,
-    "gradeScope": 64591,
+    "stored": 133110,
+    "active": 66079,
+    "gradeScope": 65735,
     "prerequisite": 344,
     "topics": 942,
     "tasks": 771,
     "coursesAtLeast900": 31,
-    "questionShortfall": 54246,
+    "questionShortfall": 53102,
     "represented": 0,
     "partial": 813,
     "missing": 5,
@@ -135588,19 +135588,21 @@
       "level": "F4",
       "subject": "history",
       "title": "历史",
-      "active": 30,
-      "stored": 30,
+      "active": 309,
+      "stored": 309,
       "retired": 0,
       "sourceIds": [
         "kpm-sejarah-dskp",
-        "kpm-history-f4-index"
+        "kpm-history-f4-index",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F4-history",
         "framework": "KSSM",
         "sourceIds": [
           "kpm-sejarah-dskp",
-          "kpm-history-f4-index"
+          "kpm-history-f4-index",
+          "qx10-original"
         ],
         "granularity": "chapters",
         "summary": {
@@ -135613,15 +135615,35 @@
           {
             "id": "F4-history-C01",
             "title": {
+              "zh": "民族国家的遗产",
               "bm": "Warisan Negara Bangsa",
               "en": "Heritage of the Nation State"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 22,
             "questionIds": [
               "F4-history-Q001",
               "F4-history-Q002",
-              "F4-history-Q003"
+              "F4-history-Q003",
+              "F4-history-qx10-8b7621f258bff96bf64c",
+              "F4-history-qx10-e8c2a271803170650843",
+              "F4-history-qx10-3ee58f11e178c259a33b",
+              "F4-history-qx10-57c53b8690e141079c5a",
+              "F4-history-qx10-d4dd85f698413cbc42c4",
+              "F4-history-qx10-798a1aa58f928e8f17e9",
+              "F4-history-qx10-b1f227b135bd383ca1f8",
+              "F4-history-qx10-8b1d3887b9e4404e5c25",
+              "F4-history-qx10-c1c6f2b4557bfcb074b1",
+              "F4-history-qx10-dde03beb0e3aba654ee3",
+              "F4-history-qx10-d8b18b907b626957e5e7",
+              "F4-history-qx10-cdfb0d24e7a1aa15d75a",
+              "F4-history-qx10-eb1d8f23c8370b77c6cc",
+              "F4-history-qx10-f24e3c5ea77c0216e46c",
+              "F4-history-qx10-cd2cd5b0c2601233c268",
+              "F4-history-qx10-5d10b0ef846c3c91d081",
+              "F4-history-qx10-82222c79e6e19bcb7794",
+              "F4-history-qx10-86152df5216e1caa383f",
+              "F4-history-qx10-4d1eacb02da934c9ca58"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135629,20 +135651,80 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 22,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q001",
+              "F4-history-Q002",
+              "F4-history-Q003",
+              "F4-history-qx10-8b7621f258bff96bf64c",
+              "F4-history-qx10-e8c2a271803170650843",
+              "F4-history-qx10-3ee58f11e178c259a33b"
+            ]
           },
           {
             "id": "F4-history-C02",
             "title": {
+              "zh": "民族主义的兴起",
               "bm": "Kebangkitan Nasionalisme",
               "en": "Rise of Nationalism"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 51,
             "questionIds": [
               "F4-history-Q004",
               "F4-history-Q005",
-              "F4-history-Q006"
+              "F4-history-Q006",
+              "F4-history-qx10-f3c459807991fbd1e579",
+              "F4-history-qx10-b0a3aa5918806efd6f75",
+              "F4-history-qx10-347fbd4dceb80fba5cc9",
+              "F4-history-qx10-69fe690f650457ef1bf8",
+              "F4-history-qx10-10877702587aabba3462",
+              "F4-history-qx10-ec5429d24ad483acc1f4",
+              "F4-history-qx10-faebead60793d43f5f76",
+              "F4-history-qx10-aac5895c59e95815e391",
+              "F4-history-qx10-85047b980db6d7aef8fd",
+              "F4-history-qx10-1e8209bb31eda9e3ff99",
+              "F4-history-qx10-2641b3198bd86eaf341d",
+              "F4-history-qx10-a09d30881bf86c9ed4d6",
+              "F4-history-qx10-d7d4a0cafc46acf07d59",
+              "F4-history-qx10-17aa40474c8e8445b0b3",
+              "F4-history-qx10-82314925d81cff77fcd3",
+              "F4-history-qx10-ea3babfd074055431806",
+              "F4-history-qx10-99fbaeeb2a322176afc2",
+              "F4-history-qx10-730abb9d50857625e02b",
+              "F4-history-qx10-d76057bd591a27b54eff",
+              "F4-history-qx10-af3a9cab02eac94c9a8e",
+              "F4-history-qx10-943be6cf4eda3b510b27",
+              "F4-history-qx10-a390733dd00e6763269f",
+              "F4-history-qx10-5d281c76512bb07ab91d",
+              "F4-history-qx10-f9fc3cb92f8c2248c7da",
+              "F4-history-qx10-bb8e99246155abd9b67a",
+              "F4-history-qx10-67980b79848b709e6d25",
+              "F4-history-qx10-2f44ac3f9543294be6e5",
+              "F4-history-qx10-333523e0d7396a2256c7",
+              "F4-history-qx10-67e3005a38513c6a756a",
+              "F4-history-qx10-66f1a3d71c5c8dc2022f",
+              "F4-history-qx10-b87c53ac7539cf36187e",
+              "F4-history-qx10-c7e99aae6200f3280afa",
+              "F4-history-qx10-6fe74c1064c57ec9fb24",
+              "F4-history-qx10-f2d17d65bfc666cdc7c0",
+              "F4-history-qx10-f0ecc79f953d26f625e5",
+              "F4-history-qx10-abf680b8c46863916c71",
+              "F4-history-qx10-5c659a8a66b94a98a98c",
+              "F4-history-qx10-71e55cfac0c9c527f7a2",
+              "F4-history-qx10-dd44061fd34eda9bf621",
+              "F4-history-qx10-a15a51864396855ccb2e",
+              "F4-history-qx10-74674dba44c9a6992acf",
+              "F4-history-qx10-8f8bb597552e5562a6ea",
+              "F4-history-qx10-099508639badc5f25bf1",
+              "F4-history-qx10-b6faee15fa5a270ea402",
+              "F4-history-qx10-c7e185c759c586663b34",
+              "F4-history-qx10-bd0d5a7a68fe427ff707",
+              "F4-history-qx10-6fe1e2c4054412f815d6",
+              "F4-history-qx10-fe243880264bf7b6ee73"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135650,20 +135732,82 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 51,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q004",
+              "F4-history-Q005",
+              "F4-history-Q006",
+              "F4-history-qx10-f3c459807991fbd1e579",
+              "F4-history-qx10-b0a3aa5918806efd6f75",
+              "F4-history-qx10-347fbd4dceb80fba5cc9"
+            ]
           },
           {
             "id": "F4-history-C03",
             "title": {
+              "zh": "世界冲突与日本占领我国",
               "bm": "Konflik Dunia dan Pendudukan Jepun di Negara Kita",
               "en": "World Conflict and Japanese Occupation"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 53,
             "questionIds": [
               "F4-history-Q007",
               "F4-history-Q008",
-              "F4-history-Q009"
+              "F4-history-Q009",
+              "F4-history-qx10-19d91544b795269e71e6",
+              "F4-history-qx10-dd002237a3aa10cd0d5e",
+              "F4-history-qx10-88b2f22208abb946625d",
+              "F4-history-qx10-00108412f84bac547077",
+              "F4-history-qx10-44c7230e38be957d94d8",
+              "F4-history-qx10-abf13a22276fa5a88a7d",
+              "F4-history-qx10-6d6a99cceffd83fa69e6",
+              "F4-history-qx10-73255cef9a19f4f674e9",
+              "F4-history-qx10-8c089193f8e32352622a",
+              "F4-history-qx10-d740caeeef9c60760b3e",
+              "F4-history-qx10-4c937be23cbdc0da0051",
+              "F4-history-qx10-983d8eebbfe365d45b90",
+              "F4-history-qx10-f06b80aa766f808074b8",
+              "F4-history-qx10-891b4b70434e701ba6f1",
+              "F4-history-qx10-6fa7ff79160b6c8cb885",
+              "F4-history-qx10-de3d5f8b26de6e33bb9e",
+              "F4-history-qx10-e9b9ad8d31b7df800760",
+              "F4-history-qx10-dca3f0d27a3934c14ef6",
+              "F4-history-qx10-2e6ce70803ca12d6ccf9",
+              "F4-history-qx10-62bbaa0bc5c5167619af",
+              "F4-history-qx10-514d8bc0f2d41d57541d",
+              "F4-history-qx10-831017c3ba188de8dc2b",
+              "F4-history-qx10-ae23c0e8901ed09cc761",
+              "F4-history-qx10-610a338ae56153acc6e5",
+              "F4-history-qx10-4b3e1c4f1c7bbc73f9ec",
+              "F4-history-qx10-298b888f4f8db4b8017d",
+              "F4-history-qx10-bb53002901b21670c0d7",
+              "F4-history-qx10-0aa4f4331b3f0b7d7845",
+              "F4-history-qx10-fda719a86ef46cdde56b",
+              "F4-history-qx10-fa4e7613024881084c13",
+              "F4-history-qx10-b5c0ee32cdc5d434285d",
+              "F4-history-qx10-07001f46f4502b5ba714",
+              "F4-history-qx10-beb8b18db53380a354df",
+              "F4-history-qx10-92adf15d6243c9887de8",
+              "F4-history-qx10-577dfc6042615a067e04",
+              "F4-history-qx10-30219693acf6d649ab03",
+              "F4-history-qx10-16c0c262e38942167c79",
+              "F4-history-qx10-b72a60e34d35d82a656d",
+              "F4-history-qx10-07cae6dbea15ae3d1a43",
+              "F4-history-qx10-3658041b4b976ec4da3a",
+              "F4-history-qx10-67833388102b761ba3ec",
+              "F4-history-qx10-77175c7097f05f191f20",
+              "F4-history-qx10-5c623cf8fc23d390c7bb",
+              "F4-history-qx10-58dd1f7dda56bd6457d6",
+              "F4-history-qx10-6a7ccccc9f681b021c7e",
+              "F4-history-qx10-e68375dfc7c97dfe95b6",
+              "F4-history-qx10-1376fc739d1f81a4baf3",
+              "F4-history-qx10-899e06db906c8d5e735b",
+              "F4-history-qx10-11767735575ad557b383",
+              "F4-history-qx10-c284cf008551c92805d9"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135671,20 +135815,64 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 53,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q007",
+              "F4-history-Q008",
+              "F4-history-Q009",
+              "F4-history-qx10-19d91544b795269e71e6",
+              "F4-history-qx10-dd002237a3aa10cd0d5e",
+              "F4-history-qx10-88b2f22208abb946625d"
+            ]
           },
           {
             "id": "F4-history-C04",
             "title": {
+              "zh": "英国政权在我国的过渡时期",
               "bm": "Era Peralihan Kuasa British di Negara Kita",
               "en": "Transition of British Power"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 35,
             "questionIds": [
               "F4-history-Q010",
               "F4-history-Q011",
-              "F4-history-Q012"
+              "F4-history-Q012",
+              "F4-history-qx10-d337fd9a4604f1f2a24b",
+              "F4-history-qx10-6cde3d4843b24c34a1c0",
+              "F4-history-qx10-c59ad47e7cb48c196567",
+              "F4-history-qx10-9b7c531ba6cdd8fb7e00",
+              "F4-history-qx10-43dc193b1cb5aa9bacbd",
+              "F4-history-qx10-d7b54f4b6948e28a5c76",
+              "F4-history-qx10-fc499f00236f07495562",
+              "F4-history-qx10-97e75c766af97ffc31de",
+              "F4-history-qx10-1f8cd4f80919c3c984df",
+              "F4-history-qx10-f2690645f92219392265",
+              "F4-history-qx10-f6b9425714a1697c070f",
+              "F4-history-qx10-7c1f9e22f77c77886d47",
+              "F4-history-qx10-c52a4fd835ca80018961",
+              "F4-history-qx10-54ce7ab26f7c7c3d607c",
+              "F4-history-qx10-d9fe51990418fc93a69b",
+              "F4-history-qx10-9da555d65f52338d3f18",
+              "F4-history-qx10-04eec26c891fad6c9e9a",
+              "F4-history-qx10-d0122b131110aa4fa3b9",
+              "F4-history-qx10-1a6b4bae1cf2bcb0922e",
+              "F4-history-qx10-b1270b948ac67a41ef3e",
+              "F4-history-qx10-e01dd279dc153b3f24e5",
+              "F4-history-qx10-b58bdb1f99c136b87606",
+              "F4-history-qx10-a5588f164072ff33c142",
+              "F4-history-qx10-3b16152ba7477d4bf493",
+              "F4-history-qx10-e618db3348d4235ecb4d",
+              "F4-history-qx10-8d55cb008791f80edc98",
+              "F4-history-qx10-54cf607540bcbb881df3",
+              "F4-history-qx10-a86c403c2da83c632019",
+              "F4-history-qx10-6c8c4bb7f6dc5fb269c0",
+              "F4-history-qx10-11c4020eb1f4d0762777",
+              "F4-history-qx10-c4c34f809c0d3b3f1991",
+              "F4-history-qx10-b344374b32141ebe13c4"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135692,20 +135880,51 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 35,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q010",
+              "F4-history-Q011",
+              "F4-history-Q012",
+              "F4-history-qx10-d337fd9a4604f1f2a24b",
+              "F4-history-qx10-6cde3d4843b24c34a1c0",
+              "F4-history-qx10-c59ad47e7cb48c196567"
+            ]
           },
           {
             "id": "F4-history-C05",
             "title": {
+              "zh": "1948年马来亚联合邦",
               "bm": "Persekutuan Tanah Melayu 1948",
               "en": "Federation of Malaya 1948"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 22,
             "questionIds": [
               "F4-history-Q013",
               "F4-history-Q014",
-              "F4-history-Q015"
+              "F4-history-Q015",
+              "F4-history-qx10-2a7d9bb6f822b15717a7",
+              "F4-history-qx10-d0282a4c5856dc68031e",
+              "F4-history-qx10-dbadb6f05da10c30ebdf",
+              "F4-history-qx10-93b8bf81f651de978387",
+              "F4-history-qx10-91555db1db66b7b479e2",
+              "F4-history-qx10-776210a8ef2a1d329bca",
+              "F4-history-qx10-df17afed134258f5eb98",
+              "F4-history-qx10-634971d33d1503aa7e6f",
+              "F4-history-qx10-5163816791cded6cca77",
+              "F4-history-qx10-bfbf41d7044714d8ff7e",
+              "F4-history-qx10-cff3621068bc2a925d47",
+              "F4-history-qx10-dca2d177436756daa0d7",
+              "F4-history-qx10-54c91e425d9d0b4006d4",
+              "F4-history-qx10-af1488c873d799924137",
+              "F4-history-qx10-6748f69a2c5659861620",
+              "F4-history-qx10-5cff1a2e1d40b120ed49",
+              "F4-history-qx10-685d53eef98925be5885",
+              "F4-history-qx10-6e7c036fa8e4238aefcd",
+              "F4-history-qx10-549903db1967f29c8b30"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135713,20 +135932,68 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 22,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q013",
+              "F4-history-Q014",
+              "F4-history-Q015",
+              "F4-history-qx10-2a7d9bb6f822b15717a7",
+              "F4-history-qx10-d0282a4c5856dc68031e",
+              "F4-history-qx10-dbadb6f05da10c30ebdf"
+            ]
           },
           {
             "id": "F4-history-C06",
             "title": {
+              "zh": "共产党的威胁与紧急状态的颁布",
               "bm": "Ancaman Komunis dan Perisytiharan Darurat",
               "en": "Communist Threat and Emergency"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 39,
             "questionIds": [
               "F4-history-Q016",
               "F4-history-Q017",
-              "F4-history-Q018"
+              "F4-history-Q018",
+              "F4-history-qx10-b24e1d9f84354b7961f7",
+              "F4-history-qx10-c4d0d6e0f0037b0ba19a",
+              "F4-history-qx10-592db28ae8dee44cd2b3",
+              "F4-history-qx10-8f04ccb8df8df3ba4486",
+              "F4-history-qx10-223dc67d938377b613fc",
+              "F4-history-qx10-775444c7ae467dee0dbd",
+              "F4-history-qx10-d48ac00c9808ec54663e",
+              "F4-history-qx10-c96984577c4cae4f6adb",
+              "F4-history-qx10-6deed6341f8b912af434",
+              "F4-history-qx10-8f46851e60dc6bb0d89d",
+              "F4-history-qx10-62a1e326009016e01bf7",
+              "F4-history-qx10-179da4093a44d07354bf",
+              "F4-history-qx10-0887f7ed5f690e521857",
+              "F4-history-qx10-dc2fc418d94b4044ef19",
+              "F4-history-qx10-225a11423a1fed50d090",
+              "F4-history-qx10-318ae93559c6f361c311",
+              "F4-history-qx10-e287c8f4989af8657411",
+              "F4-history-qx10-48349fabea0efbced63e",
+              "F4-history-qx10-0f9a02ccdbef14a84cc3",
+              "F4-history-qx10-419a11f01edd4dbed573",
+              "F4-history-qx10-a10be701a0c466e4db53",
+              "F4-history-qx10-89ba83d280f79cf4c176",
+              "F4-history-qx10-550e36c015e8b66aff09",
+              "F4-history-qx10-78bb2e9d09a3d6c93843",
+              "F4-history-qx10-4e04d17f55445de1a607",
+              "F4-history-qx10-3d2cccabba4b017b3c7b",
+              "F4-history-qx10-1be67ed9b3fe28e9c804",
+              "F4-history-qx10-0646da40789c136d1cbd",
+              "F4-history-qx10-46948e5b8c6259ef0cdd",
+              "F4-history-qx10-f42f78fda53830e4fbd4",
+              "F4-history-qx10-91adee0c22feace5dddf",
+              "F4-history-qx10-2df5845b954136c981da",
+              "F4-history-qx10-328089b784c57ace8e52",
+              "F4-history-qx10-ed05b1c2450326a8db0e",
+              "F4-history-qx10-605d4cc73caf9177b868",
+              "F4-history-qx10-df48c793064ac9ea66c7"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135734,20 +136001,60 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 39,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q016",
+              "F4-history-Q017",
+              "F4-history-Q018",
+              "F4-history-qx10-b24e1d9f84354b7961f7",
+              "F4-history-qx10-c4d0d6e0f0037b0ba19a",
+              "F4-history-qx10-592db28ae8dee44cd2b3"
+            ]
           },
           {
             "id": "F4-history-C07",
             "title": {
+              "zh": "争取独立的努力",
               "bm": "Usaha ke Arah Kemerdekaan",
               "en": "Efforts towards Independence"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 31,
             "questionIds": [
               "F4-history-Q019",
               "F4-history-Q020",
-              "F4-history-Q021"
+              "F4-history-Q021",
+              "F4-history-qx10-ac81556926e157178805",
+              "F4-history-qx10-d78742361d63a2a83161",
+              "F4-history-qx10-010a5b30f6c2a41c7d16",
+              "F4-history-qx10-dc05c3c1b43a8c362871",
+              "F4-history-qx10-cddb3a3dc575074c6922",
+              "F4-history-qx10-1a6891cc45bea33ccc1d",
+              "F4-history-qx10-39f38006c21bed3dab7e",
+              "F4-history-qx10-ceaca2447027b1324a0d",
+              "F4-history-qx10-8b3961d4ff600e17c6e1",
+              "F4-history-qx10-544cd4dc09a83bcbeb79",
+              "F4-history-qx10-cd15a939ce8127169999",
+              "F4-history-qx10-4e96ba411f54defdfe65",
+              "F4-history-qx10-b02ea675d23ee93cf7bf",
+              "F4-history-qx10-f6da298729aae3ea3109",
+              "F4-history-qx10-6b3613e3f6e3f3b22ef2",
+              "F4-history-qx10-f1b3b65ead658e2e011b",
+              "F4-history-qx10-4528601f742e6b110110",
+              "F4-history-qx10-58c5bf3a120cf0c6caa3",
+              "F4-history-qx10-5740200b3d213772707f",
+              "F4-history-qx10-bbfe02fd7dffd7cdec9f",
+              "F4-history-qx10-7d4ad7e27627eb34e58a",
+              "F4-history-qx10-92aed4862063279ae662",
+              "F4-history-qx10-69d43c3bb94521c1c381",
+              "F4-history-qx10-a0f9574e8b7a586a5f7b",
+              "F4-history-qx10-357782ae82a89b155be6",
+              "F4-history-qx10-096dce664be4930abbf5",
+              "F4-history-qx10-7383f259f2b3ce4faf31",
+              "F4-history-qx10-ca7ac4dc7ac7d0f85c20"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135755,20 +136062,51 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 31,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q019",
+              "F4-history-Q020",
+              "F4-history-Q021",
+              "F4-history-qx10-ac81556926e157178805",
+              "F4-history-qx10-d78742361d63a2a83161",
+              "F4-history-qx10-010a5b30f6c2a41c7d16"
+            ]
           },
           {
             "id": "F4-history-C08",
             "title": {
+              "zh": "选举",
               "bm": "Pilihan Raya",
               "en": "Elections"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 22,
             "questionIds": [
               "F4-history-Q022",
               "F4-history-Q023",
-              "F4-history-Q024"
+              "F4-history-Q024",
+              "F4-history-qx10-948863825791b51da80f",
+              "F4-history-qx10-c6d9241c40f5c2aa0d5b",
+              "F4-history-qx10-afdcfeacb21d1738a3d6",
+              "F4-history-qx10-f7ce082ad61202c7660d",
+              "F4-history-qx10-e8223c9f731e706d08d0",
+              "F4-history-qx10-5143b1fcf72b62105e76",
+              "F4-history-qx10-413afdcdd1683d7992d3",
+              "F4-history-qx10-52f8fa5b91b56790dfd7",
+              "F4-history-qx10-c5637deea33bf02ec212",
+              "F4-history-qx10-655a1d3808f1c1cb85a3",
+              "F4-history-qx10-6d09803cae1c9839d327",
+              "F4-history-qx10-961d89f7bc7bed861b3c",
+              "F4-history-qx10-1b8cf6cdc50e922ffc66",
+              "F4-history-qx10-a45ba9f3bc1f229bb240",
+              "F4-history-qx10-7801c28e804ace96a923",
+              "F4-history-qx10-f295ccd988157baeac72",
+              "F4-history-qx10-863ef0311a18872b948d",
+              "F4-history-qx10-c7ce421270a190c1579a",
+              "F4-history-qx10-11b153d7c3a2967d3659"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135776,20 +136114,49 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 22,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q022",
+              "F4-history-Q023",
+              "F4-history-Q024",
+              "F4-history-qx10-948863825791b51da80f",
+              "F4-history-qx10-c6d9241c40f5c2aa0d5b",
+              "F4-history-qx10-afdcfeacb21d1738a3d6"
+            ]
           },
           {
             "id": "F4-history-C09",
             "title": {
+              "zh": "1957年马来亚联合邦宪法",
               "bm": "Perlembagaan Persekutuan Tanah Melayu 1957",
               "en": "Constitution of the Federation of Malaya 1957"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 20,
             "questionIds": [
               "F4-history-Q025",
               "F4-history-Q026",
-              "F4-history-Q027"
+              "F4-history-Q027",
+              "F4-history-qx10-bbea2a41984eb08c6b00",
+              "F4-history-qx10-418a741aafe9885e3ed1",
+              "F4-history-qx10-ba622375442b8e0c2c7a",
+              "F4-history-qx10-61459361c52631503457",
+              "F4-history-qx10-612e043b81dd3a27d493",
+              "F4-history-qx10-d05cd0be4db5b3f65676",
+              "F4-history-qx10-54fa7399a2803fa0cd91",
+              "F4-history-qx10-2b933eaafa9d1413b33c",
+              "F4-history-qx10-536c2f71f87a394c9499",
+              "F4-history-qx10-26c8c44393aac4481c1c",
+              "F4-history-qx10-d12f77dbe43664d9700a",
+              "F4-history-qx10-8dc88894ef74e70f8dfc",
+              "F4-history-qx10-4e8b429e321ba9d881b6",
+              "F4-history-qx10-522b9799196a48aba9e0",
+              "F4-history-qx10-9c7627a59f6dcddc4896",
+              "F4-history-qx10-cf0114494a53d8a1a516",
+              "F4-history-qx10-3e74a9972f7d4be92801"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135797,20 +136164,43 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 20,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q025",
+              "F4-history-Q026",
+              "F4-history-Q027",
+              "F4-history-qx10-bbea2a41984eb08c6b00",
+              "F4-history-qx10-418a741aafe9885e3ed1",
+              "F4-history-qx10-ba622375442b8e0c2c7a"
+            ]
           },
           {
             "id": "F4-history-C10",
             "title": {
+              "zh": "宣布独立",
               "bm": "Pemasyhuran Kemerdekaan",
               "en": "Proclamation of Independence"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 14,
             "questionIds": [
               "F4-history-Q028",
               "F4-history-Q029",
-              "F4-history-Q030"
+              "F4-history-Q030",
+              "F4-history-qx10-0d58835928d48c3a2909",
+              "F4-history-qx10-186d7141d19cb068acd3",
+              "F4-history-qx10-3d99d4aa89f5899f535c",
+              "F4-history-qx10-979c54e18ea4fdb6f8f1",
+              "F4-history-qx10-81c8f0e38081e4d96ed4",
+              "F4-history-qx10-66b3ebc7935108d96016",
+              "F4-history-qx10-464038ff9aa330134068",
+              "F4-history-qx10-45d8a75349cd159a55d4",
+              "F4-history-qx10-ad3a2f6751537b422d07",
+              "F4-history-qx10-aa57275ce7342410fa57",
+              "F4-history-qx10-83db3b64b4d173c1f4d7"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -135818,7 +136208,18 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 14,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-history-Q028",
+              "F4-history-Q029",
+              "F4-history-Q030",
+              "F4-history-qx10-0d58835928d48c3a2909",
+              "F4-history-qx10-186d7141d19cb068acd3",
+              "F4-history-qx10-3d99d4aa89f5899f535c"
+            ]
           }
         ],
         "performanceTasks": [
@@ -136118,19 +136519,21 @@
       "level": "F5",
       "subject": "history",
       "title": "历史",
-      "active": 30,
-      "stored": 30,
+      "active": 269,
+      "stored": 269,
       "retired": 0,
       "sourceIds": [
         "kpm-sejarah-dskp",
-        "moe-history-f5-index"
+        "moe-history-f5-index",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F5-history",
         "framework": "KSSM",
         "sourceIds": [
           "kpm-sejarah-dskp",
-          "moe-history-f5-index"
+          "moe-history-f5-index",
+          "qx10-original"
         ],
         "granularity": "chapters",
         "summary": {
@@ -136143,15 +136546,32 @@
           {
             "id": "F5-history-C01",
             "title": {
+              "zh": "国家主权",
               "bm": "Kedaulatan Negara",
               "en": "National Sovereignty"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 19,
             "questionIds": [
               "F5-history-Q001",
               "F5-history-Q002",
-              "F5-history-Q003"
+              "F5-history-Q003",
+              "F5-history-qx10-73399daf76f118982b4d",
+              "F5-history-qx10-536aed7bf5a32fed8e8a",
+              "F5-history-qx10-4fc551c5e4bc6bde3b96",
+              "F5-history-qx10-8e5f97591b3139777bde",
+              "F5-history-qx10-a5cfc22dbc38846f1763",
+              "F5-history-qx10-48b190b53994d8c2b4a1",
+              "F5-history-qx10-5f7596ed86cf4690374d",
+              "F5-history-qx10-d98ff1034f68dcd9246f",
+              "F5-history-qx10-292cc768f3db8e33901e",
+              "F5-history-qx10-0657e89185b6d2de295d",
+              "F5-history-qx10-f13705d977970f8cf67d",
+              "F5-history-qx10-10d68765dca45d7028e7",
+              "F5-history-qx10-35964d6922e131814ebe",
+              "F5-history-qx10-5ce3d5c751c5464ff72f",
+              "F5-history-qx10-27ab931f61b61f761937",
+              "F5-history-qx10-db3598222eab1395bf43"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136159,20 +136579,46 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 19,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q001",
+              "F5-history-Q002",
+              "F5-history-Q003",
+              "F5-history-qx10-73399daf76f118982b4d",
+              "F5-history-qx10-536aed7bf5a32fed8e8a",
+              "F5-history-qx10-4fc551c5e4bc6bde3b96"
+            ]
           },
           {
             "id": "F5-history-C02",
             "title": {
+              "zh": "联邦宪法",
               "bm": "Perlembagaan Persekutuan",
               "en": "Federal Constitution"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 17,
             "questionIds": [
               "F5-history-Q004",
               "F5-history-Q005",
-              "F5-history-Q006"
+              "F5-history-Q006",
+              "F5-history-qx10-ce0452eb3529cfd5168d",
+              "F5-history-qx10-16b568e734f9ac57b029",
+              "F5-history-qx10-09892ff7086adb3f6698",
+              "F5-history-qx10-b2ce829ddc81f7286b7d",
+              "F5-history-qx10-7023a5321feaaee8a5c1",
+              "F5-history-qx10-f87c8b70e073fd6df66e",
+              "F5-history-qx10-6defca35b69110d2ad2d",
+              "F5-history-qx10-de001f0515174608f421",
+              "F5-history-qx10-3104fea580c7d7b9f336",
+              "F5-history-qx10-0a0b0fc89ee593c0b262",
+              "F5-history-qx10-4bb61fcf6c8c80da44db",
+              "F5-history-qx10-9f6145d1ebebc030b1a5",
+              "F5-history-qx10-32ac5b7d86de1f2816d9",
+              "F5-history-qx10-62f228a89204d01b15cc"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136180,20 +136626,54 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 17,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q004",
+              "F5-history-Q005",
+              "F5-history-Q006",
+              "F5-history-qx10-ce0452eb3529cfd5168d",
+              "F5-history-qx10-16b568e734f9ac57b029",
+              "F5-history-qx10-09892ff7086adb3f6698"
+            ]
           },
           {
             "id": "F5-history-C03",
             "title": {
+              "zh": "君主立宪与议会民主",
               "bm": "Raja Berperlembagaan dan Demokrasi Berparlimen",
               "en": "Constitutional Monarchy and Parliamentary Democracy"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 25,
             "questionIds": [
               "F5-history-Q007",
               "F5-history-Q008",
-              "F5-history-Q009"
+              "F5-history-Q009",
+              "F5-history-qx10-b03fbc72963466c7a29c",
+              "F5-history-qx10-59a059848bc93be2d0c1",
+              "F5-history-qx10-cefcaaf18b297f2c1eef",
+              "F5-history-qx10-61a168b20fecb271ab7a",
+              "F5-history-qx10-fc21a60d3e2bdd709ed4",
+              "F5-history-qx10-a838d9d19172160a4ba1",
+              "F5-history-qx10-c663c65a1587a77abc93",
+              "F5-history-qx10-6bbdce071b99a1e6938b",
+              "F5-history-qx10-732769bdc31813997b57",
+              "F5-history-qx10-fa46d2b09d6c092c0f8b",
+              "F5-history-qx10-59bfb97b443c82f77c53",
+              "F5-history-qx10-86910b8c866ac5d7a916",
+              "F5-history-qx10-fb5dbc6171b2acb08670",
+              "F5-history-qx10-507e4223bcadbfe19510",
+              "F5-history-qx10-c7c7f07510a1499704cb",
+              "F5-history-qx10-fe0233e345f6acf61d76",
+              "F5-history-qx10-1897c3f74f62966e5e84",
+              "F5-history-qx10-7aeac18e831ff01c17d6",
+              "F5-history-qx10-3bc494e756f1f753d1be",
+              "F5-history-qx10-01fa5e3328926f4229c1",
+              "F5-history-qx10-3a11e4ed02915bcea79c",
+              "F5-history-qx10-76bd490b50f2760d349d"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136201,20 +136681,53 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 25,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q007",
+              "F5-history-Q008",
+              "F5-history-Q009",
+              "F5-history-qx10-b03fbc72963466c7a29c",
+              "F5-history-qx10-59a059848bc93be2d0c1",
+              "F5-history-qx10-cefcaaf18b297f2c1eef"
+            ]
           },
           {
             "id": "F5-history-C04",
             "title": {
+              "zh": "联邦制度",
               "bm": "Sistem Persekutuan",
               "en": "Federal System"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 24,
             "questionIds": [
               "F5-history-Q010",
               "F5-history-Q011",
-              "F5-history-Q012"
+              "F5-history-Q012",
+              "F5-history-qx10-57a86a235d564965829b",
+              "F5-history-qx10-67c0685b7d85c29dd32e",
+              "F5-history-qx10-2f0d4e15dde4f0d3c9df",
+              "F5-history-qx10-7451fdb268e5b838ab60",
+              "F5-history-qx10-ab11b5df3144df4a9a80",
+              "F5-history-qx10-de93735d495f5feaf0a7",
+              "F5-history-qx10-5fb1969d452d28eb800c",
+              "F5-history-qx10-5f96708334104fc29ac3",
+              "F5-history-qx10-e9e1fe017a1bee12249b",
+              "F5-history-qx10-fd4f241240e7d4a35d31",
+              "F5-history-qx10-87fa8ec61e3a91ce0c4f",
+              "F5-history-qx10-2a2853a3d33b5aa6e612",
+              "F5-history-qx10-4899396f65f9019c1e12",
+              "F5-history-qx10-eb38f8826a560595e517",
+              "F5-history-qx10-f478504d1eeddefd0280",
+              "F5-history-qx10-3a0a97e1c8ee9ad2e520",
+              "F5-history-qx10-bb4562acfd1a150ea315",
+              "F5-history-qx10-03ea8e72c4f033eb625d",
+              "F5-history-qx10-42f0451d39d845fe93e6",
+              "F5-history-qx10-d916f45c97d464001c15",
+              "F5-history-qx10-1f14f51f054d0065a653"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136222,20 +136735,72 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 24,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q010",
+              "F5-history-Q011",
+              "F5-history-Q012",
+              "F5-history-qx10-57a86a235d564965829b",
+              "F5-history-qx10-67c0685b7d85c29dd32e",
+              "F5-history-qx10-2f0d4e15dde4f0d3c9df"
+            ]
           },
           {
             "id": "F5-history-C05",
             "title": {
+              "zh": "马来西亚的成立",
               "bm": "Pembentukan Malaysia",
               "en": "Formation of Malaysia"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 43,
             "questionIds": [
               "F5-history-Q013",
               "F5-history-Q014",
-              "F5-history-Q015"
+              "F5-history-Q015",
+              "F5-history-qx10-c874ddedf92dc1ff5e06",
+              "F5-history-qx10-1a13e32a2ad1698f3209",
+              "F5-history-qx10-44922b54e2a9434505a6",
+              "F5-history-qx10-4461925b923ab335c864",
+              "F5-history-qx10-104c1daadfbadde210d6",
+              "F5-history-qx10-94252b24f0a26b08263e",
+              "F5-history-qx10-4eb1a01dea27771604b7",
+              "F5-history-qx10-069cbfaf958cb4f1eeb9",
+              "F5-history-qx10-0ea8273e3bf26549443b",
+              "F5-history-qx10-8784dda15a22c3d04e52",
+              "F5-history-qx10-e09ec1f7915df8f972ef",
+              "F5-history-qx10-269063cd98d44c5b1478",
+              "F5-history-qx10-afd5ae2fb63cdf11a890",
+              "F5-history-qx10-3e6129a5c9b10b8e9523",
+              "F5-history-qx10-2c05c8a5fe4e79ed9cbf",
+              "F5-history-qx10-c2478b4258b25e77ad86",
+              "F5-history-qx10-59fbd5c6ecf8890db4c8",
+              "F5-history-qx10-08c475764a898380bca5",
+              "F5-history-qx10-9c9f8f414387300ec515",
+              "F5-history-qx10-cd6fd9668231c9c0add3",
+              "F5-history-qx10-2678a1c883a495962d0f",
+              "F5-history-qx10-05de0da2eca084013007",
+              "F5-history-qx10-7dc78eeb93eae949bd97",
+              "F5-history-qx10-04cac7a6d2ff59a8964d",
+              "F5-history-qx10-77b306fedf0a044cc719",
+              "F5-history-qx10-d902695dbb849850773d",
+              "F5-history-qx10-8b0e3a82f65092f0ce87",
+              "F5-history-qx10-102217eabceed3d75fef",
+              "F5-history-qx10-13c43c55bf9da01ff4a9",
+              "F5-history-qx10-809cd850b99d9222944a",
+              "F5-history-qx10-43dfe9d0e279d47a428d",
+              "F5-history-qx10-3ae78efac37bd063a06d",
+              "F5-history-qx10-3b362e9e8a272ab1a2f1",
+              "F5-history-qx10-944e2df19e2342fa1aef",
+              "F5-history-qx10-962e71427331c8082b99",
+              "F5-history-qx10-c6e2dcf43d5e73acaa58",
+              "F5-history-qx10-1a8dfdd86bda3a5711a6",
+              "F5-history-qx10-ffffdcb860b23f2af555",
+              "F5-history-qx10-d18208c174c8d8594e15",
+              "F5-history-qx10-900a8a1cd3c94f7cb414"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136243,20 +136808,68 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 43,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q013",
+              "F5-history-Q014",
+              "F5-history-Q015",
+              "F5-history-qx10-c874ddedf92dc1ff5e06",
+              "F5-history-qx10-1a13e32a2ad1698f3209",
+              "F5-history-qx10-44922b54e2a9434505a6"
+            ]
           },
           {
             "id": "F5-history-C06",
             "title": {
+              "zh": "马来西亚成立后的挑战",
               "bm": "Cabaran Selepas Pembentukan Malaysia",
               "en": "Challenges after Malaysia’s Formation"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 39,
             "questionIds": [
               "F5-history-Q016",
               "F5-history-Q017",
-              "F5-history-Q018"
+              "F5-history-Q018",
+              "F5-history-qx10-f55cd896c9d64f2791b0",
+              "F5-history-qx10-d8fb0a6efc3a0ed5c038",
+              "F5-history-qx10-0e84725101a57bd2332c",
+              "F5-history-qx10-2001961e2dbd4b6de030",
+              "F5-history-qx10-979a00142e5e6838f15c",
+              "F5-history-qx10-03cfa59a7d497658a1d9",
+              "F5-history-qx10-8c40558cd2986ea137ec",
+              "F5-history-qx10-396880431082d8c25442",
+              "F5-history-qx10-28be1955a4ec6bfef1a6",
+              "F5-history-qx10-8d7352720817eaed1b0b",
+              "F5-history-qx10-59b666f80424b2d1b811",
+              "F5-history-qx10-35fa20ca814def9b292a",
+              "F5-history-qx10-af1c47749ae66b3640af",
+              "F5-history-qx10-fc644969e913b4dbcd08",
+              "F5-history-qx10-7c7aa91c26320b3a241f",
+              "F5-history-qx10-75cca965765575c56186",
+              "F5-history-qx10-90c41e42b8c54b9f7736",
+              "F5-history-qx10-61922bcbed1661a5538a",
+              "F5-history-qx10-e657414c3801131aa8ac",
+              "F5-history-qx10-f7c028ec2014c7c39cdb",
+              "F5-history-qx10-ca3fddafb8b2c1b75cf7",
+              "F5-history-qx10-4b98951f94ab2d17a41c",
+              "F5-history-qx10-85d1e3525e9c9b5206fa",
+              "F5-history-qx10-a5881531da99fe1c6dd1",
+              "F5-history-qx10-436abb5bccb702874b09",
+              "F5-history-qx10-94c2e89187de26ce1d38",
+              "F5-history-qx10-d499b931ce71901a0b70",
+              "F5-history-qx10-a15631d5bf80b9b4f537",
+              "F5-history-qx10-55419a26039a1fc18cd4",
+              "F5-history-qx10-b9cd1adb172fdd31eb45",
+              "F5-history-qx10-39a96bd90c788247e1d8",
+              "F5-history-qx10-6cdaf62f0262e271903a",
+              "F5-history-qx10-005cf795c5d8ccdc0108",
+              "F5-history-qx10-d5d3cef7d01fa8e7f987",
+              "F5-history-qx10-b388ce6be3b550173302",
+              "F5-history-qx10-61f01fd67ce0afc98aa4"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136264,20 +136877,64 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 39,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q016",
+              "F5-history-Q017",
+              "F5-history-Q018",
+              "F5-history-qx10-f55cd896c9d64f2791b0",
+              "F5-history-qx10-d8fb0a6efc3a0ed5c038",
+              "F5-history-qx10-0e84725101a57bd2332c"
+            ]
           },
           {
             "id": "F5-history-C07",
             "title": {
+              "zh": "建设国家安宁",
               "bm": "Membina Kesejahteraan Negara",
               "en": "Building National Well-being"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 35,
             "questionIds": [
               "F5-history-Q019",
               "F5-history-Q020",
-              "F5-history-Q021"
+              "F5-history-Q021",
+              "F5-history-qx10-63179492e0ffaf203f5d",
+              "F5-history-qx10-abec482e751b397a25a7",
+              "F5-history-qx10-1edc2d7b59fccda8c834",
+              "F5-history-qx10-4312d875da88f0cfa389",
+              "F5-history-qx10-3ae58a249c74837e9583",
+              "F5-history-qx10-0c85a285605f334d4783",
+              "F5-history-qx10-ce8ab852845e9bbb4c77",
+              "F5-history-qx10-059fc208cb053311cc16",
+              "F5-history-qx10-0081d1e362e2ae240e81",
+              "F5-history-qx10-5bd277dfd9a517821d1d",
+              "F5-history-qx10-4dfeb42a5a2d2035ca64",
+              "F5-history-qx10-a5a16ef0bdca8b74d57c",
+              "F5-history-qx10-d1a96dc12ba330369c24",
+              "F5-history-qx10-a5628f93b0e91e988385",
+              "F5-history-qx10-be66d3f0431691bfac5f",
+              "F5-history-qx10-dbc31377a5df24cd66b4",
+              "F5-history-qx10-ad45eab74cc66e57d671",
+              "F5-history-qx10-bdf109a664e0c6b7f2f0",
+              "F5-history-qx10-d4ddcf909466877e161a",
+              "F5-history-qx10-6ecbc02838c230afa795",
+              "F5-history-qx10-2f7d7b2606d7280d1b72",
+              "F5-history-qx10-c95e8408a517529b3123",
+              "F5-history-qx10-85f7bcacaf69bc911170",
+              "F5-history-qx10-d542ef4dbf33e79630b0",
+              "F5-history-qx10-70ae7dc8963fecb60466",
+              "F5-history-qx10-8cbf81eefeaf926900dc",
+              "F5-history-qx10-c5c252e564a2f94e44dd",
+              "F5-history-qx10-fe759e7a23cdf477d0a0",
+              "F5-history-qx10-4d2ca9a03827440b48d1",
+              "F5-history-qx10-f689b73482ba4684551b",
+              "F5-history-qx10-829f81cc06fe5088bb01",
+              "F5-history-qx10-70242a4fe00847b5bc4c"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136285,20 +136942,56 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 35,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q019",
+              "F5-history-Q020",
+              "F5-history-Q021",
+              "F5-history-qx10-63179492e0ffaf203f5d",
+              "F5-history-qx10-abec482e751b397a25a7",
+              "F5-history-qx10-1edc2d7b59fccda8c834"
+            ]
           },
           {
             "id": "F5-history-C08",
             "title": {
+              "zh": "建设国家繁荣",
               "bm": "Membina Kemakmuran Negara",
               "en": "Building National Prosperity"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 27,
             "questionIds": [
               "F5-history-Q022",
               "F5-history-Q023",
-              "F5-history-Q024"
+              "F5-history-Q024",
+              "F5-history-qx10-3f7700b0a513c18117d2",
+              "F5-history-qx10-87ceca86aeea285fcd36",
+              "F5-history-qx10-72af40f809d3c9eccb3c",
+              "F5-history-qx10-687467c3680493aed904",
+              "F5-history-qx10-2b37b6321a334302452d",
+              "F5-history-qx10-67ea2d483d864376ba0f",
+              "F5-history-qx10-32ff29d52c4ef64ea791",
+              "F5-history-qx10-92f7644e6dcc8731cb4b",
+              "F5-history-qx10-61879c40e699c6c09079",
+              "F5-history-qx10-af072f20fd322fea264d",
+              "F5-history-qx10-72bca2df4ef51627b781",
+              "F5-history-qx10-353ecfaa517e16566af2",
+              "F5-history-qx10-9dc8acac600f96e7ba9d",
+              "F5-history-qx10-861624e00d3c4a8d91d9",
+              "F5-history-qx10-ef7ad4ab738af92fd913",
+              "F5-history-qx10-47fb9f5ab4a2e75ba225",
+              "F5-history-qx10-0b30e8bf19e9295dab09",
+              "F5-history-qx10-80fc65ab590de8fabff4",
+              "F5-history-qx10-a3ab785ce7a0d4a644a4",
+              "F5-history-qx10-1567839e4aa7ead4ec4e",
+              "F5-history-qx10-f5216661a883772fcd45",
+              "F5-history-qx10-4568d8d7f7727f00a85e",
+              "F5-history-qx10-0d1efa7c363047da6fb0",
+              "F5-history-qx10-e87a6f6a32cd316d53ff"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136306,20 +136999,51 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 27,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q022",
+              "F5-history-Q023",
+              "F5-history-Q024",
+              "F5-history-qx10-3f7700b0a513c18117d2",
+              "F5-history-qx10-87ceca86aeea285fcd36",
+              "F5-history-qx10-72af40f809d3c9eccb3c"
+            ]
           },
           {
             "id": "F5-history-C09",
             "title": {
+              "zh": "马来西亚的外交政策",
               "bm": "Dasar Luar Malaysia",
               "en": "Malaysia’s Foreign Policy"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 22,
             "questionIds": [
               "F5-history-Q025",
               "F5-history-Q026",
-              "F5-history-Q027"
+              "F5-history-Q027",
+              "F5-history-qx10-b86d58d749a92d503a91",
+              "F5-history-qx10-64f7548a700008fd2448",
+              "F5-history-qx10-9f23b62d8b6e4a42d5a9",
+              "F5-history-qx10-261da95b1b46f07163e7",
+              "F5-history-qx10-4466888cf7c5f0307f5b",
+              "F5-history-qx10-cd5ce782a272c618daa8",
+              "F5-history-qx10-55b74789d47750635081",
+              "F5-history-qx10-4cb4d8962fa7ec81326d",
+              "F5-history-qx10-996ff6eda57000c2b9d3",
+              "F5-history-qx10-6c62ffbd4bff23af4df0",
+              "F5-history-qx10-ba64525a34639d14b931",
+              "F5-history-qx10-bbf30b7ffe0994c3b321",
+              "F5-history-qx10-d50e294f1edc3fe5f84c",
+              "F5-history-qx10-5ffb9ab6ff13432b2e2d",
+              "F5-history-qx10-985fa766bcc2010acf72",
+              "F5-history-qx10-f2d44bcff7efaa6cd105",
+              "F5-history-qx10-024bd865724683c2e0e7",
+              "F5-history-qx10-d7e5807e956b2fa9c0fd",
+              "F5-history-qx10-9d671cdd3905682dd2e4"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136327,20 +137051,47 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 22,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q025",
+              "F5-history-Q026",
+              "F5-history-Q027",
+              "F5-history-qx10-b86d58d749a92d503a91",
+              "F5-history-qx10-64f7548a700008fd2448",
+              "F5-history-qx10-9f23b62d8b6e4a42d5a9"
+            ]
           },
           {
             "id": "F5-history-C10",
             "title": {
+              "zh": "马来西亚在国际舞台上的卓越表现",
               "bm": "Kecemerlangan Malaysia di Persada Dunia",
               "en": "Malaysia’s Contributions on the World Stage"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 18,
             "questionIds": [
               "F5-history-Q028",
               "F5-history-Q029",
-              "F5-history-Q030"
+              "F5-history-Q030",
+              "F5-history-qx10-6ced58df9de43a4dfbdd",
+              "F5-history-qx10-693ad8b2b4bc13dff5a2",
+              "F5-history-qx10-eaf472bab1c37fd8492b",
+              "F5-history-qx10-a7d6bed4d73f9262b3ed",
+              "F5-history-qx10-d65d8409350fe21f085f",
+              "F5-history-qx10-b8dbb412598e2291ce16",
+              "F5-history-qx10-acf2f474b4e4971d6c61",
+              "F5-history-qx10-1452afa634a5775f07c4",
+              "F5-history-qx10-0ae692f46423bdd71325",
+              "F5-history-qx10-629e4ece438128496e7f",
+              "F5-history-qx10-95aa6a4bfa08142f575a",
+              "F5-history-qx10-f2baadcd07ad7d38c449",
+              "F5-history-qx10-f45318a82f829a77e08d",
+              "F5-history-qx10-44c3d86dc2fbb3357e8d",
+              "F5-history-qx10-ad4167824301f82c0d7c"
             ],
             "sourceIds": [
               "kpm-sejarah-dskp",
@@ -136348,7 +137099,18 @@
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 18,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-history-Q028",
+              "F5-history-Q029",
+              "F5-history-Q030",
+              "F5-history-qx10-6ced58df9de43a4dfbdd",
+              "F5-history-qx10-693ad8b2b4bc13dff5a2",
+              "F5-history-qx10-eaf472bab1c37fd8492b"
+            ]
           }
         ],
         "performanceTasks": [
@@ -140475,17 +141237,19 @@
       "level": "F4",
       "subject": "science",
       "title": "科学",
-      "active": 36,
-      "stored": 36,
+      "active": 374,
+      "stored": 374,
       "retired": 0,
       "sourceIds": [
-        "science-f4-inventory"
+        "science-f4-inventory",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F4-science",
         "framework": "KSSM",
         "sourceIds": [
-          "science-f4-inventory"
+          "science-f4-inventory",
+          "qx10-original"
         ],
         "granularity": "chapters",
         "summary": {
@@ -140498,242 +141262,724 @@
           {
             "id": "F4-science-ch01",
             "title": {
+              "zh": "实验室的安全措施",
               "bm": "Langkah Keselamatan di dalam Makmal",
               "en": "Safety Measures in the Laboratory"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 31,
             "questionIds": [
               "F4-science-ch01-q1",
               "F4-science-ch01-q2",
-              "F4-science-ch01-q3"
+              "F4-science-ch01-q3",
+              "F4-science-qx10-676281fccb2421f5c38c",
+              "F4-science-qx10-ebe163dc12e0f1eef081",
+              "F4-science-qx10-e8f0fb9b9de636dbae9e",
+              "F4-science-qx10-471a7c32c0aa83b668db",
+              "F4-science-qx10-cc9f316ed32b5a360012",
+              "F4-science-qx10-2b3511e70f6c167e6f04",
+              "F4-science-qx10-48069acd8f85364ded0d",
+              "F4-science-qx10-8c0a8bdaae80a51efb40",
+              "F4-science-qx10-ab755dc5ec73f3d18c7c",
+              "F4-science-qx10-a58587382bf8980f24e9",
+              "F4-science-qx10-6bd2878ac30f6f379249",
+              "F4-science-qx10-4fe465eb7bc6d675ba71",
+              "F4-science-qx10-f3c4f9d73d409a76b00a",
+              "F4-science-qx10-232730e195fd56e12ac2",
+              "F4-science-qx10-af6f59271448f7fde333",
+              "F4-science-qx10-78c2a51e0112b247c5f3",
+              "F4-science-qx10-68c145a1842c12536c32",
+              "F4-science-qx10-43d7f29b3b175f40d3b6",
+              "F4-science-qx10-bc1be1fc15508e03d0ea",
+              "F4-science-qx10-acad9098a482423ff0bd",
+              "F4-science-qx10-c7600e23f199d6b742e8",
+              "F4-science-qx10-f8fa0b51e3e2867f5375",
+              "F4-science-qx10-e03f56b1f6d2a08fce1d",
+              "F4-science-qx10-495e06e1d0db960541e2",
+              "F4-science-qx10-0bb9462dbd7aa554733b",
+              "F4-science-qx10-de65d38b99f460e63e1e",
+              "F4-science-qx10-ff1a148d23948045f9a3",
+              "F4-science-qx10-49751ccba2d9a0d853a3"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 31,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch01-q1",
+              "F4-science-ch01-q2",
+              "F4-science-ch01-q3",
+              "F4-science-qx10-676281fccb2421f5c38c",
+              "F4-science-qx10-ebe163dc12e0f1eef081",
+              "F4-science-qx10-e8f0fb9b9de636dbae9e"
+            ]
           },
           {
             "id": "F4-science-ch02",
             "title": {
+              "zh": "急救",
               "bm": "Bantuan Kecemasan",
               "en": "Emergency Help"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 18,
             "questionIds": [
               "F4-science-ch02-q1",
               "F4-science-ch02-q2",
-              "F4-science-ch02-q3"
+              "F4-science-ch02-q3",
+              "F4-science-qx10-d2b86c99a5930d6a45da",
+              "F4-science-qx10-7b546a8fd3314744e6be",
+              "F4-science-qx10-99fb9e14dfc869f82174",
+              "F4-science-qx10-9a435a98bcf7eed32a60",
+              "F4-science-qx10-92760b44e44bfc552c57",
+              "F4-science-qx10-8c38b4f47cf44da8edf3",
+              "F4-science-qx10-c5557bb65934fb36d003",
+              "F4-science-qx10-67bc7fa89a753754cde8",
+              "F4-science-qx10-236eb3a9aa0433a838c6",
+              "F4-science-qx10-62def3c7c8b32aba8abe",
+              "F4-science-qx10-93ed1d11e1920da8bdea",
+              "F4-science-qx10-4c6bddda855e0429a86c",
+              "F4-science-qx10-d2c660d6dbe69ca19d89",
+              "F4-science-qx10-70bec86f9b27a0489663",
+              "F4-science-qx10-c6d122aa7ea4ea2b74aa"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 18,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch02-q1",
+              "F4-science-ch02-q2",
+              "F4-science-ch02-q3",
+              "F4-science-qx10-d2b86c99a5930d6a45da",
+              "F4-science-qx10-7b546a8fd3314744e6be",
+              "F4-science-qx10-99fb9e14dfc869f82174"
+            ]
           },
           {
             "id": "F4-science-ch03",
             "title": {
+              "zh": "测量身体健康参数的技术",
               "bm": "Teknik Mengukur Parameter Kesihatan Badan",
               "en": "Techniques of Measuring Body Health Parameters"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 26,
             "questionIds": [
               "F4-science-ch03-q1",
               "F4-science-ch03-q2",
-              "F4-science-ch03-q3"
+              "F4-science-ch03-q3",
+              "F4-science-qx10-7741e7fe395437455bed",
+              "F4-science-qx10-77019939dfd4f8f2db86",
+              "F4-science-qx10-b2a920ab6f2a987a973d",
+              "F4-science-qx10-767ee38402f316b6fee6",
+              "F4-science-qx10-6ee24f4a5e09b43ff7c8",
+              "F4-science-qx10-9742d0495d680f3c4648",
+              "F4-science-qx10-4722647a43dda066fcf8",
+              "F4-science-qx10-a89c718a1a085c2bb43b",
+              "F4-science-qx10-d50745d09ef8d4c7a80d",
+              "F4-science-qx10-bb3d1d52f0b1177c0b7a",
+              "F4-science-qx10-11881add12e07b44a4ec",
+              "F4-science-qx10-dc9bd626bc38eefbc4fe",
+              "F4-science-qx10-1854577806a370a64d82",
+              "F4-science-qx10-6ab22e61ee5da7de49fd",
+              "F4-science-qx10-b22bb6ac52da6567a8b3",
+              "F4-science-qx10-9a4da8c1c676666052d4",
+              "F4-science-qx10-f004d4953842225d2409",
+              "F4-science-qx10-56a5c3c43a12063f9530",
+              "F4-science-qx10-154729c83a2314488cd1",
+              "F4-science-qx10-1653ca6ad9b6c4e4f376",
+              "F4-science-qx10-c7ae139c5af5fea75037",
+              "F4-science-qx10-96c86987097bc93aa18d",
+              "F4-science-qx10-cc8584405e7a816fea49"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 26,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch03-q1",
+              "F4-science-ch03-q2",
+              "F4-science-ch03-q3",
+              "F4-science-qx10-7741e7fe395437455bed",
+              "F4-science-qx10-77019939dfd4f8f2db86",
+              "F4-science-qx10-b2a920ab6f2a987a973d"
+            ]
           },
           {
             "id": "F4-science-ch04",
             "title": {
+              "zh": "保护自然的绿色科技",
               "bm": "Teknologi Hijau dalam Melestarikan Alam",
               "en": "Green Technology for Environmental Sustainability"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 27,
             "questionIds": [
               "F4-science-ch04-q1",
               "F4-science-ch04-q2",
-              "F4-science-ch04-q3"
+              "F4-science-ch04-q3",
+              "F4-science-qx10-142f3ff30d6d1167192a",
+              "F4-science-qx10-e621e7109776ce248001",
+              "F4-science-qx10-eab54cf7382ddf1767c3",
+              "F4-science-qx10-64cbd499c54de9972bbb",
+              "F4-science-qx10-77b7fe6566d50baf24a8",
+              "F4-science-qx10-a4932e4a33a488053803",
+              "F4-science-qx10-60eeafa2ccaa0e8ce699",
+              "F4-science-qx10-21f444da8d44e9254856",
+              "F4-science-qx10-963a7dbfc1ee49001454",
+              "F4-science-qx10-e1debae3584b7cef0eb1",
+              "F4-science-qx10-fe914407d2c578f4eb47",
+              "F4-science-qx10-49a1ce68f343bb2f9fcc",
+              "F4-science-qx10-e5ca30db57b75df5d1c5",
+              "F4-science-qx10-c37f019b33fba2357eeb",
+              "F4-science-qx10-864a87e1705296c63bf4",
+              "F4-science-qx10-0556c489179275b7a45e",
+              "F4-science-qx10-873008ea55d5c18e0b75",
+              "F4-science-qx10-c774b210bd8eedb9c2ce",
+              "F4-science-qx10-84b4c36db743d3c67c21",
+              "F4-science-qx10-0fd0ba477f7340950a36",
+              "F4-science-qx10-852b7ec8f10bd563c832",
+              "F4-science-qx10-81ee253ae5e0b0cff8aa",
+              "F4-science-qx10-70a7d83e1ac50561fe47",
+              "F4-science-qx10-231709805a48f2a8f492"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 27,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch04-q1",
+              "F4-science-ch04-q2",
+              "F4-science-ch04-q3",
+              "F4-science-qx10-142f3ff30d6d1167192a",
+              "F4-science-qx10-e621e7109776ce248001",
+              "F4-science-qx10-eab54cf7382ddf1767c3"
+            ]
           },
           {
             "id": "F4-science-ch05",
             "title": {
+              "zh": "遗传学",
               "bm": "Genetik",
               "en": "Genetics"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 51,
             "questionIds": [
               "F4-science-ch05-q1",
               "F4-science-ch05-q2",
-              "F4-science-ch05-q3"
+              "F4-science-ch05-q3",
+              "F4-science-qx10-c59b448d442f5e432f0d",
+              "F4-science-qx10-d9fcf10c759818257c4a",
+              "F4-science-qx10-8fe96669db2be1e35eea",
+              "F4-science-qx10-ca61db542f3bb13df118",
+              "F4-science-qx10-a78493052a7dbc8de6d2",
+              "F4-science-qx10-8f561cb74c7759811f46",
+              "F4-science-qx10-f165eae7f80a15203097",
+              "F4-science-qx10-5390531314b3160eff22",
+              "F4-science-qx10-02c6a7759ff39cb894bc",
+              "F4-science-qx10-073fa8e66deafa84e587",
+              "F4-science-qx10-e02c4e55a0d966aca68b",
+              "F4-science-qx10-dc88759e3d112132ea61",
+              "F4-science-qx10-4145126ddfa7bda9b90d",
+              "F4-science-qx10-2a67644052a2c2519304",
+              "F4-science-qx10-997aaaa1f5c56e103f5a",
+              "F4-science-qx10-19c20d9b09377d091be6",
+              "F4-science-qx10-d2d814e0676e475098b0",
+              "F4-science-qx10-f963b69dab1a5bf83248",
+              "F4-science-qx10-119c8b07ac22b03a7352",
+              "F4-science-qx10-5e3c3e472e6b43dfad51",
+              "F4-science-qx10-c3f22b128178f14a7779",
+              "F4-science-qx10-c603f7575ded175cba69",
+              "F4-science-qx10-dbbcc1fae9756b484e3e",
+              "F4-science-qx10-ff43e78e62092a372a87",
+              "F4-science-qx10-e1f906fa488518d6b149",
+              "F4-science-qx10-72d63d39ec677d87a89f",
+              "F4-science-qx10-41e0d23838ca48e0d010",
+              "F4-science-qx10-171e2df41c19000a41aa",
+              "F4-science-qx10-2fb5135aa326e360bdac",
+              "F4-science-qx10-535fb0c0f62fceead339",
+              "F4-science-qx10-56f3b7c01785e3116704",
+              "F4-science-qx10-8d96cf8fb5c2d1b0df33",
+              "F4-science-qx10-605003c001d910d16cad",
+              "F4-science-qx10-6af843d06ee3ddc1afa5",
+              "F4-science-qx10-21a64b9b20864bee4c6b",
+              "F4-science-qx10-420c5689732e84ec335b",
+              "F4-science-qx10-7443366140f958d752b9",
+              "F4-science-qx10-fed9ae8182791a4164a5",
+              "F4-science-qx10-a28c2ba5a525f2ea5c15",
+              "F4-science-qx10-eb6c276625f68589b710",
+              "F4-science-qx10-a1be03fe262c7e27c743",
+              "F4-science-qx10-0688cf0b3c08fd14e2c1",
+              "F4-science-qx10-cbc38f52d6e2f958a90e",
+              "F4-science-qx10-bc4ca551855074a63f82",
+              "F4-science-qx10-15d94a97b283bbc3a18e",
+              "F4-science-qx10-1478e8e1e5e5d8290fc2",
+              "F4-science-qx10-9a617cb82910b7ef4d5a",
+              "F4-science-qx10-c2388c7dfa2873c800b9"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 51,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch05-q1",
+              "F4-science-ch05-q2",
+              "F4-science-ch05-q3",
+              "F4-science-qx10-c59b448d442f5e432f0d",
+              "F4-science-qx10-d9fcf10c759818257c4a",
+              "F4-science-qx10-8fe96669db2be1e35eea"
+            ]
           },
           {
             "id": "F4-science-ch06",
             "title": {
+              "zh": "支撑、运动与生长",
               "bm": "Sokongan, Pergerakan dan Pertumbuhan",
               "en": "Support, Movement and Growth"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 43,
             "questionIds": [
               "F4-science-ch06-q1",
               "F4-science-ch06-q2",
-              "F4-science-ch06-q3"
+              "F4-science-ch06-q3",
+              "F4-science-qx10-cbf8d508522ff21c2656",
+              "F4-science-qx10-ecdb19ab29c798e21bcf",
+              "F4-science-qx10-656dfda983a7d116f17f",
+              "F4-science-qx10-c8b4622f36603bcec935",
+              "F4-science-qx10-04c7fc85cbca64a27cf2",
+              "F4-science-qx10-d346bbc7a69ea54a0b8e",
+              "F4-science-qx10-fc5c256c895cf10aeb60",
+              "F4-science-qx10-4a408ded1996bde47361",
+              "F4-science-qx10-540231db0e0da1a343a7",
+              "F4-science-qx10-e819a775885411b7cfdc",
+              "F4-science-qx10-def5f7b95a0f6dae5436",
+              "F4-science-qx10-e57d1aac95c8eb3ebe81",
+              "F4-science-qx10-76edd88dc2825982d4ce",
+              "F4-science-qx10-6c63bab64cf8605ac794",
+              "F4-science-qx10-8dcbf1bc8365fa3a5cb2",
+              "F4-science-qx10-08032b4df8c17b727a7d",
+              "F4-science-qx10-3218b64474012ddb6cb5",
+              "F4-science-qx10-1001de804bc1e3271271",
+              "F4-science-qx10-b6f78ae8ea4f9b53afe5",
+              "F4-science-qx10-5ab0ad40e291e1557a45",
+              "F4-science-qx10-9bcd3e170921a9e1d3c0",
+              "F4-science-qx10-ba40dd104490e02f2cf7",
+              "F4-science-qx10-e717d848c7700f77d294",
+              "F4-science-qx10-ebe31468e90fb8d99e23",
+              "F4-science-qx10-c6b0668d98343f93e4bd",
+              "F4-science-qx10-7f62ab09543b724275e1",
+              "F4-science-qx10-fd54b077747291e399ef",
+              "F4-science-qx10-93c460b078c810b5567b",
+              "F4-science-qx10-1cb58a92b8d121a30a76",
+              "F4-science-qx10-2e9edafa87e89e5aa6e1",
+              "F4-science-qx10-ea6444a3bbc677f3e916",
+              "F4-science-qx10-63543e19cafbb2694500",
+              "F4-science-qx10-88e858252cc149a42db8",
+              "F4-science-qx10-0dcab4e15fb958850fe8",
+              "F4-science-qx10-4351d8b32fd11eb61b93",
+              "F4-science-qx10-dfd7aacff24debf773a1",
+              "F4-science-qx10-4d44b692508344ec5f79",
+              "F4-science-qx10-27e40c045314d8830c76",
+              "F4-science-qx10-a9da0c710a5236d14a95",
+              "F4-science-qx10-b7aa8ce757db30af8f78"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 43,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch06-q1",
+              "F4-science-ch06-q2",
+              "F4-science-ch06-q3",
+              "F4-science-qx10-cbf8d508522ff21c2656",
+              "F4-science-qx10-ecdb19ab29c798e21bcf",
+              "F4-science-qx10-656dfda983a7d116f17f"
+            ]
           },
           {
             "id": "F4-science-ch07",
             "title": {
+              "zh": "身体协调",
               "bm": "Koordinasi Badan",
               "en": "Body Coordination"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 31,
             "questionIds": [
               "F4-science-ch07-q1",
               "F4-science-ch07-q2",
-              "F4-science-ch07-q3"
+              "F4-science-ch07-q3",
+              "F4-science-qx10-d10a89fe507f043a44af",
+              "F4-science-qx10-fb563b64f7a8f220dbb7",
+              "F4-science-qx10-82ba8c946f8a21d2d517",
+              "F4-science-qx10-7c2b740f4c3664ab5c12",
+              "F4-science-qx10-69d868ed507c8d7236ac",
+              "F4-science-qx10-0882a5e98790ecb1506f",
+              "F4-science-qx10-f2550f04dc2aa1400396",
+              "F4-science-qx10-6a1a0ecda6e79e04f96d",
+              "F4-science-qx10-a3d6235e48c12fd5b7b9",
+              "F4-science-qx10-c0dedb2d6b6868e76871",
+              "F4-science-qx10-5bc74e0cdbe11d3cf956",
+              "F4-science-qx10-05b306c8d55744642678",
+              "F4-science-qx10-4a0db6432574749e4b93",
+              "F4-science-qx10-c4f7ebf21b0d5f1f92a0",
+              "F4-science-qx10-4760fa9232dbf790032e",
+              "F4-science-qx10-188fcc5374880b395c96",
+              "F4-science-qx10-e981882840550a36b160",
+              "F4-science-qx10-5fb4df3948c43a93caf8",
+              "F4-science-qx10-e13f3c3bc312e43f76d1",
+              "F4-science-qx10-25c16ba0d2650590795e",
+              "F4-science-qx10-3407c9927e472193b5d3",
+              "F4-science-qx10-0cead54d4fabcbc71ac6",
+              "F4-science-qx10-bcf9aa36af6312c48cd7",
+              "F4-science-qx10-f5de227a238443c6a07a",
+              "F4-science-qx10-2f8c49594e8df8c335a7",
+              "F4-science-qx10-f14b1fa288ba2223fc44",
+              "F4-science-qx10-ec2a558e5ea2c4556f22",
+              "F4-science-qx10-a7155d8e94d145ff3bd9"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 31,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch07-q1",
+              "F4-science-ch07-q2",
+              "F4-science-ch07-q3",
+              "F4-science-qx10-d10a89fe507f043a44af",
+              "F4-science-qx10-fb563b64f7a8f220dbb7",
+              "F4-science-qx10-82ba8c946f8a21d2d517"
+            ]
           },
           {
             "id": "F4-science-ch08",
             "title": {
+              "zh": "元素与物质",
               "bm": "Unsur dan Bahan",
               "en": "Elements and Substances"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 26,
             "questionIds": [
               "F4-science-ch08-q1",
               "F4-science-ch08-q2",
-              "F4-science-ch08-q3"
+              "F4-science-ch08-q3",
+              "F4-science-qx10-d540abbe5dcbf6baaa44",
+              "F4-science-qx10-e4f622ddf4101632ccf2",
+              "F4-science-qx10-dad7621bcd4cd2135a85",
+              "F4-science-qx10-c5b50cd1eb33d5d250b6",
+              "F4-science-qx10-aacaef6b5730a982ad86",
+              "F4-science-qx10-536f64be65c155d7cfb5",
+              "F4-science-qx10-da7da60f80ccb7a98865",
+              "F4-science-qx10-06b8324fc16d9b5bc13a",
+              "F4-science-qx10-2903f676767aac1d23ea",
+              "F4-science-qx10-a332bfcc09f184df7c65",
+              "F4-science-qx10-7c107c69863ed0a178e5",
+              "F4-science-qx10-a59d347503f5f67799e5",
+              "F4-science-qx10-09a21fc24ac38d1664e5",
+              "F4-science-qx10-a6a7e4e4d08edaf1a09f",
+              "F4-science-qx10-0728e50058b2f2cb518a",
+              "F4-science-qx10-90c4181dcfab8008e574",
+              "F4-science-qx10-7765cbbb3139a9c4f675",
+              "F4-science-qx10-0280763e33e6378f1b24",
+              "F4-science-qx10-930c4b54b69517c8b527",
+              "F4-science-qx10-892ba9cf192bfdcfc28f",
+              "F4-science-qx10-879632cf48ba3f220439",
+              "F4-science-qx10-6fc2b022c2ef9be6d215",
+              "F4-science-qx10-e120ae2858f405b183f3"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 26,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch08-q1",
+              "F4-science-ch08-q2",
+              "F4-science-ch08-q3",
+              "F4-science-qx10-d540abbe5dcbf6baaa44",
+              "F4-science-qx10-e4f622ddf4101632ccf2",
+              "F4-science-qx10-dad7621bcd4cd2135a85"
+            ]
           },
           {
             "id": "F4-science-ch09",
             "title": {
+              "zh": "工业化学",
               "bm": "Kimia Industri",
               "en": "Industrial Chemistry"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 35,
             "questionIds": [
               "F4-science-ch09-q1",
               "F4-science-ch09-q2",
-              "F4-science-ch09-q3"
+              "F4-science-ch09-q3",
+              "F4-science-qx10-7e3722feba450b504705",
+              "F4-science-qx10-8ceeb93f61d4917a15b8",
+              "F4-science-qx10-86a15e1ec76f5dce9c75",
+              "F4-science-qx10-a345f6d39ffc061a28c4",
+              "F4-science-qx10-9589230724dfbfde685f",
+              "F4-science-qx10-1768ea873635c8bcbb5f",
+              "F4-science-qx10-c70fcd7ed0319da6e091",
+              "F4-science-qx10-4c57d376a78b45930906",
+              "F4-science-qx10-366c77bf4bc9c88eaedf",
+              "F4-science-qx10-17e5cac3dd6b31c72e8a",
+              "F4-science-qx10-3a9267a2e18c974f90cc",
+              "F4-science-qx10-2b11de2e1ae69342ea50",
+              "F4-science-qx10-5c28dab58285144a64f2",
+              "F4-science-qx10-18ac97236cb7f00f8be3",
+              "F4-science-qx10-d3e173cebcd862516aaf",
+              "F4-science-qx10-e4fbead0091edcbaeec1",
+              "F4-science-qx10-c8520b5800b8e3fcd292",
+              "F4-science-qx10-afbb44e22aa0a5de2317",
+              "F4-science-qx10-0a77e480a9309e17ad90",
+              "F4-science-qx10-3f599853eb4fa6f1c9c1",
+              "F4-science-qx10-79665189dae2f468ddf6",
+              "F4-science-qx10-0552fe4254307f4ad7c1",
+              "F4-science-qx10-e15df2111f4b201d8053",
+              "F4-science-qx10-cbf951223326cfb685b0",
+              "F4-science-qx10-a3269153db2983be8c44",
+              "F4-science-qx10-6ba4bb717bc0a13f82c7",
+              "F4-science-qx10-a03a1867a63629ef74b0",
+              "F4-science-qx10-f009bda91f288a47e9ef",
+              "F4-science-qx10-0afb73a9d3a696748b4f",
+              "F4-science-qx10-61b4d659a32701978f61",
+              "F4-science-qx10-f69b5a0343eba87beec6",
+              "F4-science-qx10-86e23ec0ed18c7def6ac"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 35,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch09-q1",
+              "F4-science-ch09-q2",
+              "F4-science-ch09-q3",
+              "F4-science-qx10-7e3722feba450b504705",
+              "F4-science-qx10-8ceeb93f61d4917a15b8",
+              "F4-science-qx10-86a15e1ec76f5dce9c75"
+            ]
           },
           {
             "id": "F4-science-ch10",
             "title": {
+              "zh": "医药与保健中的化学",
               "bm": "Kimia dalam Perubatan dan Kesihatan",
               "en": "Chemicals in Medicine and Health"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 25,
             "questionIds": [
               "F4-science-ch10-q1",
               "F4-science-ch10-q2",
-              "F4-science-ch10-q3"
+              "F4-science-ch10-q3",
+              "F4-science-qx10-e13d86a96f541a6d2cb0",
+              "F4-science-qx10-ab135dce54a6e81a0ca0",
+              "F4-science-qx10-15ba1ff9d899554bd39b",
+              "F4-science-qx10-c1bee134910f6a88548a",
+              "F4-science-qx10-6a2d66837bab983fb85a",
+              "F4-science-qx10-02c20d7a799ae2a5e529",
+              "F4-science-qx10-2ae68b40c1f402ab84d5",
+              "F4-science-qx10-0d8024d200b954147a6a",
+              "F4-science-qx10-d4406995964be9cb57f5",
+              "F4-science-qx10-25fc5057edcfdb204054",
+              "F4-science-qx10-9b4208c9c9006c8fcc56",
+              "F4-science-qx10-5032b81a47a31433f226",
+              "F4-science-qx10-c129c05c7a7587b19a6c",
+              "F4-science-qx10-fc464955d7e9b7ec5321",
+              "F4-science-qx10-934fefb17b1f2cc194ea",
+              "F4-science-qx10-13de4e58cc3cfc5d879d",
+              "F4-science-qx10-6ec55e1985f86fdfff7d",
+              "F4-science-qx10-ed83a3c6927dae18fbd3",
+              "F4-science-qx10-2a1e6ae12055eee1657b",
+              "F4-science-qx10-24e567ebb768a223e312",
+              "F4-science-qx10-c4cc880357a5afc3cb2c",
+              "F4-science-qx10-82968898e249ffdb03f2"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 25,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch10-q1",
+              "F4-science-ch10-q2",
+              "F4-science-ch10-q3",
+              "F4-science-qx10-e13d86a96f541a6d2cb0",
+              "F4-science-qx10-ab135dce54a6e81a0ca0",
+              "F4-science-qx10-15ba1ff9d899554bd39b"
+            ]
           },
           {
             "id": "F4-science-ch11",
             "title": {
+              "zh": "力与运动",
               "bm": "Daya dan Gerakan",
               "en": "Force and Motion"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 39,
             "questionIds": [
               "F4-science-ch11-q1",
               "F4-science-ch11-q2",
-              "F4-science-ch11-q3"
+              "F4-science-ch11-q3",
+              "F4-science-qx10-93d8f4200b9fd0b34c84",
+              "F4-science-qx10-0bd7182ee5931e146c73",
+              "F4-science-qx10-9bdaef1c952c7e7ea2a1",
+              "F4-science-qx10-27777f4ce46a4f8cbc61",
+              "F4-science-qx10-9d598a099dc99131093f",
+              "F4-science-qx10-e72e68baca21ecb588fe",
+              "F4-science-qx10-1d7168fba1adb8725619",
+              "F4-science-qx10-96d4640f2420904aa218",
+              "F4-science-qx10-52178bdb87618869d01b",
+              "F4-science-qx10-44c91899181cf626d377",
+              "F4-science-qx10-702b11f239f499e68795",
+              "F4-science-qx10-23f306a04e482c030930",
+              "F4-science-qx10-de860654ef167426ff54",
+              "F4-science-qx10-f852edb5514a447a573f",
+              "F4-science-qx10-28c57a70affc97aa7150",
+              "F4-science-qx10-2aa84c45db677c7a2625",
+              "F4-science-qx10-32be546bb41e0840949d",
+              "F4-science-qx10-b86032ed1110835286a0",
+              "F4-science-qx10-0a830e8087db52cfd195",
+              "F4-science-qx10-30297aa918a6d0aeb999",
+              "F4-science-qx10-31a75de392c0305225ce",
+              "F4-science-qx10-30cdc6deb7dcd32ade00",
+              "F4-science-qx10-dc468cf13b6d4d63aad8",
+              "F4-science-qx10-0319f842dab86fcfeac4",
+              "F4-science-qx10-75412a0af3a88ae9dbaf",
+              "F4-science-qx10-479dce84f900fa08f673",
+              "F4-science-qx10-917d1fce1d6d7cbccb63",
+              "F4-science-qx10-c7aefaea5cd1fc77611b",
+              "F4-science-qx10-8090b9028abe582cdd63",
+              "F4-science-qx10-15e0dba9d10f02072731",
+              "F4-science-qx10-708919b8b8fb1eac13ad",
+              "F4-science-qx10-a8ee1fea1688019bb513",
+              "F4-science-qx10-2f36066d4f258b695382",
+              "F4-science-qx10-6c3c290aab49ccab0cd4",
+              "F4-science-qx10-6ae2b0813460d58cc82e",
+              "F4-science-qx10-257284e5da1d61cb03da"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 39,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch11-q1",
+              "F4-science-ch11-q2",
+              "F4-science-ch11-q3",
+              "F4-science-qx10-93d8f4200b9fd0b34c84",
+              "F4-science-qx10-0bd7182ee5931e146c73",
+              "F4-science-qx10-9bdaef1c952c7e7ea2a1"
+            ]
           },
           {
             "id": "F4-science-ch12",
             "title": {
+              "zh": "核能",
               "bm": "Tenaga Nuklear",
               "en": "Nuclear Energy"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 22,
             "questionIds": [
               "F4-science-ch12-q1",
               "F4-science-ch12-q2",
-              "F4-science-ch12-q3"
+              "F4-science-ch12-q3",
+              "F4-science-qx10-909c85fc0d631cdef057",
+              "F4-science-qx10-ac69b3136dcbf6126efd",
+              "F4-science-qx10-1dc6c3a69fa7436801ed",
+              "F4-science-qx10-9c55e3603a8fa7adcb48",
+              "F4-science-qx10-a984285818d0a3f2c3ee",
+              "F4-science-qx10-bf611b27d6b0cba2ca8c",
+              "F4-science-qx10-19298efc860468798163",
+              "F4-science-qx10-e6e78b4f90f5d3235cb8",
+              "F4-science-qx10-218e3daa83be71aaeffc",
+              "F4-science-qx10-d7cd13e36b30845e93ae",
+              "F4-science-qx10-274a95ee2373f49d6ed0",
+              "F4-science-qx10-c45903fd6b51dcee8c89",
+              "F4-science-qx10-19623cdb122d042f567d",
+              "F4-science-qx10-6b58ad295aa204a55e5d",
+              "F4-science-qx10-0d596266838a95b5c4f9",
+              "F4-science-qx10-2f56d13358dc68f79ff7",
+              "F4-science-qx10-81616475dfd526e79ea0",
+              "F4-science-qx10-b98aac3b0a40fd4ebd48",
+              "F4-science-qx10-f7b10de213d8a2097c97"
             ],
             "sourceIds": [
               "science-f4-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 22,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F4-science-ch12-q1",
+              "F4-science-ch12-q2",
+              "F4-science-ch12-q3",
+              "F4-science-qx10-909c85fc0d631cdef057",
+              "F4-science-qx10-ac69b3136dcbf6126efd",
+              "F4-science-qx10-1dc6c3a69fa7436801ed"
+            ]
           }
         ],
         "performanceTasks": [
@@ -141089,17 +142335,19 @@
       "level": "F5",
       "subject": "science",
       "title": "科学",
-      "active": 27,
-      "stored": 27,
+      "active": 315,
+      "stored": 315,
       "retired": 0,
       "sourceIds": [
-        "science-f5-inventory"
+        "science-f5-inventory",
+        "qx10-original"
       ],
       "curriculumCoverage": {
         "course": "F5-science",
         "framework": "KSSM",
         "sourceIds": [
-          "science-f5-inventory"
+          "science-f5-inventory",
+          "qx10-original"
         ],
         "granularity": "chapters",
         "summary": {
@@ -141112,182 +142360,578 @@
           {
             "id": "F5-science-ch01",
             "title": {
+              "zh": "微生物",
               "bm": "Mikroorganisma",
               "en": "Microorganisms"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 45,
             "questionIds": [
               "F5-science-ch01-q1",
               "F5-science-ch01-q2",
-              "F5-science-ch01-q3"
+              "F5-science-ch01-q3",
+              "F5-science-qx10-a25345f55ba351cfe8d3",
+              "F5-science-qx10-524208f255f0c3f8127d",
+              "F5-science-qx10-3adc75c2c21dc70978b5",
+              "F5-science-qx10-d74975027fa40f6cb57a",
+              "F5-science-qx10-6bb6fbf7abac8f4b4f11",
+              "F5-science-qx10-6ba09fef41791e569444",
+              "F5-science-qx10-e67bee6b9fffaf55429e",
+              "F5-science-qx10-905e8d39a63b78bfe507",
+              "F5-science-qx10-aacfaec62edc9fb13b0d",
+              "F5-science-qx10-d79ac11f7b25be5f12fc",
+              "F5-science-qx10-14b67590c01f50fccc8b",
+              "F5-science-qx10-95738443a4555b609f57",
+              "F5-science-qx10-a83d1a6f12387a3d1844",
+              "F5-science-qx10-473252a0fb91f9552ce7",
+              "F5-science-qx10-605e8808668cdf6fb244",
+              "F5-science-qx10-06888bcb5adf14f08b48",
+              "F5-science-qx10-dfbd44c2ed1186beedb3",
+              "F5-science-qx10-9f9e3518460f5c3ec873",
+              "F5-science-qx10-09f6661c5f0c24835442",
+              "F5-science-qx10-eaa4907f73c19fed75a7",
+              "F5-science-qx10-b58edd39b0b22f8e9543",
+              "F5-science-qx10-4d0d34c42dd697f746ba",
+              "F5-science-qx10-5e2c1f8ebbfc2ecf5c2a",
+              "F5-science-qx10-e301f4bcb80d15722a29",
+              "F5-science-qx10-16ac46c1b01dcb8ab0ac",
+              "F5-science-qx10-a19b24e647c831c48826",
+              "F5-science-qx10-54ea7ac32bff499f0c94",
+              "F5-science-qx10-05b19c1348328af64683",
+              "F5-science-qx10-747f16069e26cbb07aa2",
+              "F5-science-qx10-bb3886d900a6bbc30444",
+              "F5-science-qx10-96eafcb7de9e15dcf5fc",
+              "F5-science-qx10-e3b2b0e14f320e1ecc17",
+              "F5-science-qx10-a208c64b9a32b9679ebf",
+              "F5-science-qx10-a9b90cf3b8aa936d0195",
+              "F5-science-qx10-c2419b7947362e95131f",
+              "F5-science-qx10-b44d40dda38bf57740b8",
+              "F5-science-qx10-97dc70dd54559dc54508",
+              "F5-science-qx10-1b7f2cef853ec4992f08",
+              "F5-science-qx10-50d2bf6d3f10106c536f",
+              "F5-science-qx10-bd42e47313ecd4d7f1cc",
+              "F5-science-qx10-952c4b348f30f0245d69",
+              "F5-science-qx10-6643610bb5aa3dbaadcd"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 45,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch01-q1",
+              "F5-science-ch01-q2",
+              "F5-science-ch01-q3",
+              "F5-science-qx10-a25345f55ba351cfe8d3",
+              "F5-science-qx10-524208f255f0c3f8127d",
+              "F5-science-qx10-3adc75c2c21dc70978b5"
+            ]
           },
           {
             "id": "F5-science-ch02",
             "title": {
+              "zh": "营养与食品科技",
               "bm": "Nutrisi dan Teknologi Makanan",
               "en": "Nutrition and Food Technology"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 50,
             "questionIds": [
               "F5-science-ch02-q1",
               "F5-science-ch02-q2",
-              "F5-science-ch02-q3"
+              "F5-science-ch02-q3",
+              "F5-science-qx10-b8f0bdd1dfba46d4b44f",
+              "F5-science-qx10-a661112a2e142c1f3572",
+              "F5-science-qx10-c8baac3f4a8801f32883",
+              "F5-science-qx10-969f3e6a88ce8a403719",
+              "F5-science-qx10-22aba6b25aa87385539c",
+              "F5-science-qx10-666efd532089f554161d",
+              "F5-science-qx10-ee30df3ee44c3d5bd240",
+              "F5-science-qx10-e425afd7979af53957f4",
+              "F5-science-qx10-5a71be7869e897b1ebe3",
+              "F5-science-qx10-7ea96528d4d434b32796",
+              "F5-science-qx10-e4ad385455dab55ab71f",
+              "F5-science-qx10-5fbf33efdee6f51fc914",
+              "F5-science-qx10-e6427f0e5894dc07ed65",
+              "F5-science-qx10-2bd43d30062198304d4a",
+              "F5-science-qx10-5401c1e8c389d23a186b",
+              "F5-science-qx10-f23451fa99d9ae287bc0",
+              "F5-science-qx10-264d34d48a9b4ce4b2c7",
+              "F5-science-qx10-009c30d6302cd531975a",
+              "F5-science-qx10-c4cea8b24bd0de15188b",
+              "F5-science-qx10-ee452a2e5a14fcd6d20d",
+              "F5-science-qx10-a9628227892e29c3beda",
+              "F5-science-qx10-be781d19c601d0bdacbc",
+              "F5-science-qx10-f14f66e9e1cdb344437b",
+              "F5-science-qx10-611537f2bb4b39a8b0eb",
+              "F5-science-qx10-b380579bd5e1240a2335",
+              "F5-science-qx10-60220f9db4cbcf2a8ca9",
+              "F5-science-qx10-e48f6a7dc3a089236547",
+              "F5-science-qx10-f47a8d0a30fd773db3aa",
+              "F5-science-qx10-95085928d7e49927d1e4",
+              "F5-science-qx10-c44c4ba56582ed2ef843",
+              "F5-science-qx10-c844ec41207ae752c75d",
+              "F5-science-qx10-6b2e40b03f70189f4c38",
+              "F5-science-qx10-2dc7a17618246ba8cd49",
+              "F5-science-qx10-ea065d8dc073cba27221",
+              "F5-science-qx10-1dad4c81d82e1fff429d",
+              "F5-science-qx10-c1c4c0be5a03c20f2f7b",
+              "F5-science-qx10-77e90e976495e3a5546a",
+              "F5-science-qx10-f7dd5c29e72ca1b5a3b8",
+              "F5-science-qx10-ed5bbb4c518c5fdbbe6f",
+              "F5-science-qx10-7861e4fc016eb1b1728c",
+              "F5-science-qx10-b5eacf3b1c5b5a13fde0",
+              "F5-science-qx10-a91c59f05c211acfdc7d",
+              "F5-science-qx10-945f602a4b16f6fed723",
+              "F5-science-qx10-247cc6efa06f9cfbf668",
+              "F5-science-qx10-691e6078e20ad36e9ab0",
+              "F5-science-qx10-411d132737f0aef67a16",
+              "F5-science-qx10-4c0465a7fc0b46368619"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 50,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch02-q1",
+              "F5-science-ch02-q2",
+              "F5-science-ch02-q3",
+              "F5-science-qx10-b8f0bdd1dfba46d4b44f",
+              "F5-science-qx10-a661112a2e142c1f3572",
+              "F5-science-qx10-c8baac3f4a8801f32883"
+            ]
           },
           {
             "id": "F5-science-ch03",
             "title": {
+              "zh": "环境的永续性",
               "bm": "Kelestarian Alam Sekitar",
               "en": "Environmental Sustainability"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 33,
             "questionIds": [
               "F5-science-ch03-q1",
               "F5-science-ch03-q2",
-              "F5-science-ch03-q3"
+              "F5-science-ch03-q3",
+              "F5-science-qx10-ec7960153e4b0e14560a",
+              "F5-science-qx10-e537c3deb8735666d58f",
+              "F5-science-qx10-a89dbdcc8f9be7d6ed4d",
+              "F5-science-qx10-4117b84170ec64080f90",
+              "F5-science-qx10-166cd24c8a17727e1583",
+              "F5-science-qx10-bf223c717a30619293bb",
+              "F5-science-qx10-1a8076ed90f53cc1b92f",
+              "F5-science-qx10-0272adced8908df484f2",
+              "F5-science-qx10-e092b4ee22e6d60eed06",
+              "F5-science-qx10-b8736dea063b6d09f2ff",
+              "F5-science-qx10-3a529d4847a5875fc34e",
+              "F5-science-qx10-eef1ad411cabde1ef041",
+              "F5-science-qx10-4c62ca5ff23b9c999c65",
+              "F5-science-qx10-401af0cbd308cd334f01",
+              "F5-science-qx10-93863603331fc722de10",
+              "F5-science-qx10-9aca3320e2caf86ce653",
+              "F5-science-qx10-aa4a252aeecef33db787",
+              "F5-science-qx10-59f5cc786a2ccd155d3d",
+              "F5-science-qx10-1e469d8ef20fafad5078",
+              "F5-science-qx10-0b64f368ea91c3624e42",
+              "F5-science-qx10-4406d4aedee37126a05d",
+              "F5-science-qx10-fe208243f490bb048c2f",
+              "F5-science-qx10-c9539249a89a04d95249",
+              "F5-science-qx10-877ae39f143367a6dc1f",
+              "F5-science-qx10-4a119bfd98e7c5e7f287",
+              "F5-science-qx10-60a5e08220ae1f5aaefe",
+              "F5-science-qx10-67fca0c823b6b7e07aa6",
+              "F5-science-qx10-01ddf30114d2fdbbe49f",
+              "F5-science-qx10-08eb3fad9935e4a1ff19",
+              "F5-science-qx10-c50e04ea243780bd6176"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 33,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch03-q1",
+              "F5-science-ch03-q2",
+              "F5-science-ch03-q3",
+              "F5-science-qx10-ec7960153e4b0e14560a",
+              "F5-science-qx10-e537c3deb8735666d58f",
+              "F5-science-qx10-a89dbdcc8f9be7d6ed4d"
+            ]
           },
           {
             "id": "F5-science-ch04",
             "title": {
+              "zh": "反应速率",
               "bm": "Kadar Tindak Balas",
               "en": "Rate of Reaction"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 27,
             "questionIds": [
               "F5-science-ch04-q1",
               "F5-science-ch04-q2",
-              "F5-science-ch04-q3"
+              "F5-science-ch04-q3",
+              "F5-science-qx10-21b797850ec84e59ba16",
+              "F5-science-qx10-2145ec16150507dbe6e9",
+              "F5-science-qx10-b0cdb4a31183650db45c",
+              "F5-science-qx10-0055b85b28aa2f21c063",
+              "F5-science-qx10-6782f7ceb67925d625d1",
+              "F5-science-qx10-e5b6af15f9c12230a231",
+              "F5-science-qx10-a606688d33936688fd6d",
+              "F5-science-qx10-846aa969be1dd563edaa",
+              "F5-science-qx10-f0baec37e5607d73b488",
+              "F5-science-qx10-844d665296438520d8f5",
+              "F5-science-qx10-2b9b34b1a3de2177cde2",
+              "F5-science-qx10-8acdf026a90c10f6f639",
+              "F5-science-qx10-4f97787f708a804d49f0",
+              "F5-science-qx10-92fdf6e4480ad5cc7555",
+              "F5-science-qx10-083f957452b33863606a",
+              "F5-science-qx10-ae04a8f31a544df298e4",
+              "F5-science-qx10-8c52b418ff51cc53cedf",
+              "F5-science-qx10-9986431f2eea21a298f7",
+              "F5-science-qx10-6c4debf30c6b636d2adb",
+              "F5-science-qx10-72f3e3f004d6cb5e7e92",
+              "F5-science-qx10-b1f596e19f54c959f6c0",
+              "F5-science-qx10-95157ca96149b35684d7",
+              "F5-science-qx10-33ba7e0e69b738e52951",
+              "F5-science-qx10-d2a589ac80daf216c455"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 27,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch04-q1",
+              "F5-science-ch04-q2",
+              "F5-science-ch04-q3",
+              "F5-science-qx10-21b797850ec84e59ba16",
+              "F5-science-qx10-2145ec16150507dbe6e9",
+              "F5-science-qx10-b0cdb4a31183650db45c"
+            ]
           },
           {
             "id": "F5-science-ch05",
             "title": {
+              "zh": "碳化合物",
               "bm": "Sebatian Karbon",
               "en": "Carbon Compounds"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 56,
             "questionIds": [
               "F5-science-ch05-q1",
               "F5-science-ch05-q2",
-              "F5-science-ch05-q3"
+              "F5-science-ch05-q3",
+              "F5-science-qx10-0938cfb43075b94d7066",
+              "F5-science-qx10-a566a3516ed98b8a703f",
+              "F5-science-qx10-793c38aebfc30c71c9f4",
+              "F5-science-qx10-580408f38ccd7663395e",
+              "F5-science-qx10-ca39de298a66a885e58c",
+              "F5-science-qx10-bfae1de6b611facb4a1b",
+              "F5-science-qx10-c4f9c1d66a48f00724ca",
+              "F5-science-qx10-545a95185dffa55409b8",
+              "F5-science-qx10-fb370c37fe239a505071",
+              "F5-science-qx10-30aff6d0f3f0f3e8be15",
+              "F5-science-qx10-ef9d3a37a15d0f2aee23",
+              "F5-science-qx10-98ccd56525c440ff03bd",
+              "F5-science-qx10-c5fdbddc1401148df54e",
+              "F5-science-qx10-793904725dd178093ee5",
+              "F5-science-qx10-cdca9c470ef8ae4f7978",
+              "F5-science-qx10-a7ac2befbf0104910adc",
+              "F5-science-qx10-1e7c0cc4d80a305c823a",
+              "F5-science-qx10-fa991cf33b59d0b947d6",
+              "F5-science-qx10-9fccd37a55a9efd17124",
+              "F5-science-qx10-a8899e81dcd2067b3ac4",
+              "F5-science-qx10-de2b34ac823f68f5026b",
+              "F5-science-qx10-b8247b227714ceb41812",
+              "F5-science-qx10-611eb7d0a8a715abd03e",
+              "F5-science-qx10-064f7759389fcc66c1be",
+              "F5-science-qx10-907c0cd7d965536a7807",
+              "F5-science-qx10-2879ca4ca871169288b5",
+              "F5-science-qx10-90b7df8f55fdc3bfd8fa",
+              "F5-science-qx10-6cd1d7dc494e5c4cd6d8",
+              "F5-science-qx10-8da19688f52b7ade28ad",
+              "F5-science-qx10-ec7b37d859ef5c1799fd",
+              "F5-science-qx10-c918af04ab75e116fded",
+              "F5-science-qx10-b60884b6af453e9ccf5d",
+              "F5-science-qx10-057960b04c457da6c029",
+              "F5-science-qx10-24051fca05a00924f861",
+              "F5-science-qx10-d3d1af99521df37dfc8f",
+              "F5-science-qx10-849177124d6059c5e89b",
+              "F5-science-qx10-5428455b40d552d4008d",
+              "F5-science-qx10-758b3eafead409ca142f",
+              "F5-science-qx10-2a2cf524d496116e0e8d",
+              "F5-science-qx10-e8f7e909c008fea3d2a0",
+              "F5-science-qx10-1f6c84b170e6dacc4994",
+              "F5-science-qx10-7064a0ce5bb72037c213",
+              "F5-science-qx10-92e0bd9b261c5e32c316",
+              "F5-science-qx10-e6deb702591135b818a6",
+              "F5-science-qx10-30421a1ac5539234762c",
+              "F5-science-qx10-130d8215de853a495e91",
+              "F5-science-qx10-177679ec4c5221e03243",
+              "F5-science-qx10-aec27e7f99af6b1bc422",
+              "F5-science-qx10-a53e5f4c52d310ec0539",
+              "F5-science-qx10-23ff029aaa753a3b2284",
+              "F5-science-qx10-0f926e6d38f124b9ae3d",
+              "F5-science-qx10-c93155f6cdd136a172ce",
+              "F5-science-qx10-a39a89fd1b521e5926fe"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 56,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch05-q1",
+              "F5-science-ch05-q2",
+              "F5-science-ch05-q3",
+              "F5-science-qx10-0938cfb43075b94d7066",
+              "F5-science-qx10-a566a3516ed98b8a703f",
+              "F5-science-qx10-793c38aebfc30c71c9f4"
+            ]
           },
           {
             "id": "F5-science-ch06",
             "title": {
+              "zh": "电化学",
               "bm": "Elektrokimia",
               "en": "Electrochemistry"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 41,
             "questionIds": [
               "F5-science-ch06-q1",
               "F5-science-ch06-q2",
-              "F5-science-ch06-q3"
+              "F5-science-ch06-q3",
+              "F5-science-qx10-7cc5ba22a1c7110d97aa",
+              "F5-science-qx10-3f8346ac5a71d5437ff6",
+              "F5-science-qx10-3e7ece3ccd07555c7122",
+              "F5-science-qx10-8511903f7cbbe0e505a2",
+              "F5-science-qx10-3ceecd8e92d1800a939b",
+              "F5-science-qx10-2e62bcb6a0829c480017",
+              "F5-science-qx10-9489656ebb11bad8749d",
+              "F5-science-qx10-68f20d9b431ba12a4977",
+              "F5-science-qx10-7afef927b724ac63b860",
+              "F5-science-qx10-3ac342215a6f45e09357",
+              "F5-science-qx10-05d7bbb912d9f89ab6d8",
+              "F5-science-qx10-17104bc9c9df8ae87917",
+              "F5-science-qx10-f423f84adba70d514980",
+              "F5-science-qx10-933cbe1e999223a8fdab",
+              "F5-science-qx10-d2e757a5d7dfb726212f",
+              "F5-science-qx10-2d72c0c303a8ea0ca373",
+              "F5-science-qx10-2d83f2aa4b32556e1de3",
+              "F5-science-qx10-0a3d0c09a0d4a5d9d748",
+              "F5-science-qx10-1a78a6d494f984bc63de",
+              "F5-science-qx10-83e4e45cd7c817df2932",
+              "F5-science-qx10-083a597bcba891b91fc6",
+              "F5-science-qx10-0f94319e24bd6a5eca92",
+              "F5-science-qx10-902af550c9dd9dff5d23",
+              "F5-science-qx10-fdea43d0a580c399176c",
+              "F5-science-qx10-d6229ab0c276675e6b14",
+              "F5-science-qx10-f4c359ff029e6578f87b",
+              "F5-science-qx10-1b519b588d5bc49987c1",
+              "F5-science-qx10-00cc814e0cbb86f7b973",
+              "F5-science-qx10-8bafdacc8ff162ba3e6c",
+              "F5-science-qx10-d23744a7de2796c6f074",
+              "F5-science-qx10-0c72268c810aedd2baec",
+              "F5-science-qx10-affdcd0ef96c86c11e4f",
+              "F5-science-qx10-88fe89e867bedb09b8c2",
+              "F5-science-qx10-cd967b1f1a6438ae5bce",
+              "F5-science-qx10-89824bbebd8d48aa3be9",
+              "F5-science-qx10-4c0a649addc120e48542",
+              "F5-science-qx10-2a7b8cf3b15d110d8626",
+              "F5-science-qx10-42c5bd239860974f71d4"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 41,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch06-q1",
+              "F5-science-ch06-q2",
+              "F5-science-ch06-q3",
+              "F5-science-qx10-7cc5ba22a1c7110d97aa",
+              "F5-science-qx10-3f8346ac5a71d5437ff6",
+              "F5-science-qx10-3e7ece3ccd07555c7122"
+            ]
           },
           {
             "id": "F5-science-ch07",
             "title": {
+              "zh": "光与光学",
               "bm": "Cahaya dan Optik",
               "en": "Light and Optics"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 25,
             "questionIds": [
               "F5-science-ch07-q1",
               "F5-science-ch07-q2",
-              "F5-science-ch07-q3"
+              "F5-science-ch07-q3",
+              "F5-science-qx10-cead8d121e80cdd9bdd8",
+              "F5-science-qx10-96560e629898a7e512e3",
+              "F5-science-qx10-14315e126851b3853012",
+              "F5-science-qx10-7d72285c4e96069e2b34",
+              "F5-science-qx10-f09fe7568155ee77b385",
+              "F5-science-qx10-d8dda75e7a6c46119562",
+              "F5-science-qx10-83d866f7522dfb9256f5",
+              "F5-science-qx10-8c8cbbd3ddd7da1619aa",
+              "F5-science-qx10-9ef3510fdef726fe8330",
+              "F5-science-qx10-f3ef1884a86659e89bf6",
+              "F5-science-qx10-f72bdced9e758945fc23",
+              "F5-science-qx10-774fbeb0ec8b0c6b4aa8",
+              "F5-science-qx10-5c56dbafb89bc8a7ee80",
+              "F5-science-qx10-6c47ea048e20afcc6b07",
+              "F5-science-qx10-5b36ab34c7ed4f89c104",
+              "F5-science-qx10-fb08b65e58f7e021b5ed",
+              "F5-science-qx10-7091e2583568a3c3bae8",
+              "F5-science-qx10-9221e764ff80ec45cb58",
+              "F5-science-qx10-42fdfc0ad89bc5baaad4",
+              "F5-science-qx10-19b2960a2c60ba0961b9",
+              "F5-science-qx10-11c1bc8ef087a7058182",
+              "F5-science-qx10-6e7517ab52b3c0757ad7"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 25,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch07-q1",
+              "F5-science-ch07-q2",
+              "F5-science-ch07-q3",
+              "F5-science-qx10-cead8d121e80cdd9bdd8",
+              "F5-science-qx10-96560e629898a7e512e3",
+              "F5-science-qx10-14315e126851b3853012"
+            ]
           },
           {
             "id": "F5-science-ch08",
             "title": {
+              "zh": "力与压强",
               "bm": "Daya dan Tekanan",
               "en": "Force and Pressure"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 19,
             "questionIds": [
               "F5-science-ch08-q1",
               "F5-science-ch08-q2",
-              "F5-science-ch08-q3"
+              "F5-science-ch08-q3",
+              "F5-science-qx10-9b306be532e5fa30bb89",
+              "F5-science-qx10-1ba7f9e1305cb259ba30",
+              "F5-science-qx10-1d534abea754464e2bb8",
+              "F5-science-qx10-d6a247cefb0307009b3d",
+              "F5-science-qx10-afeb5ab69f4b2e2342bb",
+              "F5-science-qx10-6ef9df9017b117d45ebe",
+              "F5-science-qx10-bcd9097eb3030d8438be",
+              "F5-science-qx10-607047f1bfc641c5be56",
+              "F5-science-qx10-9356e3587ab925b2735f",
+              "F5-science-qx10-887af31e20ef33732e6c",
+              "F5-science-qx10-022dbf8f63b7e42b04c8",
+              "F5-science-qx10-8f9e3132b94ff1eaec3e",
+              "F5-science-qx10-e9061be5cccc4715444d",
+              "F5-science-qx10-206949a6208b7b9f4211",
+              "F5-science-qx10-8d97cbdb652760d6d9c2",
+              "F5-science-qx10-0e543ab896b9e8421768"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 19,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch08-q1",
+              "F5-science-ch08-q2",
+              "F5-science-ch08-q3",
+              "F5-science-qx10-9b306be532e5fa30bb89",
+              "F5-science-qx10-1ba7f9e1305cb259ba30",
+              "F5-science-qx10-1d534abea754464e2bb8"
+            ]
           },
           {
             "id": "F5-science-ch09",
             "title": {
+              "zh": "太空科技",
               "bm": "Teknologi Angkasa Lepas",
               "en": "Space Technology"
             },
             "status": "partial",
-            "questionCount": 3,
+            "questionCount": 19,
             "questionIds": [
               "F5-science-ch09-q1",
               "F5-science-ch09-q2",
-              "F5-science-ch09-q3"
+              "F5-science-ch09-q3",
+              "F5-science-qx10-6ed779978dbd7563c005",
+              "F5-science-qx10-dd45c28a9f0a5a013c2f",
+              "F5-science-qx10-b1226196f33c415e6f62",
+              "F5-science-qx10-b8b36c8099015da6879b",
+              "F5-science-qx10-f6ba79ff5835969ac210",
+              "F5-science-qx10-7afb0c6e9b1d272362e6",
+              "F5-science-qx10-aac6253fa9800601c546",
+              "F5-science-qx10-f9ab488291e5d82f5ad2",
+              "F5-science-qx10-6557bedf19ac583765f1",
+              "F5-science-qx10-ca8bfa00848cc94edc74",
+              "F5-science-qx10-97b0351b529f63353b13",
+              "F5-science-qx10-af2974d80837a4a885ca",
+              "F5-science-qx10-6a496f32b25e81d6c226",
+              "F5-science-qx10-1d856b23c542c17e462a",
+              "F5-science-qx10-1da6c07f5efd177b42ac",
+              "F5-science-qx10-e3551c50c69b469b59c2"
             ],
             "sourceIds": [
               "science-f5-inventory"
             ],
             "note": {
               "zh": "已有选定考点练习与构答任务；尚未覆盖全部学习标准。"
-            }
+            },
+            "models": 2,
+            "independentCount": 19,
+            "guidedCount": 0,
+            "evidenceIds": [
+              "F5-science-ch09-q1",
+              "F5-science-ch09-q2",
+              "F5-science-ch09-q3",
+              "F5-science-qx10-6ed779978dbd7563c005",
+              "F5-science-qx10-dd45c28a9f0a5a013c2f",
+              "F5-science-qx10-b1226196f33c415e6f62"
+            ]
           }
         ],
         "performanceTasks": [
@@ -149358,9 +151002,21 @@
           "F2-rbt"
         ],
         "added": 130
+      },
+      {
+        "date": "2026-11-23",
+        "contentRevision": "9b3200778d34b85d",
+        "previousRevision": "fe7dfeffdca796df",
+        "courses": [
+          "F4-history",
+          "F5-history",
+          "F4-science",
+          "F5-science"
+        ],
+        "added": 1144
       }
     ],
-    "addedTotal": 25973,
+    "addedTotal": 27117,
     "tierShortfallP1toF3": 5186,
     "method": "Original items written per grade and topic, checked by rule-based tests (languages, duplicates, give-aways, answer-length bias) and an independent item-by-item review of key, distractors and translations."
   },
